@@ -43,7 +43,7 @@ class Profile extends Component {
           <section className="collections">
           {
             this.props.user.collections && this.props.user.collections.map(collection => (
-              <ProfileCollections key={ collection._id } user={ this.props.user }/>
+              <ProfileCollections key={ collection._id } collection={ collection }/>
              ))
           }
           </section>
