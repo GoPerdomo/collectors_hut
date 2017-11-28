@@ -5,9 +5,6 @@
   text-align: center;
   margin-bottom: 50px;
 }
-.Header p {
-  font-size: 2em;
-}
 /* Header */
 
 
@@ -39,30 +36,12 @@
   height: 100px;
 }
 
-.profile-info p {
+.profile-info h2 {
   float: left;
   font-size: 1.5em;
 }
 /* Profile */
 
-/* Collections */
-.collection {
-  display: flex;
-  justify-content: space-around;
-  margin: auto;
-  width: 90%;
-  height: 300px;
-  margin-bottom: 30px;
-  border: 1px solid black;  
-}
-
-.collection div {
-  width: 47%;
-  margin: auto;
-  height: 90%;
-  border: 1px solid black;
-}
-/* Collections */
 
 /* Footer */
 .Footer {
