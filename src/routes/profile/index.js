@@ -40,7 +40,13 @@ class Profile extends Component {
               <h2>{ `${this.props.user.firstName} ${this.props.user.lastName}` }</h2>
             </section>
           </section>
-          <ProfileCollections user={ this.props.user }/>
+          <section className="collections">
+          {
+            this.props.user.collections && this.props.user.collections.map(collection => (
+              <ProfileCollections key={ collection._id } user={ this.props.user }/>
+             ))
+          }
+          </section>
         </main>
         <footer className="Footer">
           <h2>Collectors Hut Footer</h2>
