@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/AppContainer';
+import Profile from './routes/profile';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <App />
+  <Profile />
   , document.getElementById('root'));
 registerServiceWorker();
