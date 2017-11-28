@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import './style.css';
 
-class ProfileContainer extends Component {
+class ProfileCollections extends Component {
   // constructor(props) {
   //   super(props)
   // }
@@ -31,4 +31,4 @@ class ProfileContainer extends Component {
   }
 }
 
-export default ProfileContainer;
+export default ProfileCollections;
