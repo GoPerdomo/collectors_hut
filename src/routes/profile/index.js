@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProfileContainer from '../../containers/ProfileCollections';
+import ProfileCollections from '../../containers/ProfileCollections';
 
 import './style.css';
 
@@ -40,7 +40,7 @@ class Profile extends Component {
               <h2>{ `${this.props.user.firstName} ${this.props.user.lastName}` }</h2>
             </section>
           </section>
-          <ProfileContainer user={ this.props.user }/>
+          <ProfileCollections user={ this.props.user }/>
         </main>
         <footer className="Footer">
           <h2>Collectors Hut Footer</h2>
