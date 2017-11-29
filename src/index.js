@@ -13,7 +13,8 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router>
       <Switch>
-        <Route exact path="/" component={ Profile } />
+        <Route exact path="/users/:id" component={ Profile } />
+        {/* <Route exact path="/users/:id/collections/:id" component={ Collection } /> */}
       </Switch>
     </Router>
   </Provider>

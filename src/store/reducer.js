@@ -1,11 +1,22 @@
 import { createStore } from 'redux';
 
 const reducer = (state = {}, { type, payload }) => {
-  switch(type) {
-    case "SET_CURRENT_USER":
-      return { ...state, ...payload.user };
-    case "SET_CURRENT_USERS_COLLECTIONS":
-      return { ...state, ...payload.collection };
+
+  switch (type) {
+    case "ADD_USER":
+      return { ...state, [payload.user._id]: { ...payload.user } };
+
+    case "SET_COLLECTION_ITEMS":
+      const { collectionId, userId, items } = payload;
+
+      const newCollections = state[userId].collections.map(collection => (
+        collection._id === collectionId ? {...collection, items} : collection
+      ));
+
+      const newState = { ...state, [userId]: {...state[userId], collections: newCollections}}
+
+      return newState;
+
     default:
       return state;
   }

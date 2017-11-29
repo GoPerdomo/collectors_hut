@@ -28,3 +28,7 @@
 .collection-description {
   text-align: left;
 }
+
+.reverse {
+  flex-direction: row-reverse;
+}
