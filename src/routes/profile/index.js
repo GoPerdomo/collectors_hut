@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
 
 import './style.css';
@@ -33,13 +34,7 @@ class Profile extends Component {
           <h1>Collectors Hut Header</h1>
         </header>
         <main className="Profile">
-          <div className="profile-header">
-            <div className="profile-cover"></div>
-            <div className="profile-info">
-              <img src="https://cdn3.iconfinder.com/data/icons/black-easy/512/535106-user_512x512.png" alt="TODO: Add a nonredundant alt"/>
-              <h2>{ `${this.props.user.firstName} ${this.props.user.lastName}` }</h2>
-            </div>
-          </div>
+          <ProfileHeader user={ this.props.user }/>
           <div className="collections">
           {
             this.props.user.collections && this.props.user.collections.map(collection => (
