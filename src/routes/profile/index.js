@@ -37,27 +37,20 @@ class Profile extends Component {
 
 
     return (
-      <div className="tempWrapper">
-        <header className="Header">
-          <h1>Collectors Hut Header</h1>
-        </header>
-        {
-          !isEmpty(user) &&
-          <main className="Profile">
-            <ProfileHeader user={user} />
-            <div className="collections">
-              {
-                !isEmpty(user.collections) && user.collections.map((collection, index) => (
-                  <ProfileCollections index={index} key={collection._id} collection={collection} userId={user._id} />
-                ))
-              }
-            </div>
-          </main>
-        }
-
-        <footer className="Footer">
-          <h2>Collectors Hut Footer</h2>
-        </footer>
+      <div>
+      {
+        !isEmpty(user) &&
+        <main className="Profile">
+          <ProfileHeader user={ user } />
+          <div className="collections">
+            {
+              !isEmpty(user.collections) && user.collections.map((collection, index) => (
+                <ProfileCollections index={index} key={collection._id} collection={collection} userId={user._id} />
+              ))
+            }
+          </div>
+        </main>
+      }
       </div>
     )
   }

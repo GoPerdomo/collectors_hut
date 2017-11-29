@@ -30,12 +30,14 @@ class ProfileCollections extends Component {
     const { collection, index } = this.props;
 
     return (
-      <div className={`collection ${!!index % 2 ? 'reverse' : ''}`}>
+      <div className={`collection ${index % 2 ? 'reverse' : ''}`}>
         <div className="collection-photos-preview">
           {
             collection.items && collection.items.map((item, index) => {
               if (index < 6)
                 return <img key={item._id} src={item.photo} alt="TODO: Add a nonredundant alt" />
+              else
+                return undefined
             })
           }
         </div>
@@ -48,13 +50,4 @@ class ProfileCollections extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return (
-//     {
-//       items: state
-//     }
-//   )
-// };
-
 export default connect(null)(ProfileCollections);
-// export default ProfileCollections;
