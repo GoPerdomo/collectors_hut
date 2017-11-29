@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 import Layout from './containers/Layout';
 import Profile from './routes/Profile';
+import Collection from './routes/Collection';
 
 import store from './store/reducer';
 import './index.css';
@@ -16,8 +16,8 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Layout>
-          <Route exact path="/users/:id" component={ Profile } />
-          {/* <Route exact path="/users/:id/collections/:id" component={ Collection } /> */}
+          <Route exact path="/users/:userId" component={ Profile } />
+          <Route path="/users/:userId/collections/:collectionId" component={ Collection } />
         </Layout>
       </Switch>
     </Router>

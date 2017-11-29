@@ -10,7 +10,7 @@ import './style.css';
 class Profile extends Component {
 
   componentWillMount() {
-    const { id, user } = this.props;
+    const { userId, user } = this.props;
 
     if (!isEmpty(user)) return;
 
@@ -20,7 +20,7 @@ class Profile extends Component {
     };
 
     // TODO: Implement dynamic user
-    fetch(`http://localhost:3030/api/users/${id}`, httpHeaders)
+    fetch(`http://localhost:3030/api/users/${userId}`, httpHeaders)
       .then(res => res.json())
       .then(user => {
         this.props.dispatch({
@@ -34,7 +34,6 @@ class Profile extends Component {
 
   render() {
     const { user } = this.props;
-
 
     return (
       <div>
@@ -57,12 +56,12 @@ class Profile extends Component {
 };
 
 const mapStateToProps = (state, props) => {
-  const { id } = props.match.params;
+  const { userId } = props.match.params;
 
   return (
     {
-      id,
-      user: state[id],
+      userId,
+      user: state[userId],
     }
   )
 };

@@ -1,0 +1,21 @@
+/* Header */
+.Header {
+  height: 100px;
+  border: 1px solid black;
+  text-align: center;
+  margin-bottom: 50px;
+}
+/* Header */
+
+/* Footer */
+.Footer {
+  height: 200px;
+  text-align: center;
+  border: 1px solid black;
+  margin-top: 50px;
+}
+
+.Footer p {
+  font-size: 2em;
+}
+/* Footer */
