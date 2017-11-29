@@ -1,10 +1,11 @@
 import { createStore } from 'redux';
 
-const reducer = (state = {}, action) => {
-  switch(action.type) {
+const reducer = (state = {}, { type, payload }) => {
+  switch(type) {
     case "SET_CURRENT_USER":
-      return Object.assign({}, state, action.payload.user);
-
+      return { ...state, ...payload.user };
+    case "SET_CURRENT_USERS_COLLECTIONS":
+      return { ...state, ...payload.collection };
     default:
       return state;
   }

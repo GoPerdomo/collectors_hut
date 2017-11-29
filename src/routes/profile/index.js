@@ -33,20 +33,20 @@ class Profile extends Component {
           <h1>Collectors Hut Header</h1>
         </header>
         <main className="Profile">
-          <section className="profile-header">
-            <section className="profile-cover"></section>
-            <section className="profile-info">
+          <div className="profile-header">
+            <div className="profile-cover"></div>
+            <div className="profile-info">
               <img src="https://cdn3.iconfinder.com/data/icons/black-easy/512/535106-user_512x512.png" alt="TODO: Add a nonredundant alt"/>
               <h2>{ `${this.props.user.firstName} ${this.props.user.lastName}` }</h2>
-            </section>
-          </section>
-          <section className="collections">
+            </div>
+          </div>
+          <div className="collections">
           {
             this.props.user.collections && this.props.user.collections.map(collection => (
               <ProfileCollections key={ collection._id } collection={ collection }/>
              ))
           }
-          </section>
+          </div>
         </main>
         <footer className="Footer">
           <h2>Collectors Hut Footer</h2>
