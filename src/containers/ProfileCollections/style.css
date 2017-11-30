@@ -1,4 +1,4 @@
-.collection {
+.profile-collection {
   display: flex;
   justify-content: space-around;
   margin: auto;
@@ -8,24 +8,28 @@
   border: 1px solid black;  
 }
 
-.collection div {
+.profile-collection div {
   width: 47%;
   margin: auto;
   height: 265px;
   border: 1px solid black;
 }
 
-.collection-photos-preview {
+.profile-collection-photos-preview {
   display: flex;
   flex-wrap: wrap;
 }
 
-.collection-photos-preview img {
+.profile-collection-photos-preview:hover {
+  cursor: pointer;
+}
+
+.profile-collection-photos-preview img {
   width: 33%;
   height: 132.5px;
 }
 
-.collection-description {
+.profile-collection-description {
   text-align: left;
 }
 
