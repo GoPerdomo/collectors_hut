@@ -1,8 +1,8 @@
 .selected-collection {
+  display: flex;
+  flex-wrap: wrap;
   margin: auto;
   width: 80%;
-  height: 300px;
   text-align: center;
   border: 1px solid black;
 }
-

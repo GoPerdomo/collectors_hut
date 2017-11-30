@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import CollectionItem from '../../components/CollectionItems';
+
 import './style.css';
 
 class Collection extends Component {
 
   componentWillMount() {
     const { userId } = this.props.match.params;
-    
+
     if(this.props.currentCollection) return;
-
     this.props.history.push(`/users/${userId}`);
-
   }
 
   render() {
-    console.log(this.props);
+    const { currentCollection } = this.props;
+
     return (
       <main className="selected-collection">
-
+        {
+          currentCollection && currentCollection.items.map(item => (
+          <CollectionItem key={ item._id } photo={ item.photo } />
+        ))
+        }
       </main>
     )
   }

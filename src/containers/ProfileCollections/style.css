@@ -20,6 +20,10 @@
   flex-wrap: wrap;
 }
 
+.collection-photos-preview:hover {
+  cursor: pointer;
+}
+
 .collection-photos-preview img {
   width: 33%;
   height: 132.5px;
