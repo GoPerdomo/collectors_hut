@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import ProfileItemsPreview from '../../components/ProfileItemsPreview';
+
 import './style.css';
 
-class ProfileCollections extends Component {
+class ProfileCollectionsPreview extends Component {
 
   componentDidMount() {
     const { userId } = this.props;
@@ -35,18 +37,18 @@ class ProfileCollections extends Component {
     const { collection, index } = this.props;
 
     return (
-      <div className={`profile-collection ${index % 2 ? 'reverse' : ''}`}>
-        <div className="profile-collection-photos-preview" onClick={ this.selectCollection }>
+      <div className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}>
+        <div className="profile-collection-items-preview" onClick={ this.selectCollection }>
           {
             collection.items && collection.items.map((item, index) => {
               if (index < 6)
-                return <img key={item._id} src={item.photo} alt="TODO: Add a nonredundant alt" />
+                return <ProfileItemsPreview key={item._id} photo={item.photo} />
               else
-                return undefined
+                return undefined;
             })
           }
         </div>
-        <div className="profile-collection-description">
+        <div className="profile-collection-preview-description">
           <h3>{collection.name}</h3>
           <p>{collection.info}</p>
         </div>
@@ -55,4 +57,4 @@ class ProfileCollections extends Component {
   }
 }
 
-export default withRouter(connect(null)(ProfileCollections));
+export default withRouter(connect(null)(ProfileCollectionsPreview));

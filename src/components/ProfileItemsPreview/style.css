@@ -1,0 +1,13 @@
+.profile-collection-items-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-collection-items-preview:hover {
+  cursor: pointer;
+}
+
+.profile-items-preview {
+  width: 33%;
+  height: 132.5px;
+}

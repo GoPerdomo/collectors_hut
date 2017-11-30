@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from './containers/Layout';
 import Profile from './routes/Profile';
 import Collection from './routes/Collection';
+import Item from './routes/Item';
 
 import store from './store/reducer';
 import './index.css';
@@ -17,7 +18,8 @@ ReactDOM.render(
       <Switch>
         <Layout>
           <Route exact path="/users/:userId" component={ Profile } />
-          <Route path="/users/:userId/collections/:collectionId" component={ Collection } />
+          <Route exact path="/users/:userId/collections/:collectionId" component={ Collection } />
+          <Route exact path="/users/:userId/collections/:collectionId/items/:itemId" component={ Item } />
         </Layout>
       </Switch>
     </Router>
