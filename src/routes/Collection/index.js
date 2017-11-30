@@ -9,14 +9,14 @@ import './style.css';
 class Collection extends Component {
 
   componentDidMount() {
-    const { match, currentCollection, history } = this.props;
+    const { currentCollection, match, history } = this.props;
 
     if(currentCollection) return;
     history.push(`/users/${match.params.userId}`);
   }
 
   render() {
-    const { currentCollection, history } = this.props;
+    const { userId, currentCollection, history } = this.props;
 
     return (
       <main className="collection">
@@ -25,7 +25,13 @@ class Collection extends Component {
         <div className="display-items" >
         {
         currentCollection && currentCollection.items.map(item => (
-          <ProfileCollections key={ item._id } itemId={ item._id } photo={ item.photo } collection={ currentCollection._id }/>
+          <ProfileCollections
+            key={ item._id }
+            itemId={ item._id }
+            collectionId={ currentCollection._id }
+            userId={ userId }
+            photo={ item.photo }
+          />
         ))
         }
         </div>
