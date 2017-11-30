@@ -17,10 +17,12 @@ class Collection extends Component {
 
   render() {
     const { currentCollection } = this.props;
+    console.log(this.props)
 
     return (
       <main className="collection">
         <ProfileHeader />
+        <button onClick={ this.props.history.goBack }>Back</button> {/* TODO: Style buttom */}
         <div className="display-items">
           {
             currentCollection && currentCollection.items.map(item => (
