@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 
 const reducer = (state = {}, { type, payload }) => {
-
   switch (type) {
     case "ADD_USER":
       return { ...state, [payload.user._id]: { ...payload.user } };

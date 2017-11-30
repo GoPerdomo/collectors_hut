@@ -12,14 +12,13 @@ class Profile extends Component {
   componentWillMount() {
     const { userId, user } = this.props;
 
-    if (!isEmpty(user)) return;
+    if(!isEmpty(user)) return;
 
     const httpHeaders = {
       "method": 'GET',
       "Content-Type": "application/json"
     };
 
-    // TODO: Implement dynamic user
     fetch(`http://localhost:3030/api/users/${userId}`, httpHeaders)
       .then(res => res.json())
       .then(user => {
