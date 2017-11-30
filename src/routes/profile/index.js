@@ -9,7 +9,7 @@ import './style.css';
 
 class Profile extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { userId, user } = this.props;
 
     if(!isEmpty(user)) return;
@@ -35,21 +35,19 @@ class Profile extends Component {
     const { user } = this.props;
 
     return (
-      <div>
-      {
-        !isEmpty(user) &&
-        <main className="Profile">
-          <ProfileHeader user={ user } />
-          <div className="collections">
+      <main className="profile">
+        <ProfileHeader />
+        {
+          !isEmpty(user) &&
+          <div className="profile-collections">
             {
               !isEmpty(user.collections) && user.collections.map((collection, index) => (
                 <ProfileCollections index={index} key={collection._id} collection={collection} userId={user._id} />
               ))
             }
           </div>
-        </main>
-      }
-      </div>
+        }
+      </main>
     )
   }
 };

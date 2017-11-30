@@ -35,8 +35,8 @@ class ProfileCollections extends Component {
     const { collection, index } = this.props;
 
     return (
-      <div className={`collection ${index % 2 ? 'reverse' : ''}`}>
-        <div className="collection-photos-preview" onClick={ this.selectCollection }>
+      <div className={`profile-collection ${index % 2 ? 'reverse' : ''}`}>
+        <div className="profile-collection-photos-preview" onClick={ this.selectCollection }>
           {
             collection.items && collection.items.map((item, index) => {
               if (index < 6)
@@ -46,7 +46,7 @@ class ProfileCollections extends Component {
             })
           }
         </div>
-        <div className="collection-description">
+        <div className="profile-collection-description">
           <h3>{collection.name}</h3>
           <p>{collection.info}</p>
         </div>

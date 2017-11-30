@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import ProfileHeader from '../../containers/ProfileHeader';
 import CollectionItem from '../../components/CollectionItems';
 
 import './style.css';
 
 class Collection extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { userId } = this.props.match.params;
 
     if(this.props.currentCollection) return;
@@ -18,12 +19,15 @@ class Collection extends Component {
     const { currentCollection } = this.props;
 
     return (
-      <main className="selected-collection">
-        {
-          currentCollection && currentCollection.items.map(item => (
-          <CollectionItem key={ item._id } photo={ item.photo } />
-        ))
-        }
+      <main className="collection">
+        <ProfileHeader />
+        <div className="display-items">
+          {
+            currentCollection && currentCollection.items.map(item => (
+              <CollectionItem key={ item._id } photo={ item.photo } />
+          ))
+          }
+        </div>
       </main>
     )
   }

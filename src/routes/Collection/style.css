@@ -1,4 +1,10 @@
-.selected-collection {
+.collection {
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+
+.display-items {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
