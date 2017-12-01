@@ -17,9 +17,7 @@ class Item extends Component {
 
   render() {
     const { currentItem, history } = this.props;
-
-    console.log(this.props);
-
+    
     return (
       <main className="item">
         <ProfileHeader />

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Layout from './containers/Layout';
 import Profile from './routes/Profile';
@@ -14,6 +15,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Provider store={ store }>
+    <MuiThemeProvider>
     <Router>
       <Switch>
         <Layout>
@@ -23,6 +25,7 @@ ReactDOM.render(
         </Layout>
       </Switch>
     </Router>
+    </MuiThemeProvider>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();

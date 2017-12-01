@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import {GridList, GridTile} from 'material-ui/GridList';
+
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollection';
 
@@ -22,18 +24,21 @@ class Collection extends Component {
       <main className="collection">
         <ProfileHeader />
         <button onClick={ history.goBack }>Back</button> {/* TODO: Style buttom */}
-        <div className="display-items" >
-        {
-        currentCollection && currentCollection.items.map(item => (
-          <ProfileCollections
-            key={ item._id }
-            itemId={ item._id }
-            collectionId={ currentCollection._id }
-            userId={ userId }
-            photo={ item.photo }
-          />
-        ))
-        }
+        <div className="collection-items" >
+        <GridList cols={ 3 } cellHeight="auto" style={ {justifyContent: "space-around"} }>
+          {
+            currentCollection && currentCollection.items.map(item => (
+              <GridTile key={ item._id } title={ item.name } >
+                <ProfileCollections
+                itemId={ item._id }
+                collectionId={ currentCollection._id }
+                userId={ userId }
+                photo={ item.photo }
+                />
+              </GridTile>
+          ))
+          }
+        </GridList>
         </div>
       </main>
     )

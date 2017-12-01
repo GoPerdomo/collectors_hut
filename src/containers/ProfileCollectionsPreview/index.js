@@ -42,15 +42,15 @@ class ProfileCollectionsPreview extends Component {
           {
             collection.items && collection.items.map((item, index) => {
               if (index < 6)
-                return <ProfileItemsPreview key={item._id} photo={item.photo} />
+                return <ProfileItemsPreview key={ item._id } photo={ item.photo } />
               else
                 return undefined;
             })
           }
         </div>
         <div className="profile-collection-preview-description">
-          <h3>{collection.name}</h3>
-          <p>{collection.info}</p>
+          <h3>{ collection.name }</h3>
+          <p>{ collection.info }</p>
         </div>
       </div>
     )

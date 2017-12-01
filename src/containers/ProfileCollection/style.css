@@ -1,14 +1,4 @@
-.display-items {
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-  width: 80%;
-  text-align: center;
-  border: 1px solid black;
-}
-
 .collection-item-photo {
-  width: 230px;
   height: 230px;
 }
 

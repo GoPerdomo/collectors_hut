@@ -3,3 +3,10 @@
   width: 80%;
   text-align: center;
 }
+
+.collection-items {
+  margin: auto;
+  width: 80%;
+  text-align: center;
+  border: 1px solid black;
+}
