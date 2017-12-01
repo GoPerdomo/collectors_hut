@@ -3,7 +3,6 @@
   justify-content: space-around;
   margin: auto;
   width: 90%;
-  height: 300px;
   margin-bottom: 30px;
   border: 1px solid black;  
 }
@@ -11,7 +10,6 @@
 .profile-collection-preview div {
   width: 47%;
   margin: auto;
-  height: 265px;
   border: 1px solid black;
 }
 

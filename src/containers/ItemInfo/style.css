@@ -1,6 +1,5 @@
 .item-display {
   display: flex;
-  flex-wrap: wrap;
   margin: auto;
   width: 80%;
   text-align: center;
@@ -10,4 +9,9 @@
 .item-photo img {
   width: 460px;
   height: 460px;
+}
+
+.item-info-list {
+  list-style-type: none;
+  padding: 0;
 }
