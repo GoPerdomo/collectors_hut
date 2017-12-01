@@ -2,33 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/ProfileHeader';
-import CollectionItem from '../../components/CollectionItems';
+import ProfileCollections from '../../containers/ProfileCollection';
 
 import './style.css';
 
 class Collection extends Component {
 
   componentDidMount() {
-    const { userId } = this.props.match.params;
+    const { currentCollection, match, history } = this.props;
 
-    if(this.props.currentCollection) return;
-    this.props.history.push(`/users/${userId}`);
+    if(currentCollection) return;
+    history.push(`/users/${match.params.userId}`);
   }
 
   render() {
-    const { currentCollection } = this.props;
-    console.log(this.props)
+    const { userId, currentCollection, history } = this.props;
 
     return (
       <main className="collection">
         <ProfileHeader />
-        <button onClick={ this.props.history.goBack }>Back</button> {/* TODO: Style buttom */}
-        <div className="display-items">
-          {
-            currentCollection && currentCollection.items.map(item => (
-              <CollectionItem key={ item._id } photo={ item.photo } />
-          ))
-          }
+        <button onClick={ history.goBack }>Back</button> {/* TODO: Style buttom */}
+        <div className="display-items" >
+        {
+        currentCollection && currentCollection.items.map(item => (
+          <ProfileCollections
+            key={ item._id }
+            itemId={ item._id }
+            collectionId={ currentCollection._id }
+            userId={ userId }
+            photo={ item.photo }
+          />
+        ))
+        }
         </div>
       </main>
     )
@@ -36,8 +41,7 @@ class Collection extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const { userId } = props.match.params;
-  const { collectionId } = props.match.params;
+  const { userId, collectionId } = props.match.params;
   let currentCollection;
 
   if(state[userId]) {
