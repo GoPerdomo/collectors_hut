@@ -4,16 +4,21 @@
   margin: auto;
   width: 90%;
   margin-bottom: 30px;
-  border: 1px solid black;  
+  border: 1px solid black;
 }
 
-.profile-collection-preview div {
+.profile-collection-items-preview {
   width: 47%;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
   border: 1px solid black;
 }
 
 .profile-collection-preview-description {
+  width: 47%;
+  margin: auto;
+  border: 1px solid black;
   text-align: left;
 }
 

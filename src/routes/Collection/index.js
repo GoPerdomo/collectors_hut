@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollection';

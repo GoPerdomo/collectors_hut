@@ -1,5 +1,5 @@
 /* Header */
-.Header {
+.header {
   height: 100px;
   border: 1px solid black;
   text-align: center;
@@ -8,14 +8,14 @@
 /* Header */
 
 /* Footer */
-.Footer {
+.footer {
   height: 200px;
   text-align: center;
   border: 1px solid black;
   margin-top: 50px;
 }
 
-.Footer p {
+.footer p {
   font-size: 2em;
 }
 /* Footer */

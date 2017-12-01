@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { GridList, GridTile } from 'material-ui/GridList';
+
 import ProfileItemsPreview from '../../components/ProfileItemsPreview';
 
 import './style.css';
@@ -29,6 +31,17 @@ class ProfileCollectionsPreview extends Component {
 
   }
 
+  setCols = ({ items }) => {
+    switch(items.length) {
+      case 1:
+        return 1;
+      case 2:
+        return 2;
+      default:
+        return 3;
+    }
+  }
+
   selectCollection = () => {
     this.props.history.push(`/users/${this.props.userId}/collections/${this.props.collection._id}`);
   }
@@ -39,14 +52,20 @@ class ProfileCollectionsPreview extends Component {
     return (
       <div className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}>
         <div className="profile-collection-items-preview" onClick={ this.selectCollection }>
+        <GridList cols={ collection.items && this.setCols(collection) } cellHeight="auto" style={ {justifyContent: "space-around"} }>
           {
             collection.items && collection.items.map((item, index) => {
               if (index < 6)
-                return <ProfileItemsPreview key={ item._id } photo={ item.photo } />
+                return (
+                <GridTile key={ item._id } >                  
+                  <ProfileItemsPreview photo={ item.photo } />
+                </GridTile>
+                )
               else
-                return undefined;
+                return <div key={ index }/>;
             })
           }
+          </GridList>
         </div>
         <div className="profile-collection-preview-description">
           <h3>{ collection.name }</h3>
@@ -57,4 +76,4 @@ class ProfileCollectionsPreview extends Component {
   }
 }
 
-export default withRouter(connect(null)(ProfileCollectionsPreview));
+export default withRouter(connect()(ProfileCollectionsPreview));
