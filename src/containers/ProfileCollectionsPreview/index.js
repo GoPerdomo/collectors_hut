@@ -48,14 +48,19 @@ class ProfileCollectionsPreview extends Component {
 
   render() {
     const { collection, index } = this.props;
+    const maxItems = 6;
 
     return (
       <div className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}>
         <div className="profile-collection-items-preview" onClick={ this.selectCollection }>
-        <GridList cols={ collection.items && this.setCols(collection) } cellHeight="auto" style={ {justifyContent: "space-around"} }>
+        <GridList
+          cols={ collection.items && this.setCols(collection) }
+          cellHeight="auto"
+          style={{ justifyContent: "space-around" }}
+        >
           {
             collection.items && collection.items.map((item, index) => {
-              if (index < 6)
+              if(index < maxItems)
                 return (
                 <GridTile key={ item._id } >                  
                   <ProfileItemsPreview photo={ item.photo } />
