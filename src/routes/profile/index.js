@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import isEmpty from 'is-empty';
 
 import ProfileHeader from '../../containers/ProfileHeader';
-import ProfileCollectionsPreview from '../../containers/ProfileCollectionsPreview';
+import ProfileCollections from '../../containers/ProfileCollections';
 
 import './style.css';
 
@@ -42,7 +42,7 @@ class Profile extends Component {
           <div className="profile-collections-preview">
             {
               !isEmpty(user.collections) && user.collections.map((collection, index) => (
-                <ProfileCollectionsPreview
+                <ProfileCollections
                   index={ index }
                   key={ collection._id }
                   collection={ collection }

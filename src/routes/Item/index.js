@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
 import ProfileHeader from '../../containers/ProfileHeader';
 import ItemInfo from '../../containers/ItemInfo';
 
@@ -17,13 +19,11 @@ class Item extends Component {
 
   render() {
     const { currentItem, history } = this.props;
-
-    console.log(this.props);
-
+    
     return (
       <main className="item">
         <ProfileHeader />
-        <button onClick={ history.goBack }>Back</button> {/* TODO: Style buttom */}
+        <RaisedButton style={{ float: "left" }} onClick={ history.goBack } label="Back" />
         {
           currentItem && <ItemInfo currentItem={ currentItem }/>
         }

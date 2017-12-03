@@ -1,14 +1,15 @@
 .item-display {
-  display: flex;
   margin: auto;
   width: 80%;
   text-align: center;
-  border: 1px solid black;
 }
 
 .item-photo img {
   width: 460px;
-  height: 460px;
+}
+
+.item-info {
+  margin: 0 auto;
 }
 
 .item-info-list {
