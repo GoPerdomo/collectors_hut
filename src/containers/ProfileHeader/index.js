@@ -19,7 +19,7 @@ class ProfileHeader extends Component {
       <div>
       {
         !isEmpty(user) &&
-        <Paper zDepth={ 2 } className="profile-header" style={{ backgroundColor: "#819ca9" }}>
+        <Paper zDepth={ 2 } className="profile-header" style={{ backgroundColor: "#bdbdbd" }}>
           <div className="profile-photo">
             <Avatar backgroundColor="white" size={ 140 } src={ user.photo } alt="TODO: Add a nonredundant alt"/>
           </div>
