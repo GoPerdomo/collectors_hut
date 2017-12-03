@@ -1,18 +1,22 @@
 /* Header */
 .header {
   height: 100px;
-  border: 1px solid black;
-  text-align: center;
   margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid black;
+  color: #ffffff;
+  background-color: #546e7a;
 }
 /* Header */
 
 /* Footer */
 .footer {
   height: 200px;
+  margin-top: 50px;
   text-align: center;
   border: 1px solid black;
-  margin-top: 50px;
+  color: #ffffff;
+  background-color: #546e7a;  
 }
 
 .footer p {

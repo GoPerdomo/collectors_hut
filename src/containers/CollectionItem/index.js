@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import './style.css';
 
-class ProfileCollections extends Component {
+class CollectionItem extends Component {
 
   selectItem = () => {
     const { history, userId, collectionId, itemId } = this.props;
@@ -20,4 +20,4 @@ class ProfileCollections extends Component {
   }
 }
 
-export default withRouter(connect(null)(ProfileCollections));
+export default withRouter(connect(null)(CollectionItem));

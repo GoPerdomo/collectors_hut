@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Paper from 'material-ui/Paper';
+
 import './style.css';
 
 class ItemInfo extends Component {
@@ -15,7 +17,7 @@ class ItemInfo extends Component {
             condition } = this.props.currentItem;
 
     return (
-      <div className="item-display">
+      <Paper zDepth={ 2 } className="item-display">
         <div style={{ display: "flex" }} >
         <div className="item-photo">
           <img src={ photo } alt="TODO: Add nonredundant alt"/>
@@ -32,7 +34,7 @@ class ItemInfo extends Component {
           </ul>
         </div>
         </div>
-      </div>
+      </Paper>
     )
   }
 }

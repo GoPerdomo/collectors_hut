@@ -5,6 +5,7 @@ import isEmpty from 'is-empty';
 
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
+import Paper from 'material-ui/Paper';
 
 import './style.css';
 
@@ -18,9 +19,9 @@ class ProfileHeader extends Component {
       <div>
       {
         !isEmpty(user) &&
-        <div className="profile-header">
+        <Paper zDepth={ 2 } className="profile-header" style={{ backgroundColor: "#819ca9" }}>
           <div className="profile-photo">
-            <Avatar backgroundColor="transparent" size={ 140 } src={ user.photo } alt="TODO: Add a nonredundant alt"/>
+            <Avatar backgroundColor="white" size={ 140 } src={ user.photo } alt="TODO: Add a nonredundant alt"/>
           </div>
           <div className="profile-info">
             <h2>{ `${user.firstName} ${user.lastName}` }</h2>
@@ -28,14 +29,17 @@ class ProfileHeader extends Component {
               {
                 user.collections.filter((collection, index) => index < maxChips)
                   .map(collection => (
-                    <Chip key={ collection._id } style={{ marginRight: 3, marginBottom: 3 }}>
+                    <Chip
+                      key={ collection._id }
+                      style={{ backgroundColor: "#ffffff", marginRight: 3, marginBottom: 3 }}
+                    >
                      { collection.name }
                     </Chip>
                 ))
               }
             </div>
           </div>
-        </div>
+        </Paper>
       }
       </div>
     )

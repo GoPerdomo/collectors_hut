@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 import { GridList, GridTile } from 'material-ui/GridList';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 
 import ProfileHeader from '../../containers/ProfileHeader';
-import ProfileCollections from '../../containers/ProfileCollection';
+import CollectionItem from '../../containers/CollectionItem';
 
 import './style.css';
 
@@ -25,22 +26,22 @@ class Collection extends Component {
       <main className="collection">
         <ProfileHeader />
         <RaisedButton style={{ float: "left" }} onClick={ history.goBack } label="Back" />
-        <div className="collection-items" >
-        <GridList cols={ 3 } cellHeight="auto" style={ {justifyContent: "space-around"} }>
-          {
-            currentCollection && currentCollection.items.map(item => (
-              <GridTile key={ item._id } title={ item.name } >
-                <ProfileCollections
-                itemId={ item._id }
-                collectionId={ currentCollection._id }
-                userId={ userId }
-                photo={ item.photo }
-                />
-              </GridTile>
-          ))
-          }
-        </GridList>
-        </div>
+        <Paper zDepth={ 2 } className="collection-items" >
+          <GridList cols={ 3 } cellHeight="auto" style={ {justifyContent: "space-around"} }>
+            {
+              currentCollection && currentCollection.items.map(item => (
+                <GridTile key={ item._id } title={ item.name } >
+                  <CollectionItem
+                    itemId={ item._id }
+                    collectionId={ currentCollection._id }
+                    userId={ userId }
+                    photo={ item.photo }
+                  />
+                </GridTile>
+            ))
+            }
+          </GridList>
+        </Paper>
       </main>
     )
   }
