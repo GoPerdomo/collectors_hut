@@ -16,6 +16,7 @@ class ItemInfo extends Component {
 
     return (
       <div className="item-display">
+        <div style={{ display: "flex" }} >
         <div className="item-photo">
           <img src={ photo } alt="TODO: Add nonredundant alt"/>
         </div>
@@ -29,6 +30,7 @@ class ItemInfo extends Component {
             <li>Manufacturer: { manufacturer }</li>
             <li>Condition: { condition }</li>
           </ul>
+        </div>
         </div>
       </div>
     )

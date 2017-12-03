@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { GridList, GridTile } from 'material-ui/GridList';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollection';
@@ -23,7 +24,7 @@ class Collection extends Component {
     return (
       <main className="collection">
         <ProfileHeader />
-        <button onClick={ history.goBack }>Back</button> {/* TODO: Style buttom */}
+        <RaisedButton style={{ float: "left" }} onClick={ history.goBack } label="Back" />
         <div className="collection-items" >
         <GridList cols={ 3 } cellHeight="auto" style={ {justifyContent: "space-around"} }>
           {

@@ -10,8 +10,6 @@
 .profile-collection-items-preview {
   width: 47%;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
   border: 1px solid black;
 }
 

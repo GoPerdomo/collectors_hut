@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import isEmpty from 'is-empty';
 
+import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
 import './style.css';
@@ -19,7 +20,7 @@ class ProfileHeader extends Component {
         !isEmpty(user) &&
         <div className="profile-header">
           <div className="profile-photo">
-            <img src={ user.photo } alt="TODO: Add a nonredundant alt"/>
+            <Avatar backgroundColor="transparent" size={ 140 } src={ user.photo } alt="TODO: Add a nonredundant alt"/>
           </div>
           <div className="profile-info">
             <h2>{ `${user.firstName} ${user.lastName}` }</h2>
