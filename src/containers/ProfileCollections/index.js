@@ -12,14 +12,14 @@ import './style.css';
 class ProfileCollections extends Component {
 
   componentDidMount() {
-    const { userId } = this.props;
+    const { userId, collection } = this.props;
 
     const httpHeaders = {
       "method": 'GET',
       "Content-Type": "application/json"
     };
 
-    fetch(`http://localhost:3030/api/users/${userId}/collections/${this.props.collection._id}`, httpHeaders)
+    fetch(`http://localhost:3030/api/users/${userId}/collections/${collection._id}`, httpHeaders)
       .then(res => res.json())
       .then(collection => {
         const collectionId = collection._id;
@@ -50,11 +50,10 @@ class ProfileCollections extends Component {
   render() {
     const { collection, index } = this.props;
     const maxItems = 6;
-
+    
     return (
       <Paper
         className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}
-        // style={{ backgroundColor: "#819ca9" }}
         zDepth={ 2 }
       >
         <div className="profile-collection-items-preview" onClick={ this.selectCollection } >

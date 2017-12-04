@@ -4,6 +4,7 @@ import isEmpty from 'is-empty';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
+import AddCollection from '../../containers/AddCollection';
 
 import './style.css';
 
@@ -32,11 +33,11 @@ class Profile extends Component {
   }
 
   render() {
-    const { user } = this.props;
-
+    const { user, userId } = this.props;
+    
     return (
       <main className="profile">
-        <ProfileHeader />
+        <ProfileHeader addCollection={ <AddCollection userId={ userId } /> }/>
         {
           !isEmpty(user) &&
           <div className="profile-collections-preview">
@@ -59,7 +60,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state, props) => {
   const { userId } = props.match.params;
-
+  
   return (
     {
       userId,

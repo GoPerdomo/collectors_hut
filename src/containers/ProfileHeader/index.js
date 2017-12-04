@@ -39,6 +39,9 @@ class ProfileHeader extends Component {
               }
             </div>
           </div>
+          {
+            this.props.addCollection
+          }
         </Paper>
       }
       </div>

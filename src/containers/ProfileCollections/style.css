@@ -17,10 +17,6 @@
   text-align: justify;
 }
 
-.profile-collection-preview-description h3 {
-  text-align: center;
-}
-
 .reverse {
   flex-direction: row-reverse;
 }
