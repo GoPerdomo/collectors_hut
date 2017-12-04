@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover/Popover';
 import TextField from 'material-ui/TextField';
 
+import { addCollection } from '../../store/actions';
+
 import './style.css';
 
 class AddCollection extends Component {
@@ -38,8 +40,8 @@ class AddCollection extends Component {
     let { name, info } = this.state.newCollection;
     const { id } = event.currentTarget;
 
-    if(id === "new-collection-name") name = content;
-    if(id === "new-collection-info") info = content;
+    if (id === "new-collection-name") name = content;
+    if (id === "new-collection-info") info = content;
 
     this.setState({
       newCollection: {
@@ -49,63 +51,44 @@ class AddCollection extends Component {
     });
   }
 
-  addCollection = (event) => {
-    const { userId } = this.props;
+  handleSubmit = (event) => {
+    const { userId, addCollection } = this.props;
     const { newCollection } = this.state;
 
     event.preventDefault();
-
-    const httpHeaders = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newCollection),
-    };
-
-    fetch(`http://localhost:3030/api/users/${userId}/add-collection`, httpHeaders)
-      .then(res => res.json())
-      .then(collection => {
-        this.props.dispatch({
-          type: "ADD_NEW_COLLECTION",
-          payload: { userId, collection },
-        })
-      })
-      .catch(err => console.error(err));
-
+    addCollection(userId, newCollection);
   }
-  
+
   render() {
 
     return (
       <div className="add-collection">
-        <RaisedButton onClick={ this.handleButtonClick } label="Add collection" />
+        <RaisedButton onClick={this.handleButtonClick} label="Add collection" />
         <Popover
           style={{ width: "30%" }}
-          open={ this.state.open }
-          anchorEl={ this.state.anchorEl }
-          anchorOrigin={{ "horizontal":"left","vertical":"top" }}
-          targetOrigin={{ "horizontal":"right","vertical":"top" }}
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{ "horizontal": "left", "vertical": "top" }}
+          targetOrigin={{ "horizontal": "right", "vertical": "top" }}
           onRequestClose={this.handleRequestClose}
         >
-          <form onSubmit={ this.addCollection }>
+          <form onSubmit={this.handleSubmit}>
             <TextField
               id="new-collection-name"
               hintText="Name"
               fullWidth
-              onChange={ this.handleContentChange }
-              value={ this.state.newCollection.name }
-            /><br/>
+              onChange={this.handleContentChange}
+              value={this.state.newCollection.name}
+            /><br />
             <TextField
               id="new-collection-info"
               hintText="Description"
               fullWidth
               multiLine
-              onChange={ this.handleContentChange }
-              value={ this.state.newCollection.info }
-            /><br/>
-            <RaisedButton type="submit" label="Create" fullWidth/>
+              onChange={this.handleContentChange}
+              value={this.state.newCollection.info}
+            /><br />
+            <RaisedButton type="submit" label="Create" fullWidth />
           </form>
         </Popover>
       </div>
@@ -113,4 +96,8 @@ class AddCollection extends Component {
   }
 }
 
-export default connect()(AddCollection);
+const mapDispatchToProps = (dispatch) => ({
+  addCollection: (userId, newCollection) => dispatch(addCollection(userId, newCollection))
+})
+
+export default connect(null, mapDispatchToProps)(AddCollection);

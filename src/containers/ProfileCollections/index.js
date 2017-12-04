@@ -7,28 +7,35 @@ import Paper from 'material-ui/Paper';
 
 import ProfileItems from '../../components/ProfileItems';
 
+import { getItems } from '../../store/actions';
+
 import './style.css';
 
 class ProfileCollections extends Component {
 
   componentDidMount() {
-    const { userId, collection } = this.props;
+    const { userId, collection, getItems } = this.props;
 
-    const httpHeaders = {
-      "method": 'GET',
-      "Content-Type": "application/json"
-    };
+    getItems(userId, collection._id)
 
-    fetch(`http://localhost:3030/api/users/${userId}/collections/${collection._id}`, httpHeaders)
-      .then(res => res.json())
-      .then(collection => {
-        const collectionId = collection._id;
-        this.props.dispatch({
-          type: "SET_COLLECTION_ITEMS",
-          payload: { collectionId, userId, items: collection.items }
-        })
-      })
-      .catch(err => console.error(err));
+    // const httpHeaders = {
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    // };
+
+    // fetch(`http://localhost:3030/api/users/${userId}/collections/${collection._id}`, httpHeaders)
+    //   .then(res => res.json())
+    //   .then(collection => {
+    //     const collectionId = collection._id;
+    //     this.props.dispatch({
+    //       type: "SET_COLLECTION_ITEMS",
+    //       payload: { collectionId, userId, items: collection.items }
+    //     })
+    //   })
+    //   .catch(err => console.error(err));
 
   }
 
@@ -85,4 +92,8 @@ class ProfileCollections extends Component {
   }
 }
 
-export default withRouter(connect()(ProfileCollections));
+const mapDispatchToProps = (dispatch) => ({
+  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(ProfileCollections));
