@@ -1,29 +1,40 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const reducer = (state = {}, { type, payload }) => {
   switch (type) {
-    case "ADD_USER":
+    case "ADD_USER": {
       return { ...state, [payload.user._id]: { ...payload.user } };
+    }
 
-    case "SET_COLLECTION_ITEMS":
+    case "SET_COLLECTION_ITEMS": {
       const { collectionId, userId, items } = payload;
-
       const newCollections = state[userId].collections.map(collection => (
-        collection._id === collectionId ? {...collection, items} : collection
+        collection._id === collectionId ? { ...collection, items } : collection
       ));
-
-      const newState = { ...state, [userId]: {...state[userId], collections: newCollections}}
+      const newState = { ...state, [userId]: { ...state[userId], collections: newCollections } }
 
       return newState;
+    }
 
-    default:
+    case "ADD_NEW_COLLECTION": {
+      const { userId, collection } = payload;
+      const newCollections = [...state[userId].collections, collection];
+      const newUser = { [userId]: {...state[userId], collections: newCollections}};
+
+      return { ...state, ...newUser };
+    }
+
+    default: {
       return state;
+    }
   }
 };
 
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk),
 );
 
 export default store;

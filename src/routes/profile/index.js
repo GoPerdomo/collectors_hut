@@ -4,49 +4,37 @@ import isEmpty from 'is-empty';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
+import AddCollection from '../../containers/AddCollection';
+
+import { getProfile } from '../../store/actions';
 
 import './style.css';
 
 class Profile extends Component {
 
   componentDidMount() {
-    const { userId, user } = this.props;
+    const { userId, user, getProfile } = this.props;
+    if (!isEmpty(user)) return;
 
-    if(!isEmpty(user)) return;
-
-    const httpHeaders = {
-      "method": 'GET',
-      "Content-Type": "application/json"
-    };
-
-    fetch(`http://localhost:3030/api/users/${userId}`, httpHeaders)
-      .then(res => res.json())
-      .then(user => {
-        this.props.dispatch({
-          type: "ADD_USER",
-          payload: { user }
-        })
-      })
-      .catch(err => console.error(err));
-
+    getProfile(userId);
   }
 
   render() {
-    const { user } = this.props;
+    const { user, userId } = this.props;
 
     return (
       <main className="profile">
-        <ProfileHeader />
+        <ProfileHeader addCollection={<AddCollection userId={userId} />} />
         {
           !isEmpty(user) &&
           <div className="profile-collections-preview">
             {
               !isEmpty(user.collections) && user.collections.map((collection, index) => (
                 <ProfileCollections
-                  index={ index }
-                  key={ collection._id }
-                  collection={ collection }
-                  userId={ user._id }
+                  index={index}
+                  key={collection._id}
+                  collection={collection}
+                  userId={user._id}
                 />
               ))
             }
@@ -68,4 +56,8 @@ const mapStateToProps = (state, props) => {
   )
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: userId => dispatch(getProfile(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
