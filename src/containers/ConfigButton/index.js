@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import Popover from 'material-ui/Popover/Popover';
+import Dialog from 'material-ui/Dialog';
+
 
 class ConfigButton extends Component {
 
@@ -14,16 +15,11 @@ class ConfigButton extends Component {
   }
 
   handleButtonClick = (event) => {
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    })
+    this.setState({ open: true })
   }
 
   handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
+    this.setState({ open: false });
   }
 
 
@@ -33,18 +29,15 @@ class ConfigButton extends Component {
     return (
       <div>
         <RaisedButton label={label} onClick={this.handleButtonClick} />
-        <Popover
-          style={{ width: "30%" }}
+        <Dialog
           open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{ "horizontal": "left", "vertical": "top" }}
-          targetOrigin={{ "horizontal": "right", "vertical": "top" }}
+          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
           {
             this.props.children
           }
-        </Popover>
+        </Dialog>
       </div>
     )
   }

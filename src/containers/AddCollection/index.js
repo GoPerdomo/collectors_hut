@@ -30,8 +30,8 @@ class AddCollection extends Component {
 
     this.setState({
       newCollection: {
-        name: name,
-        info: info,
+        name,
+        info,
       }
     });
   }
@@ -41,17 +41,21 @@ class AddCollection extends Component {
     const { newCollection } = this.state;
 
     event.preventDefault();
-    addCollection(userId, newCollection);
 
-    this.setState({
-      newCollection: {
-        name: "",
-        info: "",
-      }
-    })
+    if(newCollection.name.length > 0) {
+      addCollection(userId, newCollection);
+  
+      this.setState({
+        newCollection: {
+          name: "",
+          info: "",
+        }
+      })
+    }
   }
 
   render() {
+    const { newCollection } = this.state;
 
     return (
       <ConfigButton label="Add collection">
@@ -61,16 +65,16 @@ class AddCollection extends Component {
             hintText="Name"
             fullWidth
             onChange={this.handleContentChange}
-            value={this.state.newCollection.name}
-          /><br />
+            value={newCollection.name}
+          />
           <TextField
             id="new-collection-info"
             hintText="Description"
             fullWidth
             multiLine
             onChange={this.handleContentChange}
-            value={this.state.newCollection.info}
-          /><br />
+            value={newCollection.info}
+          />
           <RaisedButton type="submit" label="Create" fullWidth />
         </form>
       </ConfigButton>
