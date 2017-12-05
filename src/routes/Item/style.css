@@ -1,5 +1,6 @@
 .item {
   margin: auto;
   width: 80%;
+  max-width: 1440px;
   text-align: center;
 }

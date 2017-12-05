@@ -4,20 +4,25 @@
   margin-bottom: 50px;
 }
 
+.profile-info {
+  width: 50%;
+  display: flex;
+  margin-left: 6%;
+}
+
 .profile-photo {
-  margin: auto 3% auto 6%;
+  margin: auto 3% auto 0;
   height: 140px;
 }
 
 .profile-photo img {
+  cursor: pointer;
   height: 140px;
 }
 
-.profile-info {
-  width: 50%;
-}
-
 .profile-info h2 {
+  cursor: pointer;
+  width: fit-content;
   margin-top: 40px;
   text-align: left;
   font-size: 1.5em;
@@ -27,4 +32,19 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 40px;
+}
+
+.profile-config-buttons {
+  width: 70%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.profile-config {
+  width: 50%;
+  display: flex;
+  flex-direction: row-reverse;
+  margin: auto;
+  margin-right: 6%;
 }
