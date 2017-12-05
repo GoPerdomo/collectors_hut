@@ -24,7 +24,7 @@ class Collection extends Component {
 
     return (
       <main className="collection">
-        <ProfileHeader actionButtons={<div className="profile-config-buttons"><AddItem /><AddItem /><AddItem /></div>}/>
+        <ProfileHeader actionButtons={<div className="profile-config-buttons"><AddItem /></div>}/>
         <Paper zDepth={2} className="collection-items" >
           <h2 className="collection-title" >
             {

@@ -42,9 +42,9 @@ class AddCollection extends Component {
 
     event.preventDefault();
 
-    if(newCollection.name.length > 0) {
+    if (newCollection.name.length > 0) {
       addCollection(userId, newCollection);
-  
+
       this.setState({
         newCollection: {
           name: "",
@@ -55,7 +55,7 @@ class AddCollection extends Component {
   }
 
   render() {
-    const { newCollection } = this.state;
+    const { name, info } = this.state.newCollection;
 
     return (
       <ConfigButton label="Add collection">
@@ -63,9 +63,10 @@ class AddCollection extends Component {
           <TextField
             id="new-collection-name"
             hintText="Name"
+            errorText={!name && "Name is required"}
             fullWidth
             onChange={this.handleContentChange}
-            value={newCollection.name}
+            value={name}
           />
           <TextField
             id="new-collection-info"
@@ -73,7 +74,7 @@ class AddCollection extends Component {
             fullWidth
             multiLine
             onChange={this.handleContentChange}
-            value={newCollection.info}
+            value={info}
           />
           <RaisedButton type="submit" label="Create" fullWidth />
         </form>
