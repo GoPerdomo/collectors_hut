@@ -24,7 +24,7 @@ class Profile extends Component {
 
     return (
       <main className="profile">
-        <ProfileHeader addCollection={<AddCollection userId={userId} />} />
+        <ProfileHeader actionButtons={<div className="profile-config-buttons"><AddCollection userId={userId} /></div>} />
         {
           !isEmpty(user) &&
           <div className="profile-collections-preview">

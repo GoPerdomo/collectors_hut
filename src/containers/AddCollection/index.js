@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import Popover from 'material-ui/Popover/Popover';
 import TextField from 'material-ui/TextField';
 
-import { addCollection } from '../../store/actions';
+import ConfigButton from '../../containers/ConfigButton';
 
-import './style.css';
+import { addCollection } from '../../store/actions';
 
 class AddCollection extends Component {
 
@@ -15,25 +14,11 @@ class AddCollection extends Component {
     super(props);
 
     this.state = {
-      open: false,
       newCollection: {
         name: "",
         info: "",
       }
     };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    })
-  }
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
   }
 
   handleContentChange = (event, content) => {
@@ -57,41 +42,38 @@ class AddCollection extends Component {
 
     event.preventDefault();
     addCollection(userId, newCollection);
+
+    this.setState({
+      newCollection: {
+        name: "",
+        info: "",
+      }
+    })
   }
 
   render() {
 
     return (
-      <div className="add-collection">
-        <RaisedButton onClick={this.handleButtonClick} label="Add collection" />
-        <Popover
-          style={{ width: "30%" }}
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{ "horizontal": "left", "vertical": "top" }}
-          targetOrigin={{ "horizontal": "right", "vertical": "top" }}
-          onRequestClose={this.handleRequestClose}
-        >
-          <form onSubmit={this.handleSubmit}>
-            <TextField
-              id="new-collection-name"
-              hintText="Name"
-              fullWidth
-              onChange={this.handleContentChange}
-              value={this.state.newCollection.name}
-            /><br />
-            <TextField
-              id="new-collection-info"
-              hintText="Description"
-              fullWidth
-              multiLine
-              onChange={this.handleContentChange}
-              value={this.state.newCollection.info}
-            /><br />
-            <RaisedButton type="submit" label="Create" fullWidth />
-          </form>
-        </Popover>
-      </div>
+      <ConfigButton label="Add collection">
+        <form onSubmit={this.handleSubmit}>
+          <TextField
+            id="new-collection-name"
+            hintText="Name"
+            fullWidth
+            onChange={this.handleContentChange}
+            value={this.state.newCollection.name}
+          /><br />
+          <TextField
+            id="new-collection-info"
+            hintText="Description"
+            fullWidth
+            multiLine
+            onChange={this.handleContentChange}
+            value={this.state.newCollection.info}
+          /><br />
+          <RaisedButton type="submit" label="Create" fullWidth />
+        </form>
+      </ConfigButton>
     )
   }
 }

@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import CollectionItem from '../../containers/CollectionItem';
+import AddItem from '../../containers/AddItem';
 
 import './style.css';
 
@@ -23,7 +24,7 @@ class Collection extends Component {
 
     return (
       <main className="collection">
-        <ProfileHeader />
+        <ProfileHeader actionButtons={<div className="profile-config-buttons"><AddItem /><AddItem /><AddItem /></div>}/>
         <Paper zDepth={2} className="collection-items" >
           <h2 className="collection-title" >
             {
