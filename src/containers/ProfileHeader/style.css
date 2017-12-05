@@ -10,6 +10,7 @@
 }
 
 .profile-photo img {
+  cursor: pointer;
   height: 140px;
 }
 
@@ -18,6 +19,8 @@
 }
 
 .profile-info h2 {
+  cursor: pointer;
+  width: fit-content;
   margin-top: 40px;
   text-align: left;
   font-size: 1.5em;

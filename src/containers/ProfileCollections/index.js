@@ -19,7 +19,9 @@ class ProfileCollections extends Component {
   }
 
   selectCollection = () => {
-    this.props.history.push(`/users/${this.props.userId}/collections/${this.props.collection._id}`);
+    const { history, userId, collection } = this.props;
+
+    history.push(`/users/${userId}/collections/${collection._id}`);
   }
 
   render() {
