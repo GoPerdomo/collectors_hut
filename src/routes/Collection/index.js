@@ -12,7 +12,7 @@ import './style.css';
 
 class Collection extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const { currentCollection, match, history } = this.props;
 
     if(currentCollection) return;
@@ -27,6 +27,7 @@ class Collection extends Component {
         <ProfileHeader />
         <RaisedButton style={{ float: "left" }} onClick={ history.goBack } label="Back" />
         <Paper zDepth={ 2 } className="collection-items" >
+        <h2 className="collection-title">{ currentCollection && currentCollection.name }</h2>
           <GridList cols={ 3 } cellHeight="auto" style={ {justifyContent: "space-around"} }>
             {
               currentCollection && currentCollection.items.map(item => (

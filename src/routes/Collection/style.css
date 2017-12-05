@@ -1,11 +1,17 @@
 .collection {
   margin: auto;
   width: 80%;
+  max-width: 1440px;
   text-align: center;
 }
 
 .collection-items {
   margin: auto;
+  padding: 20px;
   width: 80%;
   text-align: center;
+}
+
+.collection-title {
+  margin-top: 0;
 }
