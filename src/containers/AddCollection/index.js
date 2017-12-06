@@ -88,6 +88,6 @@ class AddCollection extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addCollection: (userId, newCollection) => dispatch(addCollection(userId, newCollection))
-})
+});
 
 export default connect(null, mapDispatchToProps)(AddCollection);

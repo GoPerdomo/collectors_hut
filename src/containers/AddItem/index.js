@@ -19,7 +19,7 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-      open: false,
+    
       newItem: {
         name: "",
         description: "",
@@ -65,17 +65,30 @@ class AddItem extends Component {
   }
 
   handleSubmit = (event) => {
-    const { userId, collectionId } = this.props;
+    const { userId, collectionId, addItem } = this.props;
     const { newItem } = this.state;
 
     event.preventDefault();
 
-    if(newItem.name) {
+    if (newItem.name) {
       addItem(userId, collectionId, newItem);
+
+      this.setState({
+        newItem: {
+          name: "",
+          description: "",
+          productionYear: "",
+          acquisitionYear: "",
+          origin: "",
+          manufacturer: "",
+          condition: "",
+        },
+      })
     }
   }
 
   render() {
+
     const {
       name,
       description,
@@ -88,7 +101,7 @@ class AddItem extends Component {
     const { newItem } = this.state;
 
     return (
-      <ConfigButton label="Add item">
+    <ConfigButton label="Add item">
         <form onSubmit={this.handleSubmit}>
           <TextField
             id="new-item-name"
@@ -138,7 +151,7 @@ class AddItem extends Component {
           />
           <SelectField
             id="new-item-condition"
-            onChange={(event, index, value) => this.setState({ newItem: {...newItem, condition: value} })}
+            onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
             value={condition}
             hintText="Condition"
           >
@@ -155,9 +168,8 @@ class AddItem extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (userId, collectionId, newItem) => {
+  addItem: (userId, collectionId, newItem) =>
     dispatch(addItem(userId, collectionId, newItem))
-  }
 });
 
 export default connect(null, mapDispatchToProps)(AddItem);
