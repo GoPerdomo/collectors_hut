@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
@@ -6,6 +7,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 import ConfigButton from '../../containers/ConfigButton';
+
+import { addItem } from '../../store/actions';
 
 
 // TODO: Refactor
@@ -16,7 +19,7 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-      open: false,
+    
       newItem: {
         name: "",
         description: "",
@@ -29,10 +32,6 @@ class AddItem extends Component {
     };
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();    
-  }
-
   handleContentChange = (event, content) => {
     let {
       name,
@@ -41,13 +40,14 @@ class AddItem extends Component {
       acquisitionYear,
       origin,
       manufacturer,
+      condition,
     } = this.state.newItem;
-    const { id } = event.target;
+    const { id } = event.currentTarget;
 
     if (id === "new-item-name") name = content;
     if (id === "new-item-description") description = content;
-    if (id === "new-item-productionYear") productionYear = content;
-    if (id === "new-item-acquisitionYear") acquisitionYear = content;
+    if (id === "new-item-productionYear" && !isNaN(content)) productionYear = content;
+    if (id === "new-item-acquisitionYear" && !isNaN(content)) acquisitionYear = content;
     if (id === "new-item-origin") origin = content;
     if (id === "new-item-manufacturer") manufacturer = content;
 
@@ -59,22 +59,49 @@ class AddItem extends Component {
         acquisitionYear,
         origin,
         manufacturer,
+        condition,
       }
     });
   }
 
+  handleSubmit = (event) => {
+    const { userId, collectionId, addItem } = this.props;
+    const { newItem } = this.state;
+
+    event.preventDefault();
+
+    if (newItem.name) {
+      addItem(userId, collectionId, newItem);
+
+      this.setState({
+        newItem: {
+          name: "",
+          description: "",
+          productionYear: "",
+          acquisitionYear: "",
+          origin: "",
+          manufacturer: "",
+          condition: "",
+        },
+      })
+    }
+  }
+
   render() {
+
     const {
       name,
       description,
       productionYear,
       acquisitionYear,
       origin,
-      manufacturer
+      manufacturer,
+      condition
     } = this.state.newItem;
+    const { newItem } = this.state;
 
     return (
-      <ConfigButton label="Add item">
+    <ConfigButton label="Add item">
         <form onSubmit={this.handleSubmit}>
           <TextField
             id="new-item-name"
@@ -124,14 +151,14 @@ class AddItem extends Component {
           />
           <SelectField
             id="new-item-condition"
-            onChange={(event, value) => this.setState({ conditionValue: value })}
-            value={this.state.conditionValue}
+            onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
+            value={condition}
             hintText="Condition"
           >
-            <MenuItem value={0} primaryText={"Mint"} />
-            <MenuItem value={1} primaryText={"Good"} />
-            <MenuItem value={2} primaryText={"Fair"} />
-            <MenuItem value={3} primaryText={"Poor"} />
+            <MenuItem value={"Mint"} primaryText={"Mint"} />
+            <MenuItem value={"Good"} primaryText={"Good"} />
+            <MenuItem value={"Fair"} primaryText={"Fair"} />
+            <MenuItem value={"Poor"} primaryText={"Poor"} />
           </SelectField>
           <RaisedButton type="submit" label="Create" fullWidth />
         </form>
@@ -140,4 +167,9 @@ class AddItem extends Component {
   }
 }
 
-export default AddItem;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (userId, collectionId, newItem) =>
+    dispatch(addItem(userId, collectionId, newItem))
+});
+
+export default connect(null, mapDispatchToProps)(AddItem);

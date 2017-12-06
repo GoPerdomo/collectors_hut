@@ -50,3 +50,15 @@ export const addCollection = (userId, newCollection) => (dispatch, getState) => 
     })
     .catch(err => console.error(err));
 }
+
+export const addItem = (userId, collectionId, newItem) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/add-item`, createPostHeaders(newItem))
+    .then(res => res.json())
+    .then(item => {
+      dispatch({
+        type: "ADD_NEW_ITEM",
+        payload: { userId, collectionId, item },
+      })
+    })
+    .catch(err => console.error(err));
+}

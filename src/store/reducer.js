@@ -20,7 +20,22 @@ const reducer = (state = {}, { type, payload }) => {
     case "ADD_NEW_COLLECTION": {
       const { userId, collection } = payload;
       const newCollections = [...state[userId].collections, collection];
-      const newUser = { [userId]: {...state[userId], collections: newCollections}};
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
+
+      return { ...state, ...newUser };
+    }
+
+    case "ADD_NEW_ITEM": {
+      const { userId, collectionId, item } = payload;
+      const { collections } = state[userId];
+
+      const newCollections = collections.map(collection => {
+        if (collection._id !== collectionId) return collection;
+        const newItems = [...collection.items, item];
+        return { ...collection, items: newItems };
+      });
+
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
 
       return { ...state, ...newUser };
     }
