@@ -20,14 +20,14 @@ class Collection extends Component {
   }
 
   render() {
-    const { userId, currentCollection } = this.props;
+    const { userId, collectionId, currentCollection } = this.props;
 
     return (
       <main className="collection">
         <ProfileHeader
           actionButtons={
             <div className="profile-config-buttons">
-              <AddItem />
+              <AddItem userId={userId} collectionId={collectionId} />
             </div>
           }
         />
@@ -72,6 +72,7 @@ const mapStateToProps = (state, props) => {
     {
       userId,
       user: state[userId],
+      collectionId,
       currentCollection
     }
   )

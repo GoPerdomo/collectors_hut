@@ -8,6 +8,9 @@ import ConfigButton from '../../containers/ConfigButton';
 
 import { addCollection } from '../../store/actions';
 
+
+// TODO: Refactor
+
 class AddCollection extends Component {
 
   constructor(props) {
@@ -42,7 +45,7 @@ class AddCollection extends Component {
 
     event.preventDefault();
 
-    if (newCollection.name.length > 0) {
+    if (newCollection.name) {
       addCollection(userId, newCollection);
 
       this.setState({
