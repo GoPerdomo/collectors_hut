@@ -1,16 +1,21 @@
 .item-display {
   margin: auto;
   padding: 20px;
-  width: 80%;
+  width: 90%;
   text-align: center;
 }
 
+.item-photo {
+  width: 50%;
+}
+
 .item-photo img {
-  width: 460px;
+  width: 100%;
 }
 
 .item-info {
   margin: 0 auto;
+  width: 50%;
 }
 
 .item-info-list {
