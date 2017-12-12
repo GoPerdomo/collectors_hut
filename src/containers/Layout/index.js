@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import SignIn from '../SignIn';
-
 import './style.css';
 
 class Layout extends Component {
@@ -10,14 +8,13 @@ class Layout extends Component {
     return (
       <div>
         <header className="header">
-          <h1>Collectors Hut Header</h1>
-          <SignIn />
+          <h1>Collectors Hut</h1>
         </header>
         {
           this.props.children
         }
         <footer className="footer">
-          <h2>Collectors Hut Footer</h2>
+          <h2>Collectors Hut</h2>
         </footer>
       </div>
     )

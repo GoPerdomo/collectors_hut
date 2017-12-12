@@ -3,6 +3,14 @@ import thunk from 'redux-thunk';
 
 const reducer = (state = {}, { type, payload }) => {
   switch (type) {
+    case "SET_CURRENT_USER": {
+      return { ...state, user: payload.userId };
+    }
+
+    case "REMOVE_CURRENT_USER": {
+      return {};
+    }
+
     case "ADD_USER": {
       return { ...state, [payload.user._id]: { ...payload.user } };
     }

@@ -57,6 +57,26 @@ export const getItems = (userId, collectionId) => (dispatch, getState) => {
 
 
 // POST
+export const signUp = (newUserInfo) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/sign-up`, createPostHeaders(newUserInfo))
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(data => {
+      const { userId, token } = data;
+      dispatch({
+        type: "SET_CURRENT_USER",
+        payload: { userId },
+      })
+      localStorage.setItem('token', token);
+    })
+    .catch(err => console.error(err));
+};
+
 export const signIn = (loginInfo) => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/sign-in`, createPostHeaders(loginInfo))
     .then(res => {
@@ -66,8 +86,13 @@ export const signIn = (loginInfo) => (dispatch, getState) => {
         throw Error(res.statusText)
       }
     })
-    .then(token => {
-      localStorage.setItem('token', token)
+    .then(data => {
+      const { userId, token } = data;
+      dispatch({
+        type: "SET_CURRENT_USER",
+        payload: { userId },
+      })
+      localStorage.setItem('token', token);
     })
     .catch(err => console.error(err));
 };

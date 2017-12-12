@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import TextField from 'material-ui/TextField';
 
-import ConfigButton from '../../containers/ConfigButton';
+import { signUp, signIn } from '../../store/actions';
 
-import { signIn } from '../../store/actions';
+import './style.css';
 
 class SignIn extends Component {
 
@@ -14,65 +17,181 @@ class SignIn extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      signin: {
+        email: "",
+        password: "",
+      },
+      signup: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      }
     };
   }
 
-  handleContentChange = (event, content) => {
-    let { email, password } = this.state;
+  componentWillReceiveProps(props) {
+    const { user, history } = props;
+
+    if(user) {
+      return history.push(`/users/${user}`)
+    }
+  }
+
+  handleSignInContentChange = (event, content) => {
+    let { email, password } = this.state.signin;
     const { id } = event.currentTarget;
 
     if (id === "signin-email") email = content;
     if (id === "signin-password") password = content;
 
-    this.setState({ email, password });
+    this.setState({
+      signin: {
+        email,
+        password
+      }
+    });
   }
 
-  handleSubmit = (event) => {
+  handleSignUpContentChange = (event, content) => {
+    let { firstName, lastName, email, password } = this.state.signup;
+    const { id } = event.currentTarget;
+
+    if (id === "signup-firstname") firstName = content;
+    if (id === "signup-lastname") lastName = content;
+    if (id === "signup-email") email = content;
+    if (id === "signup-password") password = content;
+
+    this.setState({
+      signup: {
+        firstName,
+        lastName,
+        email,
+        password
+      }
+    });
+  }
+
+  handleSignInSubmit = (event) => {
     const { signIn } = this.props;
-    const { email, password } = this.state;
+    const { email, password } = this.state.signin;
 
     event.preventDefault();
     if (email && password) {
       signIn({ email, password });
       this.setState({
-        email: "",
-        password: "",
+        signin: {
+          email: "",
+          password: "",
+        }
+      })
+    }
+  }
+
+  handleSignUpSubmit = (event) => {
+    const { signUp } = this.props;
+    const { firstName, lastName, email, password } = this.state.signup;
+
+    event.preventDefault();
+    if (firstName && lastName && email && password) {
+      signUp({ firstName, lastName, email, password });
+      this.setState({
+        signup: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+        }
       })
     }
   }
 
   render() {
-    const { email, password } = this.state;
-
+    const { signin, signup } = this.state;
+    
     return (
-      <ConfigButton label="Sign in">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="signin-email"
-            hintText="Email"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={email}
-          />
-          <TextField
-            id="signin-password"
-            hintText="Password"
-            type="password"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={password}
-          />
-          <RaisedButton type="submit" label="Sign In" fullWidth />
-        </form>
-      </ConfigButton>
+      <Paper className="signup-signin">
+        <Tabs
+          tabItemContainerStyle={{ backgroundColor: "#bdbdbd" }}
+          inkBarStyle={{ backgroundColor: "#00bcd4" }}
+        >
+          <Tab label="Sign in" >
+            <div>
+              <form onSubmit={this.handleSignInSubmit}>
+                <TextField
+                  id="signin-email"
+                  hintText="Email"
+                  fullWidth
+                  onChange={this.handleSignInContentChange}
+                  value={signin.email}
+                />
+                <TextField
+                  id="signin-password"
+                  hintText="Password"
+                  type="password"
+                  fullWidth
+                  onChange={this.handleSignInContentChange}
+                  value={signin.password}
+                />
+                <RaisedButton type="submit" label="Sign in" fullWidth />
+              </form>
+            </div>
+          </Tab>
+          <Tab label="Sign up" >
+            <div>
+              <form onSubmit={this.handleSignUpSubmit}>
+                <TextField
+                  id="signup-firstname"
+                  hintText="First Name"
+                  fullWidth
+                  onChange={this.handleSignUpContentChange}
+                  value={signup.firstName}
+                />
+                <TextField
+                  id="signup-lastname"
+                  hintText="Last Name"
+                  fullWidth
+                  onChange={this.handleSignUpContentChange}
+                  value={signup.lastName}
+                />
+                <TextField
+                  id="signup-email"
+                  hintText="Email"
+                  fullWidth
+                  onChange={this.handleSignUpContentChange}
+                  value={signup.email}
+                />
+                <TextField
+                  id="signup-password"
+                  hintText="Password"
+                  type="password"
+                  fullWidth
+                  onChange={this.handleSignUpContentChange}
+                  value={signup.password}
+                />
+                <RaisedButton type="submit" label="Sign up" fullWidth />
+              </form>
+            </div>
+          </Tab>
+        </Tabs>
+      </Paper>
     )
   }
 };
 
+const mapStateToProps = (state, props) => {
+  const { user } = state;
+
+  return (
+    {
+      user,
+    }
+  )
+};
+
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (loginInfo) => dispatch(signIn(loginInfo))
+  signUp: (newUserInfo) => dispatch(signUp(newUserInfo)),
+  signIn: (loginInfo) => dispatch(signIn(loginInfo)),
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
