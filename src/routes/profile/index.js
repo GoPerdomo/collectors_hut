@@ -15,7 +15,7 @@ class Profile extends Component {
   componentWillMount() {
     const { loggedUser, history } = this.props;
 
-    if(!loggedUser) history.push('/');
+    if (!loggedUser) history.push('/');
   }
 
   componentDidMount() {

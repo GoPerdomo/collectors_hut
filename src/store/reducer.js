@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 const reducer = (state = {}, { type, payload }) => {
   switch (type) {
+    // User
     case "SET_CURRENT_USER": {
       return { ...state, loggedUser: payload.userId };
     }
@@ -14,7 +15,9 @@ const reducer = (state = {}, { type, payload }) => {
     case "ADD_USER": {
       return { ...state, [payload.user._id]: { ...payload.user } };
     }
+    // User
 
+    // Collection
     case "SET_COLLECTION_ITEMS": {
       const { collectionId, userId, items } = payload;
       const newCollections = state[userId].collections.map(collection => (
@@ -32,7 +35,9 @@ const reducer = (state = {}, { type, payload }) => {
 
       return { ...state, ...newUser };
     }
+    // Collection
 
+    // Item
     case "ADD_NEW_ITEM": {
       const { userId, collectionId, item } = payload;
       const { collections } = state[userId];
@@ -48,9 +53,26 @@ const reducer = (state = {}, { type, payload }) => {
       return { ...state, ...newUser };
     }
 
+    case "DELETE_ITEM": {
+      const { userId, collectionId, itemId } = payload;      
+      const { collections } = state[userId];
+
+      const newCollections = collections.map(collection => {
+        if (collection._id !== collectionId) return collection;
+        const newItems = collection.items.filter(item => item._id !== itemId)
+        return { ...collection, items: newItems };
+      });
+
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
+
+      return { ...state, ...newUser };
+    }
+    // Item
+
     default: {
       return state;
     }
+
   }
 };
 

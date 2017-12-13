@@ -1,8 +1,18 @@
-const httpHeaders = {
+const getHeaders = {
   method: 'GET',
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  },
+};
+
+const deleteHeaders = {
+  method: 'DELETE',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
   },
 };
 
@@ -19,7 +29,7 @@ const createPostHeaders = (body) => ({
 
 // GET
 export const getProfile = (userId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}`, httpHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}`, getHeaders)
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -37,7 +47,7 @@ export const getProfile = (userId) => (dispatch, getState) => {
 };
 
 export const getItems = (userId, collectionId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, httpHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -136,8 +146,29 @@ export const addItem = (userId, collectionId, newItem) => (dispatch, getState) =
 };
 // POST
 
+// DELETE
+export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/items/${itemId}`, deleteHeaders)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: "DELETE_ITEM",
+        payload: { userId, collectionId, itemId },
+      })
+    })
+    .catch(err => console.error(err));
+    
+};
+// DELETE
+
 // No fetches
-export const fetchLocalUser = () => (dispatch) => {
+export const fetchLocalUser = () => (dispatch, getState) => {
   const token = localStorage.getItem('token');
   const loggedUser = localStorage.getItem('loggedUser');
   if (token) {
@@ -148,7 +179,7 @@ export const fetchLocalUser = () => (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch, getState) => {
   dispatch({
     type: "REMOVE_CURRENT_USER",
   });
