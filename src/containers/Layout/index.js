@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Logout from '../Logout';
+
 import './style.css';
 
 class Layout extends Component {
@@ -9,6 +11,7 @@ class Layout extends Component {
       <div>
         <header className="header">
           <h1>Collectors Hut</h1>
+          <Logout />
         </header>
         {
           this.props.children

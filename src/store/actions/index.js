@@ -136,6 +136,7 @@ export const addItem = (userId, collectionId, newItem) => (dispatch, getState) =
 };
 // POST
 
+// No fetches
 export const fetchLocalUser = () => (dispatch) => {
   const token = localStorage.getItem('token');
   const loggedUser = localStorage.getItem('loggedUser');
@@ -145,4 +146,11 @@ export const fetchLocalUser = () => (dispatch) => {
       payload: { userId: loggedUser },
     });
   }
-}
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: "REMOVE_CURRENT_USER",
+  });
+  localStorage.clear();
+};
