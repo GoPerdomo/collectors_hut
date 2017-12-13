@@ -12,6 +12,12 @@ import './style.css';
 
 class Profile extends Component {
 
+  componentWillMount() {
+    const { loggedUser, history } = this.props;
+
+    if(!loggedUser) history.push('/');
+  }
+
   componentDidMount() {
     const { userId, user, getProfile } = this.props;
     if (!isEmpty(user)) return;
@@ -53,9 +59,11 @@ class Profile extends Component {
 
 const mapStateToProps = (state, props) => {
   const { userId } = props.match.params;
+  const { loggedUser } = state;
 
   return (
     {
+      loggedUser,
       userId,
       user: state[userId],
     }

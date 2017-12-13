@@ -73,6 +73,7 @@ export const signUp = (newUserInfo) => (dispatch, getState) => {
         payload: { userId },
       })
       localStorage.setItem('token', token);
+      localStorage.setItem('loggedUser', userId);
     })
     .catch(err => console.error(err));
 };
@@ -93,6 +94,7 @@ export const signIn = (loginInfo) => (dispatch, getState) => {
         payload: { userId },
       })
       localStorage.setItem('token', token);
+      localStorage.setItem('loggedUser', userId);
     })
     .catch(err => console.error(err));
 };
@@ -133,3 +135,14 @@ export const addItem = (userId, collectionId, newItem) => (dispatch, getState) =
     .catch(err => console.error(err));
 };
 // POST
+
+export const fetchLocalUser = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  const loggedUser = localStorage.getItem('loggedUser');
+  if (token) {
+    dispatch({
+      type: "SET_CURRENT_USER",
+      payload: { userId: loggedUser },
+    });
+  }
+}

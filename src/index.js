@@ -11,8 +11,11 @@ import Collection from './routes/Collection';
 import Item from './routes/Item';
 
 import store from './store/reducer';
+import { fetchLocalUser } from './store/actions';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+
+store.dispatch(fetchLocalUser());
 
 ReactDOM.render(
   <Provider store={store}>

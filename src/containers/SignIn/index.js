@@ -31,10 +31,10 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { user, history } = props;
+    const { loggedUser, history } = props;
 
-    if(user) {
-      return history.push(`/users/${user}`)
+    if(loggedUser) {
+      return history.push(`/users/${loggedUser}`)
     }
   }
 
@@ -180,11 +180,11 @@ class SignIn extends Component {
 };
 
 const mapStateToProps = (state, props) => {
-  const { user } = state;
+  const { loggedUser } = state;
 
   return (
     {
-      user,
+      loggedUser,
     }
   )
 };
