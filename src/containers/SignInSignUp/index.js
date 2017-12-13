@@ -11,7 +11,7 @@ import { signUp, signIn } from '../../store/actions';
 
 import './style.css';
 
-class SignIn extends Component {
+class SignInSignUp extends Component {
 
   constructor(props) {
     super(props);
@@ -110,7 +110,7 @@ class SignIn extends Component {
     const { signin, signup } = this.state;
     
     return (
-      <Paper className="signup-signin">
+      <Paper className="signin-signup">
         <Tabs
           tabItemContainerStyle={{ backgroundColor: "#bdbdbd" }}
           inkBarStyle={{ backgroundColor: "#00bcd4" }}
@@ -194,4 +194,4 @@ const mapDispatchToProps = (dispatch) => ({
   signIn: (loginInfo) => dispatch(signIn(loginInfo)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInSignUp));
