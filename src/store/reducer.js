@@ -35,6 +35,16 @@ const reducer = (state = {}, { type, payload }) => {
 
       return { ...state, ...newUser };
     }
+
+    case "DELETE_COLLECTION": {
+      const { userId, collectionId } = payload;
+      const { collections } = state[userId];
+
+      const newCollections = collections.filter(collection => collection._id !== collectionId);
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
+
+      return { ...state, ...newUser };
+    }
     // Collection
 
     // Item

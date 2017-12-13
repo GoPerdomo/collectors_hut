@@ -165,6 +165,25 @@ export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState)
     .catch(err => console.error(err));
     
 };
+
+export const deleteCollection = (userId, collectionId) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, deleteHeaders)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: "DELETE_COLLECTION",
+        payload: { userId, collectionId },
+      })
+    })
+    .catch(err => console.error(err));
+    
+};
 // DELETE
 
 // No fetches
