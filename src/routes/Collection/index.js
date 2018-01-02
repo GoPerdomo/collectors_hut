@@ -7,6 +7,8 @@ import Paper from 'material-ui/Paper';
 import ProfileHeader from '../../containers/ProfileHeader';
 import CollectionItem from '../../containers/CollectionItem';
 import AddItem from '../../containers/AddItem';
+import EditCollection from '../../containers/EditCollection';
+import DeleteCollection from '../../containers/DeleteCollection';
 
 import './style.css';
 
@@ -28,6 +30,8 @@ class Collection extends Component {
           actionButtons={
             <div className="profile-config-buttons">
               <AddItem userId={userId} collectionId={collectionId} />
+              <EditCollection userId={userId} collection={currentCollection} />
+              <DeleteCollection />
             </div>
           }
         />

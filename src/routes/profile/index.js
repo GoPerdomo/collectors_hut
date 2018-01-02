@@ -5,12 +5,19 @@ import isEmpty from 'is-empty';
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
 import AddCollection from '../../containers/AddCollection';
+import EditProfile from '../../containers/EditProfile';
 
 import { getProfile } from '../../store/actions';
 
 import './style.css';
 
 class Profile extends Component {
+
+  componentWillMount() {
+    const { loggedUser, history } = this.props;
+
+    if (!loggedUser) history.push('/');
+  }
 
   componentDidMount() {
     const { userId, user, getProfile } = this.props;
@@ -27,6 +34,7 @@ class Profile extends Component {
         <ProfileHeader
           actionButtons={
             <div className="profile-config-buttons">
+              <EditProfile user={user} />
               <AddCollection userId={userId} />
             </div>
           }
@@ -53,9 +61,11 @@ class Profile extends Component {
 
 const mapStateToProps = (state, props) => {
   const { userId } = props.match.params;
+  const { loggedUser } = state;
 
   return (
     {
+      loggedUser,
       userId,
       user: state[userId],
     }

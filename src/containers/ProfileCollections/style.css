@@ -27,7 +27,7 @@
 .profile-collection-preview-description {
   width: 50%;
   margin: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 328px;
   text-align: justify;
   padding: 0 15px;

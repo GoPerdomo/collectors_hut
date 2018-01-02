@@ -8,25 +8,34 @@ import MenuItem from 'material-ui/MenuItem';
 
 import ConfigButton from '../../containers/ConfigButton';
 
-import { addItem } from '../../store/actions';
+import { editItem } from '../../store/actions';
 
 
 // TODO: Refactor
 
-class AddItem extends Component {
+class EditItem extends Component {
 
   constructor(props) {
     super(props);
+    const {
+      name,
+      description,
+      productionYear,
+      acquisitionYear,
+      origin,
+      manufacturer,
+      condition,
+    } = this.props.item;
 
     this.state = {
-      newItem: {
-        name: "",
-        description: "",
-        productionYear: "",
-        acquisitionYear: "",
-        origin: "",
-        manufacturer: "",
-        condition: "",
+      itemInfo: {
+        name,
+        description,
+        productionYear,
+        acquisitionYear,
+        origin,
+        manufacturer,
+        condition,
       },
     };
   }
@@ -40,18 +49,18 @@ class AddItem extends Component {
       origin,
       manufacturer,
       condition,
-    } = this.state.newItem;
+    } = this.state.itemInfo;
     const { id } = event.currentTarget;
 
-    if (id === "new-item-name") name = content;
-    if (id === "new-item-description") description = content;
-    if (id === "new-item-productionYear" && !isNaN(content)) productionYear = content;
-    if (id === "new-item-acquisitionYear" && !isNaN(content)) acquisitionYear = content;
-    if (id === "new-item-origin") origin = content;
-    if (id === "new-item-manufacturer") manufacturer = content;
+    if (id === "edit-item-name") name = content;
+    if (id === "edit-item-description") description = content;
+    if (id === "edit-item-productionYear" && !isNaN(content)) productionYear = content;
+    if (id === "edit-item-acquisitionYear" && !isNaN(content)) acquisitionYear = content;
+    if (id === "edit-item-origin") origin = content;
+    if (id === "edit-item-manufacturer") manufacturer = content;
 
     this.setState({
-      newItem: {
+      itemInfo: {
         name,
         description,
         productionYear,
@@ -64,30 +73,37 @@ class AddItem extends Component {
   }
 
   handleSubmit = (event) => {
-    const { userId, collectionId, addItem } = this.props;
-    const { newItem } = this.state;
+    const { userId, item, editItem } = this.props;
+    const { itemInfo } = this.state;
+    const {
+      name,
+      description,
+      productionYear,
+      acquisitionYear,
+      origin,
+      manufacturer,
+      condition,
+    } = itemInfo;
 
     event.preventDefault();
 
-    if (newItem.name) {
-      addItem(userId, collectionId, newItem);
+    editItem(userId, item.collectionId, item._id, itemInfo);
 
-      this.setState({
-        newItem: {
-          name: "",
-          description: "",
-          productionYear: "",
-          acquisitionYear: "",
-          origin: "",
-          manufacturer: "",
-          condition: "",
-        },
-      })
-    }
+    this.setState({
+      itemInfo: {
+        name,
+        description,
+        productionYear,
+        acquisitionYear,
+        origin,
+        manufacturer,
+        condition,
+      },
+    })
   }
 
   render() {
-
+    const { itemInfo } = this.state;
     const {
       name,
       description,
@@ -96,22 +112,20 @@ class AddItem extends Component {
       origin,
       manufacturer,
       condition
-    } = this.state.newItem;
-    const { newItem } = this.state;
+    } = this.state.itemInfo;
 
     return (
-    <ConfigButton label="Add item">
+      <ConfigButton label="Edit item">
         <form onSubmit={this.handleSubmit}>
           <TextField
-            id="new-item-name"
+            id="edit-item-name"
             hintText="Name"
-            errorText={!name && "Name is required"}
             fullWidth
             onChange={this.handleContentChange}
             value={name}
           />
           <TextField
-            id="new-item-description"
+            id="edit-item-description"
             hintText="Description"
             fullWidth
             multiLine
@@ -119,7 +133,7 @@ class AddItem extends Component {
             value={description}
           />
           <TextField
-            id="new-item-productionYear"
+            id="edit-item-productionYear"
             hintText="Production Year"
             type="number"
             fullWidth
@@ -127,7 +141,7 @@ class AddItem extends Component {
             value={productionYear}
           />
           <TextField
-            id="new-item-acquisitionYear"
+            id="edit-item-acquisitionYear"
             hintText="Acquisition Year"
             type="number"
             fullWidth
@@ -135,22 +149,22 @@ class AddItem extends Component {
             value={acquisitionYear}
           />
           <TextField
-            id="new-item-origin"
+            id="edit-item-origin"
             hintText="Origin"
             fullWidth
             onChange={this.handleContentChange}
             value={origin}
           />
           <TextField
-            id="new-item-manufacturer"
+            id="edit-item-manufacturer"
             hintText="Manufacturer"
             fullWidth
             onChange={this.handleContentChange}
             value={manufacturer}
           />
           <SelectField
-            id="new-item-condition"
-            onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
+            id="edit-item-condition"
+            onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
             value={condition}
             hintText="Condition"
           >
@@ -159,7 +173,7 @@ class AddItem extends Component {
             <MenuItem value={"Fair"} primaryText={"Fair"} />
             <MenuItem value={"Poor"} primaryText={"Poor"} />
           </SelectField>
-          <RaisedButton type="submit" label="Create" fullWidth />
+          <RaisedButton type="submit" label="Save" fullWidth />
         </form>
       </ConfigButton>
     )
@@ -167,8 +181,7 @@ class AddItem extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (userId, collectionId, newItem) =>
-    dispatch(addItem(userId, collectionId, newItem))
+  editItem: (userId, collectionId, itemId, item) => dispatch(editItem(userId, collectionId, itemId, item))
 });
 
-export default connect(null, mapDispatchToProps)(AddItem);
+export default connect(null, mapDispatchToProps)(EditItem);

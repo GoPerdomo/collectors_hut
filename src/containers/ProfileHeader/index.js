@@ -17,7 +17,7 @@ class ProfileHeader extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { loggedUser, userId, user } = this.props;
     const maxChips = 3;
 
     return (
@@ -60,7 +60,7 @@ class ProfileHeader extends Component {
             </div>
             <div className="profile-config">
               {
-                this.props.actionButtons
+                (loggedUser === userId) ? this.props.actionButtons : null
               }
             </div>
           </Paper>
@@ -72,9 +72,11 @@ class ProfileHeader extends Component {
 
 const mapStateToProps = (state, props) => {
   const { userId } = props.match.params;
+  const { loggedUser } = state;
 
   return (
     {
+      loggedUser,
       userId,
       user: state[userId],
     }
