@@ -36,6 +36,16 @@ const reducer = (state = {}, { type, payload }) => {
       return { ...state, ...newUser };
     }
 
+    case "EDIT_COLLECTION": {
+      const { userId, updatedCollection } = payload;
+      const newCollections = state[userId].collections.map(collection => (
+        collection._id === updatedCollection._id ? { ...collection, ...updatedCollection } : collection
+      ));
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
+
+      return { ...state, ...newUser };
+    }
+
     case "DELETE_COLLECTION": {
       const { userId, collectionId } = payload;
       const { collections } = state[userId];
@@ -64,7 +74,7 @@ const reducer = (state = {}, { type, payload }) => {
     }
 
     case "DELETE_ITEM": {
-      const { userId, collectionId, itemId } = payload;      
+      const { userId, collectionId, itemId } = payload;
       const { collections } = state[userId];
 
       const newCollections = collections.map(collection => {

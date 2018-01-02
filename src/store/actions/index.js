@@ -165,6 +165,25 @@ export const editUser = (userId, user) => (dispatch, getState) => {
   )
     .catch(err => console.error(err));
 }
+
+export const editCollection = (userId, collectionId, collection) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('PUT', collection))
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(updatedCollection => {
+      dispatch({
+        type: "EDIT_COLLECTION",
+        payload: { userId, updatedCollection }
+      })
+    }
+  )
+    .catch(err => console.error(err));
+}
 // PUT
 
 // DELETE

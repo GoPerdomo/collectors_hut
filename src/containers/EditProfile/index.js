@@ -30,11 +30,11 @@ class EditProfile extends Component {
     let { firstName, lastName, photo, email, password } = this.state.profileInfo;
     const { id } = event.currentTarget;
 
-    if (id === "new-first-name") firstName = content;
-    if (id === "new-last-name") lastName = content;
-    if (id === "new-photo") photo = content;
-    if (id === "new-email") email = content;
-    if (id === "new-password") password = content;
+    if (id === "edit-first-name") firstName = content;
+    if (id === "edit-last-name") lastName = content;
+    if (id === "edit-photo") photo = content;
+    if (id === "edit-email") email = content;
+    if (id === "edit-password") password = content;
 
 
     this.setState({
@@ -49,8 +49,7 @@ class EditProfile extends Component {
   }
 
   handleSubmit = (event) => {
-    const { user } = this.props;
-    const { editUser, getItems } = this.props;
+    const { user, editUser, getItems } = this.props;
     const { profileInfo } = this.state;
     const { firstName, lastName } = profileInfo;
 
@@ -78,35 +77,35 @@ class EditProfile extends Component {
       <ConfigButton label="Edit profile">
         <form onSubmit={this.handleSubmit}>
           <TextField
-            id="new-first-name"
+            id="edit-first-name"
             hintText="First Name"
             fullWidth
             onChange={this.handleContentChange}
             value={firstName}
           />
           <TextField
-            id="new-last-name"
+            id="edit-last-name"
             hintText="Last Name"
             fullWidth
             onChange={this.handleContentChange}
             value={lastName}
           />
           <TextField
-            id="new-photo"
+            id="edit-photo"
             hintText="Profile Photo"
             fullWidth
             onChange={this.handleContentChange}
             value={photo}
           />
           <TextField
-            id="new-email"
+            id="edit-email"
             hintText="Email"
             fullWidth
             onChange={this.handleContentChange}
             value={email}
           />
           <TextField
-            id="new-password"
+            id="edit-password"
             hintText="Password"
             fullWidth
             type="password"
