@@ -73,6 +73,24 @@ const reducer = (state = {}, { type, payload }) => {
       return { ...state, ...newUser };
     }
 
+    case "EDIT_ITEM": {
+      const { userId, collectionId, updatedItem } = payload;
+      const { collections } = state[userId];
+
+      const newCollections = collections.map(collection => {
+        if (collection._id !== collectionId) return collection;
+        const newItems = collection.items.map(item => {
+          if(item._id !== updatedItem._id) return item;
+          return { ...item, ...updatedItem }
+        })
+        return { ...collection, items: newItems };
+      });
+
+      const newUser = { [userId]: { ...state[userId], collections: newCollections } };
+
+      return { ...state, ...newUser };
+    }
+
     case "DELETE_ITEM": {
       const { userId, collectionId, itemId } = payload;
       const { collections } = state[userId];

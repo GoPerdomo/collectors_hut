@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ItemInfo from '../../containers/ItemInfo';
+import EditItem from '../../containers/EditItem';
 import DeleteItem from '../../containers/DeleteItem';
 
 import './style.css';
@@ -18,12 +19,14 @@ class Item extends Component {
 
   render() {
     const { currentItem } = this.props;
+    const { userId } = this.props.match.params;    
 
     return (
       <main className="item">
         <ProfileHeader
           actionButtons={
             <div className="profile-config-buttons">
+              <EditItem userId={userId} item={currentItem}/>
               <DeleteItem />
             </div>
           }
