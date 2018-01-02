@@ -16,8 +16,8 @@ const deleteHeaders = {
   },
 };
 
-const createPostHeaders = (body) => ({
-  method: 'POST',
+const createHeaders = (method, body) => ({
+  method,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const getProfile = (userId) => (dispatch, getState) => {
     .catch(err => console.error(err));
 };
 
-export const getItems = (userId, collectionId) => (dispatch, getState) => {
+export const getItems = (userId, collectionId) => (dispatch, getState) => {  
   fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
     .then(res => {
       if (res.ok) {
@@ -68,7 +68,7 @@ export const getItems = (userId, collectionId) => (dispatch, getState) => {
 
 // POST
 export const signUp = (newUserInfo) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/sign-up`, createPostHeaders(newUserInfo))
+  fetch(`http://localhost:3030/api/sign-up`, createHeaders('POST', newUserInfo))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -89,7 +89,7 @@ export const signUp = (newUserInfo) => (dispatch, getState) => {
 };
 
 export const signIn = (loginInfo) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/sign-in`, createPostHeaders(loginInfo))
+  fetch(`http://localhost:3030/api/sign-in`, createHeaders('POST', loginInfo))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -110,7 +110,7 @@ export const signIn = (loginInfo) => (dispatch, getState) => {
 };
 
 export const addCollection = (userId, newCollection) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/add-collection`, createPostHeaders(newCollection))
+  fetch(`http://localhost:3030/api/users/${userId}/add-collection`, createHeaders('POST', newCollection))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -128,7 +128,7 @@ export const addCollection = (userId, newCollection) => (dispatch, getState) => 
 };
 
 export const addItem = (userId, collectionId, newItem) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/add-item`, createPostHeaders(newItem))
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/add-item`, createHeaders('POST', newItem))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -145,6 +145,27 @@ export const addItem = (userId, collectionId, newItem) => (dispatch, getState) =
     .catch(err => console.error(err));
 };
 // POST
+
+// PUT
+export const editUser = (userId, user) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/users/${userId}`, createHeaders('PUT', user))
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(user => {
+      dispatch({
+        type: "ADD_USER",
+        payload: { user }
+      })
+    }
+  )
+    .catch(err => console.error(err));
+}
+// PUT
 
 // DELETE
 export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState) => {
@@ -163,7 +184,7 @@ export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState)
       })
     })
     .catch(err => console.error(err));
-    
+
 };
 
 export const deleteCollection = (userId, collectionId) => (dispatch, getState) => {
@@ -182,7 +203,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
       })
     })
     .catch(err => console.error(err));
-    
+
 };
 // DELETE
 

@@ -5,6 +5,7 @@ import isEmpty from 'is-empty';
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
 import AddCollection from '../../containers/AddCollection';
+import EditProfile from '../../containers/EditProfile';
 
 import { getProfile } from '../../store/actions';
 
@@ -33,6 +34,7 @@ class Profile extends Component {
         <ProfileHeader
           actionButtons={
             <div className="profile-config-buttons">
+              <EditProfile user={user} />
               <AddCollection userId={userId} />
             </div>
           }

@@ -19,7 +19,6 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-    
       newItem: {
         name: "",
         description: "",
