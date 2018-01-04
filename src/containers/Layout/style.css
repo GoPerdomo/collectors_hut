@@ -1,11 +1,17 @@
 /* Header */
 .header {
+  display: flex;
+  justify-content: space-evenly;
   height: 100px;
   margin-bottom: 50px;
   text-align: center;
   border: 1px solid black;
   color: #ffffff;
   background-color: #757575;
+}
+
+.header h1 {
+  margin: "auto 0"; 
 }
 /* Header */
 

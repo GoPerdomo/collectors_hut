@@ -18,7 +18,7 @@ class Logout extends Component {
     const { loggedUser } = this.props;
 
     return (
-      <div>
+      <div style={{ margin: "auto 0" }} >
         {
           loggedUser ? <RaisedButton label="Logout" onClick={this.handleClick} /> : null
         }
