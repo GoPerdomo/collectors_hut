@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+
+import { search } from '../../store/actions';
 
 class SearchBar extends Component {
 
@@ -18,11 +21,12 @@ class SearchBar extends Component {
 
   handleSubmit = (event) => {
     const { searchTerms, searchType } = this.state;
+    const { search } = this.props;
 
     event.preventDefault();
 
     if (searchTerms) {
-      
+      search(searchTerms.toLocaleLowerCase(), searchType);
     }
   };
 
@@ -52,4 +56,8 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => ({
+  search: (searchTerms, searchType) => dispatch(search(searchTerms, searchType))
+})
+
+export default connect(null, mapDispatchToProps)(SearchBar);

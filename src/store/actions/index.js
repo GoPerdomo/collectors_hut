@@ -46,7 +46,7 @@ export const getProfile = (userId) => (dispatch, getState) => {
     .catch(err => console.error(err));
 };
 
-export const getItems = (userId, collectionId) => (dispatch, getState) => {  
+export const getItems = (userId, collectionId) => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
     .then(res => {
       if (res.ok) {
@@ -60,6 +60,22 @@ export const getItems = (userId, collectionId) => (dispatch, getState) => {
         type: "SET_COLLECTION_ITEMS",
         payload: { collectionId, userId, items: collection.items }
       })
+    })
+    .catch(err => console.error(err));
+};
+
+export const search = (searchTerms, searchType) => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/search/?${searchType}=${searchTerms}`, getHeaders)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(data => {
+      console.log(data);
+
     })
     .catch(err => console.error(err));
 };
@@ -162,7 +178,7 @@ export const editUser = (userId, user) => (dispatch, getState) => {
         payload: { user }
       })
     }
-  )
+    )
     .catch(err => console.error(err));
 }
 
@@ -181,7 +197,7 @@ export const editCollection = (userId, collectionId, collection) => (dispatch, g
         payload: { userId, updatedCollection }
       })
     }
-  )
+    )
     .catch(err => console.error(err));
 }
 
@@ -200,7 +216,7 @@ export const editItem = (userId, collectionId, itemId, item) => (dispatch, getSt
         payload: { userId, collectionId, updatedItem }
       })
     }
-  )
+    )
     .catch(err => console.error(err));
 }
 // PUT
