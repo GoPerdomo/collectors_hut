@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import UserCard from '../../containers/UserCard';
+import CollectionCard from '../../containers/CollectionCard';
 
 import './style.css';
 
@@ -17,11 +18,12 @@ class Search extends Component {
     if (searchType === "user") {
       return results.map(user => <UserCard key={user._id} user={user} />)
     }
-    
+
     if (searchType === "collection") {
-      console.log(results);
-      
-      return results.map(collection => <UserCard key={collection._id} collection={collection} />)
+      return results.map(result => {
+        const { collection, user } = result;
+        return <CollectionCard key={collection._id} collection={collection} user={user}/>
+      })
     }
   }
 
