@@ -78,6 +78,20 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
         type: "SEARCH_RESULTS",
         payload: { results, searchType }
       })
+      for (const result of results) {
+        if (searchType === "user") {
+          dispatch(
+            getProfile(result._id)
+          )
+        } else {
+          dispatch(
+            getProfile(result.user._id)
+          )
+          dispatch(
+            getItems(result.user._id, results[0].collection._id)
+          )
+        }
+      }
     })
     .catch(err => console.error(err));
 };

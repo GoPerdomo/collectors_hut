@@ -18,16 +18,6 @@ const reducer = (state = {}, { type, payload }) => {
     // User
 
     // Collection
-    case "SET_COLLECTION_ITEMS": {
-      const { collectionId, userId, items } = payload;
-      const newCollections = state[userId].collections.map(collection => (
-        collection._id === collectionId ? { ...collection, items } : collection
-      ));
-      const newState = { ...state, [userId]: { ...state[userId], collections: newCollections } }
-
-      return newState;
-    }
-
     case "ADD_NEW_COLLECTION": {
       const { userId, collection } = payload;
       const newCollections = [...state[userId].collections, collection];
@@ -58,6 +48,16 @@ const reducer = (state = {}, { type, payload }) => {
     // Collection
 
     // Item
+    case "SET_COLLECTION_ITEMS": {      
+      const { collectionId, userId, items } = payload;
+      const newCollections = state[userId].collections.map(collection => (
+        collection._id === collectionId ? { ...collection, items } : collection
+      ));
+      const newState = { ...state, [userId]: { ...state[userId], collections: newCollections } }
+
+      return newState;
+    }
+
     case "ADD_NEW_ITEM": {
       const { userId, collectionId, item } = payload;
       const { collections } = state[userId];
