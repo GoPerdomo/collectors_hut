@@ -73,9 +73,11 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
         throw Error(res.statusText)
       }
     })
-    .then(data => {
-      console.log(data);
-
+    .then(results => {
+      dispatch({
+        type: "SEARCH_RESULTS",
+        payload: { results, searchType }
+      })
     })
     .catch(err => console.error(err));
 };
@@ -177,8 +179,7 @@ export const editUser = (userId, user) => (dispatch, getState) => {
         type: "ADD_USER",
         payload: { user }
       })
-    }
-    )
+    })
     .catch(err => console.error(err));
 }
 
@@ -265,6 +266,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
 export const fetchLocalUser = () => (dispatch, getState) => {
   const token = localStorage.getItem('token');
   const loggedUser = localStorage.getItem('loggedUser');
+
   if (token) {
     dispatch({
       type: "SET_CURRENT_USER",

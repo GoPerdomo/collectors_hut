@@ -80,7 +80,7 @@ const reducer = (state = {}, { type, payload }) => {
       const newCollections = collections.map(collection => {
         if (collection._id !== collectionId) return collection;
         const newItems = collection.items.map(item => {
-          if(item._id !== updatedItem._id) return item;
+          if (item._id !== updatedItem._id) return item;
           return { ...item, ...updatedItem }
         })
         return { ...collection, items: newItems };
@@ -106,6 +106,13 @@ const reducer = (state = {}, { type, payload }) => {
       return { ...state, ...newUser };
     }
     // Item
+
+    // Search
+    case "SEARCH_RESULTS": {
+      const { results, searchType } = payload;
+      return { ...state, results, searchType };
+    }
+    // Search
 
     default: {
       return state;

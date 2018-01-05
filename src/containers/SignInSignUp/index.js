@@ -30,6 +30,12 @@ class SignInSignUp extends Component {
     };
   }
 
+  componentWillMount() {
+    const { loggedUser, history } = this.props;
+
+    if (loggedUser) history.push(`/users/${loggedUser}`);
+  }
+
   componentWillReceiveProps(props) {
     const { loggedUser, history } = props;
 
