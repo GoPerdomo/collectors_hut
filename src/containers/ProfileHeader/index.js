@@ -24,7 +24,7 @@ class ProfileHeader extends Component {
       <div>
         {
           !isEmpty(user) &&
-          <Paper zDepth={2} className="profile-header" style={{ backgroundColor: "#bdbdbd" }}>
+          <Paper zDepth={2} className="profile-header" style={{ backgroundColor: "#0288d1" }}>
             <div className="profile-info">
               <div className="profile-photo">
                 <Avatar

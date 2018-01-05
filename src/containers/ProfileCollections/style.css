@@ -8,11 +8,13 @@
 }
 
 .profile-collection-items-preview {
+  width: 49%;
+  margin: auto 0;
   display: flex;
   flex-wrap: wrap;
+  height: 335px;
   justify-content: center;
-  width: 50%;
-  margin: auto;
+  background-color: #ffffff;
 }
 
 .profile-collection-items-preview:hover {
@@ -21,16 +23,17 @@
 
 .profile-collection-items-preview > div {
   overflow: hidden;
-  width: 165px;
+  width: 163px;
 }
 
 .profile-collection-preview-description {
-  width: 50%;
-  margin: auto;
+  width: 46%;
+  margin: auto 0;
   overflow-y: auto;
-  height: 328px;
+  height: 335px;
   text-align: justify;
   padding: 0 15px;
+  background-color: #ffffff;
 }
 
 .profile-collection-preview-description h3 {

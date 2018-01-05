@@ -31,6 +31,7 @@ class ProfileCollections extends Component {
     return (
       <Paper
         className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}
+        style={{ backgroundColor: "#0288d1", padding: "0 1%" }}
         zDepth={2}
       >
         <div className="profile-collection-items-preview" onClick={this.selectCollection} >

@@ -8,11 +8,9 @@
   text-align: center;
   border: 1px solid black;
   color: #ffffff;
-  background-color: #757575;
-}
+  background-color: #005b9f
 
-.header h1 {
-  margin: "auto 0"; 
+  ;
 }
 /* Header */
 
@@ -23,7 +21,7 @@
   text-align: center;
   border: 1px solid black;
   color: #ffffff;
-  background-color: #757575;  
+  background-color: #005b9f;  
 }
 
 .footer p {
