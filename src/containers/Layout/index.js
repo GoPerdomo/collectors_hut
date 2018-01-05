@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import SearchBar from '../SearchBar';
@@ -9,8 +10,10 @@ import './style.css';
 class Layout extends Component {
 
   render() {
+    const { loggedUser } = this.props;
+
     return (
-      <div>
+      <div className="layout">
         <header className="header">
           <NavLink
             to="/"
@@ -18,8 +21,15 @@ class Layout extends Component {
           >
             <h1>Collectors Hut</h1>
           </NavLink>
-          <SearchBar />
-          <Logout />
+          {
+            loggedUser &&
+            <SearchBar />
+          }
+          {
+            loggedUser &&
+            <Logout />
+          }
+
         </header>
         {
           this.props.children
@@ -32,4 +42,14 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = (state) => {
+  const { loggedUser } = state;
+
+  return (
+    {
+      loggedUser,
+    }
+  )
+};
+
+export default connect(mapStateToProps)(Layout);

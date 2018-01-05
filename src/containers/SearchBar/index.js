@@ -44,7 +44,6 @@ class SearchBar extends Component {
 
     return (
       <Toolbar style={{ margin: "auto 0" }}>
-
         <form
           style={{ margin: "auto 0", display: "flex" }}
           onSubmit={this.handleSubmit}
@@ -69,12 +68,11 @@ class SearchBar extends Component {
             <RaisedButton type="submit" label="Search" />
           </ToolbarGroup>
         </form>
-
       </Toolbar>
-
     )
   }
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
   search: (searchTerms, searchType) => dispatch(search(searchTerms, searchType))
