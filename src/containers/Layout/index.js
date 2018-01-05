@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
+import SearchBar from '../SearchBar';
 import Logout from '../Logout';
 
 import './style.css';
@@ -10,7 +12,13 @@ class Layout extends Component {
     return (
       <div>
         <header className="header">
-          <h1>Collectors Hut</h1>
+          <NavLink
+            to="/"
+            style={{ textDecoration: "none", color: "#fff" }}
+          >
+            <h1>Collectors Hut</h1>
+          </NavLink>
+          <SearchBar />
           <Logout />
         </header>
         {

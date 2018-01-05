@@ -9,6 +9,7 @@ import Home from './routes/Home';
 import Profile from './routes/Profile';
 import Collection from './routes/Collection';
 import Item from './routes/Item';
+import Search from './routes/Search';
 
 import store from './store/reducer';
 import { fetchLocalUser } from './store/actions';
@@ -27,6 +28,7 @@ ReactDOM.render(
             <Route exact path="/users/:userId" component={Profile} />
             <Route exact path="/users/:userId/collections/:collectionId" component={Collection} />
             <Route exact path="/users/:userId/collections/:collectionId/items/:itemId" component={Item} />
+            <Route path="/search" component={Search} />
           </Layout>
         </Switch>
       </Router>
