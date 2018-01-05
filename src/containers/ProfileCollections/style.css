@@ -3,17 +3,16 @@
   justify-content: space-around;
   margin: auto;
   width: 90%;
-  height: 360px;
+  height: 350px;
   margin-bottom: 50px;
 }
 
 .profile-collection-items-preview {
-  width: 49%;
+  width: 480px;
   margin: auto 0;
   display: flex;
   flex-wrap: wrap;
-  height: 335px;
-  justify-content: start;
+  height: 320px;
   background-color: #ffffff;
 }
 
@@ -23,14 +22,15 @@
 
 .profile-collection-items-preview > div {
   overflow: hidden;
-  width: 163px;
+  width: 160px;
+  height: 160px;
 }
 
 .profile-collection-preview-description {
-  width: 46%;
+  width: 450px;
   margin: auto 0;
   overflow-y: auto;
-  height: 335px;
+  height: 320px;
   text-align: justify;
   padding: 0 15px;
   background-color: #ffffff;
@@ -46,9 +46,9 @@
 }
 
 .shorter-wrapper {
-  height: 180px;
+  height: 190px;
 }
 
 .shorter-info {
-  height: 158px;
+  height: 160px;
 }
