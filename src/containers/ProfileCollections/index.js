@@ -40,18 +40,20 @@ class ProfileCollections extends Component {
           className={`profile-collection-items-preview ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`}
           onClick={this.selectCollection}
         >
-          {
-            collection.items && collection.items.map((item, index) => {
-              if (index < maxItems)
-                return (
-                  <div key={item._id}>
-                    <ProfileItems photo={item.photo} />
-                  </div>
-                )
-              else
-                return null;
-            })
-          }
+          <div className="profile-collection-items-wrapper">
+            {
+              collection.items && collection.items.map((item, index) => {
+                if (index < maxItems)
+                  return (
+                    <div key={item._id}>
+                      <ProfileItems photo={item.photo} />
+                    </div>
+                  )
+                else
+                  return null;
+              })
+            }
+          </div>
         </div>
         <div className={
           `profile-collection-preview-description ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`

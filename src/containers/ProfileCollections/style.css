@@ -10,17 +10,22 @@
 .profile-collection-items-preview {
   width: 480px;
   margin: auto 0;
-  display: flex;
-  flex-wrap: wrap;
   height: 320px;
   background-color: #ffffff;
 }
 
-.profile-collection-items-preview:hover {
-  cursor: pointer;
+.profile-collection-items-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.profile-collection-items-preview > div {
+.profile-collection-items-wrapper:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.profile-collection-items-wrapper > div {
   overflow: hidden;
   width: 160px;
   height: 160px;
