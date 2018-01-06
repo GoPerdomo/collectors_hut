@@ -6,15 +6,20 @@ import ItemInfo from '../../containers/ItemInfo';
 import EditItem from '../../containers/EditItem';
 import DeleteItem from '../../containers/DeleteItem';
 
+import { getProfile, getItems } from '../../store/actions';
+
 import './style.css';
 
 class Item extends Component {
 
   componentDidMount() {
-    const { currentItem, match, history } = this.props;
+    const { currentItem, match, getProfile, getItems } = this.props;
+    const { userId, collectionId } = match.params;
 
-    if (currentItem) return;
-    history.push(`/users/${match.params.userId}`);
+    if (!currentItem) {
+      getProfile(userId);
+      getItems(userId, collectionId);
+    }
   }
 
   render() {
@@ -23,16 +28,20 @@ class Item extends Component {
 
     return (
       <main className="item">
-        <ProfileHeader
-          actionButtons={
-            <div className="profile-config-buttons">
-              <EditItem userId={userId} item={currentItem} />
-              <DeleteItem />
-            </div>
-          }
-        />
         {
-          currentItem && <ItemInfo currentItem={currentItem} />
+          currentItem &&
+          <ProfileHeader
+            actionButtons={
+              <div className="profile-config-buttons">
+                <EditItem userId={userId} item={currentItem} />
+                <DeleteItem />
+              </div>
+            }
+          />
+        }
+        {
+          currentItem &&
+          <ItemInfo currentItem={currentItem} />
         }
       </main>
     )
@@ -43,7 +52,7 @@ const mapStateToProps = (state, props) => {
   const { userId, collectionId, itemId } = props.match.params;
   let currentItem;
 
-  if (state[userId]) {
+  if (state[userId] && state[userId].collections && state[userId].collections[0].items) {
     currentItem = state[userId].collections
       .find(collection => collection._id === collectionId)
       .items.find(item => item._id === itemId);
@@ -58,4 +67,9 @@ const mapStateToProps = (state, props) => {
   )
 };
 
-export default connect(mapStateToProps)(Item);
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: (userId) => dispatch(getProfile(userId)),
+  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

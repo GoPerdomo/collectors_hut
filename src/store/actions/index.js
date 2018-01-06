@@ -276,7 +276,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
 };
 // DELETE
 
-// No fetches
+// No fetch
 export const fetchLocalUser = () => (dispatch, getState) => {
   const token = localStorage.getItem('token');
   const loggedUser = localStorage.getItem('loggedUser');
@@ -295,3 +295,4 @@ export const logout = () => (dispatch, getState) => {
   });
   localStorage.clear();
 };
+// No fetch
