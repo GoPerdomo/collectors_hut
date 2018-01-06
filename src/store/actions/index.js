@@ -81,14 +81,14 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
       for (const result of results) {
         if (searchType === "user") {
           dispatch(
-            getProfile(result._id)
+            getProfile(result.user._id)
           )
         } else {
           dispatch(
             getProfile(result.user._id)
           )
           dispatch(
-            getItems(result.user._id, results[0].collection._id)
+            getItems(result.user._id, result.collection._id)
           )
         }
       }
