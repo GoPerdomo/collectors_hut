@@ -58,7 +58,12 @@ class CollectionCard extends Component {
               if (index < maxItems)
                 return (
                   <div key={item._id}>
-                    <img src={item.photo} alt="" />
+                    <NavLink
+                      to={`/users/${user._id}/collections/${collection._id}`}
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      <img src={item.photo} alt="" />
+                    </NavLink>
                   </div>
                 )
               else

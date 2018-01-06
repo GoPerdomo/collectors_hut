@@ -29,13 +29,13 @@ class ItemInfo extends Component {
     } = this.props.currentItem;
 
     return (
-      <Paper zDepth={2} className="item-display" style={{ backgroundColor: "#0288d1" }} >
-        <div style={{ backgroundColor: "#ffffff" }}>
-          <h2 className="collection-title" onClick={history.goBack}>
+      <Paper zDepth={2} className="item-display" style={{ backgroundColor: "#6D8EAD" }} >
+        <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
+          <h1 className="collection-title" onClick={history.goBack}>
             {
               currentCollection.name
             }
-          </h2>
+          </h1>
           <div style={{ display: "flex" }} >
             <div className="item-photo">
               <img src={photo} alt="" />

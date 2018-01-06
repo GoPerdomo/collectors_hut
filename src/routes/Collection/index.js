@@ -35,13 +35,13 @@ class Collection extends Component {
             </div>
           }
         />
-        <Paper zDepth={2} className="collection-items" style={{ backgroundColor: "#0288d1" }} >
-          <div style={{ backgroundColor: "#ffffff" }}>
-            <h2 className="collection-title" >
+        <Paper zDepth={2} className="collection-items" style={{ backgroundColor: "#6D8EAD" }} >
+          <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
+            <h1 className="collection-title" >
               {
                 currentCollection && currentCollection.name
               }
-            </h2>
+            </h1>
             <GridList cols={3} cellHeight="auto" >
               {
                 currentCollection && currentCollection.items.map(item => (
