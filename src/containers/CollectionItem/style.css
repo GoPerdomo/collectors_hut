@@ -1,5 +1,7 @@
 .collection-item-photo {
   height: 230px;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .collection-item-photo:hover {

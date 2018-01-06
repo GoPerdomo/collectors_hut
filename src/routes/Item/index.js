@@ -19,14 +19,14 @@ class Item extends Component {
 
   render() {
     const { currentItem } = this.props;
-    const { userId } = this.props.match.params;    
+    const { userId } = this.props.match.params;
 
     return (
       <main className="item">
         <ProfileHeader
           actionButtons={
             <div className="profile-config-buttons">
-              <EditItem userId={userId} item={currentItem}/>
+              <EditItem userId={userId} item={currentItem} />
               <DeleteItem />
             </div>
           }

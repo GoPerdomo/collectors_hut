@@ -38,7 +38,7 @@ class ItemInfo extends Component {
           </h2>
           <div style={{ display: "flex" }} >
             <div className="item-photo">
-              <img src={photo} alt="TODO: Add nonredundant alt" />
+              <img src={photo} alt="" />
             </div>
             <div className="item-info">
               <h2>{name}</h2>

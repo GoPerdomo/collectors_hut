@@ -173,7 +173,7 @@ class EditItem extends Component {
             <MenuItem value={"Fair"} primaryText={"Fair"} />
             <MenuItem value={"Poor"} primaryText={"Poor"} />
           </SelectField>
-          <RaisedButton type="submit" label="Save" fullWidth />
+          <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Save" fullWidth />
         </form>
       </ConfigButton>
     )

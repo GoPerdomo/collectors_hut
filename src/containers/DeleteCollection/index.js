@@ -19,6 +19,7 @@ class DeleteCollection extends Component {
   render() {
     return (
       <RaisedButton
+        backgroundColor="#5eb8ff"
         style={{ marginLeft: "30px" }}
         label="Delete Collection"
         onClick={this.handleClick}

@@ -15,7 +15,7 @@ class CollectionItem extends Component {
   render() {
 
     return (
-      <img className="collection-item-photo" src={ this.props.photo } alt="TODO: Add a nonredundant alt" onClick={ this.selectItem }/>
+      <img className="collection-item-photo" src={ this.props.photo } alt="" onClick={ this.selectItem }/>
     )
   }
 }

@@ -35,26 +35,28 @@ class Collection extends Component {
             </div>
           }
         />
-        <Paper zDepth={2} className="collection-items" >
-          <h2 className="collection-title" >
-            {
-              currentCollection && currentCollection.name
-            }
-          </h2>
-          <GridList cols={3} cellHeight="auto" style={{ justifyContent: "space-around" }}>
-            {
-              currentCollection && currentCollection.items.map(item => (
-                <GridTile key={item._id} title={item.name} >
-                  <CollectionItem
-                    itemId={item._id}
-                    collectionId={currentCollection._id}
-                    userId={userId}
-                    photo={item.photo}
-                  />
-                </GridTile>
-              ))
-            }
-          </GridList>
+        <Paper zDepth={2} className="collection-items" style={{ backgroundColor: "#0288d1" }} >
+          <div style={{ backgroundColor: "#ffffff" }}>
+            <h2 className="collection-title" >
+              {
+                currentCollection && currentCollection.name
+              }
+            </h2>
+            <GridList cols={3} cellHeight="auto" >
+              {
+                currentCollection && currentCollection.items.map(item => (
+                  <GridTile key={item._id} title={item.name} >
+                    <CollectionItem
+                      itemId={item._id}
+                      collectionId={currentCollection._id}
+                      userId={userId}
+                      photo={item.photo}
+                    />
+                  </GridTile>
+                ))
+              }
+            </GridList>
+          </div>
         </Paper>
       </main>
     )

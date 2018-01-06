@@ -32,7 +32,7 @@ class ProfileHeader extends Component {
                   backgroundColor="white"
                   size={140}
                   src={user.photo}
-                  alt="TODO: Add a nonredundant alt"
+                  alt=""
                 />
               </div>
               <div>

@@ -139,7 +139,7 @@ class SignInSignUp extends Component {
                   onChange={this.handleSignInContentChange}
                   value={signin.password}
                 />
-                <RaisedButton type="submit" label="Sign in" fullWidth />
+                <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Sign in" fullWidth />
               </form>
             </div>
           </Tab>
@@ -175,7 +175,7 @@ class SignInSignUp extends Component {
                   onChange={this.handleSignUpContentChange}
                   value={signup.password}
                 />
-                <RaisedButton type="submit" label="Sign up" fullWidth />
+                <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Sign up" fullWidth />
               </form>
             </div>
           </Tab>

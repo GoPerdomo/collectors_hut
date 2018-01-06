@@ -112,7 +112,7 @@ class EditProfile extends Component {
             onChange={this.handleContentChange}
             value={password}
           />
-          <RaisedButton type="submit" label="Save" fullWidth />
+          <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Save" fullWidth />
         </form>
       </ConfigButton>
     )

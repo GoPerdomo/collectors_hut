@@ -76,7 +76,7 @@ class EditCollection extends Component {
             onChange={this.handleContentChange}
             value={info}
           />
-          <RaisedButton type="submit" label="Save" fullWidth />
+          <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Save" fullWidth />
         </form>
       </ConfigButton>
     )
