@@ -10,15 +10,20 @@ import AddItem from '../../containers/AddItem';
 import EditCollection from '../../containers/EditCollection';
 import DeleteCollection from '../../containers/DeleteCollection';
 
+import { getProfile, getItems } from '../../store/actions';
+
 import './style.css';
 
 class Collection extends Component {
 
   componentWillMount() {
-    const { currentCollection, match, history } = this.props;
+    const { currentCollection, match, getProfile, getItems } = this.props;
+    const { userId, collectionId } = match.params;
 
-    if (currentCollection) return;
-    history.push(`/users/${match.params.userId}`);
+    if (!currentCollection) {
+      getProfile(userId);
+      getItems(userId, collectionId);
+    }
   }
 
   render() {
@@ -26,36 +31,42 @@ class Collection extends Component {
 
     return (
       <main className="collection">
-        <ProfileHeader
-          actionButtons={
-            <div className="profile-config-buttons">
-              <AddItem userId={userId} collectionId={collectionId} />
-              <EditCollection userId={userId} collection={currentCollection} />
-              <DeleteCollection />
+        {
+          currentCollection &&
+          <ProfileHeader
+            actionButtons={
+              <div className="profile-config-buttons">
+                <DeleteCollection />
+                <EditCollection userId={userId} collection={currentCollection} />
+                <AddItem userId={userId} collectionId={collectionId} />
+              </div>
+            }
+          />
+        }
+        {
+          currentCollection && currentCollection.items &&
+          <Paper zDepth={0} className="collection-items" style={{ backgroundColor: "#6D8EAD" }} >
+            <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
+              <h1 className="collection-title" >
+                {currentCollection.name}
+              </h1>
+              <GridList cols={3} cellHeight="auto" >
+                {
+                  currentCollection.items.map(item => (
+                    <GridTile key={item._id} title={item.name} >
+                      <CollectionItem
+                        itemId={item._id}
+                        collectionId={currentCollection._id}
+                        userId={userId}
+                        photo={item.photo}
+                      />
+                    </GridTile>
+                  ))
+                }
+              </GridList>
             </div>
-          }
-        />
-        <Paper zDepth={2} className="collection-items" >
-          <h2 className="collection-title" >
-            {
-              currentCollection && currentCollection.name
-            }
-          </h2>
-          <GridList cols={3} cellHeight="auto" style={{ justifyContent: "space-around" }}>
-            {
-              currentCollection && currentCollection.items.map(item => (
-                <GridTile key={item._id} title={item.name} >
-                  <CollectionItem
-                    itemId={item._id}
-                    collectionId={currentCollection._id}
-                    userId={userId}
-                    photo={item.photo}
-                  />
-                </GridTile>
-              ))
-            }
-          </GridList>
-        </Paper>
+          </Paper>
+        }
       </main>
     )
   }
@@ -82,5 +93,10 @@ const mapStateToProps = (state, props) => {
   )
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: (userId) => dispatch(getProfile(userId)),
+  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
+});
 
-export default connect(mapStateToProps)(Collection);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);

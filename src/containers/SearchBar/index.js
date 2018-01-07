@@ -44,13 +44,13 @@ class SearchBar extends Component {
 
     return (
       <Toolbar style={{ margin: "auto 0" }}>
-
         <form
           style={{ margin: "auto 0", display: "flex" }}
           onSubmit={this.handleSubmit}
         >
           <ToolbarGroup>
             <TextField
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               hintText="Find users and collections"
               onChange={(event, value) => this.setState({ searchTerms: value })}
               value={searchTerms}
@@ -66,15 +66,19 @@ class SearchBar extends Component {
             </SelectField>
           </ToolbarGroup>
           <ToolbarGroup>
-            <RaisedButton type="submit" label="Search" />
+            <RaisedButton
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+              type="submit"
+              label="Search"
+            />
           </ToolbarGroup>
         </form>
-
       </Toolbar>
-
     )
   }
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
   search: (searchTerms, searchType) => dispatch(search(searchTerms, searchType))

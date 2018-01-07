@@ -5,13 +5,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
-import ConfigButton from '../../containers/ConfigButton';
+import Dialog from 'material-ui/Dialog';
 
 import { editItem } from '../../store/actions';
 
-
-// TODO: Refactor
 
 class EditItem extends Component {
 
@@ -28,6 +25,7 @@ class EditItem extends Component {
     } = this.props.item;
 
     this.state = {
+      open: false,
       itemInfo: {
         name,
         description,
@@ -38,6 +36,14 @@ class EditItem extends Component {
         condition,
       },
     };
+  }
+
+  handleButtonClick = (event) => {
+    this.setState({ open: true })
+  }
+
+  handleRequestClose = () => {
+    this.setState({ open: false })
   }
 
   handleContentChange = (event, content) => {
@@ -89,6 +95,8 @@ class EditItem extends Component {
 
     editItem(userId, item.collectionId, item._id, itemInfo);
 
+    this.handleRequestClose();
+
     this.setState({
       itemInfo: {
         name,
@@ -115,67 +123,92 @@ class EditItem extends Component {
     } = this.state.itemInfo;
 
     return (
-      <ConfigButton label="Edit item">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="edit-item-name"
-            hintText="Name"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={name}
-          />
-          <TextField
-            id="edit-item-description"
-            hintText="Description"
-            fullWidth
-            multiLine
-            onChange={this.handleContentChange}
-            value={description}
-          />
-          <TextField
-            id="edit-item-productionYear"
-            hintText="Production Year"
-            type="number"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={productionYear}
-          />
-          <TextField
-            id="edit-item-acquisitionYear"
-            hintText="Acquisition Year"
-            type="number"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={acquisitionYear}
-          />
-          <TextField
-            id="edit-item-origin"
-            hintText="Origin"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={origin}
-          />
-          <TextField
-            id="edit-item-manufacturer"
-            hintText="Manufacturer"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={manufacturer}
-          />
-          <SelectField
-            id="edit-item-condition"
-            onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
-            value={condition}
-            hintText="Condition"
-          >
-            <MenuItem value={"Mint"} primaryText={"Mint"} />
-            <MenuItem value={"Good"} primaryText={"Good"} />
-            <MenuItem value={"Fair"} primaryText={"Fair"} />
-            <MenuItem value={"Poor"} primaryText={"Poor"} />
-          </SelectField>
-          <RaisedButton type="submit" label="Save" fullWidth />
-        </form>
-      </ConfigButton>
+      <div>
+        <RaisedButton
+          onClick={this.handleButtonClick}
+          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+          backgroundColor="#ffffff"
+          label={"Edit item"}
+        />
+
+        <Dialog
+          open={this.state.open}
+          autoScrollBodyContent
+          onRequestClose={this.handleRequestClose}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="edit-item-name"
+              hintText="Name"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              onChange={this.handleContentChange}
+              value={name}
+            />
+            <TextField
+              id="edit-item-description"
+              hintText="Description"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              multiLine
+              onChange={this.handleContentChange}
+              value={description}
+            />
+            <TextField
+              id="edit-item-productionYear"
+              hintText="Production Year"
+              type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={productionYear}
+            />
+            <TextField
+              id="edit-item-acquisitionYear"
+              hintText="Acquisition Year"
+              type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={acquisitionYear}
+            />
+            <TextField
+              id="edit-item-origin"
+              hintText="Origin"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              onChange={this.handleContentChange}
+              value={origin}
+            />
+            <TextField
+              id="edit-item-manufacturer"
+              hintText="Manufacturer"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              onChange={this.handleContentChange}
+              value={manufacturer}
+            />
+            <SelectField
+              id="edit-item-condition"
+              onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
+              value={condition}
+              hintText="Condition"
+            >
+              <MenuItem value={"Mint"} primaryText={"Mint"} />
+              <MenuItem value={"Good"} primaryText={"Good"} />
+              <MenuItem value={"Fair"} primaryText={"Fair"} />
+              <MenuItem value={"Poor"} primaryText={"Poor"} />
+            </SelectField>
+            <RaisedButton
+              fullWidth
+              type="submit"
+              label="Save"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
+            />
+          </form>
+        </Dialog>
+      </div>
     )
   }
 }

@@ -5,13 +5,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
-import ConfigButton from '../../containers/ConfigButton';
+import IconButton from 'material-ui/IconButton';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
+import Dialog from 'material-ui/Dialog';
 
 import { addItem } from '../../store/actions';
 
-
-// TODO: Refactor
 
 class AddItem extends Component {
 
@@ -19,6 +18,7 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
+      open: false,
       newItem: {
         name: "",
         description: "",
@@ -29,6 +29,14 @@ class AddItem extends Component {
         condition: "",
       },
     };
+  }
+
+  handleButtonClick = (event) => {
+    this.setState({ open: true })
+  }
+
+  handleRequestClose = () => {
+    this.setState({ open: false })
   }
 
   handleContentChange = (event, content) => {
@@ -72,6 +80,8 @@ class AddItem extends Component {
     if (newItem.name) {
       addItem(userId, collectionId, newItem);
 
+      this.handleRequestClose();
+
       this.setState({
         newItem: {
           name: "",
@@ -87,7 +97,6 @@ class AddItem extends Component {
   }
 
   render() {
-
     const {
       name,
       description,
@@ -100,68 +109,100 @@ class AddItem extends Component {
     const { newItem } = this.state;
 
     return (
-    <ConfigButton label="Add item">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="new-item-name"
-            hintText="Name"
-            errorText={!name && "Name is required"}
-            fullWidth
-            onChange={this.handleContentChange}
-            value={name}
+      <div>
+        <IconButton
+          onClick={this.handleButtonClick}
+          iconStyle={{ borderRadius: "50px", backgroundColor: "ffffff", width: "36px", height: "36px", padding: "0" }}
+          style={{ width: "36px", height: "36px", padding: "0" }}
+        >
+          <ContentAddCircle
+            color="#FF6517"
+            hoverColor="#d95a2f"
+            viewBox="1 1 22 22"
           />
-          <TextField
-            id="new-item-description"
-            hintText="Description"
-            fullWidth
-            multiLine
-            onChange={this.handleContentChange}
-            value={description}
-          />
-          <TextField
-            id="new-item-productionYear"
-            hintText="Production Year"
-            type="number"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={productionYear}
-          />
-          <TextField
-            id="new-item-acquisitionYear"
-            hintText="Acquisition Year"
-            type="number"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={acquisitionYear}
-          />
-          <TextField
-            id="new-item-origin"
-            hintText="Origin"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={origin}
-          />
-          <TextField
-            id="new-item-manufacturer"
-            hintText="Manufacturer"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={manufacturer}
-          />
-          <SelectField
-            id="new-item-condition"
-            onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
-            value={condition}
-            hintText="Condition"
-          >
-            <MenuItem value={"Mint"} primaryText={"Mint"} />
-            <MenuItem value={"Good"} primaryText={"Good"} />
-            <MenuItem value={"Fair"} primaryText={"Fair"} />
-            <MenuItem value={"Poor"} primaryText={"Poor"} />
-          </SelectField>
-          <RaisedButton type="submit" label="Create" fullWidth />
-        </form>
-      </ConfigButton>
+        </IconButton>
+
+        <Dialog
+          open={this.state.open}
+          autoScrollBodyContent
+          onRequestClose={this.handleRequestClose}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="new-item-name"
+              hintText="Name"
+              errorText={!name && "Name is required"}
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={name}
+            />
+            <TextField
+              id="new-item-description"
+              hintText="Description"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              multiLine
+              onChange={this.handleContentChange}
+              value={description}
+            />
+          </form>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="new-item-productionYear"
+              hintText="Production Year"
+              type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={productionYear}
+            />
+            <TextField
+              id="new-item-acquisitionYear"
+              hintText="Acquisition Year"
+              type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={acquisitionYear}
+            />
+            <TextField
+              id="new-item-origin"
+              hintText="Origin"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              onChange={this.handleContentChange}
+              value={origin}
+            />
+            <TextField
+              id="new-item-manufacturer"
+              hintText="Manufacturer"
+              fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              onChange={this.handleContentChange}
+              value={manufacturer}
+            />
+            <SelectField
+              id="new-item-condition"
+              onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
+              value={condition}
+              hintText="Condition"
+            >
+              <MenuItem value={"Mint"} primaryText={"Mint"} />
+              <MenuItem value={"Good"} primaryText={"Good"} />
+              <MenuItem value={"Fair"} primaryText={"Fair"} />
+              <MenuItem value={"Poor"} primaryText={"Poor"} />
+            </SelectField>
+            <RaisedButton
+              fullWidth
+              label="Create"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
+              onClick={this.handleSubmit}
+            />
+          </form>
+        </Dialog>
+      </div>
     )
   }
 }

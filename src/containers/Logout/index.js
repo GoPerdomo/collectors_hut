@@ -15,30 +15,21 @@ class Logout extends Component {
   }
 
   render() {
-    const { loggedUser } = this.props;
-
     return (
       <div style={{ margin: "auto 0" }} >
-        {
-          loggedUser ? <RaisedButton label="Logout" onClick={this.handleClick} /> : null
-        }
+        <RaisedButton
+          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+          backgroundColor="#FF6517"
+          label="Logout"
+          onClick={this.handleClick}
+        />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  const { loggedUser } = state;
-
-  return (
-    {
-      loggedUser,
-    }
-  )
-};
-
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));
+export default withRouter(connect(null, mapDispatchToProps)(Logout));

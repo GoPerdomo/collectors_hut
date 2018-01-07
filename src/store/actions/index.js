@@ -78,6 +78,20 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
         type: "SEARCH_RESULTS",
         payload: { results, searchType }
       })
+      for (const result of results) {
+        if (searchType === "user") {
+          dispatch(
+            getProfile(result.user._id)
+          )
+        } else {
+          dispatch(
+            getProfile(result.user._id)
+          )
+          dispatch(
+            getItems(result.user._id, result.collection._id)
+          )
+        }
+      }
     })
     .catch(err => console.error(err));
 };
@@ -262,7 +276,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
 };
 // DELETE
 
-// No fetches
+// No fetch
 export const fetchLocalUser = () => (dispatch, getState) => {
   const token = localStorage.getItem('token');
   const loggedUser = localStorage.getItem('loggedUser');
@@ -281,3 +295,4 @@ export const logout = () => (dispatch, getState) => {
   });
   localStorage.clear();
 };
+// No fetch

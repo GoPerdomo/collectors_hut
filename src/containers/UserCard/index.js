@@ -13,11 +13,10 @@ class UserCard extends Component {
 
     return (
       <Card
-        style={{ textAlign: "left" }}
+        style={{ textAlign: "left", marginBottom: "30px" }}
       >
         <CardHeader
-          showExpandableButton
-          titleStyle={{ fontSize: "1.5em" }}
+          titleStyle={{ fontSize: "1.5em", fontWeight: "bold" }}
           subtitleStyle={{ display: "flex" }}
           title={
             <NavLink

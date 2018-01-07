@@ -35,9 +35,12 @@
 }
 
 .profile-config-buttons {
-  /* width: 70%; */
   display: flex;
-  justify-content: flex-end;
+  height: 36px;
+}
+
+.profile-config-buttons > div {
+  margin-left: 15px;
 }
 
 .profile-config {

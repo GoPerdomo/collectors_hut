@@ -30,24 +30,34 @@ class ProfileCollections extends Component {
 
     return (
       <Paper
-        className={`profile-collection-preview ${index % 2 ? 'reverse' : ''}`}
-        zDepth={2}
+        className={
+          `profile-collection-preview ${index % 2 ? 'reverse' : ''} ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
+        }
+        style={{ backgroundColor: "#6D8EAD", padding: "0 1%" }}
+        zDepth={0}
       >
-        <div className="profile-collection-items-preview" onClick={this.selectCollection} >
-          {
-            collection.items && collection.items.map((item, index) => {
-              if (index < maxItems)
-                return (
-                  <div key={item._id}>
-                    <ProfileItems photo={item.photo} />
-                  </div>
-                )
-              else
-                return null;
-            })
-          }
+        <div
+          className={`profile-collection-items-preview ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`}
+          onClick={this.selectCollection}
+        >
+          <div className="profile-collection-items-wrapper">
+            {
+              collection.items && collection.items.map((item, index) => {
+                if (index < maxItems)
+                  return (
+                    <div key={item._id}>
+                      <ProfileItems photo={item.photo} />
+                    </div>
+                  )
+                else
+                  return null;
+              })
+            }
+          </div>
         </div>
-        <div className="profile-collection-preview-description">
+        <div className={
+          `profile-collection-preview-description ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`
+        }>
           <h3 onClick={this.selectCollection}>{collection.name}</h3>
           <p>{collection.info}</p>
         </div>
