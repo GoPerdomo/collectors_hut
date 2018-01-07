@@ -34,7 +34,7 @@ class ProfileCollections extends Component {
           `profile-collection-preview ${index % 2 ? 'reverse' : ''} ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
         }
         style={{ backgroundColor: "#6D8EAD", padding: "0 1%" }}
-        zDepth={2}
+        zDepth={0}
       >
         <div
           className={`profile-collection-items-preview ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`}

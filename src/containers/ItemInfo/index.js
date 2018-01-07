@@ -29,7 +29,7 @@ class ItemInfo extends Component {
     } = this.props.currentItem;
 
     return (
-      <Paper zDepth={2} className="item-display" style={{ backgroundColor: "#6D8EAD" }} >
+      <Paper zDepth={0} className="item-display" style={{ backgroundColor: "#6D8EAD" }} >
         <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
           <h1 className="collection-title" onClick={history.goBack}>
             {

@@ -6,9 +6,12 @@
   height: 100px;
   margin-bottom: 50px;
   text-align: center;
-  border: 1px solid black;
   color: #ffffff;
-  background-color: #005b9f;
+  background-color: #6D8EAD;
+}
+
+.header-logo {
+  width: 170px;
 }
 /* Header */
 
@@ -16,13 +19,22 @@
 .footer {
   height: 200px;
   margin-top: 50px;
-  text-align: center;
-  border: 1px solid black;
+  padding: 0 10%;
   color: #ffffff;
-  background-color: #005b9f;  
+  background-color: #6D8EAD;  
+}
+
+.footer div {
+  display: flex;
+  height: inherit;
 }
 
 .footer p {
-  font-size: 2em;
+  font-size: 1em;
+}
+
+.footer-logo {
+  margin: auto 0;
+  height: 100px;
 }
 /* Footer */

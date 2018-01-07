@@ -39,7 +39,7 @@ class SignInSignUp extends Component {
   componentWillReceiveProps(props) {
     const { loggedUser, history } = props;
 
-    if(loggedUser) {
+    if (loggedUser) {
       return history.push(`/users/${loggedUser}`)
     }
   }
@@ -114,12 +114,12 @@ class SignInSignUp extends Component {
 
   render() {
     const { signin, signup } = this.state;
-    
+
     return (
       <Paper className="signin-signup">
         <Tabs
-          tabItemContainerStyle={{ backgroundColor: "#bdbdbd" }}
-          inkBarStyle={{ backgroundColor: "#00bcd4" }}
+          tabItemContainerStyle={{ backgroundColor: "#6D8EAD" }}
+          inkBarStyle={{ backgroundColor: "#FF6517" }}
         >
           <Tab label="Sign in" >
             <div>
@@ -139,7 +139,13 @@ class SignInSignUp extends Component {
                   onChange={this.handleSignInContentChange}
                   value={signin.password}
                 />
-                <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Sign in" fullWidth />
+                <RaisedButton
+                  fullWidth
+                  type="submit"
+                  label="Sign in"
+                  labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+                  backgroundColor="#ffffff"
+                />
               </form>
             </div>
           </Tab>
@@ -175,7 +181,13 @@ class SignInSignUp extends Component {
                   onChange={this.handleSignUpContentChange}
                   value={signup.password}
                 />
-                <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Sign up" fullWidth />
+                <RaisedButton
+                  fullWidth
+                  type="submit"
+                  label="Sign up"
+                  labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+                  backgroundColor="#ffffff"
+                />
               </form>
             </div>
           </Tab>

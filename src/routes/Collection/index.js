@@ -45,7 +45,7 @@ class Collection extends Component {
         }
         {
           currentCollection && currentCollection.items &&
-          <Paper zDepth={2} className="collection-items" style={{ backgroundColor: "#6D8EAD" }} >
+          <Paper zDepth={0} className="collection-items" style={{ backgroundColor: "#6D8EAD" }} >
             <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
               <h1 className="collection-title" >
                 {currentCollection.name}

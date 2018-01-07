@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 
-
 class ConfigButton extends Component {
 
   constructor(props) {
@@ -24,11 +23,21 @@ class ConfigButton extends Component {
 
 
   render() {
-    const { label } = this.props;
+    const { label, icon } = this.props;    
 
     return (
       <div>
-        <RaisedButton label={label} onClick={this.handleButtonClick} />
+        {
+          icon ?
+            icon
+            :
+            <RaisedButton
+              onClick={this.handleButtonClick}
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+              label={label}
+            />
+        }
         <Dialog
           open={this.state.open}
           autoScrollBodyContent

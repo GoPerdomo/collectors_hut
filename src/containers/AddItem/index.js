@@ -100,7 +100,7 @@ class AddItem extends Component {
     const { newItem } = this.state;
 
     return (
-    <ConfigButton label="Add item">
+      <ConfigButton label="Add item">
         <form onSubmit={this.handleSubmit}>
           <TextField
             id="new-item-name"
@@ -159,7 +159,12 @@ class AddItem extends Component {
             <MenuItem value={"Fair"} primaryText={"Fair"} />
             <MenuItem value={"Poor"} primaryText={"Poor"} />
           </SelectField>
-          <RaisedButton backgroundColor="#5eb8ff" label="Create" fullWidth />
+          <RaisedButton
+            fullWidth
+            label="Create"
+            labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+            backgroundColor="#ffffff"
+          />
         </form>
       </ConfigButton>
     )

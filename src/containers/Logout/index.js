@@ -17,7 +17,12 @@ class Logout extends Component {
   render() {
     return (
       <div style={{ margin: "auto 0" }} >
-        <RaisedButton backgroundColor="#5eb8ff" label="Logout" onClick={this.handleClick} />
+        <RaisedButton
+          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+          backgroundColor="#FF6517"
+          label="Logout"
+          onClick={this.handleClick}
+        />
       </div>
     )
   }

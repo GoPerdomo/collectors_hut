@@ -65,7 +65,12 @@ class SearchBar extends Component {
             </SelectField>
           </ToolbarGroup>
           <ToolbarGroup>
-            <RaisedButton backgroundColor="#5eb8ff" type="submit" label="Search" />
+            <RaisedButton
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+              type="submit"
+              label="Search"
+            />
           </ToolbarGroup>
         </form>
       </Toolbar>

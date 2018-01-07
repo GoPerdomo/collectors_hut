@@ -19,7 +19,8 @@ class DeleteItem extends Component {
   render() {
     return (
       <RaisedButton
-        backgroundColor="#5eb8ff"
+        labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+        backgroundColor="#ffffff"
         label="Delete Item"
         onClick={this.handleClick}
       />
