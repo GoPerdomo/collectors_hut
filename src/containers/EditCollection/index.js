@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
-import ConfigButton from '../../containers/ConfigButton';
+import Dialog from 'material-ui/Dialog/Dialog';
 
 import { editCollection } from '../../store/actions';
+
 
 class EditCollection extends Component {
 
@@ -15,11 +15,20 @@ class EditCollection extends Component {
     const { name, info } = this.props.collection;
 
     this.state = {
+      open: false,
       collectionInfo: {
         name,
         info,
       }
     };
+  }
+
+  handleButtonClick = (event) => {
+    this.setState({ open: true })
+  }
+
+  handleRequestClose = () => {
+    this.setState({ open: false })
   }
 
   handleContentChange = (event, content) => {
@@ -44,8 +53,9 @@ class EditCollection extends Component {
 
     event.preventDefault();
 
-
     editCollection(userId, collection._id, collectionInfo);
+
+    this.handleRequestClose();
 
     this.setState({
       collectionInfo: {
@@ -59,32 +69,45 @@ class EditCollection extends Component {
     const { name, info } = this.state.collectionInfo;
 
     return (
-      <ConfigButton label="Edit collection">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="edit-collection-name"
-            hintText="Name"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={name}
-          />
-          <TextField
-            id="edit-collection-info"
-            hintText="Description"
-            fullWidth
-            multiLine
-            onChange={this.handleContentChange}
-            value={info}
-          />
-          <RaisedButton
-            fullWidth
-            type="submit"
-            label="Save"
-            labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-            backgroundColor="#ffffff"
-          />
-        </form>
-      </ConfigButton>
+      <div>
+        <RaisedButton
+          onClick={this.handleButtonClick}
+          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+          backgroundColor="#ffffff"
+          label={"Edit collection"}
+        />
+
+        <Dialog
+          open={this.state.open}
+          autoScrollBodyContent
+          onRequestClose={this.handleRequestClose}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="edit-collection-name"
+              hintText="Name"
+              fullWidth
+              onChange={this.handleContentChange}
+              value={name}
+            />
+            <TextField
+              id="edit-collection-info"
+              hintText="Description"
+              fullWidth
+              multiLine
+              onChange={this.handleContentChange}
+              value={info}
+            />
+            <RaisedButton
+              fullWidth
+              type="submit"
+              label="Save"
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+            />
+          </form>
+        </Dialog>
+      </div>
     )
   }
 }

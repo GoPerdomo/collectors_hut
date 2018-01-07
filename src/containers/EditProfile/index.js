@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
-import ConfigButton from '../../containers/ConfigButton';
+import Dialog from 'material-ui/Dialog';
 
 import { editUser } from '../../store/actions';
 import { getItems } from '../../store/actions';
+
 
 class EditProfile extends Component {
 
@@ -16,6 +16,7 @@ class EditProfile extends Component {
     const { firstName, lastName } = this.props.user;
 
     this.state = {
+      open: false,
       profileInfo: {
         firstName,
         lastName,
@@ -24,6 +25,14 @@ class EditProfile extends Component {
         password: "",
       }
     };
+  }
+
+  handleButtonClick = (event) => {
+    this.setState({ open: true })
+  }
+
+  handleRequestClose = () => {
+    this.setState({ open: false })
   }
 
   handleContentChange = (event, content) => {
@@ -58,6 +67,8 @@ class EditProfile extends Component {
     editUser(user._id, profileInfo);
     for (const collection of user.collections) getItems(user._id, collection._id)
 
+    this.handleRequestClose();
+
     this.setState({
       profileInfo: {
         firstName,
@@ -74,53 +85,66 @@ class EditProfile extends Component {
     const { firstName, lastName, photo, email, password } = this.state.profileInfo;
 
     return (
-      <ConfigButton label="Edit profile">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="edit-first-name"
-            hintText="First Name"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={firstName}
-          />
-          <TextField
-            id="edit-last-name"
-            hintText="Last Name"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={lastName}
-          />
-          <TextField
-            id="edit-photo"
-            hintText="Profile Photo"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={photo}
-          />
-          <TextField
-            id="edit-email"
-            hintText="Email"
-            fullWidth
-            onChange={this.handleContentChange}
-            value={email}
-          />
-          <TextField
-            id="edit-password"
-            hintText="Password"
-            fullWidth
-            type="password"
-            onChange={this.handleContentChange}
-            value={password}
-          />
-          <RaisedButton
-            fullWidth
-            type="submit"
-            label="Save"
-            labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-            backgroundColor="#ffffff"
-          />
-        </form>
-      </ConfigButton>
+      <div>
+        <RaisedButton
+          onClick={this.handleButtonClick}
+          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+          backgroundColor="#ffffff"
+          label={"Edit profile"}
+        />
+
+        <Dialog
+          open={this.state.open}
+          autoScrollBodyContent
+          onRequestClose={this.handleRequestClose}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="edit-first-name"
+              hintText="First Name"
+              fullWidth
+              onChange={this.handleContentChange}
+              value={firstName}
+            />
+            <TextField
+              id="edit-last-name"
+              hintText="Last Name"
+              fullWidth
+              onChange={this.handleContentChange}
+              value={lastName}
+            />
+            <TextField
+              id="edit-photo"
+              hintText="Profile Photo"
+              fullWidth
+              onChange={this.handleContentChange}
+              value={photo}
+            />
+            <TextField
+              id="edit-email"
+              hintText="Email"
+              fullWidth
+              onChange={this.handleContentChange}
+              value={email}
+            />
+            <TextField
+              id="edit-password"
+              hintText="Password"
+              fullWidth
+              type="password"
+              onChange={this.handleContentChange}
+              value={password}
+            />
+            <RaisedButton
+              fullWidth
+              type="submit"
+              label="Save"
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+            />
+          </form>
+        </Dialog>
+      </div>
     )
   }
 }

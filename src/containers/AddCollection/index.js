@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
-import ConfigButton from '../../containers/ConfigButton';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
+import IconButton from 'material-ui/IconButton';
+import Dialog from 'material-ui/Dialog';
 
 import { addCollection } from '../../store/actions';
 
-
-// TODO: Refactor
 
 class AddCollection extends Component {
 
@@ -17,11 +16,20 @@ class AddCollection extends Component {
     super(props);
 
     this.state = {
+      open: false,
       newCollection: {
         name: "",
         info: "",
       }
     };
+  }
+
+  handleButtonClick = (event) => {
+    this.setState({ open: true })
+  }
+
+  handleRequestClose = () => {
+    this.setState({ open: false })
   }
 
   handleContentChange = (event, content) => {
@@ -48,6 +56,8 @@ class AddCollection extends Component {
     if (newCollection.name) {
       addCollection(userId, newCollection);
 
+      this.handleRequestClose();
+
       this.setState({
         newCollection: {
           name: "",
@@ -61,27 +71,51 @@ class AddCollection extends Component {
     const { name, info } = this.state.newCollection;
 
     return (
-      <ConfigButton label="Add collection">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id="new-collection-name"
-            hintText="Name"
-            errorText={!name && "Name is required"}
-            fullWidth
-            onChange={this.handleContentChange}
-            value={name}
+      <div>
+        <IconButton
+          onClick={this.handleButtonClick}
+          iconStyle={{ borderRadius: "50px", backgroundColor: "ffffff", width: "36px", height: "36px", padding: "0" }}
+          style={{ width: "36px", height: "36px", padding: "0" }}
+        >
+          <ContentAddCircle
+            color="#FF6517"
+            hoverColor="#d95a2f"
+            viewBox="1 1 22 22"
           />
-          <TextField
-            id="new-collection-info"
-            hintText="Description"
-            fullWidth
-            multiLine
-            onChange={this.handleContentChange}
-            value={info}
-          />
-          <RaisedButton type="submit" label="Create" fullWidth />
-        </form>
-      </ConfigButton>
+        </IconButton>
+
+        <Dialog
+          open={this.state.open}
+          autoScrollBodyContent
+          onRequestClose={this.handleRequestClose}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="new-collection-name"
+              hintText="Name"
+              errorText={!name && "Name is required"}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={name}
+            />
+            <TextField
+              id="new-collection-info"
+              hintText="Description"
+              fullWidth
+              multiLine
+              onChange={this.handleContentChange}
+              value={info}
+            />
+            <RaisedButton
+              fullWidth
+              type="submit"
+              label="Create"
+              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
+              backgroundColor="#ffffff"
+            />
+          </form>
+        </Dialog>
+      </div>
     )
   }
 }
