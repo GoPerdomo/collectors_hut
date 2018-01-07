@@ -17,6 +17,8 @@
 
 /* Footer */
 .footer {
+  display: flex;
+  justify-content: space-between;
   height: 200px;
   margin-top: 50px;
   padding: 0 10%;
@@ -25,16 +27,34 @@
 }
 
 .footer > div {
-  display: flex;
-  height: inherit;
+  margin-top: 48px;
+  /* margin: auto 0; */
 }
 
 .footer p {
+  margin-top: 0;
   font-size: 1em;
 }
 
 .footer-logo {
-  margin: auto 0;
   height: 100px;
+}
+
+.footer-links:hover {
+  cursor: pointer;
+}
+
+.footer-newsletter {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-follow-icons {
+  display: flex;
+  width: 130px;
+}
+
+.footer-follow-icons svg:hover {
+  cursor: pointer;
 }
 /* Footer */
