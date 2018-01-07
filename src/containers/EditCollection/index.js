@@ -87,6 +87,7 @@ class EditCollection extends Component {
               id="edit-collection-name"
               hintText="Name"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={name}
             />
@@ -94,6 +95,7 @@ class EditCollection extends Component {
               id="edit-collection-info"
               hintText="Description"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               multiLine
               onChange={this.handleContentChange}
               value={info}
@@ -102,8 +104,8 @@ class EditCollection extends Component {
               fullWidth
               type="submit"
               label="Save"
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
             />
           </form>
         </Dialog>

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import Dialog from 'material-ui/Dialog';
 
 import { addCollection } from '../../store/actions';
@@ -94,6 +94,7 @@ class AddCollection extends Component {
               id="new-collection-name"
               hintText="Name"
               errorText={!name && "Name is required"}
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               fullWidth
               onChange={this.handleContentChange}
               value={name}
@@ -103,6 +104,7 @@ class AddCollection extends Component {
               hintText="Description"
               fullWidth
               multiLine
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={info}
             />
@@ -110,8 +112,8 @@ class AddCollection extends Component {
               fullWidth
               type="submit"
               label="Create"
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
             />
           </form>
         </Dialog>

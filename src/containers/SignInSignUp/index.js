@@ -129,6 +129,7 @@ class SignInSignUp extends Component {
                   hintText="Email"
                   fullWidth
                   onChange={this.handleSignInContentChange}
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   value={signin.email}
                 />
                 <TextField
@@ -136,6 +137,7 @@ class SignInSignUp extends Component {
                   hintText="Password"
                   type="password"
                   fullWidth
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   onChange={this.handleSignInContentChange}
                   value={signin.password}
                 />
@@ -143,8 +145,8 @@ class SignInSignUp extends Component {
                   fullWidth
                   type="submit"
                   label="Sign in"
-                  labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-                  backgroundColor="#ffffff"
+                  labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+                  backgroundColor="#6D8EAD"
                 />
               </form>
             </div>
@@ -157,6 +159,7 @@ class SignInSignUp extends Component {
                   hintText="First Name"
                   fullWidth
                   onChange={this.handleSignUpContentChange}
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   value={signup.firstName}
                 />
                 <TextField
@@ -164,6 +167,7 @@ class SignInSignUp extends Component {
                   hintText="Last Name"
                   fullWidth
                   onChange={this.handleSignUpContentChange}
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   value={signup.lastName}
                 />
                 <TextField
@@ -171,6 +175,7 @@ class SignInSignUp extends Component {
                   hintText="Email"
                   fullWidth
                   onChange={this.handleSignUpContentChange}
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   value={signup.email}
                 />
                 <TextField
@@ -178,6 +183,7 @@ class SignInSignUp extends Component {
                   hintText="Password"
                   type="password"
                   fullWidth
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
                   onChange={this.handleSignUpContentChange}
                   value={signup.password}
                 />
@@ -185,8 +191,8 @@ class SignInSignUp extends Component {
                   fullWidth
                   type="submit"
                   label="Sign up"
-                  labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-                  backgroundColor="#ffffff"
+                  labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+                  backgroundColor="#6D8EAD"
                 />
               </form>
             </div>

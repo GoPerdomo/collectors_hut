@@ -33,8 +33,8 @@ class Item extends Component {
           <ProfileHeader
             actionButtons={
               <div className="profile-config-buttons">
-                <EditItem userId={userId} item={currentItem} />
                 <DeleteItem />
+                <EditItem userId={userId} item={currentItem} />
               </div>
             }
           />
@@ -52,10 +52,12 @@ const mapStateToProps = (state, props) => {
   const { userId, collectionId, itemId } = props.match.params;
   let currentItem;
 
-  if (state[userId] && state[userId].collections && state[userId].collections[0].items) {
-    currentItem = state[userId].collections
-      .find(collection => collection._id === collectionId)
-      .items.find(item => item._id === itemId);
+  if (state[userId] && state[userId].collections) {
+    const currentCollection = state[userId].collections.find(collection => collection._id === collectionId);
+
+    if (currentCollection.items) {
+      currentItem = currentCollection.items.find(item => item._id === itemId);
+    }
   }
 
   return (

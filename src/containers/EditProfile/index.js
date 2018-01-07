@@ -103,6 +103,7 @@ class EditProfile extends Component {
               id="edit-first-name"
               hintText="First Name"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={firstName}
             />
@@ -110,6 +111,7 @@ class EditProfile extends Component {
               id="edit-last-name"
               hintText="Last Name"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={lastName}
             />
@@ -117,6 +119,7 @@ class EditProfile extends Component {
               id="edit-photo"
               hintText="Profile Photo"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={photo}
             />
@@ -124,6 +127,7 @@ class EditProfile extends Component {
               id="edit-email"
               hintText="Email"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={email}
             />
@@ -131,6 +135,7 @@ class EditProfile extends Component {
               id="edit-password"
               hintText="Password"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               type="password"
               onChange={this.handleContentChange}
               value={password}
@@ -139,8 +144,8 @@ class EditProfile extends Component {
               fullWidth
               type="submit"
               label="Save"
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
             />
           </form>
         </Dialog>

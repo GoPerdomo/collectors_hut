@@ -50,6 +50,7 @@ class SearchBar extends Component {
         >
           <ToolbarGroup>
             <TextField
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               hintText="Find users and collections"
               onChange={(event, value) => this.setState({ searchTerms: value })}
               value={searchTerms}

@@ -24,7 +24,7 @@
   background-color: #6D8EAD;  
 }
 
-.footer div {
+.footer > div {
   display: flex;
   height: inherit;
 }

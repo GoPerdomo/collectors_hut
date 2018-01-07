@@ -36,9 +36,9 @@ class Collection extends Component {
           <ProfileHeader
             actionButtons={
               <div className="profile-config-buttons">
-                <AddItem userId={userId} collectionId={collectionId} />
-                <EditCollection userId={userId} collection={currentCollection} />
                 <DeleteCollection />
+                <EditCollection userId={userId} collection={currentCollection} />
+                <AddItem userId={userId} collectionId={collectionId} />
               </div>
             }
           />

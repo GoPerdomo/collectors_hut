@@ -141,6 +141,7 @@ class EditItem extends Component {
               id="edit-item-name"
               hintText="Name"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={name}
             />
@@ -148,6 +149,7 @@ class EditItem extends Component {
               id="edit-item-description"
               hintText="Description"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               multiLine
               onChange={this.handleContentChange}
               value={description}
@@ -156,6 +158,7 @@ class EditItem extends Component {
               id="edit-item-productionYear"
               hintText="Production Year"
               type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               fullWidth
               onChange={this.handleContentChange}
               value={productionYear}
@@ -164,6 +167,7 @@ class EditItem extends Component {
               id="edit-item-acquisitionYear"
               hintText="Acquisition Year"
               type="number"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               fullWidth
               onChange={this.handleContentChange}
               value={acquisitionYear}
@@ -172,6 +176,7 @@ class EditItem extends Component {
               id="edit-item-origin"
               hintText="Origin"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={origin}
             />
@@ -179,6 +184,7 @@ class EditItem extends Component {
               id="edit-item-manufacturer"
               hintText="Manufacturer"
               fullWidth
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
               value={manufacturer}
             />
@@ -197,8 +203,8 @@ class EditItem extends Component {
               fullWidth
               type="submit"
               label="Save"
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
             />
           </form>
         </Dialog>

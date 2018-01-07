@@ -29,18 +29,18 @@ class ProfileHeader extends Component {
               <div className="profile-photo">
                 <Avatar
                   onClick={this.handleClick}
-                  backgroundColor="white"
+                  backgroundColor="#FFFFFF"
                   size={140}
                   src={user.photo}
                   alt=""
                 />
               </div>
               <div>
-                <h2 onClick={this.handleClick}>
+                <h1 style={{ color: "#FFFFFF" }} onClick={this.handleClick}>
                   {
                     `${user.firstName} ${user.lastName}`
                   }
-                </h2>
+                </h1>
                 <div className="profile-chips">
                   {
                     user.collections.filter((collection, index) => index < maxChips)
