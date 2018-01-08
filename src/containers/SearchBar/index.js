@@ -6,8 +6,8 @@ import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import IconButton from 'material-ui/IconButton';
+import ActionSearch from 'material-ui/svg-icons/action/search';
 
 import { search } from '../../store/actions';
 
@@ -43,21 +43,31 @@ class SearchBar extends Component {
     const { searchTerms, searchType } = this.state;
 
     return (
-      <Toolbar style={{ margin: "auto 0" }}>
+      <Toolbar style={{
+        display: "block",
+        height: "40px",
+        width: "550px",
+        margin: "auto 0",
+        backgroundColor: "#FFFFFF",
+        borderRadius: "10px",
+      }}
+      >
         <form
-          style={{ margin: "auto 0", display: "flex" }}
+          style={{ height: "40px", margin: "auto 0", display: "flex", justifyContent: "space-between" }}
           onSubmit={this.handleSubmit}
         >
           <ToolbarGroup>
             <TextField
+              underlineShow={false}
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               hintText="Find users and collections"
               onChange={(event, value) => this.setState({ searchTerms: value })}
               value={searchTerms}
             />
           </ToolbarGroup>
-          <ToolbarGroup>
+          <ToolbarGroup style={{ width: "140px" }}>
             <SelectField
+              underlineShow={false}
               onChange={(event, index, value) => this.setState({ searchType: value })}
               value={searchType}
             >
@@ -66,12 +76,18 @@ class SearchBar extends Component {
             </SelectField>
           </ToolbarGroup>
           <ToolbarGroup>
-            <RaisedButton
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
+            <IconButton
               type="submit"
-              label="Search"
-            />
+              onClick={this.handleButtonClick}
+              iconStyle={{ borderRadius: "50px", backgroundColor: "ffffff", width: "36px", height: "36px", padding: "0" }}
+              style={{ width: "36px", height: "36px", padding: "0" }}
+            >
+              <ActionSearch
+                color="#FF6517"
+                hoverColor="#d95a2f"
+                viewBox="1 1 22 22"
+              />
+            </IconButton>
           </ToolbarGroup>
         </form>
       </Toolbar>

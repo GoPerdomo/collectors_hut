@@ -33,7 +33,7 @@ class ProfileCollections extends Component {
         className={
           `profile-collection-preview ${index % 2 ? 'reverse' : ''} ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
         }
-        style={{ backgroundColor: "#6D8EAD", padding: "0 1%" }}
+        style={{ backgroundColor: "#6D8EAD" }}
         zDepth={0}
       >
         <div
@@ -56,10 +56,20 @@ class ProfileCollections extends Component {
           </div>
         </div>
         <div className={
-          `profile-collection-preview-description ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`
+          `profile-collection-preview-info ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`
         }>
-          <h3 onClick={this.selectCollection}>{collection.name}</h3>
-          <p>{collection.info}</p>
+          <div className={
+            `profile-collection-preview-info-title ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-title' : ''}`
+          }
+          >
+            <h2 onClick={this.selectCollection}>{collection.name}</h2>
+          </div>
+          <div className={
+            `profile-collection-preview-description ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-description' : ''}`
+          }
+          >
+            <p>{collection.info}</p>
+          </div>
         </div>
       </Paper>
     )

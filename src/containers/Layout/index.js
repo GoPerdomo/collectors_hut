@@ -62,7 +62,7 @@ class Layout extends Component {
                 hint="Your email"
                 underlineFocusStyle={{ borderColor: "#FF6517" }}
                 style={{ height: "35px", marginBottom: "10px" }}
-                inputStyle={{ backgroundColor: "#FFFFFF" }}
+                inputStyle={{ backgroundColor: "#FFFFFF", borderRadius: "10px" }}
               />
               <RaisedButton
                 label="Subscribe"

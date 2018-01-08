@@ -146,7 +146,7 @@ class SignInSignUp extends Component {
                   type="submit"
                   label="Sign in"
                   labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-                  backgroundColor="#6D8EAD"
+                  backgroundColor="#FF6517"
                 />
               </form>
             </div>
@@ -192,7 +192,7 @@ class SignInSignUp extends Component {
                   type="submit"
                   label="Sign up"
                   labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-                  backgroundColor="#6D8EAD"
+                  backgroundColor="#FF6517"
                 />
               </form>
             </div>
