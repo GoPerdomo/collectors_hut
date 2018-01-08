@@ -1,15 +1,15 @@
 .profile-collection-preview {
+  border: 1px solid #6D8EAD;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin: auto;
-  width: 90%;
-  height: 350px;
+  width: 85%;
+  height: 322px;
   margin-bottom: 50px;
 }
 
 .profile-collection-items-preview {
   width: 480px;
-  margin: auto 0;
   height: 320px;
   background-color: #ffffff;
 }
@@ -31,27 +31,58 @@
   height: 160px;
 }
 
-.profile-collection-preview-description {
-  width: 450px;
-  margin: auto 0;
-  overflow-y: auto;
+.profile-collection-preview-info {
+  width: 487px;
   height: 320px;
   text-align: justify;
-  padding: 0 15px;
-  background-color: #ffffff;
+  background-color: #6D8EAD;
 }
 
-.profile-collection-preview-description h3 {
+.profile-collection-preview-info h2 {
   cursor: pointer;
   width: fit-content;
+  margin: 0;
+  padding: 14px 25px;
+  font-size: 2em;
+  color: #FFFFFF;
+}
+
+.profile-collection-preview-description {
+  height: 80%;
+  padding: 0 25px;
+  overflow-y: auto;
+}
+
+.profile-collection-preview-description p {
+  color: #FFFFFF;
+  margin-top: 10px;
+  font-weight: 300;
 }
 
 .reverse {
   flex-direction: row-reverse;
 }
 
+.profile-collection-preview-info-title {
+  height: 20%;
+  background-color: #335173;
+}
+
+.shorter-title {
+  height: 30%;
+}
+
+.shorter-title h2 {
+  height: 30%;
+  padding: 6px 25px;
+}
+
+.shorter-description {
+  height: 70%;
+}
+
 .shorter-wrapper {
-  height: 190px;
+  height: 162px;
 }
 
 .shorter-info {
