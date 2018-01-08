@@ -9,7 +9,7 @@
 }
 
 .profile-collection-items-preview {
-  width: 480px;
+  width: 50%;
   height: 320px;
   background-color: #ffffff;
 }
@@ -32,7 +32,7 @@
 }
 
 .profile-collection-preview-info {
-  width: 487px;
+  width: 50%;
   height: 320px;
   text-align: justify;
   background-color: #6D8EAD;
