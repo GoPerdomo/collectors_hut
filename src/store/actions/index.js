@@ -76,10 +76,11 @@ export const getAllCollections = () => (dispatch, getState) => {
     .then(data => {
       const chosen = [];
       const chosenCollections = [];
-      const maxCollections = 6;
+      const maxCollections = 6;      
 
       while (chosen.length < maxCollections) {
-        const num = Math.floor(Math.random() * (maxCollections));
+        const num = Math.floor(Math.random() * data.length);
+        
         if (!chosen.includes(num)) chosen.push(num);
       }
 
