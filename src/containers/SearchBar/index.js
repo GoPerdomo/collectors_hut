@@ -58,6 +58,8 @@ class SearchBar extends Component {
         >
           <ToolbarGroup>
             <TextField
+              style={{ height: "40px" }}
+              hintStyle={{ bottom: "8px" }}
               underlineShow={false}
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               hintText="Find users and collections"
