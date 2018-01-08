@@ -88,12 +88,6 @@ class SearchBar extends Component {
                 viewBox="1 1 22 22"
               />
             </IconButton>
-            {/* <RaisedButton
-              labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-              backgroundColor="#ffffff"
-              type="submit"
-              label="Search"
-            /> */}
           </ToolbarGroup>
         </form>
       </Toolbar>
