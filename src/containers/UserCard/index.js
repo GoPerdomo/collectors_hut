@@ -13,7 +13,8 @@ class UserCard extends Component {
 
     return (
       <Card
-        style={{ textAlign: "left", marginBottom: "30px" }}
+        zDepth={0}
+        style={{ border: "1px solid #6D8EAD", textAlign: "left", marginBottom: "30px" }}
       >
         <CardHeader
           titleStyle={{ fontSize: "1.5em", fontWeight: "bold" }}

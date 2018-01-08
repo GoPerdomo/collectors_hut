@@ -15,7 +15,8 @@ class CollectionCard extends Component {
 
     return (
       <Card
-        style={{ textAlign: "left", marginBottom: "30px" }}
+        zDepth={0}
+        style={{ border: "1px solid #6D8EAD", textAlign: "left", marginBottom: "30px" }}
       >
         <CardHeader
           style={{ padding: "6px 16px" }}
@@ -38,8 +39,6 @@ class CollectionCard extends Component {
         />
         <Divider />
         <CardTitle
-          showExpandableButton
-          actAsExpander
           title={
             <NavLink
               to={`/users/${user._id}/collections/${collection._id}`}
@@ -51,7 +50,6 @@ class CollectionCard extends Component {
         />
         <div
           className="search-collection-preview"
-          expandable
         >
           {
             collection.items && collection.items.map((item, index) => {
