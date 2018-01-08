@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Layout from './containers/Layout';
 import Home from './routes/Home';
+import Enter from './routes/Enter';
 import Profile from './routes/Profile';
 import Collection from './routes/Collection';
 import Item from './routes/Item';
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Switch>
           <Layout>
             <Route exact path="/" component={Home} />
+            <Route exact path="/enter" component={Enter} />
             <Route exact path="/users/:userId" component={Profile} />
             <Route exact path="/users/:userId/collections/:collectionId" component={Collection} />
             <Route exact path="/users/:userId/collections/:collectionId/items/:itemId" component={Item} />

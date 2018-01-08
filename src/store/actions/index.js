@@ -41,7 +41,7 @@ export const getProfile = (userId) => (dispatch, getState) => {
       dispatch({
         type: "ADD_USER",
         payload: { user }
-      })
+      });
     })
     .catch(err => console.error(err));
 };
@@ -59,10 +59,69 @@ export const getItems = (userId, collectionId) => (dispatch, getState) => {
       dispatch({
         type: "SET_COLLECTION_ITEMS",
         payload: { collectionId, userId, items: collection.items }
-      })
+      });
     })
     .catch(err => console.error(err));
 };
+
+export const getAllCollections = () => (dispatch, getState) => {
+  fetch(`http://localhost:3030/api/collections`, getHeaders)
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw Error(res.statusText)
+      }
+    })
+    .then(data => {
+      const chosen = [];
+      const chosenCollections = [];
+      const maxCollections = 6;
+
+      while (chosen.length < maxCollections) {
+        const num = Math.floor(Math.random() * (maxCollections));
+        if (!chosen.includes(num)) chosen.push(num);
+      }
+
+      for (const num of chosen) {
+        const { userId } = data[num];
+        const collectionId = data[num].collection._id;
+
+        fetch(`http://localhost:3030/api/users/${userId}`, getHeaders)
+          .then(res => {
+            if (res.ok) {
+              return res.json()
+            } else {
+              throw Error(res.statusText)
+            }
+          })
+          .then(user => {
+            fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
+              .then(res => {
+                if (res.ok) {
+                  return res.json()
+                } else {
+                  throw Error(res.statusText)
+                }
+              })
+              .then(collection => {
+                const { password, collections, email, ...newUser } = user;
+
+                chosenCollections.push({ collection, user: newUser });
+                
+                if (chosenCollections.length >= maxCollections) {
+                  dispatch({
+                    type: "CHOSEN_COLLECTIONS",
+                    payload: { chosenCollections },
+                  });
+                }
+              })
+              .catch(err => console.error(err));
+          })
+          .catch(err => console.error(err));
+      }
+    })
+}
 
 export const search = (searchTerms, searchType) => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/search/?${searchType}=${searchTerms}`, getHeaders)
@@ -77,19 +136,19 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
       dispatch({
         type: "SEARCH_RESULTS",
         payload: { results, searchType }
-      })
+      });
       for (const result of results) {
         if (searchType === "user") {
           dispatch(
             getProfile(result.user._id)
-          )
+          );
         } else {
           dispatch(
             getProfile(result.user._id)
-          )
+          );
           dispatch(
             getItems(result.user._id, result.collection._id)
-          )
+          );
         }
       }
     })
@@ -99,7 +158,7 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
 
 
 // POST
-export const signUp = (newUserInfo) => (dispatch, getState) => {
+export const register = (newUserInfo) => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/sign-up`, createHeaders('POST', newUserInfo))
     .then(res => {
       if (res.ok) {
@@ -113,14 +172,14 @@ export const signUp = (newUserInfo) => (dispatch, getState) => {
       dispatch({
         type: "SET_CURRENT_USER",
         payload: { userId },
-      })
+      });
       localStorage.setItem('token', token);
       localStorage.setItem('loggedUser', userId);
     })
     .catch(err => console.error(err));
 };
 
-export const signIn = (loginInfo) => (dispatch, getState) => {
+export const login = (loginInfo) => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/sign-in`, createHeaders('POST', loginInfo))
     .then(res => {
       if (res.ok) {
@@ -134,7 +193,7 @@ export const signIn = (loginInfo) => (dispatch, getState) => {
       dispatch({
         type: "SET_CURRENT_USER",
         payload: { userId },
-      })
+      });
       localStorage.setItem('token', token);
       localStorage.setItem('loggedUser', userId);
     })
@@ -154,7 +213,7 @@ export const addCollection = (userId, newCollection) => (dispatch, getState) => 
       dispatch({
         type: "ADD_NEW_COLLECTION",
         payload: { userId, collection },
-      })
+      });
     })
     .catch(err => console.error(err));
 };
@@ -172,7 +231,7 @@ export const addItem = (userId, collectionId, newItem) => (dispatch, getState) =
       dispatch({
         type: "ADD_NEW_ITEM",
         payload: { userId, collectionId, item },
-      })
+      });
     })
     .catch(err => console.error(err));
 };
@@ -192,7 +251,7 @@ export const editUser = (userId, user) => (dispatch, getState) => {
       dispatch({
         type: "ADD_USER",
         payload: { user }
-      })
+      });
     })
     .catch(err => console.error(err));
 }
@@ -210,7 +269,7 @@ export const editCollection = (userId, collectionId, collection) => (dispatch, g
       dispatch({
         type: "EDIT_COLLECTION",
         payload: { userId, updatedCollection }
-      })
+      });
     }
     )
     .catch(err => console.error(err));
@@ -229,7 +288,7 @@ export const editItem = (userId, collectionId, itemId, item) => (dispatch, getSt
       dispatch({
         type: "EDIT_ITEM",
         payload: { userId, collectionId, updatedItem }
-      })
+      });
     }
     )
     .catch(err => console.error(err));
@@ -250,7 +309,7 @@ export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState)
       dispatch({
         type: "DELETE_ITEM",
         payload: { userId, collectionId, itemId },
-      })
+      });
     })
     .catch(err => console.error(err));
 
@@ -269,7 +328,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
       dispatch({
         type: "DELETE_COLLECTION",
         payload: { userId, collectionId },
-      })
+      });
     })
     .catch(err => console.error(err));
 
