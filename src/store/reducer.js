@@ -18,6 +18,10 @@ const reducer = (state = {}, { type, payload }) => {
     // User
 
     // Collection
+    case "GET_HOME_COLLECTIONS": {
+      return { ...state, payload };
+    }
+
     case "ADD_NEW_COLLECTION": {
       const { userId, collection } = payload;
       const newCollections = [...state[userId].collections, collection];
@@ -48,7 +52,7 @@ const reducer = (state = {}, { type, payload }) => {
     // Collection
 
     // Item
-    case "SET_COLLECTION_ITEMS": {      
+    case "SET_COLLECTION_ITEMS": {
       const { collectionId, userId, items } = payload;
       const newCollections = state[userId].collections.map(collection => (
         collection._id === collectionId ? { ...collection, items } : collection
@@ -107,12 +111,16 @@ const reducer = (state = {}, { type, payload }) => {
     }
     // Item
 
-    // Search
+    // Others
     case "SEARCH_RESULTS": {
       const { results, searchType } = payload;
       return { ...state, results, searchType };
     }
-    // Search
+
+    case "CHOSEN_COLLECTIONS": {
+      return { ...state, chosenCollections: payload.chosenCollections };
+    }
+    // Others
 
     default: {
       return state;
