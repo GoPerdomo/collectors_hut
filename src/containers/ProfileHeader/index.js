@@ -36,7 +36,7 @@ class ProfileHeader extends Component {
                 />
               </div>
               <div>
-                <h1 style={{ color: "#FFFFFF" }} onClick={this.handleClick}>
+                <h1 onClick={this.handleClick} >
                   {
                     `${user.firstName} ${user.lastName}`
                   }
