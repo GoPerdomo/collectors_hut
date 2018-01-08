@@ -7,21 +7,21 @@ import Paper from 'material-ui/Paper';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import TextField from 'material-ui/TextField';
 
-import { signUp, signIn } from '../../store/actions';
+import { login, register } from '../../store/actions';
 
 import './style.css';
 
-class SignInSignUp extends Component {
+class LoginRegister extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      signin: {
+      login: {
         email: "",
         password: "",
       },
-      signup: {
+      register: {
         firstName: "",
         lastName: "",
         email: "",
@@ -30,46 +30,32 @@ class SignInSignUp extends Component {
     };
   }
 
-  componentWillMount() {
-    const { loggedUser, history } = this.props;
-
-    if (loggedUser) history.push(`/users/${loggedUser}`);
-  }
-
-  componentWillReceiveProps(props) {
-    const { loggedUser, history } = props;
-
-    if (loggedUser) {
-      return history.push(`/users/${loggedUser}`)
-    }
-  }
-
-  handleSignInContentChange = (event, content) => {
-    let { email, password } = this.state.signin;
+  handleLoginContentChange = (event, content) => {
+    let { email, password } = this.state.login;
     const { id } = event.currentTarget;
 
-    if (id === "signin-email") email = content;
-    if (id === "signin-password") password = content;
+    if (id === "login-email") email = content;
+    if (id === "login-password") password = content;
 
     this.setState({
-      signin: {
+      login: {
         email,
         password
       }
     });
   }
 
-  handleSignUpContentChange = (event, content) => {
-    let { firstName, lastName, email, password } = this.state.signup;
+  handleRegisterContentChange = (event, content) => {
+    let { firstName, lastName, email, password } = this.state.register;
     const { id } = event.currentTarget;
 
-    if (id === "signup-firstname") firstName = content;
-    if (id === "signup-lastname") lastName = content;
-    if (id === "signup-email") email = content;
-    if (id === "signup-password") password = content;
+    if (id === "register-firstname") firstName = content;
+    if (id === "register-lastname") lastName = content;
+    if (id === "register-email") email = content;
+    if (id === "register-password") password = content;
 
     this.setState({
-      signup: {
+      register: {
         firstName,
         lastName,
         email,
@@ -78,15 +64,17 @@ class SignInSignUp extends Component {
     });
   }
 
-  handleSignInSubmit = (event) => {
-    const { signIn } = this.props;
-    const { email, password } = this.state.signin;
+  handleLoginSubmit = (event) => {
+    const { login } = this.props;
+    const { email, password } = this.state.login;
 
     event.preventDefault();
+
     if (email && password) {
-      signIn({ email, password });
+      login({ email, password });
+
       this.setState({
-        signin: {
+        login: {
           email: "",
           password: "",
         }
@@ -94,15 +82,15 @@ class SignInSignUp extends Component {
     }
   }
 
-  handleSignUpSubmit = (event) => {
-    const { signUp } = this.props;
-    const { firstName, lastName, email, password } = this.state.signup;
+  handleRegisterSubmit = (event) => {
+    const { register } = this.props;
+    const { firstName, lastName, email, password } = this.state.register;
 
     event.preventDefault();
     if (firstName && lastName && email && password) {
-      signUp({ firstName, lastName, email, password });
+      register({ firstName, lastName, email, password });
       this.setState({
-        signup: {
+        register: {
           firstName: "",
           lastName: "",
           email: "",
@@ -113,84 +101,84 @@ class SignInSignUp extends Component {
   }
 
   render() {
-    const { signin, signup } = this.state;
+    const { login, register } = this.state;
 
     return (
-      <Paper className="signin-signup">
+      <Paper className="login-register">
         <Tabs
           tabItemContainerStyle={{ backgroundColor: "#6D8EAD" }}
           inkBarStyle={{ backgroundColor: "#FF6517" }}
         >
-          <Tab label="Sign in" >
+          <Tab label="Login" >
             <div>
-              <form onSubmit={this.handleSignInSubmit}>
+              <form onSubmit={this.handleLoginSubmit}>
                 <TextField
-                  id="signin-email"
+                  id="login-email"
                   hintText="Email"
                   fullWidth
-                  onChange={this.handleSignInContentChange}
+                  onChange={this.handleLoginContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={signin.email}
+                  value={login.email}
                 />
                 <TextField
-                  id="signin-password"
+                  id="login-password"
                   hintText="Password"
                   type="password"
                   fullWidth
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  onChange={this.handleSignInContentChange}
-                  value={signin.password}
+                  onChange={this.handleLoginContentChange}
+                  value={login.password}
                 />
                 <RaisedButton
                   fullWidth
                   type="submit"
-                  label="Sign in"
+                  label="Login"
                   labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
                   backgroundColor="#FF6517"
                 />
               </form>
             </div>
           </Tab>
-          <Tab label="Sign up" >
+          <Tab label="Register" >
             <div>
-              <form onSubmit={this.handleSignUpSubmit}>
+              <form onSubmit={this.handleRegisterSubmit}>
                 <TextField
-                  id="signup-firstname"
+                  id="register-firstname"
                   hintText="First Name"
                   fullWidth
-                  onChange={this.handleSignUpContentChange}
+                  onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={signup.firstName}
+                  value={register.firstName}
                 />
                 <TextField
-                  id="signup-lastname"
+                  id="register-lastname"
                   hintText="Last Name"
                   fullWidth
-                  onChange={this.handleSignUpContentChange}
+                  onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={signup.lastName}
+                  value={register.lastName}
                 />
                 <TextField
-                  id="signup-email"
+                  id="register-email"
                   hintText="Email"
                   fullWidth
-                  onChange={this.handleSignUpContentChange}
+                  onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={signup.email}
+                  value={register.email}
                 />
                 <TextField
-                  id="signup-password"
+                  id="register-password"
                   hintText="Password"
                   type="password"
                   fullWidth
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  onChange={this.handleSignUpContentChange}
-                  value={signup.password}
+                  onChange={this.handleRegisterContentChange}
+                  value={register.password}
                 />
                 <RaisedButton
                   fullWidth
                   type="submit"
-                  label="Sign up"
+                  label="Register"
                   labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
                   backgroundColor="#FF6517"
                 />
@@ -203,19 +191,9 @@ class SignInSignUp extends Component {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  const { loggedUser } = state;
-
-  return (
-    {
-      loggedUser,
-    }
-  )
-};
-
 const mapDispatchToProps = (dispatch) => ({
-  signUp: (newUserInfo) => dispatch(signUp(newUserInfo)),
-  signIn: (loginInfo) => dispatch(signIn(loginInfo)),
+  register: (newUserInfo) => dispatch(register(newUserInfo)),
+  login: (loginInfo) => dispatch(login(loginInfo)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInSignUp));
+export default withRouter(connect(null, mapDispatchToProps)(LoginRegister));

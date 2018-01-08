@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import TextField from 'material-ui/TextField';
@@ -7,14 +6,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SvgIcon from 'material-ui/SvgIcon';
 
 import SearchBar from '../SearchBar';
-import Logout from '../Logout';
+import LoginLogoutButton from '../LoginLogoutButton';
 
 import './style.css';
 
 class Layout extends Component {
 
   render() {
-    const { loggedUser } = this.props;
 
     return (
       <div className="layout">
@@ -28,14 +26,9 @@ class Layout extends Component {
               src="/logo-horizontal-invertida.png" alt=""
             />
           </NavLink>
-          {
-            loggedUser &&
-            <SearchBar />
-          }
-          {
-            loggedUser &&
-            <Logout />
-          }
+
+          <SearchBar />
+          <LoginLogoutButton />
 
         </header>
         {
@@ -93,14 +86,4 @@ class Layout extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { loggedUser } = state;
-
-  return (
-    {
-      loggedUser,
-    }
-  )
-};
-
-export default connect(mapStateToProps)(Layout);
+export default Layout;
