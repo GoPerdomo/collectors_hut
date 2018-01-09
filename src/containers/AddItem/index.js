@@ -43,6 +43,7 @@ class AddItem extends Component {
     let {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -53,6 +54,7 @@ class AddItem extends Component {
 
     if (id === "new-item-name") name = content;
     if (id === "new-item-description") description = content;
+    if (id === "new-item-photo") photo = content;
     if (id === "new-item-productionYear" && !isNaN(content)) productionYear = content;
     if (id === "new-item-acquisitionYear" && !isNaN(content)) acquisitionYear = content;
     if (id === "new-item-origin") origin = content;
@@ -62,6 +64,7 @@ class AddItem extends Component {
       newItem: {
         name,
         description,
+        photo,
         productionYear,
         acquisitionYear,
         origin,
@@ -86,6 +89,7 @@ class AddItem extends Component {
         newItem: {
           name: "",
           description: "",
+          photo: "",
           productionYear: "",
           acquisitionYear: "",
           origin: "",
@@ -100,6 +104,7 @@ class AddItem extends Component {
     const {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -148,6 +153,14 @@ class AddItem extends Component {
             />
           </form>
           <form onSubmit={this.handleSubmit}>
+            <TextField
+              id="new-item-photo"
+              hintText="Photo Link"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={photo}
+            />
             <TextField
               id="new-item-productionYear"
               hintText="Production Year"

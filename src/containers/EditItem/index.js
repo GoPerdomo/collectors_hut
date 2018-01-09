@@ -17,6 +17,7 @@ class EditItem extends Component {
     const {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -29,6 +30,7 @@ class EditItem extends Component {
       itemInfo: {
         name,
         description,
+        photo,
         productionYear,
         acquisitionYear,
         origin,
@@ -50,6 +52,7 @@ class EditItem extends Component {
     let {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -60,6 +63,7 @@ class EditItem extends Component {
 
     if (id === "edit-item-name") name = content;
     if (id === "edit-item-description") description = content;
+    if (id === "edit-item-photo") photo = content;
     if (id === "edit-item-productionYear" && !isNaN(content)) productionYear = content;
     if (id === "edit-item-acquisitionYear" && !isNaN(content)) acquisitionYear = content;
     if (id === "edit-item-origin") origin = content;
@@ -69,6 +73,7 @@ class EditItem extends Component {
       itemInfo: {
         name,
         description,
+        photo,
         productionYear,
         acquisitionYear,
         origin,
@@ -84,6 +89,7 @@ class EditItem extends Component {
     const {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -101,6 +107,7 @@ class EditItem extends Component {
       itemInfo: {
         name,
         description,
+        photo,
         productionYear,
         acquisitionYear,
         origin,
@@ -115,6 +122,7 @@ class EditItem extends Component {
     const {
       name,
       description,
+      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -153,6 +161,14 @@ class EditItem extends Component {
               multiLine
               onChange={this.handleContentChange}
               value={description}
+            />
+            <TextField
+              id="edit-item-photo"
+              hintText="Photo Link"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              fullWidth
+              onChange={this.handleContentChange}
+              value={photo}
             />
             <TextField
               id="edit-item-productionYear"

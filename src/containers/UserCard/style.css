@@ -1,0 +1,14 @@
+.search-user-card {
+  border: 1px solid #6D8EAD;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.search-user-card > div {
+  display: flex;
+  justify-content: space-between;
+}
+      
+.search-user-card .profile-config-buttons {
+  margin: auto 40px;
+}

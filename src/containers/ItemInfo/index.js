@@ -43,60 +43,48 @@ class ItemInfo extends Component {
             <div className="item-info">
               <h2>{name}</h2>
               <List className="item-info-list">
-                {description &&
-                  <ListItem
-                    primaryText="Description"
-                    open
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<ActionInfo />}
-                    nestedItems={[
-                      <ListItem key={0} disabled>
-                        {description}
-                      </ListItem>
-                    ]}
-                  >
-                  </ListItem>
-                }
-                {productionYear &&
-                  <ListItem
-                    primaryText={`Production Year: ${productionYear}`}
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<ActionDateRange />}
-                  >
-                  </ListItem>
-                }
-                {acquisitionYear &&
-                  <ListItem
-                    primaryText={`Acquisition Year: ${acquisitionYear}`}
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<ActionDateRange />}
-                  >
-                  </ListItem>
-                }
-                {origin &&
-                  <ListItem
-                    primaryText={`Origin: ${origin}`}
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<CommunicationLocationOn />}
-                  >
-                  </ListItem>
-                }
-                {manufacturer &&
-                  <ListItem
-                    primaryText={`Manufacturer: ${manufacturer}`}
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<ActionBuild />}
-                  >
-                  </ListItem>
-                }
-                {condition &&
-                  <ListItem
-                    primaryText={`Condition: ${condition}`}
-                    autoGenerateNestedIndicator={false}
-                    leftIcon={<ActionThumbsUpDown />}
-                  >
-                  </ListItem>
-                }
+                <ListItem
+                  primaryText="Description"
+                  open
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<ActionInfo />}
+                  nestedItems={[
+                    <ListItem key={0} disabled>
+                      {description}
+                    </ListItem>
+                  ]}
+                >
+                </ListItem>
+                <ListItem
+                  primaryText={`Production Year: ${productionYear || "?"}`}
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<ActionDateRange />}
+                >
+                </ListItem>
+                <ListItem
+                  primaryText={`Acquisition Year: ${acquisitionYear || "?"}`}
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<ActionDateRange />}
+                >
+                </ListItem>
+                <ListItem
+                  primaryText={`Origin: ${origin || "?"}`}
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<CommunicationLocationOn />}
+                >
+                </ListItem>
+                <ListItem
+                  primaryText={`Manufacturer: ${manufacturer || "?"}`}
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<ActionBuild />}
+                >
+                </ListItem>
+                <ListItem
+                  primaryText={`Condition: ${condition || "?"}`}
+                  autoGenerateNestedIndicator={false}
+                  leftIcon={<ActionThumbsUpDown />}
+                >
+                </ListItem>
               </List>
             </div>
           </div>

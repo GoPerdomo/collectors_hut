@@ -7,6 +7,8 @@ import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
 
+import InteractionButtons from '../InteractionButtons';
+
 import './style.css';
 
 class ProfileHeader extends Component {
@@ -17,7 +19,7 @@ class ProfileHeader extends Component {
   }
 
   render() {
-    const { loggedUser, userId, user } = this.props;
+    const { loggedUser, userId, user, actionButtons } = this.props;
     const maxChips = 3;
 
     return (
@@ -36,7 +38,7 @@ class ProfileHeader extends Component {
                 />
               </div>
               <div>
-                <h1 style={{ color: "#FFFFFF" }} onClick={this.handleClick}>
+                <h1 onClick={this.handleClick} >
                   {
                     `${user.firstName} ${user.lastName}`
                   }
@@ -60,7 +62,10 @@ class ProfileHeader extends Component {
             </div>
             <div className="profile-config">
               {
-                (loggedUser === userId) ? this.props.actionButtons : null
+                (loggedUser === userId) ?
+                  actionButtons
+                  :
+                  <InteractionButtons />
               }
             </div>
           </Paper>

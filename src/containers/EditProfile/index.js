@@ -117,7 +117,7 @@ class EditProfile extends Component {
             />
             <TextField
               id="edit-photo"
-              hintText="Profile Photo"
+              hintText="Profile Photo Link"
               fullWidth
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
