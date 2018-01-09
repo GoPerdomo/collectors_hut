@@ -76,11 +76,11 @@ export const getAllCollections = () => (dispatch, getState) => {
     .then(data => {
       const chosen = [];
       const chosenCollections = [];
-      const maxCollections = 6;      
+      const maxCollections = 6;
 
       while (chosen.length < maxCollections) {
         const num = Math.floor(Math.random() * data.length);
-        
+
         if (!chosen.includes(num)) chosen.push(num);
       }
 
@@ -109,7 +109,7 @@ export const getAllCollections = () => (dispatch, getState) => {
                 const { password, collections, email, ...newUser } = user;
 
                 chosenCollections.push({ collection, user: newUser });
-                
+
                 if (chosenCollections.length >= maxCollections) {
                   dispatch({
                     type: "CHOSEN_COLLECTIONS",
@@ -139,17 +139,17 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
         payload: { results, searchType }
       });
       for (const result of results) {
-        if (searchType === "user") {
-          dispatch(
-            getProfile(result.user._id)
-          );
-        } else {
-          dispatch(
-            getProfile(result.user._id)
-          );
-          dispatch(
-            getItems(result.user._id, result.collection._id)
-          );
+
+        dispatch(
+          getProfile(result.user._id)
+        );
+
+        if (searchType === "collection") {
+          setTimeout(() => {
+            dispatch(
+              getItems(result.user._id, result.collection._id)
+            );
+          }, 500)
         }
       }
     })
@@ -250,7 +250,7 @@ export const editUser = (userId, user) => (dispatch, getState) => {
     })
     .then(user => {
       dispatch({
-        type: "ADD_USER",
+        type: "EDIT_USER",
         payload: { user }
       });
     })

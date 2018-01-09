@@ -19,7 +19,7 @@ class CollectionCard extends Component {
         style={{ border: "1px solid #6D8EAD", textAlign: "left", marginBottom: "30px" }}
       >
         <CardHeader
-          style={{ padding: "6px 16px" }}
+          style={{ padding: "16px 40px" }}
           titleStyle={{ fontSize: "1.2em", fontWeigh: "bold" }}
           title={
             <NavLink
@@ -39,6 +39,7 @@ class CollectionCard extends Component {
         />
         <Divider />
         <CardTitle
+          style={{ paddingLeft: "40px" }}
           title={
             <NavLink
               to={`/users/${user._id}/collections/${collection._id}`}

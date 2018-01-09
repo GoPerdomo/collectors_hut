@@ -5,6 +5,10 @@ import { Card, CardHeader } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
+import InteractionButtons from '../InteractionButtons';
+
+import './style.css';
+
 class UserCard extends Component {
 
   render() {
@@ -13,12 +17,13 @@ class UserCard extends Component {
 
     return (
       <Card
+        className="search-user-card"
         zDepth={0}
-        style={{ border: "1px solid #6D8EAD", textAlign: "left", marginBottom: "30px" }}
       >
         <CardHeader
           titleStyle={{ fontSize: "1.5em", fontWeight: "bold" }}
           subtitleStyle={{ display: "flex" }}
+          style={{ paddingLeft: "40px" }}
           title={
             <NavLink
               to={`/users/${_id}`}
@@ -48,6 +53,7 @@ class UserCard extends Component {
             />
           }
         />
+        <InteractionButtons />
       </Card>
     )
   }

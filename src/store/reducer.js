@@ -13,6 +13,11 @@ const reducer = (state = {}, { type, payload }) => {
     }
 
     case "ADD_USER": {
+      if (state[payload.user._id]) return state;
+      return { ...state, [payload.user._id]: { ...payload.user } };
+    }
+
+    case "EDIT_USER": {
       return { ...state, [payload.user._id]: { ...payload.user } };
     }
     // User
