@@ -53,9 +53,18 @@ class Search extends Component {
 };
 
 const mapStateToProps = (state) => {
+  let newState = { ...state };
+  const { loggedUser } = newState;
+
+  if (newState.results) {
+    const newResults = newState.results.filter(result => result.user._id !== loggedUser);
+
+    newState = { ...newState, results: newResults }
+  }
+
   return (
     {
-      ...state,
+      ...newState,
     }
   )
 };
