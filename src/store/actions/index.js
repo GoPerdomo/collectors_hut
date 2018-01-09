@@ -1,21 +1,3 @@
-const getHeaders = {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  },
-};
-
-const deleteHeaders = {
-  method: 'DELETE',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  },
-};
-
 const createHeaders = (method, body) => ({
   method,
   headers: {
@@ -29,7 +11,7 @@ const createHeaders = (method, body) => ({
 
 // GET
 export const getProfile = (userId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}`, getHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}`, createHeaders('GET'))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -47,7 +29,7 @@ export const getProfile = (userId) => (dispatch, getState) => {
 };
 
 export const getItems = (userId, collectionId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('GET'))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -65,7 +47,7 @@ export const getItems = (userId, collectionId) => (dispatch, getState) => {
 };
 
 export const getAllCollections = () => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/collections`, getHeaders)
+  fetch(`http://localhost:3030/api/collections`, createHeaders('GET'))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -88,7 +70,7 @@ export const getAllCollections = () => (dispatch, getState) => {
         const { userId } = data[num];
         const collectionId = data[num].collection._id;
 
-        fetch(`http://localhost:3030/api/users/${userId}`, getHeaders)
+        fetch(`http://localhost:3030/api/users/${userId}`, createHeaders('GET'))
           .then(res => {
             if (res.ok) {
               return res.json()
@@ -97,7 +79,7 @@ export const getAllCollections = () => (dispatch, getState) => {
             }
           })
           .then(user => {
-            fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, getHeaders)
+            fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('GET'))
               .then(res => {
                 if (res.ok) {
                   return res.json()
@@ -125,7 +107,7 @@ export const getAllCollections = () => (dispatch, getState) => {
 }
 
 export const search = (searchTerms, searchType) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/search/?${searchType}=${searchTerms}`, getHeaders)
+  fetch(`http://localhost:3030/api/search/?${searchType}=${searchTerms}`, createHeaders('GET'))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -298,7 +280,7 @@ export const editItem = (userId, collectionId, itemId, item) => (dispatch, getSt
 
 // DELETE
 export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/items/${itemId}`, deleteHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}/items/${itemId}`, createHeaders('DELETE'))
     .then(res => {
       if (res.ok) {
         return res.json()
@@ -317,7 +299,7 @@ export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState)
 };
 
 export const deleteCollection = (userId, collectionId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, deleteHeaders)
+  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('DELETE'))
     .then(res => {
       if (res.ok) {
         return res.json()
