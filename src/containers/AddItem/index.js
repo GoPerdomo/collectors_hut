@@ -155,7 +155,7 @@ class AddItem extends Component {
           <form onSubmit={this.handleSubmit}>
             <TextField
               id="new-item-photo"
-              hintText="Profile Photo Link"
+              hintText="Photo Link"
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               fullWidth
               onChange={this.handleContentChange}

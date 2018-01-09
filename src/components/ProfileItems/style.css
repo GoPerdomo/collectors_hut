@@ -1,5 +1,5 @@
 .profile-items-preview {
-  height: 160px;
+  height: 100%;
   margin-left: 50%;
   transform: translateX(-50%);
 }
