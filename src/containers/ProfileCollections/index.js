@@ -6,17 +6,9 @@ import Paper from 'material-ui/Paper';
 
 import ProfileItems from '../../components/ProfileItems';
 
-import { getItems } from '../../store/actions';
-
 import './style.css';
 
 class ProfileCollections extends Component {
-
-  componentDidMount() {
-    const { userId, collection, getItems } = this.props;
-
-    getItems(userId, collection._id)
-  }
 
   selectCollection = () => {
     const { history, userId, collection } = this.props;
@@ -76,8 +68,4 @@ class ProfileCollections extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId))
-})
-
-export default withRouter(connect(null, mapDispatchToProps)(ProfileCollections));
+export default withRouter(connect()(ProfileCollections));

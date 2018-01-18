@@ -62,10 +62,13 @@ class ProfileHeader extends Component {
             </div>
             <div className="profile-config">
               {
-                (loggedUser === userId) ?
-                  actionButtons
+                loggedUser ?
+                  (loggedUser === userId) ?
+                    actionButtons
+                    :
+                    <InteractionButtons />
                   :
-                  <InteractionButtons />
+                  null
               }
             </div>
           </Paper>

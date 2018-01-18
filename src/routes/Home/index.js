@@ -3,17 +3,22 @@ import { connect } from 'react-redux';
 
 import CollectionCard from '../../containers/CollectionCard';
 
-import { getAllCollections } from '../../store/actions';
+import { getRandomCollections, clearHomeCollections } from '../../store/actions';
 
 import './style.css';
 
 class Home extends Component {
 
   componentWillMount() {
-    const { loggedUser, getAllCollections, history } = this.props;
+    const { loggedUser, getRandomCollections, history } = this.props;
 
     if (loggedUser) history.push(`/users/${loggedUser}`);
-    getAllCollections();
+    getRandomCollections();
+  }
+
+  componentWillUnmount() {
+    const { clearHomeCollections } = this.props;
+    clearHomeCollections();
   }
 
   render() {
@@ -48,7 +53,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllCollections: () => dispatch(getAllCollections()),
+  getRandomCollections: () => dispatch(getRandomCollections()),
+  clearHomeCollections: () => dispatch(clearHomeCollections()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

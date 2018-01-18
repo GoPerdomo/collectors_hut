@@ -28,25 +28,8 @@ export const getProfile = (userId) => (dispatch, getState) => {
     .catch(err => console.error(err));
 };
 
-export const getItems = (userId, collectionId) => (dispatch, getState) => {
-  fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('GET'))
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-        throw Error(res.statusText)
-      }
-    })
-    .then(collection => {
-      dispatch({
-        type: "SET_COLLECTION_ITEMS",
-        payload: { collectionId, userId, items: collection.items }
-      });
-    })
-    .catch(err => console.error(err));
-};
+export const getRandomCollections = () => (dispatch, getState) => {
 
-export const getAllCollections = () => (dispatch, getState) => {
   fetch(`http://localhost:3030/api/collections`, createHeaders('GET'))
     .then(res => {
       if (res.ok) {
@@ -59,50 +42,42 @@ export const getAllCollections = () => (dispatch, getState) => {
       const chosen = [];
       const chosenCollections = [];
       const maxCollections = 6;
+      const state = getState();
 
       while (chosen.length < maxCollections) {
         const num = Math.floor(Math.random() * data.length);
 
-        if (!chosen.includes(num)) chosen.push(num);
+        if (!chosen.includes(num)) {
+          const { userId } = data[num];
+          
+          if (!state[userId]) {
+            dispatch(
+              getProfile(userId)
+            )
+          }
+
+          chosen.push(num);
+        }
       }
+      
+      setTimeout(() => {
+        const state = getState();
 
-      for (const num of chosen) {
-        const { userId } = data[num];
-        const collectionId = data[num].collection._id;
+        for (const num of chosen) {
+          const { userId } = data[num];
+          const user = state[userId];
+          const collectionId = data[num].collection._id;
 
-        fetch(`http://localhost:3030/api/users/${userId}`, createHeaders('GET'))
-          .then(res => {
-            if (res.ok) {
-              return res.json()
-            } else {
-              throw Error(res.statusText)
-            }
-          })
-          .then(user => {
-            fetch(`http://localhost:3030/api/users/${userId}/collections/${collectionId}`, createHeaders('GET'))
-              .then(res => {
-                if (res.ok) {
-                  return res.json()
-                } else {
-                  throw Error(res.statusText)
-                }
-              })
-              .then(collection => {
-                const { password, collections, email, ...newUser } = user;
+          const collection = user.collections.find(collection => collection._id === collectionId);
+          chosenCollections.push({ collection, user });
+        }
 
-                chosenCollections.push({ collection, user: newUser });
+        dispatch({
+          type: "CHOSEN_COLLECTIONS",
+          payload: { chosenCollections },
+        });
 
-                if (chosenCollections.length >= maxCollections) {
-                  dispatch({
-                    type: "CHOSEN_COLLECTIONS",
-                    payload: { chosenCollections },
-                  });
-                }
-              })
-              .catch(err => console.error(err));
-          })
-          .catch(err => console.error(err));
-      }
+      }, 1000)
     })
 }
 
@@ -121,18 +96,9 @@ export const search = (searchTerms, searchType) => (dispatch, getState) => {
         payload: { results, searchType }
       });
       for (const result of results) {
-
         dispatch(
           getProfile(result.user._id)
         );
-
-        if (searchType === "collection") {
-          setTimeout(() => {
-            dispatch(
-              getItems(result.user._id, result.collection._id)
-            );
-          }, 500)
-        }
       }
     })
     .catch(err => console.error(err));
@@ -192,7 +158,7 @@ export const addCollection = (userId, newCollection) => (dispatch, getState) => 
         throw Error(res.statusText)
       }
     })
-    .then(collection => {
+    .then(collection => {      
       dispatch({
         type: "ADD_NEW_COLLECTION",
         payload: { userId, collection },
@@ -330,6 +296,13 @@ export const fetchLocalUser = () => (dispatch, getState) => {
     });
   }
 };
+
+export const clearHomeCollections = () => (dispatch, getState) => {
+  dispatch({
+    type: "CHOSEN_COLLECTIONS",
+    payload: {},
+  });
+}
 
 export const logout = () => (dispatch, getState) => {
   dispatch({

@@ -10,19 +10,18 @@ import AddItem from '../../containers/AddItem';
 import EditCollection from '../../containers/EditCollection';
 import DeleteCollection from '../../containers/DeleteCollection';
 
-import { getProfile, getItems } from '../../store/actions';
+import { getProfile } from '../../store/actions';
 
 import './style.css';
 
 class Collection extends Component {
 
   componentWillMount() {
-    const { currentCollection, match, getProfile, getItems } = this.props;
-    const { userId, collectionId } = match.params;
+    const { currentCollection, match, getProfile } = this.props;
+    const { userId } = match.params;
 
     if (!currentCollection) {
       getProfile(userId);
-      getItems(userId, collectionId);
     }
   }
 
@@ -95,7 +94,6 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getProfile: (userId) => dispatch(getProfile(userId)),
-  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
 });
 
 

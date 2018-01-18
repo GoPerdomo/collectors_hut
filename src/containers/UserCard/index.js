@@ -13,6 +13,7 @@ class UserCard extends Component {
 
   render() {
     const { _id, firstName, lastName, photo, collections } = this.props.user;
+    const { loggedUser } = this.props;
     const maxChips = 3;
 
     return (
@@ -53,7 +54,9 @@ class UserCard extends Component {
             />
           }
         />
-        <InteractionButtons />
+        {
+          loggedUser && <InteractionButtons />
+        }
       </Card>
     )
   }

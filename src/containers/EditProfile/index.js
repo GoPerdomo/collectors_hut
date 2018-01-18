@@ -6,8 +6,6 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 
 import { editUser } from '../../store/actions';
-import { getItems } from '../../store/actions';
-
 
 class EditProfile extends Component {
 
@@ -23,6 +21,7 @@ class EditProfile extends Component {
         photo: "",
         email: "",
         password: "",
+        confirmPassword: "",
       }
     };
   }
@@ -36,7 +35,7 @@ class EditProfile extends Component {
   }
 
   handleContentChange = (event, content) => {
-    let { firstName, lastName, photo, email, password } = this.state.profileInfo;
+    let { firstName, lastName, photo, email, password, confirmPassword } = this.state.profileInfo;
     const { id } = event.currentTarget;
 
     if (id === "edit-first-name") firstName = content;
@@ -44,7 +43,7 @@ class EditProfile extends Component {
     if (id === "edit-photo") photo = content;
     if (id === "edit-email") email = content;
     if (id === "edit-password") password = content;
-
+    if (id === "confirm-password") confirmPassword = content;
 
     this.setState({
       profileInfo: {
@@ -53,21 +52,23 @@ class EditProfile extends Component {
         photo,
         email,
         password,
+        confirmPassword,
       }
     });
   }
 
   handleSubmit = (event) => {
-    const { user, editUser, getItems } = this.props;
+    const { user, editUser } = this.props;
     const { profileInfo } = this.state;
-    const { firstName, lastName } = profileInfo;
+    const { firstName, lastName, password, confirmPassword } = profileInfo;
 
     event.preventDefault();
 
-    editUser(user._id, profileInfo);
-    for (const collection of user.collections) getItems(user._id, collection._id)
+    if (firstName && lastName && (password === confirmPassword)) {      
+      editUser(user._id, profileInfo);
+      this.handleRequestClose();
+    }
 
-    this.handleRequestClose();
 
     this.setState({
       profileInfo: {
@@ -76,13 +77,14 @@ class EditProfile extends Component {
         photo: "",
         email: "",
         password: "",
+        confirmPassword: "",
         collections: user.collections,
       }
     });
   }
 
   render() {
-    const { firstName, lastName, photo, email, password } = this.state.profileInfo;
+    const { firstName, lastName, photo, email, password, confirmPassword } = this.state.profileInfo;
 
     return (
       <div>
@@ -102,6 +104,7 @@ class EditProfile extends Component {
             <TextField
               id="edit-first-name"
               hintText="First Name"
+              required
               fullWidth
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
@@ -110,6 +113,7 @@ class EditProfile extends Component {
             <TextField
               id="edit-last-name"
               hintText="Last Name"
+              required
               fullWidth
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
@@ -135,10 +139,22 @@ class EditProfile extends Component {
               id="edit-password"
               hintText="Password"
               fullWidth
+              required
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               type="password"
               onChange={this.handleContentChange}
               value={password}
+            />
+            <TextField
+              id="confirm-password"
+              hintText="Confirm Password"
+              fullWidth
+              required
+              errorText={(password === confirmPassword ? null : "Passwords don't match")}
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              type="password"
+              onChange={this.handleContentChange}
+              value={confirmPassword}
             />
             <RaisedButton
               fullWidth
@@ -156,7 +172,6 @@ class EditProfile extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   editUser: (userId, user) => dispatch(editUser(userId, user)),
-  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
 });
 
 export default connect(null, mapDispatchToProps)(EditProfile);
