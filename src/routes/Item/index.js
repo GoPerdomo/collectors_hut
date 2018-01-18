@@ -6,19 +6,18 @@ import ItemInfo from '../../containers/ItemInfo';
 import EditItem from '../../containers/EditItem';
 import DeleteItem from '../../containers/DeleteItem';
 
-import { getProfile, getItems } from '../../store/actions';
+import { getProfile } from '../../store/actions';
 
 import './style.css';
 
 class Item extends Component {
 
   componentDidMount() {
-    const { currentItem, match, getProfile, getItems } = this.props;
-    const { userId, collectionId } = match.params;
+    const { currentItem, match, getProfile } = this.props;
+    const { userId } = match.params;
 
     if (!currentItem) {
       getProfile(userId);
-      getItems(userId, collectionId);
     }
   }
 
@@ -71,7 +70,6 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getProfile: (userId) => dispatch(getProfile(userId)),
-  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);

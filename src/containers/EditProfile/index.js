@@ -6,8 +6,6 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 
 import { editUser } from '../../store/actions';
-import { getItems } from '../../store/actions';
-
 
 class EditProfile extends Component {
 
@@ -58,14 +56,13 @@ class EditProfile extends Component {
   }
 
   handleSubmit = (event) => {
-    const { user, editUser, getItems } = this.props;
+    const { user, editUser } = this.props;
     const { profileInfo } = this.state;
     const { firstName, lastName } = profileInfo;
 
     event.preventDefault();
 
     editUser(user._id, profileInfo);
-    for (const collection of user.collections) getItems(user._id, collection._id)
 
     this.handleRequestClose();
 
@@ -157,7 +154,6 @@ class EditProfile extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   editUser: (userId, user) => dispatch(editUser(userId, user)),
-  getItems: (userId, collectionId) => dispatch(getItems(userId, collectionId)),
 });
 
 export default connect(null, mapDispatchToProps)(EditProfile);
