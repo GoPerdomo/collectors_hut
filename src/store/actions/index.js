@@ -77,7 +77,7 @@ export const getRandomCollections = () => (dispatch, getState) => {
           payload: { chosenCollections },
         });
 
-      }, 500)
+      }, 1000)
     })
 }
 
@@ -158,7 +158,7 @@ export const addCollection = (userId, newCollection) => (dispatch, getState) => 
         throw Error(res.statusText)
       }
     })
-    .then(collection => {
+    .then(collection => {      
       dispatch({
         type: "ADD_NEW_COLLECTION",
         payload: { userId, collection },

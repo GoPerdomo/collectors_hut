@@ -45,7 +45,7 @@ class DeleteCollection extends Component {
         >
           <ActionDelete
             color="#FFFFFF"
-            hoverColor="#d95a2f"
+            hoverColor="#EBEBEB"
             viewBox="1 1 22 22"
           />
         </IconButton>

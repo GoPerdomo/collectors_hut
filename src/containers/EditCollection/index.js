@@ -53,9 +53,10 @@ class EditCollection extends Component {
 
     event.preventDefault();
 
-    editCollection(userId, collection._id, collectionInfo);
-
-    this.handleRequestClose();
+    if(name) {
+      editCollection(userId, collection._id, collectionInfo);
+      this.handleRequestClose();
+    }
 
     this.setState({
       collectionInfo: {

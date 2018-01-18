@@ -136,7 +136,7 @@ class AddItem extends Component {
             <TextField
               id="new-item-name"
               hintText="Name"
-              errorText={!name && "Name is required"}
+              required
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               fullWidth
               onChange={this.handleContentChange}

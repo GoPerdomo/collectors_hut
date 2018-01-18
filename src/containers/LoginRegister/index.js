@@ -26,6 +26,7 @@ class LoginRegister extends Component {
         lastName: "",
         email: "",
         password: "",
+        confirmPassword: "",
       }
     };
   }
@@ -46,20 +47,22 @@ class LoginRegister extends Component {
   }
 
   handleRegisterContentChange = (event, content) => {
-    let { firstName, lastName, email, password } = this.state.register;
+    let { firstName, lastName, email, password, confirmPassword } = this.state.register;
     const { id } = event.currentTarget;
 
     if (id === "register-firstname") firstName = content;
     if (id === "register-lastname") lastName = content;
     if (id === "register-email") email = content;
     if (id === "register-password") password = content;
+    if (id === "confirm-password") confirmPassword = content;
 
     this.setState({
       register: {
         firstName,
         lastName,
         email,
-        password
+        password,
+        confirmPassword,
       }
     });
   }
@@ -84,10 +87,10 @@ class LoginRegister extends Component {
 
   handleRegisterSubmit = (event) => {
     const { register } = this.props;
-    const { firstName, lastName, email, password } = this.state.register;
+    const { firstName, lastName, email, password, confirmPassword } = this.state.register;
 
     event.preventDefault();
-    if (firstName && lastName && email && password) {
+    if (firstName && lastName && email && (password === confirmPassword)) {
       register({ firstName, lastName, email, password });
       this.setState({
         register: {
@@ -95,6 +98,7 @@ class LoginRegister extends Component {
           lastName: "",
           email: "",
           password: "",
+          confirmPassword: "",
         }
       })
     }
@@ -115,6 +119,7 @@ class LoginRegister extends Component {
                 <TextField
                   id="login-email"
                   hintText="Email"
+                  required
                   fullWidth
                   onChange={this.handleLoginContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
@@ -124,6 +129,7 @@ class LoginRegister extends Component {
                   id="login-password"
                   hintText="Password"
                   type="password"
+                  required
                   fullWidth
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
                   onChange={this.handleLoginContentChange}
@@ -145,6 +151,7 @@ class LoginRegister extends Component {
                 <TextField
                   id="register-firstname"
                   hintText="First Name"
+                  required
                   fullWidth
                   onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
@@ -153,6 +160,7 @@ class LoginRegister extends Component {
                 <TextField
                   id="register-lastname"
                   hintText="Last Name"
+                  required
                   fullWidth
                   onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
@@ -161,6 +169,7 @@ class LoginRegister extends Component {
                 <TextField
                   id="register-email"
                   hintText="Email"
+                  required
                   fullWidth
                   onChange={this.handleRegisterContentChange}
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
@@ -170,10 +179,22 @@ class LoginRegister extends Component {
                   id="register-password"
                   hintText="Password"
                   type="password"
+                  required
                   fullWidth
                   underlineFocusStyle={{ borderColor: "#FF6517" }}
                   onChange={this.handleRegisterContentChange}
                   value={register.password}
+                />
+                <TextField
+                  id="confirm-password"
+                  hintText="Confirm Password"
+                  type="password"
+                  required
+                  fullWidth
+                  errorText={(register.password === register.confirmPassword ? null : "Passwords don't match")}
+                  underlineFocusStyle={{ borderColor: "#FF6517" }}
+                  onChange={this.handleRegisterContentChange}
+                  value={register.confirmPassword}
                 />
                 <RaisedButton
                   fullWidth

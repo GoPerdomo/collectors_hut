@@ -99,9 +99,10 @@ class EditItem extends Component {
 
     event.preventDefault();
 
-    editItem(userId, item.collectionId, item._id, itemInfo);
-
-    this.handleRequestClose();
+    if (name) {      
+      editItem(userId, item.collectionId, item._id, itemInfo);
+      this.handleRequestClose();
+    }
 
     this.setState({
       itemInfo: {
@@ -148,6 +149,7 @@ class EditItem extends Component {
             <TextField
               id="edit-item-name"
               hintText="Name"
+              required
               fullWidth
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               onChange={this.handleContentChange}
