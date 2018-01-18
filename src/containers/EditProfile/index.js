@@ -134,6 +134,7 @@ class EditProfile extends Component {
             <TextField
               id="edit-password"
               hintText="Password"
+              required
               fullWidth
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               type="password"

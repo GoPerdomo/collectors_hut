@@ -10,14 +10,14 @@ class Search extends Component {
 
   displayResults = () => {
     const { props } = this;
-    const { results, searchType } = props;
+    const { results, searchType, loggedUser } = props;
 
     if (results.length === 0) {
       return <h2>No {searchType}s found</h2>
     }
 
     if (searchType === "user") {
-      return results.map(result => <UserCard key={result.user._id} user={result.user} />)
+      return results.map(result => <UserCard key={result.user._id} user={result.user} loggedUser={loggedUser} />)
     }
 
     if (searchType === "collection") {

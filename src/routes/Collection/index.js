@@ -20,7 +20,7 @@ class Collection extends Component {
     const { currentCollection, match, getProfile, getItems } = this.props;
     const { userId, collectionId } = match.params;
 
-    if (!currentCollection) {
+    if (!currentCollection || !currentCollection.items) {
       getProfile(userId);
       getItems(userId, collectionId);
     }

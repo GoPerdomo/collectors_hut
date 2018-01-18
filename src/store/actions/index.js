@@ -88,9 +88,7 @@ export const getAllCollections = () => (dispatch, getState) => {
                 }
               })
               .then(collection => {
-                const { password, collections, email, ...newUser } = user;
-
-                chosenCollections.push({ collection, user: newUser });
+                chosenCollections.push({ collection, user });
 
                 if (chosenCollections.length >= maxCollections) {
                   dispatch({
@@ -230,7 +228,7 @@ export const editUser = (userId, user) => (dispatch, getState) => {
         throw Error(res.statusText)
       }
     })
-    .then(user => {
+    .then(user => {      
       dispatch({
         type: "EDIT_USER",
         payload: { user }
