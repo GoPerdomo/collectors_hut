@@ -35,7 +35,7 @@ class Profile extends Component {
         />
         {
           !isEmpty(user) &&
-          <div className="profile-collections-preview">
+          <div>
             {
               !isEmpty(user.collections) && user.collections.map((collection, index) => (
                 <ProfileCollections

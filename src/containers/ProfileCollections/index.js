@@ -17,13 +17,13 @@ class ProfileCollections extends Component {
   }
 
   render() {
-    const { collection, index } = this.props;
+    const { collection } = this.props;
     const maxItems = 6;
 
     return (
       <Paper
         className={
-          `profile-collection-preview ${index % 2 ? 'reverse' : ''} ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
+          `profile-collection-preview ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
         }
         style={{ backgroundColor: "#6D8EAD" }}
         zDepth={0}
@@ -50,10 +50,7 @@ class ProfileCollections extends Component {
         <div className={
           `profile-collection-preview-info ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-info' : ''}`
         }>
-          <div className={
-            `profile-collection-preview-info-title ${collection.items && collection.items.length <= maxItems / 2 ? 'shorter-title' : ''}`
-          }
-          >
+          <div className="profile-collection-preview-info-title">
             <h2 onClick={this.selectCollection}>{collection.name}</h2>
           </div>
           <div className={
