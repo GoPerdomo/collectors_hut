@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   margin: auto;
-  width: 84.5%;
+  width: 86%;
   height: 322px;
   margin-bottom: 50px;
 }
@@ -17,6 +17,7 @@
 .profile-collection-items-wrapper {
   display: flex;
   flex-wrap: wrap;
+  height: inherit;
 }
 
 .profile-collection-items-wrapper:hover {
@@ -25,10 +26,10 @@
   opacity: 0.5;
 }
 
-.profile-collection-items-wrapper > div {
+.profile-collection-items-wrapper div {
   overflow: hidden;
-  width: 160px;
-  height: 160px;
+  width: 33.333%;
+  height: 50%;
 }
 
 .profile-collection-preview-info {
@@ -42,13 +43,21 @@
   cursor: pointer;
   width: fit-content;
   margin: 0;
-  padding: 14px 25px;
+  padding-left: 25px;
   font-size: 2em;
   color: #FFFFFF;
 }
 
+.profile-collection-preview-info-title {
+  height: 64px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: #335173;
+}
+
 .profile-collection-preview-description {
-  height: 80%;
+  height: 256px;
   padding: 0 25px;
   overflow-y: auto;
 }
@@ -59,26 +68,8 @@
   font-weight: 300;
 }
 
-.reverse {
-  flex-direction: row-reverse;
-}
-
-.profile-collection-preview-info-title {
-  height: 20%;
-  background-color: #335173;
-}
-
-.shorter-title {
-  height: 30%;
-}
-
-.shorter-title h2 {
-  height: 30%;
-  padding: 6px 25px;
-}
-
 .shorter-description {
-  height: 70%;
+  height: 96px;
 }
 
 .shorter-wrapper {
@@ -87,4 +78,8 @@
 
 .shorter-info {
   height: 160px;
+}
+
+.shorter-info .profile-collection-items-wrapper div {
+  height: 100%;
 }

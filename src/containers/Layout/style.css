@@ -1,37 +1,46 @@
 /* Header */
-.header {
+
+header {
+  background-color: #6D8EAD;
+}
+
+header > div {
+  width: 80%;
+  height: 100px;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
-  height: 100px;
-  margin-bottom: 50px;
   text-align: center;
-  color: #ffffff;
-  background-color: #6D8EAD;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .header-logo {
   width: 170px;
 }
+
 /* Header */
 
 /* Footer */
-.footer {
+
+footer {
+  display: flex;
+  background-color: #6D8EAD;
+  color: #FFFFFF;
+}
+
+footer > div {
+  width: 80%;
+  height: 200px;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  height: 200px;
+  text-align: center;
+  margin: auto;
   margin-top: 50px;
-  padding: 0 10%;
-  color: #ffffff;
-  background-color: #6D8EAD;  
 }
 
-.footer > div {
-  margin-top: 48px;
-  /* margin: auto 0; */
-}
-
-.footer p {
+footer p {
   margin-top: 0;
   font-size: 1em;
 }
@@ -57,4 +66,5 @@
 .footer-follow-icons svg:hover {
   cursor: pointer;
 }
+
 /* Footer */
