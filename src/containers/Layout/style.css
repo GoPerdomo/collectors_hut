@@ -4,7 +4,7 @@ header {
   background-color: #6D8EAD;
 }
 
-header > div {
+header>div {
   width: 80%;
   height: 100px;
   max-width: 1400px;
@@ -24,20 +24,20 @@ header > div {
 /* Footer */
 
 footer {
+  height: 230px;
+  margin-top: 50px;
   display: flex;
   background-color: #6D8EAD;
   color: #FFFFFF;
 }
 
-footer > div {
+footer>div {
   width: 80%;
-  height: 200px;
   max-width: 1400px;
   display: flex;
   justify-content: space-between;
   text-align: center;
   margin: auto;
-  margin-top: 50px;
 }
 
 footer p {
