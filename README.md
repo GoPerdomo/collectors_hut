@@ -4,7 +4,7 @@
 </div>
 
 ## Table of Contents ##
-- [Introduction](#introduction)
+- [About](#about)
 - [Tech Stack](#tech-stack)
   - [The Frontend](#the-frontend)
   - [The Backend](#the-backend)
@@ -12,9 +12,10 @@
 - [Coming Soon](#coming-soon)
 
 
-## Introduction ##
+## About ##
 
-My Capstone Project for the Full-Stack Development program at <a href="https://propulsionacademy.com/" target="_blank">Propulsion Academy</a>.
+Made as my Capstone Project for the Full-Stack Development program at <a href="https://propulsionacademy.com/" target="_blank">Propulsion Academy</a>.
+
 
 ## Tech Stack ##
 
@@ -37,13 +38,32 @@ A RESTful API using:
 - <a href="http://mongoosejs.com/" target="_blank">Mongoose</a> - MongoDB Object Modeling for Node.js
 - <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> - NoSQL Database
 
+
 ## Pics ##
 
-<p align="center">
-  <img src="assets/home.png">
-</p>
+<div align="center">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/home.png" target="_blank">
+    <img src="assets/home.png" width="440">
+  </a>
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/login.png" target="_blank">
+    <img src="assets/login.png" width="440">
+  </a>
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/profile.png" target="_blank">
+    <img src="assets/profile.png" width="440">
+  </a>
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/collection.png" target="_blank">
+    <img src="assets/collection.png" width="440">
+  </a>
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/item.png" target="_blank">
+    <img src="assets/item.png" width="440">
+  </a>
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/search.png" target="_blank">
+    <img src="assets/search.png" width="440">
+  </a>
+</div>
+
 
 ## Coming Soon ##
 
-- **Responsive Design** - Automatically adapt to the device's screen size
-- **Deployment to Heroku** - Cloud Platform
+- **Responsive Design**
+- **Deployment to Heroku**
