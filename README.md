@@ -42,22 +42,22 @@ A RESTful API using:
 ## Pics ##
 
 <div align="center">
-  <a href="assets/home.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/home.png" target="_blank">
     <img src="assets/home.png" width="440">
   </a>
-  <a href="assets/login.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/login.png" target="_blank">
     <img src="assets/login.png" width="440">
   </a>
-  <a href="assets/profile.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/profile.png" target="_blank">
     <img src="assets/profile.png" width="440">
   </a>
-  <a href="assets/collection.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/collection.png" target="_blank">
     <img src="assets/collection.png" width="440">
   </a>
-  <a href="assets/item.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/item.png" target="_blank">
     <img src="assets/item.png" width="440">
   </a>
-  <a href="assets/search.png" target="_blank">
+  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/search.png" target="_blank">
     <img src="assets/search.png" width="440">
   </a>
 </div>
