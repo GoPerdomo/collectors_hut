@@ -1,9 +1,7 @@
-<p align="center">
+<div align="center">
   <img src="public/logo-horizontal.png" width="600">
-  <p>
-    A social network for collectors to share and display interests on novelty, vintage and all other types of collections
-  </p>
-</p>
+  <p>A social network for collectors to share and display interests on novelty, vintage and all other types of collections</p>
+</div>
 
 ## Table of Contents ##
 - [Introduction](#introduction)
@@ -22,13 +20,17 @@ My Capstone Project for the Full-Stack Development program at <a href="https://p
 
 ### The Frontend ###
 
+A Single Page Application using:
+
 - <a href="https://reactjs.org/" target="_blank">React</a> - JavaScript library for building user interfaces
 - <a href="https://redux.js.org/" target="_blank">Redux</a> - JavaScript library for managing application state
 - <a href="http://www.material-ui.com/#/" target="_blank">Material-UI</a> - React components that implement Google's Material Design
 
 ### The Backend ###
 
-<a href="https://github.com/GoPerdomo/collectors_hut-backend" target="_blank">Backend Repository</a>
+<a href="https://github.com/GoPerdomo/collectors_hut-api" target="_blank">Backend Repository</a>
+
+A RESTful API using:
 
 - <a href="https://nodejs.org/en/" target="_blank">Node.js</a> - JavaScript on the server-side
 - <a href="https://expressjs.com/" target="_blank">Express</a> - Web Framework for Node.js
