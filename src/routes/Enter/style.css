@@ -1,7 +1,14 @@
 .enter {
+  display: flex;
+  flex-direction: column;
   margin: auto;
   width: 80%;
   max-width: 1440px;
   text-align: center;
-  min-height: 50vh
+  min-height: 60vh;
+}
+
+.enter h1 {
+  margin: auto;
+  margin-bottom: 30px;
 }
