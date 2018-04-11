@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import LoginRegister from '../../containers/LoginRegister';
+import LoginRegister from '../../containers/Enter/LoginRegister';
 
 import './style.css';
 

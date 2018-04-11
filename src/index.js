@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Layout from './containers/Layout';
+import Layout from './components/Layout';
 import Home from './routes/Home';
 import Enter from './routes/Enter';
 import Profile from './routes/Profile';
