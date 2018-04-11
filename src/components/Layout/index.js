@@ -20,7 +20,7 @@ export default ({ children }) => (
         >
           <img
             className="header-logo"
-            src="/logo-horizontal-invertida.png" alt=""
+            src="/img/logo-horizontal-reverse.png" alt=""
           />
         </NavLink>
 
@@ -36,7 +36,7 @@ export default ({ children }) => (
         <div>
           <img
             className="footer-logo"
-            src="/logo-vertical-invertida.png" alt=""
+            src="/img/logo-vertical-reverse.png" alt=""
           />
         </div>
         <div className="footer-links">

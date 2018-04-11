@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo-horizontal.png" width="600">
+  <img src="public/img/logo-horizontal.png" width="600">
   <p>A social network for collectors to share and display interests on novelty, vintage and all other types of collections</p>
 </div>
 

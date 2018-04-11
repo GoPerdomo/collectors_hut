@@ -26,7 +26,9 @@ class Home extends Component {
 
     return (
       <main className="home">
-        <h1>Welcome to the Collectors Hut!</h1>
+        <div className="home-logo-wrapper">
+          <img src="/img/logo-horizontal.png" alt="Collectors Hut Logo" />
+        </div>
 
         {
           chosenCollections && chosenCollections[0] &&
