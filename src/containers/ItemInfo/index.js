@@ -15,8 +15,14 @@ import './style.css';
 
 class ItemInfo extends Component {
 
+  handleClick = () => {
+    const { history } = this.props;
+    const { userId, collectionId } = this.props.match.params;
+    history.push(`/users/${userId}/collections/${collectionId}`);
+  }
+
   render() {
-    const { history, currentCollection } = this.props;
+    const { currentCollection } = this.props;
     const {
       photo,
       name,
@@ -31,7 +37,7 @@ class ItemInfo extends Component {
     return (
       <Paper zDepth={0} className="item-display" style={{ backgroundColor: "#6D8EAD" }} >
         <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
-          <h1 className="collection-title" onClick={history.goBack}>
+          <h1 className="collection-title" onClick={this.handleClick}>
             {
               currentCollection.name
             }

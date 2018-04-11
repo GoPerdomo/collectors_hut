@@ -15,7 +15,9 @@ class CollectionItem extends Component {
   render() {
 
     return (
-      <img className="collection-item-photo" src={ this.props.photo } alt="" onClick={ this.selectItem }/>
+      <div className="collection-item-photo-wrapper" onClick={ this.selectItem }>
+        <img className="collection-item-photo" src={ this.props.photo } alt=""/>
+      </div>
     )
   }
 }

@@ -24,7 +24,6 @@ header>div {
 /* Footer */
 
 footer {
-  height: 22vh;
   margin-top: 50px;
   display: flex;
   background-color: #6D8EAD;
@@ -37,8 +36,7 @@ footer>div {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  margin: auto;
-  margin-top: 50px;
+  margin: 50px auto;
 }
 
 footer p {

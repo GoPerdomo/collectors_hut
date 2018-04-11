@@ -17,7 +17,6 @@ class EditItem extends Component {
     const {
       name,
       description,
-      photo,
       productionYear,
       acquisitionYear,
       origin,
@@ -30,7 +29,7 @@ class EditItem extends Component {
       itemInfo: {
         name,
         description,
-        photo,
+        photo: "",
         productionYear,
         acquisitionYear,
         origin,
