@@ -15,7 +15,6 @@ import Search from './routes/Search';
 import store from './store/reducer';
 import { fetchLocalUser } from './store/actions';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 
 store.dispatch(fetchLocalUser());
 
@@ -35,6 +34,6 @@ ReactDOM.render(
         </Switch>
       </Router>
     </MuiThemeProvider>
-  </Provider>
-  , document.getElementById('root'));
-registerServiceWorker();
+  </Provider>,
+  document.getElementById('root')
+);
