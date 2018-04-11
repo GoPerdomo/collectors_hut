@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { GridList, GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
 
-import ProfileHeader from '../../containers/ProfileHeader';
-import CollectionItem from '../../containers/CollectionItem';
-import AddItem from '../../containers/AddItem';
-import EditCollection from '../../containers/EditCollection';
-import DeleteCollection from '../../containers/DeleteCollection';
+import ProfileHeader from '../../containers/Profile/ProfileHeader';
+import CollectionItem from '../../containers/Collections/CollectionItem';
+import EditCollection from '../../containers/Collections/EditCollection';
+import DeleteCollection from '../../containers/Collections/DeleteCollection';
+import AddItem from '../../containers/Items/AddItem';
 
 import { getProfile } from '../../store/actions';
 

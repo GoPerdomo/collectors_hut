@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProfileHeader from '../../containers/ProfileHeader';
-import ProfileCollections from '../../containers/ProfileCollections';
-import AddCollection from '../../containers/AddCollection';
-import EditProfile from '../../containers/EditProfile';
+import ProfileHeader from '../../containers/Profile/ProfileHeader';
+import EditProfile from '../../containers/Profile/EditProfile';
+import ProfileCollections from '../../containers/Collections/ProfileCollections';
+import AddCollection from '../../containers/Collections/AddCollection';
 
 import { getProfile } from '../../store/actions';
 

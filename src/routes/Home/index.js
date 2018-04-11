@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import CollectionCard from '../../containers/CollectionCard';
+import CollectionCard from '../../components/CollectionCard';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
 
