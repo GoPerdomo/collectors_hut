@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import ItemInfo from '../../containers/Items/ItemInfo';
-import EditItem from '../../containers/Items/EditItem';
-import DeleteItem from '../../containers/Items/DeleteItem';
+import ItemButtons from '../../components/Buttons/ItemButtons';
 
 import { getProfile } from '../../store/actions';
 
@@ -23,21 +22,13 @@ class Item extends Component {
 
   render() {
     const { currentItem } = this.props;
-    const { userId } = this.props.match.params;
 
     return (
       <main className="item">
-        {
-          currentItem &&
-          <ProfileHeader
-            actionButtons={
-              <div className="profile-config-buttons">
-                <DeleteItem />
-                <EditItem userId={userId} item={currentItem} />
-              </div>
-            }
-          />
-        }
+        <ProfileHeader>
+          <ItemButtons {...this.props} {...this.p} />
+        </ProfileHeader>
+
         {
           currentItem &&
           <ItemInfo currentItem={currentItem} />
@@ -48,6 +39,7 @@ class Item extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  const { loggedUser } = state;
   const { userId, collectionId, itemId } = props.match.params;
   let currentItem;
 
@@ -61,6 +53,7 @@ const mapStateToProps = (state, props) => {
 
   return (
     {
+      loggedUser,
       itemId,
       user: state[userId],
       currentItem

@@ -5,7 +5,7 @@ import { Card, CardHeader } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 
-import InteractionButtons from '../InteractionButtons';
+import InteractionButtons from '../Buttons/InteractionButtons';
 
 import './style.css';
 

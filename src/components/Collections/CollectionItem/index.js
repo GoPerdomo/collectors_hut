@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import './style.css';
@@ -15,11 +14,11 @@ class CollectionItem extends Component {
   render() {
 
     return (
-      <div className="collection-item-photo-wrapper" onClick={ this.selectItem }>
-        <img className="collection-item-photo" src={ this.props.photo } alt=""/>
+      <div className="collection-item-photo-wrapper" onClick={this.selectItem}>
+        <img className="collection-item-photo" src={this.props.photo} alt="" />
       </div>
     )
   }
 }
 
-export default withRouter(connect(null)(CollectionItem));
+export default withRouter(CollectionItem);

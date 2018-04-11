@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import HomeLogo from '../../components/Images/HomeLogo';
 import CollectionCard from '../../components/CollectionCard';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
@@ -9,16 +10,16 @@ import './style.css';
 
 class Home extends Component {
 
+  // If an user in logged in redirects profile, else fetches random collections
   componentWillMount() {
     const { loggedUser, getRandomCollections, history } = this.props;
 
     if (loggedUser) history.push(`/users/${loggedUser}`);
-    getRandomCollections();
+    else getRandomCollections();
   }
 
   componentWillUnmount() {
-    const { clearHomeCollections } = this.props;
-    clearHomeCollections();
+    this.props.clearHomeCollections();
   }
 
   render() {
@@ -26,19 +27,16 @@ class Home extends Component {
 
     return (
       <main className="home">
-        <div className="home-logo-wrapper">
-          <img src="/img/logo-horizontal.png" alt="Collectors Hut Logo" />
-        </div>
-
+        <HomeLogo />
         {
-          chosenCollections && chosenCollections[0] &&
-          chosenCollections.map(currentCollection => {
-            return <CollectionCard
+          chosenCollections &&
+          chosenCollections.map(currentCollection => (
+            <CollectionCard
               key={currentCollection.collection._id}
               collection={currentCollection.collection}
               user={currentCollection.user}
             />
-          })
+          ))
         }
       </main>
     )

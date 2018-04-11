@@ -5,16 +5,3 @@
   text-align: center;
   min-height: 60vh;;
 }
-
-.collection-items {
-  margin: auto;
-  padding: 1px;
-  width: 85%;
-  text-align: center;
-}
-
-.collection-title {
-  cursor: pointer;
-  margin: 0 auto 20px;
-  width: fit-content;
-}

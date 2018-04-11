@@ -6,8 +6,6 @@ import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
 
-import InteractionButtons from '../../../components/InteractionButtons';
-
 import './style.css';
 
 class ProfileHeader extends Component {
@@ -18,7 +16,7 @@ class ProfileHeader extends Component {
   }
 
   render() {
-    const { loggedUser, userId, user, actionButtons } = this.props;
+    const { user } = this.props;
     const maxChips = 3;
 
     return (
@@ -61,13 +59,7 @@ class ProfileHeader extends Component {
             </div>
             <div className="profile-config">
               {
-                loggedUser ?
-                  (loggedUser === userId) ?
-                    actionButtons
-                    :
-                    <InteractionButtons />
-                  :
-                  null
+                this.props.children
               }
             </div>
           </Paper>
