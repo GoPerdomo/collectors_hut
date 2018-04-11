@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { GridList, GridTile } from 'material-ui/GridList';
-import Paper from 'material-ui/Paper';
-
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import CollectionItem from '../../containers/Collections/CollectionItem';
-import EditCollection from '../../containers/Collections/EditCollection';
-import DeleteCollection from '../../containers/Collections/DeleteCollection';
-import AddItem from '../../containers/Items/AddItem';
+import CollectionButtons from '../../components/Buttons/CollectionButtons';
+import CollectionInfo from '../../components/Collections/CollectionInfo';
 
 import { getProfile } from '../../store/actions';
 
@@ -26,45 +21,18 @@ class Collection extends Component {
   }
 
   render() {
-    const { userId, collectionId, currentCollection } = this.props;
+    const { currentCollection } = this.props;
+
 
     return (
       <main className="collection">
+        <ProfileHeader>
+          <CollectionButtons {...this.props} />
+        </ProfileHeader>
+
         {
           currentCollection &&
-          <ProfileHeader
-            actionButtons={
-              <div className="profile-config-buttons">
-                <DeleteCollection />
-                <EditCollection userId={userId} collection={currentCollection} />
-                <AddItem userId={userId} collectionId={collectionId} />
-              </div>
-            }
-          />
-        }
-        {
-          currentCollection && currentCollection.items &&
-          <Paper zDepth={0} className="collection-items" style={{ backgroundColor: "#6D8EAD" }} >
-            <div style={{ backgroundColor: "#ffffff", padding: "20px" }}>
-              <h1 className="collection-title" >
-                {currentCollection.name}
-              </h1>
-              <GridList cols={3} cellHeight="auto" >
-                {
-                  currentCollection.items.map(item => (
-                    <GridTile key={item._id} title={item.name} >
-                      <CollectionItem
-                        itemId={item._id}
-                        collectionId={currentCollection._id}
-                        userId={userId}
-                        photo={item.photo}
-                      />
-                    </GridTile>
-                  ))
-                }
-              </GridList>
-            </div>
-          </Paper>
+          <CollectionInfo {...this.props} />
         }
       </main>
     )
@@ -72,6 +40,7 @@ class Collection extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  const { loggedUser } = state;
   const { userId, collectionId } = props.match.params;
   let currentCollection;
 
@@ -84,6 +53,7 @@ const mapStateToProps = (state, props) => {
 
   return (
     {
+      loggedUser,
       userId,
       user: state[userId],
       collectionId,

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import EditProfile from '../../containers/Profile/EditProfile';
 import ProfileCollections from '../../containers/Collections/ProfileCollections';
-import AddCollection from '../../containers/Collections/AddCollection';
+import ProfileButtons from '../../components/Buttons/ProfileButtons';
 
 import { getProfile } from '../../store/actions';
 
@@ -21,18 +20,14 @@ class Profile extends Component {
   }
 
   render() {
-    const { user, userId } = this.props;
+    const { user } = this.props;
 
     return (
       <main className="profile">
-        <ProfileHeader
-          actionButtons={
-            <div className="profile-config-buttons">
-              <EditProfile user={user} />
-              <AddCollection userId={userId} />
-            </div>
-          }
-        />
+        <ProfileHeader>
+          <ProfileButtons {...this.props} />
+        </ProfileHeader>
+
         <div>
           {
             user && user.collections &&
