@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import isEmpty from 'is-empty';
 
 import ProfileHeader from '../../containers/ProfileHeader';
 import ProfileCollections from '../../containers/ProfileCollections';
@@ -15,9 +14,10 @@ class Profile extends Component {
 
   componentDidMount() {
     const { userId, user, getProfile } = this.props;
-    if (!isEmpty(user)) return;
 
-    getProfile(userId);
+    if (!user) {
+      getProfile(userId);
+    }
   }
 
   render() {
@@ -33,21 +33,19 @@ class Profile extends Component {
             </div>
           }
         />
-        {
-          !isEmpty(user) &&
-          <div>
-            {
-              !isEmpty(user.collections) && user.collections.map((collection, index) => (
-                <ProfileCollections
-                  index={index}
-                  key={collection._id}
-                  collection={collection}
-                  userId={user._id}
-                />
-              ))
-            }
-          </div>
-        }
+        <div>
+          {
+            user && user.collections &&
+            user.collections.map((collection, index) => (
+              <ProfileCollections
+                index={index}
+                key={collection._id}
+                collection={collection}
+                userId={user._id}
+              />
+            ))
+          }
+        </div>
       </main>
     )
   }

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import isEmpty from 'is-empty';
 
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
 
-import InteractionButtons from '../InteractionButtons';
+import InteractionButtons from '../../components/InteractionButtons';
 
 import './style.css';
 
@@ -25,7 +24,7 @@ class ProfileHeader extends Component {
     return (
       <div>
         {
-          !isEmpty(user) &&
+          user &&
           <Paper zDepth={0} className="profile-header" style={{ backgroundColor: "#6D8EAD" }}>
             <div className="profile-info">
               <div className="profile-photo">
