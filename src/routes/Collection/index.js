@@ -11,7 +11,7 @@ import './style.css';
 
 class Collection extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { currentCollection, match, getProfile } = this.props;
     const { userId } = match.params;
 

@@ -11,7 +11,7 @@ import './style.css';
 class Home extends Component {
 
   // If an user in logged in redirects profile, else fetches random collections
-  componentWillMount() {
+  componentDidMount() {
     const { loggedUser, getRandomCollections, history } = this.props;
 
     if (loggedUser) history.push(`/users/${loggedUser}`);
