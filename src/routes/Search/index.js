@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import UserCard from '../../components/UserCard';
-import CollectionCard from '../../components/CollectionCard';
+import CollectionCard from '../../components/Collections/CollectionCard';
 
 import './style.css';
 
