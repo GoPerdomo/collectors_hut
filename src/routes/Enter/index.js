@@ -20,7 +20,6 @@ class Enter extends Component {
   render() {
     return (
       <main className="enter">
-        <h1>Login to your account or register</h1>
         <LoginRegister />
       </main>
     )

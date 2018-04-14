@@ -46,11 +46,10 @@ export default ({ user, collection }) => {
           </NavLink>
         }
       />
-      <div
-        className="search-collection-preview"
-      >
+      <div className="collection-preview">
         {
-          collection.items && collection.items.map((item, index) => {
+          collection.items &&
+          collection.items.map((item, index) => {
             if (index < maxItems)
               return (
                 <div key={item._id}>

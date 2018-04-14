@@ -1,15 +1,15 @@
-.search-collection-preview {
+.collection-preview {
   display: flex;
   justify-content: center;
   padding-bottom: 16px;
 }
 
-.search-collection-preview:hover {
+.collection-preview:hover {
   cursor: pointer;
   opacity: 0.5;
 }
 
-.search-collection-preview img {
+.collection-preview img {
   vertical-align: top;
   height: 160px;
   max-width: 235px;
