@@ -7,20 +7,19 @@ import './style.css';
 
 class Enter extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { loggedUser, history } = this.props;
     if (loggedUser) history.push(`/users/${loggedUser}`);
   }
 
-  componentWillReceiveProps(props) {
-    const { loggedUser, history } = props;
+  componentDidUpdate(prevProps, prevState) {
+    const { loggedUser, history } = this.props;
     if (loggedUser) history.push(`/users/${loggedUser}`);
   }
 
   render() {
     return (
       <main className="enter">
-        <h1>Login to your account or register</h1>
         <LoginRegister />
       </main>
     )

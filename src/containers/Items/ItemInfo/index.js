@@ -42,13 +42,13 @@ class ItemInfo extends Component {
               currentCollection.name
             }
           </h1>
+          <h2 className="item-name">{name}</h2>
           <div style={{ display: "flex" }} >
             <div className="item-photo">
               <img src={photo} alt="" />
             </div>
             <div className="item-info">
-              <h2>{name}</h2>
-              <List className="item-info-list">
+              <List className="item-info-list" style={{ padding: "0" }}>
                 <ListItem
                   primaryText="Description"
                   open

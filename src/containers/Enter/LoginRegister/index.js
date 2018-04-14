@@ -108,106 +108,109 @@ class LoginRegister extends Component {
     const { login, register } = this.state;
 
     return (
-      <Paper className="login-register">
-        <Tabs
-          tabItemContainerStyle={{ backgroundColor: "#6D8EAD" }}
-          inkBarStyle={{ backgroundColor: "#FF6517" }}
-        >
-          <Tab label="Login" >
-            <div>
-              <form onSubmit={this.handleLoginSubmit}>
-                <TextField
-                  id="login-email"
-                  hintText="Email"
-                  required
-                  fullWidth
-                  onChange={this.handleLoginContentChange}
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={login.email}
-                />
-                <TextField
-                  id="login-password"
-                  hintText="Password"
-                  type="password"
-                  required
-                  fullWidth
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  onChange={this.handleLoginContentChange}
-                  value={login.password}
-                />
-                <RaisedButton
-                  fullWidth
-                  type="submit"
-                  label="Login"
-                  labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-                  backgroundColor="#FF6517"
-                />
-              </form>
-            </div>
-          </Tab>
-          <Tab label="Register" >
-            <div>
-              <form onSubmit={this.handleRegisterSubmit}>
-                <TextField
-                  id="register-firstname"
-                  hintText="First Name"
-                  required
-                  fullWidth
-                  onChange={this.handleRegisterContentChange}
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={register.firstName}
-                />
-                <TextField
-                  id="register-lastname"
-                  hintText="Last Name"
-                  required
-                  fullWidth
-                  onChange={this.handleRegisterContentChange}
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={register.lastName}
-                />
-                <TextField
-                  id="register-email"
-                  hintText="Email"
-                  required
-                  fullWidth
-                  onChange={this.handleRegisterContentChange}
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  value={register.email}
-                />
-                <TextField
-                  id="register-password"
-                  hintText="Password"
-                  type="password"
-                  required
-                  fullWidth
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  onChange={this.handleRegisterContentChange}
-                  value={register.password}
-                />
-                <TextField
-                  id="confirm-password"
-                  hintText="Confirm Password"
-                  type="password"
-                  required
-                  fullWidth
-                  errorText={(register.password === register.confirmPassword ? null : "Passwords don't match")}
-                  underlineFocusStyle={{ borderColor: "#FF6517" }}
-                  onChange={this.handleRegisterContentChange}
-                  value={register.confirmPassword}
-                />
-                <RaisedButton
-                  fullWidth
-                  type="submit"
-                  label="Register"
-                  labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-                  backgroundColor="#FF6517"
-                />
-              </form>
-            </div>
-          </Tab>
-        </Tabs>
-      </Paper>
+      <section className="login-register">
+        <h1>Login to your account or register</h1>
+        <Paper>
+          <Tabs
+            tabItemContainerStyle={{ backgroundColor: "#6D8EAD" }}
+            inkBarStyle={{ backgroundColor: "#FF6517" }}
+          >
+            <Tab label="Login" >
+              <div>
+                <form onSubmit={this.handleLoginSubmit}>
+                  <TextField
+                    id="login-email"
+                    hintText="Email"
+                    required
+                    fullWidth
+                    onChange={this.handleLoginContentChange}
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    value={login.email}
+                  />
+                  <TextField
+                    id="login-password"
+                    hintText="Password"
+                    type="password"
+                    required
+                    fullWidth
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    onChange={this.handleLoginContentChange}
+                    value={login.password}
+                  />
+                  <RaisedButton
+                    fullWidth
+                    type="submit"
+                    label="Login"
+                    labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+                    backgroundColor="#FF6517"
+                  />
+                </form>
+              </div>
+            </Tab>
+            <Tab label="Register" >
+              <div>
+                <form onSubmit={this.handleRegisterSubmit}>
+                  <TextField
+                    id="register-firstname"
+                    hintText="First Name"
+                    required
+                    fullWidth
+                    onChange={this.handleRegisterContentChange}
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    value={register.firstName}
+                  />
+                  <TextField
+                    id="register-lastname"
+                    hintText="Last Name"
+                    required
+                    fullWidth
+                    onChange={this.handleRegisterContentChange}
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    value={register.lastName}
+                  />
+                  <TextField
+                    id="register-email"
+                    hintText="Email"
+                    required
+                    fullWidth
+                    onChange={this.handleRegisterContentChange}
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    value={register.email}
+                  />
+                  <TextField
+                    id="register-password"
+                    hintText="Password"
+                    type="password"
+                    required
+                    fullWidth
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    onChange={this.handleRegisterContentChange}
+                    value={register.password}
+                  />
+                  <TextField
+                    id="confirm-password"
+                    hintText="Confirm Password"
+                    type="password"
+                    required
+                    fullWidth
+                    errorText={(register.password === register.confirmPassword ? null : "Passwords don't match")}
+                    underlineFocusStyle={{ borderColor: "#FF6517" }}
+                    onChange={this.handleRegisterContentChange}
+                    value={register.confirmPassword}
+                  />
+                  <RaisedButton
+                    fullWidth
+                    type="submit"
+                    label="Register"
+                    labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+                    backgroundColor="#FF6517"
+                  />
+                </form>
+              </div>
+            </Tab>
+          </Tabs>
+        </Paper>
+      </section>
     )
   }
 };
