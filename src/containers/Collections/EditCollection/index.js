@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog/Dialog';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import EditCollectionButton from '../../../components/Buttons/CollectionButtons/EditCollectionButton';
 
 import { editCollection } from '../../../store/actions';
 
+// TODO: Refactor
 
 class EditCollection extends Component {
 
@@ -53,7 +56,7 @@ class EditCollection extends Component {
 
     event.preventDefault();
 
-    if(name) {
+    if (name) {
       editCollection(userId, collection._id, collectionInfo);
       this.handleRequestClose();
     }
@@ -71,12 +74,7 @@ class EditCollection extends Component {
 
     return (
       <div>
-        <RaisedButton
-          onClick={this.handleButtonClick}
-          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-          backgroundColor="#ffffff"
-          label={"Edit collection"}
-        />
+        <EditCollectionButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}

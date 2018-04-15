@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import CollectionButtons from '../../components/Buttons/CollectionButtons';
+import CollectionButtons from '../../components/Buttons/ConfigButtons/CollectionButtons';
 import Display from '../../components/Layout/Display';
 import CollectionName from '../../components/Collections/CollectionName';
 import CollectionInfo from '../../components/Collections/CollectionInfo';

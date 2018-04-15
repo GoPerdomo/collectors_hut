@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
 import Dialog from 'material-ui/Dialog';
 
+import DeleteCollectionButton from '../../../components/Buttons/CollectionButtons/DeleteCollectionButton';
+
 import { deleteCollection } from '../../../store/actions';
+
+// TODO: Refactor
 
 class DeleteCollection extends Component {
 
@@ -38,17 +40,7 @@ class DeleteCollection extends Component {
   render() {
     return (
       <div>
-         <IconButton
-          onClick={this.handleButtonClick}
-          iconStyle={{ borderRadius: "50px", width: "36px", height: "36px", padding: "0" }}
-          style={{ width: "36px", height: "36px", padding: "0" }}
-        >
-          <ActionDelete
-            color="#FFFFFF"
-            hoverColor="#EBEBEB"
-            viewBox="1 1 22 22"
-          />
-        </IconButton>
+        <DeleteCollectionButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           title="Are you sure you want to delete?"

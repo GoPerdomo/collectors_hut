@@ -5,12 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import Dialog from 'material-ui/Dialog';
+
+import AddItemButton from '../../../components/Buttons/ItemButtons/AddItemButton';
 
 import { addItem } from '../../../store/actions';
 
+// TODO: Refactor
 
 class AddItem extends Component {
 
@@ -115,17 +116,7 @@ class AddItem extends Component {
 
     return (
       <div>
-        <IconButton
-          onClick={this.handleButtonClick}
-          iconStyle={{ borderRadius: "50px", backgroundColor: "ffffff", width: "36px", height: "36px", padding: "0" }}
-          style={{ width: "36px", height: "36px", padding: "0" }}
-        >
-          <ContentAddCircle
-            color="#FF6517"
-            hoverColor="#d95a2f"
-            viewBox="1 1 22 22"
-          />
-        </IconButton>
+        <AddItemButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}

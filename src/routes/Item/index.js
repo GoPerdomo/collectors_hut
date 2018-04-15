@@ -5,7 +5,7 @@ import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import CollectionName from '../../components/Collections/CollectionName';
 import Display from '../../components/Layout/Display';
 import ItemInfo from '../../components/Items/ItemInfo';
-import ItemButtons from '../../components/Buttons/ItemButtons';
+import ItemButtons from '../../components/Buttons/ConfigButtons/ItemButtons';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';

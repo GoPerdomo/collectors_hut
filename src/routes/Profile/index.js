@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import ProfileCollections from '../../components/Profile/ProfileCollections';
-import ProfileButtons from '../../components/Buttons/ProfileButtons';
+import ProfileButtons from '../../components/Buttons/ConfigButtons/ProfileButtons';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';

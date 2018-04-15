@@ -7,8 +7,11 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Dialog from 'material-ui/Dialog';
 
+import EditItemButton from '../../../components/Buttons/ItemButtons/EditItemButton';
+
 import { editItem } from '../../../store/actions';
 
+// TODO: Refactor
 
 class EditItem extends Component {
 
@@ -132,12 +135,7 @@ class EditItem extends Component {
 
     return (
       <div>
-        <RaisedButton
-          onClick={this.handleButtonClick}
-          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-          backgroundColor="#ffffff"
-          label={"Edit item"}
-        />
+        <EditItemButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}
