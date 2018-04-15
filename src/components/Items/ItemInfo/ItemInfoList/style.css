@@ -1,0 +1,8 @@
+.item-info-list {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: left;
+}

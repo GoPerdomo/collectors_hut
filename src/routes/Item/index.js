@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import ItemInfo from '../../containers/Items/ItemInfo';
+import CollectionName from '../../components/Collections/CollectionName';
+import Display from '../../components/Layout/Display';
+import ItemInfo from '../../components/Items/ItemInfo';
 import ItemButtons from '../../components/Buttons/ItemButtons';
+import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
@@ -21,18 +24,26 @@ class Item extends Component {
   }
 
   render() {
-    const { currentItem } = this.props;
+    const { user, userId, currentCollection } = this.props;    
+
+    if (!user) {
+      return (
+        <main className="profile">
+          <Loading />
+        </main>
+      )
+    }
 
     return (
       <main className="item">
         <ProfileHeader>
-          <ItemButtons {...this.props} {...this.p} />
+          <ItemButtons {...this.props} />
         </ProfileHeader>
 
-        {
-          currentItem &&
-          <ItemInfo currentItem={currentItem} />
-        }
+        <Display>
+          <CollectionName userId={userId} collection={currentCollection} />
+          <ItemInfo {...this.props} />
+        </Display>
       </main>
     )
   }
@@ -41,10 +52,11 @@ class Item extends Component {
 const mapStateToProps = (state, props) => {
   const { loggedUser } = state;
   const { userId, collectionId, itemId } = props.match.params;
+  let currentCollection;
   let currentItem;
 
   if (state[userId] && state[userId].collections) {
-    const currentCollection = state[userId].collections.find(collection => collection._id === collectionId);
+    currentCollection = state[userId].collections.find(collection => collection._id === collectionId);
 
     if (currentCollection.items) {
       currentItem = currentCollection.items.find(item => item._id === itemId);
@@ -54,8 +66,10 @@ const mapStateToProps = (state, props) => {
   return (
     {
       loggedUser,
+      userId,
       itemId,
       user: state[userId],
+      currentCollection,
       currentItem
     }
   )

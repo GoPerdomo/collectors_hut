@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import CollectionButtons from '../../components/Buttons/CollectionButtons';
+import Display from '../../components/Layout/Display';
+import CollectionName from '../../components/Collections/CollectionName';
 import CollectionInfo from '../../components/Collections/CollectionInfo';
+import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
@@ -21,8 +24,15 @@ class Collection extends Component {
   }
 
   render() {
-    const { currentCollection } = this.props;
+    const { user, userId, currentCollection } = this.props;
 
+    if (!user) {
+      return (
+        <main className="profile">
+          <Loading />
+        </main>
+      )
+    }
 
     return (
       <main className="collection">
@@ -30,10 +40,10 @@ class Collection extends Component {
           <CollectionButtons {...this.props} />
         </ProfileHeader>
 
-        {
-          currentCollection &&
+        <Display>
+          <CollectionName userId={userId} collection={currentCollection} />
           <CollectionInfo {...this.props} />
-        }
+        </Display>
       </main>
     )
   }

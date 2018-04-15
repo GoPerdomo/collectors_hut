@@ -17,24 +17,15 @@ class Search extends Component {
     }
 
     if (searchType === "user") {
-      return results.map(result => <UserCard key={result.user._id} user={result.user} loggedUser={loggedUser} />)
+      return results.map(({ user }) => (
+        <UserCard key={user._id} user={user} loggedUser={loggedUser} />
+      ));
     }
 
     if (searchType === "collection") {
-      return results.map(result => {
-        const { collection, user } = result;
-
-        if (props[user._id]) {
-          const stateCollections = props[user._id].collections;
-
-          for (const stateCollection of stateCollections) {
-            if (collection._id === stateCollection._id) {
-              collection.items = stateCollection.items
-            }
-          }
-        }
-        return <CollectionCard key={collection._id} collection={collection} user={user} />
-      })
+      return results.map(({ user, collection }) => (
+        <CollectionCard key={collection._id} collection={collection} user={user} />
+      ));
     }
   }
 
@@ -54,13 +45,32 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   let newState = { ...state };
-  const { loggedUser } = newState;
+  const { loggedUser, searchType, results } = newState;
 
-  if (newState.results) {
-    const newResults = newState.results.filter(result => result.user._id !== loggedUser);
+  if (results) {
+    // Removes logged user from results
+    const newResults = results.filter(result => result.user._id !== loggedUser);
+
+    newResults.map(result => {
+      const { collection, user } = result;
+
+      // Populate collections with items
+      if (searchType === "collection" && state[user._id]) {
+        const stateCollections = state[user._id].collections;
+
+        for (const stateCollection of stateCollections) {
+          if (collection._id === stateCollection._id) {
+            collection.items = stateCollection.items
+          }
+        }
+      }
+
+      return result;
+    });
 
     newState = { ...newState, results: newResults }
   }
+
 
   return (
     {

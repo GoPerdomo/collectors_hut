@@ -1,0 +1,35 @@
+.profile-collection-info {
+  width: 50%;
+  height: inherit;
+  text-align: justify;
+  background-color: #6D8EAD;
+}
+
+.profile-collection-info-title-wrapper {
+  height: 64px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: #335173;
+}
+
+.profile-collection-info-title {
+  cursor: pointer;
+  width: fit-content;
+  margin: 0;
+  padding-left: 25px;
+  font-size: 2em;
+  color: #FFFFFF;
+}
+
+.profile-collection-description {
+  height: 256px;
+  padding: 0 25px;
+  overflow-y: auto;
+}
+
+.profile-collection-description p {
+  color: #FFFFFF;
+  margin-top: 10px;
+  font-weight: 300;
+}
