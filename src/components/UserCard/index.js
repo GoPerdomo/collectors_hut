@@ -3,46 +3,34 @@ import { NavLink } from 'react-router-dom';
 
 import { Card, CardHeader } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
 
+import ProfileChips from '../Profile/ProfileInfo/ProfileChips';
 import InteractionButtons from '../Buttons/InteractionButtons';
 
 import './style.css';
 
 export default ({ user, loggedUser }) => {
-  const { _id, firstName, lastName, photo, collections } = user;
-  const maxChips = 3;
+  const { _id, firstName, lastName, photo } = user;
 
   return (
     <Card
       className="search-user-card"
+      style={{ backgroundColor: "#6D8EAD" }}
       zDepth={0}
     >
       <CardHeader
         titleStyle={{ fontSize: "1.5em", fontWeight: "bold" }}
-        subtitleStyle={{ display: "flex" }}
+        subtitleStyle={{ display: "flex", paddingTop: "1em" }}
         style={{ paddingLeft: "40px" }}
         title={
           <NavLink
             to={`/users/${_id}`}
-            style={{ textDecoration: "none", color: "#000" }}
+            style={{ textDecoration: "none", color: "#fff" }}
           >
             {firstName} {lastName}
           </NavLink>
         }
-        subtitle={
-          collections.filter((collection, index) => index < maxChips)
-            .map(collection => (
-              <Chip
-                key={collection._id}
-                style={{ marginRight: 3, marginBottom: 3 }}
-              >
-                {
-                  collection.name
-                }
-              </Chip>
-            ))
-        }
+        subtitle={<ProfileChips user={user} />}
         avatar={
           <Avatar
             backgroundColor="white"
