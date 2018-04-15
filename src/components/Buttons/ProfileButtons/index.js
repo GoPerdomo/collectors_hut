@@ -4,6 +4,8 @@ import InteractionButtons from '../InteractionButtons';
 import EditProfile from '../../../containers/Profile/EditProfile'
 import AddCollection from '../../../containers/Collections/AddCollection';
 
+import './style.css';
+
 export default ({ loggedUser, user, userId }) => {
 
   if (loggedUser === userId) {

@@ -1,0 +1,8 @@
+.profile-photo {
+  margin: auto 3% auto 0;
+  height: 140px;
+}
+
+.profile-photo img {
+  cursor: pointer;
+}
