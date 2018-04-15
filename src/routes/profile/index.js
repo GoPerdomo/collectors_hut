@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import ProfileCollections from '../../containers/Collections/ProfileCollections';
 import ProfileButtons from '../../components/Buttons/ProfileButtons';
+import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
@@ -22,15 +23,23 @@ class Profile extends Component {
   render() {
     const { user } = this.props;
 
+    if (!user) {
+      return (
+        <main className="profile">
+          <Loading />
+        </main>
+      )
+    }
+
     return (
       <main className="profile">
         <ProfileHeader>
           <ProfileButtons {...this.props} />
         </ProfileHeader>
 
-        <div>
+        <section>
           {
-            user && user.collections &&
+            user &&
             user.collections.map((collection, index) => (
               <ProfileCollections
                 index={index}
@@ -40,7 +49,7 @@ class Profile extends Component {
               />
             ))
           }
-        </div>
+        </section>
       </main>
     )
   }

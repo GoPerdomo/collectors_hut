@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import HomeLogo from '../../components/Images/HomeLogo';
 import CollectionCard from '../../components/Collections/CollectionCard';
+import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
 
@@ -29,14 +30,15 @@ class Home extends Component {
       <main className="home">
         <HomeLogo />
         {
-          chosenCollections &&
-          chosenCollections.map(currentCollection => (
-            <CollectionCard
-              key={currentCollection.collection._id}
-              collection={currentCollection.collection}
-              user={currentCollection.user}
-            />
-          ))
+          !chosenCollections
+            ? <Loading />
+            : chosenCollections.map(currentCollection => (
+              <CollectionCard
+                key={currentCollection.collection._id}
+                collection={currentCollection.collection}
+                user={currentCollection.user}
+              />
+            ))
         }
       </main>
     )
