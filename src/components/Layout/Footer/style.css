@@ -1,28 +1,3 @@
-/* Header */
-
-header {
-  background-color: #6D8EAD;
-}
-
-header>div {
-  width: 80%;
-  height: 100px;
-  max-width: 1400px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  margin: auto;
-  margin-bottom: 50px;
-}
-
-.header-logo {
-  width: 170px;
-}
-
-/* Header */
-
-/* Footer */
-
 footer {
   margin-top: 50px;
   display: flex;
@@ -65,5 +40,3 @@ footer p {
 .footer-follow-icons svg:hover {
   cursor: pointer;
 }
-
-/* Footer */
