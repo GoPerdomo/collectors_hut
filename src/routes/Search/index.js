@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import UserCard from '../../components/UserCard';
-import CollectionCard from '../../components/Collections/CollectionCard';
+import UserCard from '../../components/SearchCards/UserCard';
+import CollectionCard from '../../components/SearchCards/CollectionCard';
 
 import './style.css';
 

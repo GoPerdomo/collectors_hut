@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import HomeLogo from '../../components/Images/HomeLogo';
-import CollectionCard from '../../components/Collections/CollectionCard';
+import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
