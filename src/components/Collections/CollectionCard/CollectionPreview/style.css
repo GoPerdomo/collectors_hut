@@ -5,12 +5,10 @@
 }
 
 .collection-preview:hover {
-  cursor: pointer;
   opacity: 0.5;
 }
 
 .collection-preview img {
-  vertical-align: top;
   height: 160px;
   max-width: 235px;
   object-fit: cover;

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ItemPhoto from '../ItemPhoto';
-import ItemInfoList from '../ItemInfoList';
+import ItemPhoto from './ItemPhoto';
+import ItemInfoList from './ItemInfoList';
 
 import './style.css';
 

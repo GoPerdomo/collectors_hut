@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import ProfileCollections from '../../containers/Collections/ProfileCollections';
+import ProfileCollections from '../../components/Profile/ProfileCollections';
 import ProfileButtons from '../../components/Buttons/ProfileButtons';
 import Loading from '../../components/Loading';
 
@@ -38,9 +38,8 @@ class Profile extends Component {
         </ProfileHeader>
 
         {
-          user.collections.map((collection, index) => (
+          user.collections.map((collection) => (
             <ProfileCollections
-              index={index}
               key={collection._id}
               collection={collection}
               userId={user._id}
