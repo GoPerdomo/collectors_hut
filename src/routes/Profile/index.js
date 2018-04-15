@@ -37,19 +37,16 @@ class Profile extends Component {
           <ProfileButtons {...this.props} />
         </ProfileHeader>
 
-        <section>
-          {
-            user &&
-            user.collections.map((collection, index) => (
-              <ProfileCollections
-                index={index}
-                key={collection._id}
-                collection={collection}
-                userId={user._id}
-              />
-            ))
-          }
-        </section>
+        {
+          user.collections.map((collection, index) => (
+            <ProfileCollections
+              index={index}
+              key={collection._id}
+              collection={collection}
+              userId={user._id}
+            />
+          ))
+        }
       </main>
     )
   }
