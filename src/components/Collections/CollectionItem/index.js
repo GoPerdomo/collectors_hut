@@ -1,24 +1,12 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 
-class CollectionItem extends Component {
-
-  selectItem = () => {
-    const { history, userId, collectionId, itemId } = this.props;
-
-    history.push(`/users/${userId}/collections/${collectionId}/items/${itemId}`);
-  }
-
-  render() {
-
-    return (
-      <div className="collection-item-photo-wrapper" onClick={this.selectItem}>
-        <img className="collection-item-photo" src={this.props.photo} alt="" />
-      </div>
-    )
-  }
-}
-
-export default withRouter(CollectionItem);
+export default ({ userId, collectionId, item }) => (
+  <Link to={`/users/${userId}/collections/${collectionId}/items/${item._id}`}>
+    <div className="collection-item-photo-wrapper">
+      <img className="collection-item-photo" src={item.photo} alt={`Preview of ${item.name}`} />
+    </div>
+  </Link>
+);

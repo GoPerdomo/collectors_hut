@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import ItemInfo from '../../containers/Items/ItemInfo';
+import CollectionName from '../../components/Collections/CollectionName';
+import Display from '../../components/Layout/Display';
+import ItemInfo from '../../components/Items/ItemInfo';
 import ItemButtons from '../../components/Buttons/ItemButtons';
 import Loading from '../../components/Loading';
 
@@ -22,7 +24,7 @@ class Item extends Component {
   }
 
   render() {
-    const { user, currentCollection, currentItem } = this.props;
+    const { user, userId, currentCollection } = this.props;    
 
     if (!user) {
       return (
@@ -35,10 +37,13 @@ class Item extends Component {
     return (
       <main className="item">
         <ProfileHeader>
-          <ItemButtons {...this.props} {...this.p} />
+          <ItemButtons {...this.props} />
         </ProfileHeader>
 
-        <ItemInfo currentItem={currentItem} currentCollection={currentCollection} />
+        <Display>
+          <CollectionName userId={userId} collection={currentCollection} />
+          <ItemInfo {...this.props} />
+        </Display>
       </main>
     )
   }
@@ -61,6 +66,7 @@ const mapStateToProps = (state, props) => {
   return (
     {
       loggedUser,
+      userId,
       itemId,
       user: state[userId],
       currentCollection,

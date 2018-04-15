@@ -1,0 +1,8 @@
+.item-name {
+  margin: 0;
+}
+
+.item-info {
+  display: flex;
+  margin: 2em 0;
+}

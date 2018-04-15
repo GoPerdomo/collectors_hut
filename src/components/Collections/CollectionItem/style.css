@@ -2,10 +2,6 @@
   height: 230px;
 }
 
-.collection-item-photo-wrapper:hover {
-  cursor: pointer;
-}
-
 .collection-item-photo {
   width: 100%;
   height: 100%;
