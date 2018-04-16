@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import SearchBar from '../../../containers/Layout/SearchBar';
-import LoginLogoutButton from '../../../containers/Enter/LoginLogoutButton';
+import LoginLogout from '../../../containers/Enter/LoginLogout';
 
 import './style.css';
 
@@ -11,7 +11,7 @@ export default () => (
     <div>
       <NavLink
         to="/"
-        style={{ textDecoration: "none", color: "#fff", margin: "auto 0" }}
+        style={{ textDecoration: "none", color: "#fff" }}
       >
         <img
           className="header-logo"
@@ -20,7 +20,7 @@ export default () => (
       </NavLink>
 
       <SearchBar />
-      <LoginLogoutButton />
+      <LoginLogout />
     </div>
   </header>
 );
