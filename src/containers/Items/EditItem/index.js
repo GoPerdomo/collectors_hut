@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Dialog from 'material-ui/Dialog';
 
 import EditItemButton from '../../../components/Buttons/ItemButtons/EditItemButton';
-import EditItemForm from '../../../components/Items/ItemForms/EditItemForm';
+import EditItemForm from '../../../components/Forms/ItemForms/EditItemForm';
 
 import { editItem } from '../../../store/actions';
 

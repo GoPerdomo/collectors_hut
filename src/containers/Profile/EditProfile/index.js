@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Dialog from 'material-ui/Dialog';
 
 import EditProfileButton from '../../../components/Buttons/ProfileButtons/EditProfileButton';
-import EditProfileForm from '../../../components/Profile/ProfileForms/EditProfileForm';
+import EditProfileForm from '../../../components/Forms/ProfileForms/EditProfileForm';
 
 import { editUser } from '../../../store/actions';
 
