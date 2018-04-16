@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -9,13 +9,10 @@ import SearchForm from '../../../components/Forms/SearchForm';
 import { search } from '../../../store/actions';
 
 
-class SearchBar extends Component {
+const SearchBar = ({ search, history }) => {
 
-  handleSubmit = (event, searchInfo) => {
-    console.log(searchInfo);
-
+  const handleSubmit = (event, searchInfo) => {
     const { searchTerms, searchType } = searchInfo;
-    const { search, history } = this.props;
 
     event.preventDefault();
 
@@ -25,26 +22,24 @@ class SearchBar extends Component {
     }
   };
 
-  render() {
-    return (
-      <Toolbar style={{
-        display: "block",
-        height: "40px",
-        width: "550px",
-        margin: "auto 0",
-        backgroundColor: "#FFFFFF",
-        borderRadius: "10px",
-      }}
-      >
-        <SearchForm handleSubmit={this.handleSubmit} />
-      </Toolbar>
-    )
-  }
-}
+  return (
+    <Toolbar style={{
+      display: "block",
+      height: "40px",
+      width: "550px",
+      margin: "auto 0",
+      backgroundColor: "#FFFFFF",
+      borderRadius: "10px",
+    }}
+    >
+      <SearchForm handleSubmit={handleSubmit} />
+    </Toolbar>
+  )
+};
 
 
 const mapDispatchToProps = (dispatch) => ({
   search: (searchTerms, searchType) => dispatch(search(searchTerms, searchType))
-})
+});
 
 export default withRouter(connect(null, mapDispatchToProps)(SearchBar));

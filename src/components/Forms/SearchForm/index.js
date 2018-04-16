@@ -25,7 +25,13 @@ export default class SearchForm extends Component {
 
     return (
       <form className="search-form"
-        onSubmit={event => handleSubmit(event, this.state)}
+        onSubmit={event => {
+          handleSubmit(event, this.state)
+          this.setState({
+            searchTerms: "",
+            searchType: "user",
+          })
+        }}
       >
         <ToolbarGroup>
           <TextField
