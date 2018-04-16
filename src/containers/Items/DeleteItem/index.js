@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
 import DeleteItemButton from '../../../components/Buttons/ItemButtons/DeleteItemButton';
+import CancelButton from '../../../components/Buttons/ConfirmButtons/CancelButton';
+import DeleteButton from '../../../components/Buttons/ConfirmButtons/DeleteButton';
 
 import { deleteItem } from '../../../store/actions';
 
@@ -36,6 +37,7 @@ class DeleteItem extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <DeleteItemButton handleButtonClick={this.handleButtonClick} />
@@ -46,19 +48,8 @@ class DeleteItem extends Component {
           onRequestClose={this.handleRequestClose}
           contentStyle={{ width: "35%" }}
           actions={[
-            <FlatButton
-              label="Cancel"
-              onClick={this.handleRequestClose}
-              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-              backgroundColor="#FF6517"
-            />,
-            <FlatButton
-              label="Delete"
-              onClick={this.handleDeleteButton}
-              style={{ marginLeft: "10px" }}
-              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-              backgroundColor="#6D8EAD"
-            />,
+            <CancelButton handleRequestClose={this.handleRequestClose} />,
+            <DeleteButton handleDeleteButton={this.handleDeleteButton} />,
           ]}
         />
       </div>
