@@ -11,6 +11,8 @@ import ActionSearch from 'material-ui/svg-icons/action/search';
 
 import { search } from '../../../store/actions';
 
+// TODO: Refactor
+
 class SearchBar extends Component {
 
   constructor(props) {

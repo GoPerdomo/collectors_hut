@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import { logout } from '../../../store/actions';
 
+// TODO: Refactor
+
 class LoginLogoutButton extends Component {
 
   handleLogoutClick = () => {

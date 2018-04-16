@@ -11,6 +11,8 @@ import { login, register } from '../../../store/actions';
 
 import './style.css';
 
+// TODO: Refactor
+
 class LoginRegister extends Component {
 
   constructor(props) {

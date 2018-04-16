@@ -9,8 +9,6 @@ import DeleteCollectionButton from '../../../components/Buttons/CollectionButton
 
 import { deleteCollection } from '../../../store/actions';
 
-// TODO: Refactor
-
 class DeleteCollection extends Component {
 
   constructor(props) {
