@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 
-import EditProfileForm from '../../../components/Profile/EditProfileForm';
+import EditProfileButton from '../../../components/Buttons/ProfileButtons/EditProfileButton';
+import EditProfileForm from '../../../components/Profile/ProfileForms/EditProfileForm';
 
 import { editUser } from '../../../store/actions';
 
@@ -42,12 +42,7 @@ class EditProfile extends Component {
 
     return (
       <div>
-        <RaisedButton
-          onClick={this.handleButtonClick}
-          labelStyle={{ color: "#6D8EAD", fontWeight: "bold" }}
-          backgroundColor="#ffffff"
-          label={"Edit profile"}
-        />
+        <EditProfileButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}
@@ -56,7 +51,6 @@ class EditProfile extends Component {
         >
           <EditProfileForm
             user={this.props.user}
-            {...this.state.profileInfo}
             handleSubmit={this.handleSubmit}
           />
         </Dialog>

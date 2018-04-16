@@ -1,8 +1,8 @@
 import React from 'react';
 
-import InteractionButtons from '../InteractionButtons';
-import EditProfile from '../../../containers/Profile/EditProfile'
-import AddCollection from '../../../containers/Collections/AddCollection';
+import InteractionButtons from '../../InteractionButtons';
+import EditProfile from '../../../../containers/Profile/EditProfile'
+import AddCollection from '../../../../containers/Collections/AddCollection';
 
 import './style.css';
 

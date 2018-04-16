@@ -17,7 +17,7 @@ export default props => {
       className={
         `profile-collection-preview ${items && items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
       }
-      style={{ backgroundColor: "#6D8EAD" }}
+      style={{ backgroundColor: "#6D8EAD", boxSizing: "content-box" }}
       zDepth={0}
     >
       <ItemsPreview {...props} maxItems={maxItems} />

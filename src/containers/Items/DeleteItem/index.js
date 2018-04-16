@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
 import Dialog from 'material-ui/Dialog';
+
+import DeleteItemButton from '../../../components/Buttons/ItemButtons/DeleteItemButton';
 
 import { deleteItem } from '../../../store/actions';
 
@@ -38,40 +38,30 @@ class DeleteItem extends Component {
   render() {
     return (
       <div>
-         <IconButton
-          onClick={this.handleButtonClick}
-          iconStyle={{ borderRadius: "50px", width: "36px", height: "36px", padding: "0" }}
-          style={{ width: "36px", height: "36px", padding: "0" }}
-        >
-          <ActionDelete
-            color="#FFFFFF"
-            hoverColor="#EBEBEB"
-            viewBox="1 1 22 22"
-          />
-        </IconButton>
+        <DeleteItemButton handleButtonClick={this.handleButtonClick} />
 
-      <Dialog
-        title="Are you sure you want to delete?"
-        open={this.state.open}
-        onRequestClose={this.handleRequestClose}
-        contentStyle={{ width: "35%" }}
-        actions={[
-          <FlatButton
-            label="Cancel"
-            onClick={this.handleRequestClose}
-            labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-            backgroundColor="#FF6517"
-          />,
-          <FlatButton
-            label="Delete"
-            onClick={this.handleDeleteButton}
-            style={{ marginLeft: "10px" }}
-            labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-            backgroundColor="#6D8EAD"
-          />,
-        ]}
-      />
-    </div>
+        <Dialog
+          title="Are you sure you want to delete?"
+          open={this.state.open}
+          onRequestClose={this.handleRequestClose}
+          contentStyle={{ width: "35%" }}
+          actions={[
+            <FlatButton
+              label="Cancel"
+              onClick={this.handleRequestClose}
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#FF6517"
+            />,
+            <FlatButton
+              label="Delete"
+              onClick={this.handleDeleteButton}
+              style={{ marginLeft: "10px" }}
+              labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
+              backgroundColor="#6D8EAD"
+            />,
+          ]}
+        />
+      </div>
     )
   }
 }
