@@ -27,7 +27,6 @@ const SearchBar = ({ search, history }) => {
       display: "block",
       height: "40px",
       width: "550px",
-      margin: "auto 0",
       backgroundColor: "#FFFFFF",
       borderRadius: "10px",
     }}
