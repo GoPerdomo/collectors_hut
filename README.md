@@ -65,5 +65,6 @@ A RESTful API using:
 
 ## Coming Soon ##
 
+- **Implement styled-components**
 - **Responsive Design**
-- **Deployment to Heroku**
+- **Deployment**
