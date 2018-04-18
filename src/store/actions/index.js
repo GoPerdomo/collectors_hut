@@ -48,24 +48,21 @@ export const getRandomCollections = () => async (dispatch, getState) => {
     url: 'collections',
     method: 'GET'
   });
-  const chosen = [];
+  const chosen = new Set();
   const userIdArray = [];
   const maxCollections = 6;
 
   const randomizeCollections = () => {
-    while (chosen.length < maxCollections) {
+    while (chosen.size < maxCollections) {
       const num = Math.floor(Math.random() * allCollections.length);
+      const { userId } = allCollections[num];
 
-      if (!chosen.includes(num)) {
-        const { userId } = allCollections[num];
-
-        userIdArray.push(userId);
-        chosen.push(num);
-      }
+      userIdArray.push(userId);
+      chosen.add(num);
     }
   }
 
-  const fetchSelectedUsers = async (userIdArray) => {
+  const fetchSelectedUsers = async userIdArray => {
     for (const userId of userIdArray) {
       const user = await theFetcher({
         url: `users/${userId}`,
@@ -78,8 +75,8 @@ export const getRandomCollections = () => async (dispatch, getState) => {
         });
       }
     }
-    return getState();
 
+    return getState();
   }
 
   randomizeCollections();
@@ -87,15 +84,14 @@ export const getRandomCollections = () => async (dispatch, getState) => {
   fetchSelectedUsers(userIdArray).then(state => {
     const chosenCollections = [];
     if (chosenCollections) {
-      for (const num of chosen) {
+      [...chosen].map(num => {
         const { userId } = allCollections[num];
         const user = state[userId];
-
         const collectionId = allCollections[num].collection._id;
-
         const collection = user.collections.find(collection => collection._id === collectionId);
-        chosenCollections.push({ collection, user });
-      }
+
+        return chosenCollections.push({ collection, user });
+      })
 
       dispatch({
         type: "CHOSEN_COLLECTIONS",
@@ -177,11 +173,28 @@ export const addCollection = (userId, newCollection) => async (dispatch, getStat
 };
 
 export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {
+  const { newItemInfo, newItemPhoto } = newItem;
+  const photoHeaders = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'image/png',
+    },
+    body: newItemPhoto,
+  };
+
   const item = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/add-item`,
     method: 'POST',
-    body: newItem
-  });
+    body: newItemInfo,
+  })
+    // Uploads item photo to AWS S3 if signedUrl is present
+    .then(res => {
+      return res.signedUrl
+        ? fetch(res.signedUrl, photoHeaders).then(() => res.item)
+        : res.item
+    })
+    .catch(err => console.error(err));
+
   if (item) {
     dispatch({
       type: "ADD_NEW_ITEM",
