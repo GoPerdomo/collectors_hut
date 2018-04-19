@@ -97,8 +97,8 @@ export default class AddItemForm extends Component {
           <TextField
             id="new-item-name"
             required
-            hintText="Name"
             fullWidth
+            hintText="Name"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
             value={name}
             onChange={this.handleContentChange}
@@ -148,11 +148,12 @@ export default class AddItemForm extends Component {
             value={manufacturer}
             onChange={this.handleContentChange}
           />
-          <div style={{ display: "flex", justifyContent: 'space-between' }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <SelectField
               id="new-item-condition"
               hintText="Condition"
               value={condition}
+              style={{ width: "45%" }}
               onChange={(event, index, value) => this.setState({ newItemInfo: { ...newItemInfo, condition: value } })}
             >
               <MenuItem value={"Mint"} primaryText={"Mint"} />
@@ -166,6 +167,7 @@ export default class AddItemForm extends Component {
               accept=".jpg, .png"
               underlineFocusStyle={{ borderColor: "#FF6517" }}
               inputStyle={{ position: "absolute", top: "6px" }}
+              style={{ width: "45%" }}
               onChange={this.handleContentChange}
             />
           </div>

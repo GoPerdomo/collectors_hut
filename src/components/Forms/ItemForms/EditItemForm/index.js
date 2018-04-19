@@ -159,6 +159,7 @@ export default class EditItemForm extends Component {
             id="edit-item-condition"
             onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
             value={condition}
+            style={{ width: "45%" }}
             hintText="Condition"
           >
             <MenuItem value={"Mint"} primaryText={"Mint"} />
@@ -172,6 +173,7 @@ export default class EditItemForm extends Component {
             accept=".jpg, .png"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
             inputStyle={{ position: "absolute", top: "6px" }}
+            style={{ width: "45%" }}
             onChange={this.handleContentChange}
           />
         </div>
