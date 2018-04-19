@@ -21,29 +21,29 @@ export default class EditItemForm extends Component {
 
     this.state = {
       itemInfo: {
-        name,
-        description,
-        photo: "",
-        productionYear,
-        acquisitionYear,
-        origin,
-        manufacturer,
-        condition,
+        name: name || "",
+        description: description || "",
+        productionYear: productionYear || "",
+        acquisitionYear: acquisitionYear || "",
+        origin: origin || "",
+        manufacturer: manufacturer || "",
+        condition: condition || "",
       },
+      itemPhoto: {},
     };
   }
 
-  handleContentChange = (event, content) => {    
+  handleContentChange = (event, content) => {
     let {
       name,
       description,
-      photo,
       productionYear,
       acquisitionYear,
       origin,
       manufacturer,
       condition,
     } = this.state.itemInfo;
+    let { itemPhoto } = this.state;
     const { id } = event.currentTarget;
 
     switch (id) {
@@ -52,9 +52,6 @@ export default class EditItemForm extends Component {
         break;
       case ("edit-item-description"):
         description = content;
-        break;
-      case ("edit-item-photo"):
-        photo = content;
         break;
       case ("edit-item-productionYear"):
         if (!isNaN(content)) productionYear = content;
@@ -68,6 +65,9 @@ export default class EditItemForm extends Component {
       case ("edit-item-manufacturer"):
         manufacturer = content;
         break;
+      case ("edit-item-photo"):
+        if (event.target.files[0]) itemPhoto = event.target.files[0];
+        break;
       default:
         break;
     }
@@ -76,32 +76,32 @@ export default class EditItemForm extends Component {
       itemInfo: {
         name,
         description,
-        photo,
         productionYear,
         acquisitionYear,
         origin,
         manufacturer,
         condition,
-      }
+        photoType: itemPhoto.type,
+      },
+      itemPhoto,
     });
   }
 
   render() {
+    const { handleSubmit } = this.props
     const { itemInfo } = this.state;
     const {
       name,
       description,
-      photo,
       productionYear,
       acquisitionYear,
       origin,
       manufacturer,
       condition,
     } = itemInfo;
-    const { handleSubmit } = this.props
 
     return (
-      <form onSubmit={(event) => handleSubmit(event, itemInfo)}>
+      <form onSubmit={(event) => handleSubmit(event, this.state)}>
         <TextField
           id="edit-item-name"
           hintText="Name"
@@ -119,14 +119,6 @@ export default class EditItemForm extends Component {
           multiLine
           onChange={this.handleContentChange}
           value={description}
-        />
-        <TextField
-          id="edit-item-photo"
-          hintText="Photo Link"
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          fullWidth
-          onChange={this.handleContentChange}
-          value={photo}
         />
         <TextField
           id="edit-item-productionYear"
@@ -162,17 +154,27 @@ export default class EditItemForm extends Component {
           onChange={this.handleContentChange}
           value={manufacturer}
         />
-        <SelectField
-          id="edit-item-condition"
-          onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
-          value={condition}
-          hintText="Condition"
-        >
-          <MenuItem value={"Mint"} primaryText={"Mint"} />
-          <MenuItem value={"Good"} primaryText={"Good"} />
-          <MenuItem value={"Fair"} primaryText={"Fair"} />
-          <MenuItem value={"Poor"} primaryText={"Poor"} />
-        </SelectField>
+        <div style={{ display: "flex", justifyContent: 'space-between' }}>
+          <SelectField
+            id="edit-item-condition"
+            onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
+            value={condition}
+            hintText="Condition"
+          >
+            <MenuItem value={"Mint"} primaryText={"Mint"} />
+            <MenuItem value={"Good"} primaryText={"Good"} />
+            <MenuItem value={"Fair"} primaryText={"Fair"} />
+            <MenuItem value={"Poor"} primaryText={"Poor"} />
+          </SelectField>
+          <TextField
+            id="edit-item-photo"
+            type="file"
+            accept=".jpg, .png"
+            underlineFocusStyle={{ borderColor: "#FF6517" }}
+            inputStyle={{ position: "absolute", top: "6px" }}
+            onChange={this.handleContentChange}
+          />
+        </div>
         <RaisedButton
           fullWidth
           type="submit"

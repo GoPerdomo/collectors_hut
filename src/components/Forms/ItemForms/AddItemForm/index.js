@@ -11,7 +11,7 @@ export default class AddItemForm extends Component {
     super(props);
 
     this.state = {
-      newItem: {
+      newItemInfo: {
         name: "",
         description: "",
         productionYear: "",
@@ -20,6 +20,7 @@ export default class AddItemForm extends Component {
         manufacturer: "",
         condition: "",
       },
+      newItemPhoto: {},
     };
   }
 
@@ -27,13 +28,13 @@ export default class AddItemForm extends Component {
     let {
       name,
       description,
-      photo,
       productionYear,
       acquisitionYear,
       origin,
       manufacturer,
       condition,
-    } = this.state.newItem;
+    } = this.state.newItemInfo;
+    let { newItemPhoto } = this.state;
     const { id } = event.currentTarget;
 
     switch (id) {
@@ -42,9 +43,6 @@ export default class AddItemForm extends Component {
         break;
       case ("new-item-description"):
         description = content;
-        break;
-      case ("new-item-photo"):
-        photo = content;
         break;
       case ("new-item-productionYear"):
         if (!isNaN(content)) productionYear = content;
@@ -58,120 +56,125 @@ export default class AddItemForm extends Component {
       case ("new-item-manufacturer"):
         manufacturer = content;
         break;
+      case ("new-item-photo"):
+        if (event.target.files[0]) newItemPhoto = event.target.files[0];
+        break;
       default:
         break;
     }
 
     this.setState({
-      newItem: {
+      newItemInfo: {
         name,
         description,
-        photo,
         productionYear,
         acquisitionYear,
         origin,
         manufacturer,
         condition,
-      }
+        photoType: newItemPhoto.type,
+      },
+      newItemPhoto,
     });
   }
 
   render() {
-    const { newItem } = this.state;
+    const { handleSubmit } = this.props;
+    const { newItemInfo } = this.state;
     const {
       name,
       description,
-      photo,
       productionYear,
       acquisitionYear,
       origin,
       manufacturer,
       condition,
-    } = newItem;
-    const { handleSubmit } = this.props
+    } = newItemInfo;
 
     return (
       <div>
-        <form onSubmit={(event) => handleSubmit(event, newItem)}>
+        <form onSubmit={event => handleSubmit(event, this.state)}>
           <TextField
             id="new-item-name"
-            hintText="Name"
             required
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
+            hintText="Name"
             fullWidth
-            onChange={this.handleContentChange}
+            underlineFocusStyle={{ borderColor: "#FF6517" }}
             value={name}
+            onChange={this.handleContentChange}
           />
           <TextField
             id="new-item-description"
-            hintText="Description"
             fullWidth
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
             multiLine
-            onChange={this.handleContentChange}
+            hintText="Description"
+            underlineFocusStyle={{ borderColor: "#FF6517" }}
             value={description}
+            onChange={this.handleContentChange}
           />
         </form>
-        <form onSubmit={(event) => handleSubmit(event, newItem)}>
-          <TextField
-            id="new-item-photo"
-            hintText="Photo Link"
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
-            fullWidth
-            onChange={this.handleContentChange}
-            value={photo}
-          />
+        <form onSubmit={event => handleSubmit(event, this.state)}>
           <TextField
             id="new-item-productionYear"
+            fullWidth
             hintText="Production Year"
             type="number"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
-            fullWidth
-            onChange={this.handleContentChange}
             value={productionYear}
+            onChange={this.handleContentChange}
           />
           <TextField
             id="new-item-acquisitionYear"
+            fullWidth
             hintText="Acquisition Year"
             type="number"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
-            fullWidth
-            onChange={this.handleContentChange}
             value={acquisitionYear}
+            onChange={this.handleContentChange}
           />
           <TextField
             id="new-item-origin"
             hintText="Origin"
             fullWidth
             underlineFocusStyle={{ borderColor: "#FF6517" }}
-            onChange={this.handleContentChange}
             value={origin}
+            onChange={this.handleContentChange}
           />
           <TextField
             id="new-item-manufacturer"
-            hintText="Manufacturer"
             fullWidth
+            hintText="Manufacturer"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
-            onChange={this.handleContentChange}
             value={manufacturer}
+            onChange={this.handleContentChange}
           />
-          <SelectField
-            id="new-item-condition"
-            onChange={(event, index, value) => this.setState({ newItem: { ...newItem, condition: value } })}
-            value={condition}
-            hintText="Condition"
-          >
-            <MenuItem value={"Mint"} primaryText={"Mint"} />
-            <MenuItem value={"Good"} primaryText={"Good"} />
-            <MenuItem value={"Fair"} primaryText={"Fair"} />
-            <MenuItem value={"Poor"} primaryText={"Poor"} />
-          </SelectField>
+          <div style={{ display: "flex", justifyContent: 'space-between' }}>
+            <SelectField
+              id="new-item-condition"
+              hintText="Condition"
+              value={condition}
+              onChange={(event, index, value) => this.setState({ newItemInfo: { ...newItemInfo, condition: value } })}
+            >
+              <MenuItem value={"Mint"} primaryText={"Mint"} />
+              <MenuItem value={"Good"} primaryText={"Good"} />
+              <MenuItem value={"Fair"} primaryText={"Fair"} />
+              <MenuItem value={"Poor"} primaryText={"Poor"} />
+            </SelectField>
+            <TextField
+              id="new-item-photo"
+              type="file"
+              accept=".jpg, .png"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              inputStyle={{ position: "absolute", top: "6px" }}
+              onChange={this.handleContentChange}
+            />
+          </div>
           <RaisedButton
             fullWidth
             label="Create"
             labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
             backgroundColor="#6D8EAD"
-            onClick={(event) => handleSubmit(event, newItem)}
+            onClick={event => handleSubmit(event, this.state)}
           />
         </form>
       </div>

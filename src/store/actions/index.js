@@ -1,5 +1,6 @@
 import { baseUrl } from '../../config';
 
+// Fetchers
 const createHeaders = (method, body) => ({
   method,
   headers: {
@@ -10,23 +11,27 @@ const createHeaders = (method, body) => ({
   body: JSON.stringify(body),
 });
 
-
 const theFetcher = actions => {
   const { url, method, body } = actions;
 
   return fetch(`${baseUrl}${url}`, createHeaders(method, body))
     .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-        throw Error(res.statusText)
-      }
+      return res.ok
+        ? res.json()
+        : console.error(res.statusText)
     })
-    .then(data => {
-      return data;
-    })
+    .then(data => data)
     .catch(err => console.error(err));
-}
+};
+
+// Uploads item photo to AWS S3 if signedUrl is present
+const photoSender = (res, photo) => {
+  return res.signedUrl
+    ? fetch(res.signedUrl, { method: 'PUT', body: photo })
+      .then(() => res.item)
+      .catch(err => console.error(err))
+    : res.item
+};
 
 
 // GET
@@ -48,24 +53,21 @@ export const getRandomCollections = () => async (dispatch, getState) => {
     url: 'collections',
     method: 'GET'
   });
-  const chosen = [];
+  const chosen = new Set();
   const userIdArray = [];
   const maxCollections = 6;
 
   const randomizeCollections = () => {
-    while (chosen.length < maxCollections) {
+    while (chosen.size < maxCollections) {
       const num = Math.floor(Math.random() * allCollections.length);
+      const { userId } = allCollections[num];
 
-      if (!chosen.includes(num)) {
-        const { userId } = allCollections[num];
-
-        userIdArray.push(userId);
-        chosen.push(num);
-      }
+      userIdArray.push(userId);
+      chosen.add(num);
     }
   }
 
-  const fetchSelectedUsers = async (userIdArray) => {
+  const fetchSelectedUsers = async userIdArray => {
     for (const userId of userIdArray) {
       const user = await theFetcher({
         url: `users/${userId}`,
@@ -78,8 +80,8 @@ export const getRandomCollections = () => async (dispatch, getState) => {
         });
       }
     }
-    return getState();
 
+    return getState();
   }
 
   randomizeCollections();
@@ -87,15 +89,14 @@ export const getRandomCollections = () => async (dispatch, getState) => {
   fetchSelectedUsers(userIdArray).then(state => {
     const chosenCollections = [];
     if (chosenCollections) {
-      for (const num of chosen) {
+      [...chosen].map(num => {
         const { userId } = allCollections[num];
         const user = state[userId];
-
         const collectionId = allCollections[num].collection._id;
-
         const collection = user.collections.find(collection => collection._id === collectionId);
-        chosenCollections.push({ collection, user });
-      }
+
+        return chosenCollections.push({ collection, user });
+      })
 
       dispatch({
         type: "CHOSEN_COLLECTIONS",
@@ -177,11 +178,16 @@ export const addCollection = (userId, newCollection) => async (dispatch, getStat
 };
 
 export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {
+  const { newItemInfo, newItemPhoto } = newItem;
+
   const item = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/add-item`,
     method: 'POST',
-    body: newItem
-  });
+    body: newItemInfo,
+  })
+    .then(res => photoSender(res, newItemPhoto))
+    .catch(err => console.error(err));
+
   if (item) {
     dispatch({
       type: "ADD_NEW_ITEM",
@@ -221,12 +227,16 @@ export const editCollection = (userId, collectionId, collection) => async (dispa
   }
 }
 
-export const editItem = (userId, collectionId, itemId, item) => async (dispatch, getState) => {
+export const editItem = (userId, collectionId, itemId, editedItem) => async (dispatch, getState) => {
+  const { itemInfo, itemPhoto } = editedItem;
   const updatedItem = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/items/${itemId}`,
     method: 'PUT',
-    body: item
-  });
+    body: itemInfo
+  })
+    .then(res => photoSender(res, itemPhoto))
+    .catch(err => console.error(err));
+
   if (updatedItem) {
     dispatch({
       type: "EDIT_ITEM",

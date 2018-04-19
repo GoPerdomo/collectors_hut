@@ -26,14 +26,14 @@ class EditItem extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, itemInfo ) => {
-    const { userId, item, editItem } = this.props;
-    const { name } = itemInfo;
+  handleSubmit = (event, editedItem ) => {
+    const { userId, item, editItem } = this.props;    
+    const { name } = editedItem.itemInfo;
 
     event.preventDefault();
 
     if (name) {
-      editItem(userId, item.collectionId, item._id, itemInfo);
+      editItem(userId, item.collectionId, item._id, editedItem);
       this.handleRequestClose();
     }
   }
