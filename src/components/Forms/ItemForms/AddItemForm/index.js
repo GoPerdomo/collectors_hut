@@ -79,6 +79,7 @@ export default class AddItemForm extends Component {
   }
 
   render() {
+    const { handleSubmit } = this.props;
     const { newItemInfo } = this.state;
     const {
       name,
@@ -89,7 +90,6 @@ export default class AddItemForm extends Component {
       manufacturer,
       condition,
     } = newItemInfo;
-    const { handleSubmit } = this.props;
 
     return (
       <div>
@@ -165,6 +165,7 @@ export default class AddItemForm extends Component {
               type="file"
               accept=".jpg, .png"
               underlineFocusStyle={{ borderColor: "#FF6517" }}
+              inputStyle={{ position: "absolute", top: "6px" }}
               onChange={this.handleContentChange}
             />
           </div>

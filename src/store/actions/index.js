@@ -1,5 +1,6 @@
 import { baseUrl } from '../../config';
 
+// Fetchers
 const createHeaders = (method, body) => ({
   method,
   headers: {
@@ -10,23 +11,27 @@ const createHeaders = (method, body) => ({
   body: JSON.stringify(body),
 });
 
-
 const theFetcher = actions => {
   const { url, method, body } = actions;
 
   return fetch(`${baseUrl}${url}`, createHeaders(method, body))
     .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-        throw Error(res.statusText)
-      }
+      return res.ok
+        ? res.json()
+        : console.error(res.statusText)
     })
-    .then(data => {
-      return data;
-    })
+    .then(data => data)
     .catch(err => console.error(err));
-}
+};
+
+// Uploads item photo to AWS S3 if signedUrl is present
+const photoSender = (res, photo) => {
+  return res.signedUrl
+    ? fetch(res.signedUrl, { method: 'PUT', body: photo })
+      .then(() => res.item)
+      .catch(err => console.error(err))
+    : res.item
+};
 
 
 // GET
@@ -174,25 +179,13 @@ export const addCollection = (userId, newCollection) => async (dispatch, getStat
 
 export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {
   const { newItemInfo, newItemPhoto } = newItem;
-  const photoHeaders = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'image/png',
-    },
-    body: newItemPhoto,
-  };
 
   const item = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/add-item`,
     method: 'POST',
     body: newItemInfo,
   })
-    // Uploads item photo to AWS S3 if signedUrl is present
-    .then(res => {
-      return res.signedUrl
-        ? fetch(res.signedUrl, photoHeaders).then(() => res.item)
-        : res.item
-    })
+    .then(res => photoSender(res, newItemPhoto))
     .catch(err => console.error(err));
 
   if (item) {
@@ -234,12 +227,16 @@ export const editCollection = (userId, collectionId, collection) => async (dispa
   }
 }
 
-export const editItem = (userId, collectionId, itemId, item) => async (dispatch, getState) => {
+export const editItem = (userId, collectionId, itemId, editedItem) => async (dispatch, getState) => {
+  const { itemInfo, itemPhoto } = editedItem;
   const updatedItem = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/items/${itemId}`,
     method: 'PUT',
-    body: item
-  });
+    body: itemInfo
+  })
+    .then(res => photoSender(res, itemPhoto))
+    .catch(err => console.error(err));
+
   if (updatedItem) {
     dispatch({
       type: "EDIT_ITEM",
