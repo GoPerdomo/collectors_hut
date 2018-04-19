@@ -10,19 +10,20 @@ export default class EditProfileForm extends Component {
     const { firstName, lastName } = props.user;
 
     this.state = {
-      profileInfo: {
+      userInfo: {
         firstName,
         lastName,
-        photo: "",
         email: "",
         password: "",
         confirmPassword: "",
-      }
+      },
+      userPhoto: {},
     };
   }
 
   handleContentChange = (event, content) => {
-    let { firstName, lastName, photo, email, password, confirmPassword } = this.state.profileInfo;
+    let { firstName, lastName, email, password, confirmPassword } = this.state.userInfo;
+    let { userPhoto } = this.state;
     const { id } = event.currentTarget;
 
     switch (id) {
@@ -31,9 +32,6 @@ export default class EditProfileForm extends Component {
         break;
       case ("edit-last-name"):
         lastName = content;
-        break;
-      case ("edit-photo"):
-        photo = content;
         break;
       case ("edit-email"):
         email = content;
@@ -44,92 +42,101 @@ export default class EditProfileForm extends Component {
       case ("confirm-password"):
         confirmPassword = content;
         break;
+      case ("edit-profile-photo"):
+        if (event.target.files[0]) userPhoto = event.target.files[0];
+        break;
       default:
         break;
     }
 
     this.setState({
-      profileInfo: {
+      userInfo: {
         firstName,
         lastName,
-        photo,
         email,
         password,
         confirmPassword,
-      }
+        photoType: userPhoto.type,
+      },
+      userPhoto,
     });
   }
 
   render() {
-    const { profileInfo } = this.state;
+    const { userInfo } = this.state;
     const {
       firstName,
       lastName,
-      photo,
       email,
       password,
       confirmPassword,
-    } = profileInfo;
+    } = userInfo;
 
     const { handleSubmit } = this.props
 
     return (
-      <form onSubmit={(event) => handleSubmit(event, profileInfo)}>
+      <form onSubmit={(event) => handleSubmit(event, this.state)}>
         <TextField
           id="edit-first-name"
-          hintText="First Name"
           required
           fullWidth
+          hintText="First Name"
           underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={firstName}
+          onChange={this.handleContentChange}
         />
         <TextField
           id="edit-last-name"
-          hintText="Last Name"
           required
           fullWidth
+          hintText="Last Name"
           underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={lastName}
-        />
-        <TextField
-          id="edit-photo"
-          hintText="Profile Photo Link"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           onChange={this.handleContentChange}
-          value={photo}
         />
         <TextField
           id="edit-email"
           hintText="Email"
           fullWidth
           underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={email}
-        />
-        <TextField
-          id="edit-password"
-          hintText="Password"
-          fullWidth
-          required
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          type="password"
           onChange={this.handleContentChange}
-          value={password}
         />
-        <TextField
-          id="confirm-password"
-          hintText="Confirm Password"
-          fullWidth
-          required
-          errorText={(password === confirmPassword ? null : "Passwords don't match")}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          type="password"
-          onChange={this.handleContentChange}
-          value={confirmPassword}
-        />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ width: "45%" }}>
+            <TextField
+              id="edit-password"
+              required
+              fullWidth
+              hintText="Password"
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              type="password"
+              value={password}
+              onChange={this.handleContentChange}
+            />
+            <TextField
+              id="confirm-password"
+              fullWidth
+              required
+              hintText="Confirm Password"
+              errorText={(password === confirmPassword ? null : "Passwords don't match")}
+              underlineFocusStyle={{ borderColor: "#FF6517" }}
+              type="password"
+              value={confirmPassword}
+              onChange={this.handleContentChange}
+            />
+          </div>
+          <TextField
+            id="edit-profile-photo"
+            type="file"
+            fullWidth
+            accept=".jpg, .png"
+            underlineFocusStyle={{ borderColor: "#FF6517" }}
+            inputStyle={{ position: "absolute", top: "40%" }}
+            style={{ width: "45%", height: "96px" }}
+            onChange={this.handleContentChange}
+          />
+        </div>
         <RaisedButton
           fullWidth
           type="submit"

@@ -26,14 +26,14 @@ class EditProfile extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, profileInfo) => {
+  handleSubmit = (event, editedUser) => {    
     const { user, editUser } = this.props;
-    const { firstName, lastName, password, confirmPassword } = profileInfo;
+    const { firstName, lastName, password, confirmPassword } = editedUser.userInfo;
 
     event.preventDefault();
 
     if (firstName && lastName && (password === confirmPassword)) {
-      editUser(user._id, profileInfo);
+      editUser(user._id, editedUser);
       this.handleRequestClose();
     }
   }

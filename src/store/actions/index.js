@@ -25,10 +25,10 @@ const theFetcher = actions => {
 };
 
 // Uploads item photo to AWS S3 if signedUrl is present
-const photoSender = (res, photo) => {
+const photoSender = (res, photo) => {  
   return res.signedUrl
     ? fetch(res.signedUrl, { method: 'PUT', body: photo })
-      .then(() => res.item)
+      .then(() => res.data)
       .catch(err => console.error(err))
     : res.item
 };
@@ -199,11 +199,14 @@ export const addItem = (userId, collectionId, newItem) => async (dispatch, getSt
 
 // PUT
 export const editUser = (userId, user) => async (dispatch, getState) => {
+  const { userInfo, userPhoto } = user;
   const updatedUser = await theFetcher({
     url: `users/${userId}`,
     method: 'PUT',
-    body: user
-  });
+    body: userInfo
+  })
+    .then(res => photoSender(res, userPhoto))
+    .catch(err => console.error(err));
 
   if (updatedUser) {
     dispatch({
