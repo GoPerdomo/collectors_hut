@@ -25,12 +25,12 @@ const theFetcher = actions => {
 };
 
 // Uploads item photo to AWS S3 if signedUrl is present
-const photoSender = (res, photo) => {  
+const photoSender = (res, photo) => {
   return res.signedUrl
     ? fetch(res.signedUrl, { method: 'PUT', body: photo })
       .then(() => res.data)
       .catch(err => console.error(err))
-    : res.item
+    : res.data
 };
 
 
