@@ -5,6 +5,8 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+const maxFileSize = 3000000;
+
 export default class EditItemForm extends Component {
 
   constructor(props) {
@@ -30,6 +32,7 @@ export default class EditItemForm extends Component {
         condition: condition || "",
       },
       itemPhoto: {},
+      isFileTooBig: false,
     };
   }
 
@@ -43,8 +46,10 @@ export default class EditItemForm extends Component {
       manufacturer,
       condition,
     } = this.state.itemInfo;
-    let { itemPhoto } = this.state;
+    let { itemPhoto, isFileTooBig } = this.state;
     const { id } = event.currentTarget;
+    const file = event.target.files && event.target.files[0];
+
 
     switch (id) {
       case ("edit-item-name"):
@@ -66,7 +71,13 @@ export default class EditItemForm extends Component {
         manufacturer = content;
         break;
       case ("edit-item-photo"):
-        if (event.target.files[0]) itemPhoto = event.target.files[0];
+        if (file && file.size < maxFileSize) {
+          itemPhoto = file;
+          isFileTooBig = false;
+        } else {
+          itemPhoto = {};
+          isFileTooBig = true;
+        }
         break;
       default:
         break;
@@ -84,12 +95,13 @@ export default class EditItemForm extends Component {
         photoType: itemPhoto.type,
       },
       itemPhoto,
+      isFileTooBig,
     });
   }
 
   render() {
     const { handleSubmit } = this.props
-    const { itemInfo } = this.state;
+    const { itemInfo, isFileTooBig } = this.state;
     const {
       name,
       description,
@@ -172,8 +184,9 @@ export default class EditItemForm extends Component {
             type="file"
             accept=".jpg, .png"
             underlineFocusStyle={{ borderColor: "#FF6517" }}
-            inputStyle={{ position: "absolute", top: "6px" }}
+            inputStyle={{ position: "absolute", top: "10px" }}
             style={{ width: "45%" }}
+            errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
         </div>

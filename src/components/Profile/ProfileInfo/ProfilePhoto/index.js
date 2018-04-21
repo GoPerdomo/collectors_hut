@@ -10,7 +10,7 @@ export default ({ user, userId }) => (
     <Link to={`/users/${userId}`}>
       <Avatar
         backgroundColor="#FFFFFF"
-        size={140}
+        style={{ width: "100%", height: "100%" }}
         src={user.photo}
         alt=""
       />

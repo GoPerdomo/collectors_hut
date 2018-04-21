@@ -29,10 +29,11 @@ class AddItem extends Component {
   handleSubmit = (event, newItem) => {
     const { userId, collectionId, addItem } = this.props;
     const { name } = newItem.newItemInfo;
+    const { isFileTooBig } = newItem;
 
     event.preventDefault();
 
-    if (name) {
+    if (name && !isFileTooBig) {
       addItem(userId, collectionId, newItem);
       this.handleRequestClose();
     }

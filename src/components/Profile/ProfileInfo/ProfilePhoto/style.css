@@ -1,8 +1,11 @@
 .profile-photo {
   margin: auto 3% auto 0;
   height: 140px;
+  width: 140px;
 }
 
 .profile-photo img {
   cursor: pointer;
+  object-fit: cover;
+  object-position: center;
 }
