@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+const maxFileSize = 2000000;
+
 export default class EditProfileForm extends Component {
 
   constructor(props) {
@@ -18,13 +20,15 @@ export default class EditProfileForm extends Component {
         confirmPassword: "",
       },
       userPhoto: {},
+      isFileTooBig: false,
     };
   }
 
   handleContentChange = (event, content) => {
     let { firstName, lastName, email, password, confirmPassword } = this.state.userInfo;
-    let { userPhoto } = this.state;
+    let { userPhoto, isFileTooBig } = this.state;
     const { id } = event.currentTarget;
+    const file = event.target.files && event.target.files[0];
 
     switch (id) {
       case ("edit-first-name"):
@@ -43,7 +47,13 @@ export default class EditProfileForm extends Component {
         confirmPassword = content;
         break;
       case ("edit-profile-photo"):
-        if (event.target.files[0]) userPhoto = event.target.files[0];
+        if (file && file.size < maxFileSize) {
+          userPhoto = file;
+          isFileTooBig = false;
+        } else {
+          userPhoto = {};
+          isFileTooBig = true;
+        }
         break;
       default:
         break;
@@ -59,11 +69,12 @@ export default class EditProfileForm extends Component {
         photoType: userPhoto.type,
       },
       userPhoto,
+      isFileTooBig,
     });
   }
 
   render() {
-    const { userInfo } = this.state;
+    const { userInfo, isFileTooBig } = this.state;
     const {
       firstName,
       lastName,
@@ -134,6 +145,8 @@ export default class EditProfileForm extends Component {
             underlineFocusStyle={{ borderColor: "#FF6517" }}
             inputStyle={{ position: "absolute", top: "40%" }}
             style={{ width: "45%", height: "96px" }}
+            errorStyle={{ top: "25px" }}
+            errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
         </div>

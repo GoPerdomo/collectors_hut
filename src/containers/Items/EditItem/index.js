@@ -27,12 +27,13 @@ class EditItem extends Component {
   }
 
   handleSubmit = (event, editedItem ) => {
-    const { userId, item, editItem } = this.props;    
+    const { userId, item, editItem } = this.props;
     const { name } = editedItem.itemInfo;
+    const { isFileTooBig } = editedItem;
 
     event.preventDefault();
 
-    if (name) {
+    if (name && !isFileTooBig) {
       editItem(userId, item.collectionId, item._id, editedItem);
       this.handleRequestClose();
     }
