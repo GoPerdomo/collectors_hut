@@ -1,6 +1,5 @@
 import React from 'react';
 
-import InteractionButtons from '../../InteractionButtons';
 import EditProfile from '../../../../containers/Profile/EditProfile'
 import AddCollection from '../../../../containers/Collections/AddCollection';
 
@@ -18,7 +17,7 @@ export default ({ loggedUser, user, userId }) => {
 
   } else {
     return (
-      <InteractionButtons />
+      null
     )
   }
 };

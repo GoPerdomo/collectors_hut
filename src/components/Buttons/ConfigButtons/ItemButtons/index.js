@@ -1,6 +1,5 @@
 import React from 'react';
 
-import InteractionButtons from '../../InteractionButtons';
 import EditItem from '../../../../containers/Items/EditItem'
 import DeleteItem from '../../../../containers/Items/DeleteItem';
 
@@ -17,7 +16,7 @@ export default ({ loggedUser, currentItem, match }) => {
 
   } else {
     return (
-      <InteractionButtons />
+      null
     )
   }
 };
