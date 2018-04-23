@@ -16,9 +16,8 @@ const theFetcher = actions => {
 
   return fetch(`${baseUrl}${url}`, createHeaders(method, body))
     .then(res => {
-      return res.ok
-        ? res.json()
-        : console.error(res.statusText)
+      if (!res.ok) throw res;
+      else return res.json();
     })
     .then(data => data)
     .catch(err => console.error(err));
@@ -35,11 +34,12 @@ const photoSender = (res, photo) => {
 
 
 // GET
-export const getProfile = (userId) => async (dispatch, getState) => {
+export const getProfile = userId => async (dispatch, getState) => {
   const user = await theFetcher({
     url: `users/${userId}`,
     method: 'GET'
   });
+
   if (user) {
     dispatch({
       type: "ADD_USER",
@@ -73,6 +73,7 @@ export const getRandomCollections = () => async (dispatch, getState) => {
         url: `users/${userId}`,
         method: 'GET'
       });
+
       if (user) {
         dispatch({
           type: "ADD_USER",
@@ -88,6 +89,7 @@ export const getRandomCollections = () => async (dispatch, getState) => {
 
   fetchSelectedUsers(userIdArray).then(state => {
     const chosenCollections = [];
+
     if (chosenCollections) {
       [...chosen].map(num => {
         const { userId } = allCollections[num];
@@ -111,6 +113,7 @@ export const search = (searchTerms, searchType) => async (dispatch, getState) =>
     url: `search/?${searchType}=${searchTerms}`,
     method: 'GET'
   });
+
   if (results) {
     dispatch({
       type: "SEARCH_RESULTS",
@@ -127,12 +130,13 @@ export const search = (searchTerms, searchType) => async (dispatch, getState) =>
 
 
 // POST
-export const register = (newUserInfo) => async (dispatch, getState) => {
+export const register = newUserInfo => async (dispatch, getState) => {
   const data = await theFetcher({
     url: `sign-up`,
     method: 'POST',
     body: newUserInfo
   });
+
   if (data) {
     const { userId, token } = data;
 
@@ -142,15 +146,20 @@ export const register = (newUserInfo) => async (dispatch, getState) => {
     });
     localStorage.setItem('token', token);
     localStorage.setItem('loggedUser', userId);
+  } else {
+    dispatch({
+      type: "REGISTER_FAILED",
+    })
   }
 };
 
-export const login = (loginInfo) => async (dispatch, getState) => {
+export const login = loginInfo => async (dispatch, getState) => {
   const data = await theFetcher({
     url: 'sign-in',
     method: 'POST',
     body: loginInfo
   });
+
   if (data) {
     const { userId, token } = data;
 
@@ -160,6 +169,10 @@ export const login = (loginInfo) => async (dispatch, getState) => {
     });
     localStorage.setItem('token', token);
     localStorage.setItem('loggedUser', userId);
+  } else {
+    dispatch({
+      type: "LOGIN_FAILED",
+    })
   }
 };
 
@@ -169,6 +182,7 @@ export const addCollection = (userId, newCollection) => async (dispatch, getStat
     method: 'POST',
     body: newCollection
   });
+
   if (collection) {
     dispatch({
       type: "ADD_NEW_COLLECTION",
@@ -222,6 +236,7 @@ export const editCollection = (userId, collectionId, collection) => async (dispa
     method: 'PUT',
     body: collection
   });
+
   if (updatedCollection) {
     dispatch({
       type: "EDIT_COLLECTION",
