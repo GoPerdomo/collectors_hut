@@ -31,7 +31,7 @@ export default class LoginForm extends Component {
 
     this.setState({
       email,
-      password
+      password,
     });
   }
 
@@ -40,7 +40,10 @@ export default class LoginForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={event => handleSubmit(event, this.state)}>
+      <form onSubmit={event => {
+        handleSubmit(event, this.state);
+        this.setState({ email: "", password: "" })
+      }}>
         <TextField
           id="login-email"
           hintText="Email"

@@ -107,6 +107,14 @@ const reducer = (state = {}, { type, payload }) => {
     // Item
 
     // Others
+    case "LOGIN_FAILED": {
+      return { ...state, isFailedLogin: true };
+    }
+
+    case "REGISTER_FAILED": {
+      return { ...state, isDuplicatedEmail: true };
+    }
+
     case "SEARCH_RESULTS": {
       const { results, searchType } = payload;
       return { ...state, results, searchType };
