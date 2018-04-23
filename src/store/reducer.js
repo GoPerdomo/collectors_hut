@@ -116,8 +116,7 @@ const reducer = (state = {}, { type, payload }) => {
     }
 
     case "SEARCH_RESULTS": {
-      const { results, searchType } = payload;
-      return { ...state, results, searchType };
+      return { ...state, ...payload };
     }
 
     case "CHOSEN_COLLECTIONS": {

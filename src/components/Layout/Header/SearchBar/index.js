@@ -1,15 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { Toolbar } from 'material-ui/Toolbar';
 
-import SearchForm from '../../../components/Forms/SearchForm';
-
-import { search } from '../../../store/actions';
+import SearchForm from '../../../Forms/SearchForm';
 
 
-const SearchBar = ({ search, history }) => {
+const SearchBar = ({ history }) => {
 
   const handleSubmit = (event, searchInfo) => {
     const { searchTerms, searchType } = searchInfo;
@@ -17,8 +14,10 @@ const SearchBar = ({ search, history }) => {
     event.preventDefault();
 
     if (searchTerms) {
-      search(searchTerms.toLocaleLowerCase(), searchType);
-      history.push('/search');
+      history.push({
+        pathname: '/search',
+        search: `?${searchType}=${searchTerms}`,
+      });
     }
   };
 
@@ -36,9 +35,4 @@ const SearchBar = ({ search, history }) => {
   )
 };
 
-
-const mapDispatchToProps = (dispatch) => ({
-  search: (searchTerms, searchType) => dispatch(search(searchTerms, searchType))
-});
-
-export default withRouter(connect(null, mapDispatchToProps)(SearchBar));
+export default withRouter(SearchBar);

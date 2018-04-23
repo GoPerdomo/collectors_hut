@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import SearchBar from '../../../containers/Layout/SearchBar';
+import SearchBar from './SearchBar';
 import LoginLogout from '../../../containers/Enter/LoginLogout';
 
 import './style.css';

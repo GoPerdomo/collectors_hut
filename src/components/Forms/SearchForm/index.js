@@ -10,6 +10,7 @@ import ActionSearch from 'material-ui/svg-icons/action/search';
 import './style.css';
 
 export default class SearchForm extends Component {
+  
   constructor(props) {
     super(props);
 
