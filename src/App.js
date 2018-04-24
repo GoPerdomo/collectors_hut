@@ -10,6 +10,7 @@ import Profile from './routes/Profile';
 import Collection from './routes/Collection';
 import Item from './routes/Item';
 import Search from './routes/Search';
+import NotFound from './routes/NotFound';
 
 import store from './store/reducer';
 import { fetchLocalUser } from './store/actions';
@@ -21,16 +22,17 @@ export default () => (
   <Provider store={store}>
     <MuiThemeProvider>
       <BrowserRouter>
-        <Switch>
-          <Layout>
+        <Layout>
+          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/enter" component={Enter} />
             <Route exact path="/users/:userId" component={Profile} />
             <Route exact path="/users/:userId/collections/:collectionId" component={Collection} />
             <Route exact path="/users/:userId/collections/:collectionId/items/:itemId" component={Item} />
             <Route path="/search" component={Search} />
-          </Layout>
-        </Switch>
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
       </BrowserRouter>
     </MuiThemeProvider>
   </Provider>
