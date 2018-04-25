@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import NameInput from '../../../Inputs/NameInput';
+import DescriptionInput from '../../../Inputs/DescriptionInput';
+import YearInput from '../../../Inputs/YearInput';
+import MiscInput from '../../../Inputs/MiscInput';
+import SelectInput from '../../../Inputs/SelectInput';
+import FileInput from '../../../Inputs/FileInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 const maxFileSize = 3000000;
 
@@ -114,89 +117,56 @@ export default class EditItemForm extends Component {
 
     return (
       <form onSubmit={(event) => handleSubmit(event, this.state)}>
-        <TextField
+        <NameInput
           id="edit-item-name"
           hintText="Name"
-          required
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={name}
-        />
-        <TextField
-          id="edit-item-description"
-          hintText="Description"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          multiLine
           onChange={this.handleContentChange}
-          value={description}
         />
-        <TextField
+        <DescriptionInput
+          id="edit-item-description"
+          value={description}
+          onChange={this.handleContentChange}
+        />
+        <YearInput
           id="edit-item-productionYear"
           hintText="Production Year"
-          type="number"
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          fullWidth
-          onChange={this.handleContentChange}
           value={productionYear}
+          onChange={this.handleContentChange}
         />
-        <TextField
+        <YearInput
           id="edit-item-acquisitionYear"
           hintText="Acquisition Year"
-          type="number"
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          fullWidth
-          onChange={this.handleContentChange}
           value={acquisitionYear}
+          onChange={this.handleContentChange}
         />
-        <TextField
+        <MiscInput
           id="edit-item-origin"
           hintText="Origin"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={origin}
+          onChange={this.handleContentChange}
         />
-        <TextField
+        <MiscInput
           id="edit-item-manufacturer"
           hintText="Manufacturer"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={manufacturer}
+          onChange={this.handleContentChange}
         />
         <div style={{ display: "flex", justifyContent: 'space-between' }}>
-          <SelectField
+          <SelectInput
             id="edit-item-condition"
-            onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
             value={condition}
             style={{ width: "45%" }}
-            hintText="Condition"
-          >
-            <MenuItem value={"Mint"} primaryText={"Mint"} />
-            <MenuItem value={"Good"} primaryText={"Good"} />
-            <MenuItem value={"Fair"} primaryText={"Fair"} />
-            <MenuItem value={"Poor"} primaryText={"Poor"} />
-          </SelectField>
-          <TextField
+            menuItems={["Mint", "Good", "Fair", "Poor"]}
+            onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
+          />
+          <FileInput
             id="edit-item-photo"
-            type="file"
-            accept=".jpg, .png"
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
-            inputStyle={{ position: "absolute", top: "10px" }}
-            style={{ width: "45%" }}
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
         </div>
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Save"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#6D8EAD"
-        />
+        <SubmitButton />
       </form>
     )
   }

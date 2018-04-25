@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import NameInput from '../../../Inputs/NameInput';
+import EmailInput from '../../../Inputs/EmailInput';
 import PasswordInput from '../../../Inputs/PasswordInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 import hasNumber from '../../../../utils/hasNumber';
 import passErrorGenerator from '../../../../utils/passErrorGenerator';
@@ -79,37 +79,26 @@ export default class RegisterForm extends Component {
 
     return (
       <form onSubmit={event => handleSubmit(event, this.state)}>
-        <TextField
+        <NameInput
           id="register-firstname"
           hintText="First Name"
-          required
-          fullWidth
-          onChange={this.handleContentChange}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={firstName}
+          onChange={this.handleContentChange}
         />
-        <TextField
+        <NameInput
           id="register-lastname"
           hintText="Last Name"
-          required
-          fullWidth
-          onChange={this.handleContentChange}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={lastName}
-        />
-        <TextField
-          id="register-email"
-          hintText="Email"
-          type="email"
-          required
-          fullWidth
           onChange={this.handleContentChange}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
+        />
+        <EmailInput
+          id="register-email"
+          required
           value={email}
+          onChange={this.handleContentChange}
         />
         <PasswordInput
           id="register-password"
-          hintText="Password"
           value={password}
           onChange={this.handleContentChange}
           errorText={password && passErrorGenerator(minPassLength, passwordIsLongEnough, passwordHasNumber)}
@@ -121,13 +110,7 @@ export default class RegisterForm extends Component {
           onChange={this.handleContentChange}
           errorText={!(password === confirmPassword) ? "Passwords don't match" : null}
         />
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Register"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#FF6517"
-        />
+        <SubmitButton label="Register" backgroundColor="#FF6517" />
       </form>
     )
   }

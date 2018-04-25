@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import NameInput from '../../../Inputs/NameInput';
+import DescriptionInput from '../../../Inputs/DescriptionInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 export default class AddCollectionForm extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       newCollection: {
         name: "",
@@ -46,31 +47,17 @@ export default class AddCollectionForm extends Component {
 
     return (
       <form onSubmit={(event) => handleSubmit(event, newCollection)}>
-        <TextField
+        <NameInput
           id="new-collection-name"
-          hintText="Name"
-          required
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          fullWidth
-          onChange={this.handleContentChange}
           value={name}
-        />
-        <TextField
-          id="new-collection-info"
-          hintText="Description"
-          fullWidth
-          multiLine
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           onChange={this.handleContentChange}
+        />
+        <DescriptionInput
+          id="new-collection-info"
           value={info}
+          onChange={this.handleContentChange}
         />
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Create"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#6D8EAD"
-        />
+        <SubmitButton label="Create" />
       </form>
     )
   }

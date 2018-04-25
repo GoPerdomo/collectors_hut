@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 import Dialog from 'material-ui/Dialog';
 
 import DeleteItemButton from '../../../components/Buttons/ItemButtons/DeleteItemButton';
-import CancelButton from '../../../components/Buttons/ConfirmButtons/CancelButton';
-import DeleteButton from '../../../components/Buttons/ConfirmButtons/DeleteButton';
+import CancelButton from '../../../components/Buttons/AlertButtons/CancelButton';
+import DeleteButton from '../../../components/Buttons/AlertButtons/DeleteButton';
 
 import { deleteItem } from '../../../store/actions';
 

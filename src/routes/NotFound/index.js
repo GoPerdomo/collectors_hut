@@ -3,7 +3,7 @@ import React from 'react';
 import NotFoundLogo from '../../components/Images/NotFoundLogo';
 import NotFoundText from '../../components/NotFound/NotFoundText';
 
-// ============= Styles =============
+// ========== Styles ==========
 const mainStyles = {
   width: '80%',
   maxWidth: '1440px',
@@ -15,7 +15,7 @@ const mainStyles = {
   textAlign: 'center',
 };
 
-// =========== Component ============
+// ========== Component ==========
 export default () => (
   <main className="not-found" style={mainStyles}>
     <NotFoundText />

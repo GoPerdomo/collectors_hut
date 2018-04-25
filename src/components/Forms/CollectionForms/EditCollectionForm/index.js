@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import NameInput from '../../../Inputs/NameInput';
+import DescriptionInput from '../../../Inputs/DescriptionInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 export default class EditCollectionForm extends Component {
 
@@ -47,30 +48,17 @@ export default class EditCollectionForm extends Component {
 
     return (
       <form onSubmit={(event) => handleSubmit(event, collectionInfo)}>
-        <TextField
+        <NameInput
           id="edit-collection-name"
-          hintText="Name"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={name}
-        />
-        <TextField
-          id="edit-collection-info"
-          hintText="Description"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          multiLine
           onChange={this.handleContentChange}
+        />
+        <DescriptionInput
+          id="edit-collection-info"
           value={info}
+          onChange={this.handleContentChange}
         />
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Save"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#6D8EAD"
-        />
+        <SubmitButton />
       </form>
     )
   }
