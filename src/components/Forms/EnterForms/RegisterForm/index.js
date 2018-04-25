@@ -3,7 +3,14 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class LoginForm extends Component {
+import PasswordInput from '../../../Inputs/PasswordInput';
+
+import hasNumber from '../../../../utils/hasNumber';
+import passErrorGenerator from '../../../../utils/passErrorGenerator';
+
+const minPassLength = 8;
+
+export default class RegisterForm extends Component {
 
   constructor(props) {
     super(props);
@@ -14,11 +21,17 @@ export default class LoginForm extends Component {
       email: "",
       password: "",
       confirmPassword: "",
+      passwordValidation: {
+        isValidPassword: false,
+        passwordIsLongEnough: false,
+        passwordHasNumber: false,
+      }
     }
   }
 
   handleContentChange = (event, content) => {
-    let { firstName, lastName, email, password, confirmPassword } = this.state;
+    let { firstName, lastName, email, password, confirmPassword, passwordValidation } = this.state;
+    let { isValidPassword, passwordIsLongEnough, passwordHasNumber } = passwordValidation;
     const { id } = event.currentTarget;
 
     switch (id) {
@@ -41,17 +54,27 @@ export default class LoginForm extends Component {
         break;
     }
 
+    passwordIsLongEnough = password.length >= minPassLength;
+    passwordHasNumber = hasNumber(password);
+    isValidPassword = !!(password && passwordIsLongEnough && passwordHasNumber);
+
     this.setState({
       firstName,
       lastName,
       email,
       password,
       confirmPassword,
+      passwordValidation: {
+        isValidPassword,
+        passwordIsLongEnough,
+        passwordHasNumber,
+      }
     });
   }
 
   render() {
-    const { firstName, lastName, email, password, confirmPassword } = this.state;
+    const { firstName, lastName, email, password, confirmPassword, passwordValidation } = this.state;
+    const { passwordIsLongEnough, passwordHasNumber } = passwordValidation;
     const { handleSubmit } = this.props;
 
     return (
@@ -77,32 +100,26 @@ export default class LoginForm extends Component {
         <TextField
           id="register-email"
           hintText="Email"
+          type="email"
           required
           fullWidth
           onChange={this.handleContentChange}
           underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={email}
         />
-        <TextField
+        <PasswordInput
           id="register-password"
           hintText="Password"
-          type="password"
-          required
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={password}
+          onChange={this.handleContentChange}
+          errorText={password && passErrorGenerator(minPassLength, passwordIsLongEnough, passwordHasNumber)}
         />
-        <TextField
+        <PasswordInput
           id="confirm-password"
           hintText="Confirm Password"
-          type="password"
-          required
-          fullWidth
-          errorText={(password === confirmPassword ? null : "Passwords don't match")}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={confirmPassword}
+          onChange={this.handleContentChange}
+          errorText={!(password === confirmPassword) ? "Passwords don't match" : null}
         />
         <RaisedButton
           fullWidth

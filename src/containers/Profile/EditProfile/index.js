@@ -28,12 +28,13 @@ class EditProfile extends Component {
 
   handleSubmit = (event, editedUser) => {
     const { user, editUser } = this.props;
-    const { firstName, lastName, password, confirmPassword } = editedUser.userInfo;
+    const { firstName, lastName, password, confirmPassword, passwordValidation } = editedUser.userInfo;
+    const { isValidPassword } = passwordValidation;
     const { isFileTooBig } = editedUser;
 
     event.preventDefault();
 
-    if (firstName && lastName && (password === confirmPassword) && !isFileTooBig) {      
+    if (firstName && lastName && isValidPassword && (password === confirmPassword) && !isFileTooBig) {
       editUser(user._id, editedUser);
       this.handleRequestClose();
     }

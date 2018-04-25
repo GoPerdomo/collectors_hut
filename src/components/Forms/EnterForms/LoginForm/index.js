@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import PasswordInput from '../../../Inputs/PasswordInput';
+
 export default class LoginForm extends Component {
 
   constructor(props) {
@@ -53,15 +55,11 @@ export default class LoginForm extends Component {
           underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={email}
         />
-        <TextField
+        <PasswordInput
           id="login-password"
           hintText="Password"
-          type="password"
-          required
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
-          onChange={this.handleContentChange}
           value={password}
+          onChange={this.handleContentChange}
         />
         <RaisedButton
           fullWidth
