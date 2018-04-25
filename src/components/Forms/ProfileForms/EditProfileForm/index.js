@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import PasswordInput from '../../../Inputs/PasswordInput';
 
+import hasNumber from '../../../../utils/hasNumber';
+import passErrorGenerator from '../../../../utils/passErrorGenerator';
+
+const minPassLength = 8;
 const maxFileSize = 2000000;
 
 export default class EditProfileForm extends Component {
@@ -18,6 +23,11 @@ export default class EditProfileForm extends Component {
         email: "",
         password: "",
         confirmPassword: "",
+        passwordValidation: {
+          isValidPassword: false,
+          passwordIsLongEnough: false,
+          passwordHasNumber: false,
+        }
       },
       userPhoto: {},
       isFileTooBig: false,
@@ -25,7 +35,8 @@ export default class EditProfileForm extends Component {
   }
 
   handleContentChange = (event, content) => {
-    let { firstName, lastName, email, password, confirmPassword } = this.state.userInfo;
+    let { firstName, lastName, email, password, confirmPassword, passwordValidation } = this.state.userInfo;
+    let { isValidPassword, passwordIsLongEnough, passwordHasNumber } = passwordValidation;
     let { userPhoto, isFileTooBig } = this.state;
     const { id } = event.currentTarget;
     const file = event.target.files && event.target.files[0];
@@ -59,6 +70,10 @@ export default class EditProfileForm extends Component {
         break;
     }
 
+    passwordIsLongEnough = password.length >= minPassLength;
+    passwordHasNumber = hasNumber(password);
+    isValidPassword = !!(password && passwordIsLongEnough && passwordHasNumber);
+
     this.setState({
       userInfo: {
         firstName,
@@ -67,6 +82,11 @@ export default class EditProfileForm extends Component {
         password,
         confirmPassword,
         photoType: userPhoto.type,
+        passwordValidation: {
+          isValidPassword,
+          passwordIsLongEnough,
+          passwordHasNumber,
+        }
       },
       userPhoto,
       isFileTooBig,
@@ -75,14 +95,8 @@ export default class EditProfileForm extends Component {
 
   render() {
     const { userInfo, isFileTooBig } = this.state;
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-    } = userInfo;
-
+    const { firstName, lastName, email, password, confirmPassword, passwordValidation } = userInfo;
+    const { passwordIsLongEnough, passwordHasNumber } = passwordValidation;
     const { handleSubmit } = this.props
 
     return (
@@ -115,26 +129,19 @@ export default class EditProfileForm extends Component {
         />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ width: "45%" }}>
-            <TextField
+            <PasswordInput
               id="edit-password"
-              required
-              fullWidth
               hintText="Password"
-              underlineFocusStyle={{ borderColor: "#FF6517" }}
-              type="password"
               value={password}
               onChange={this.handleContentChange}
+              errorText={password && passErrorGenerator(minPassLength, passwordIsLongEnough, passwordHasNumber)}
             />
-            <TextField
+            <PasswordInput
               id="confirm-password"
-              fullWidth
-              required
               hintText="Confirm Password"
-              errorText={(password === confirmPassword ? null : "Passwords don't match")}
-              underlineFocusStyle={{ borderColor: "#FF6517" }}
-              type="password"
               value={confirmPassword}
               onChange={this.handleContentChange}
+              errorText={!(password === confirmPassword) ? "Passwords don't match" : null}
             />
           </div>
           <TextField

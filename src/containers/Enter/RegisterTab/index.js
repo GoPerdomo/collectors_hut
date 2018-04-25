@@ -8,10 +8,11 @@ import { register } from '../../../store/actions';
 const RegisterTab = ({ register, isDuplicatedEmail }) => {
 
   const handleRegisterSubmit = (event, registerInfo) => {
-    const { firstName, lastName, email, password, confirmPassword } = registerInfo;
+    const { firstName, lastName, email, password, confirmPassword, passwordValidation } = registerInfo;
+    const { isValidPassword } = passwordValidation;
 
     event.preventDefault();
-    if (firstName && lastName && email && (password === confirmPassword)) {
+    if (firstName && lastName && email && isValidPassword && (password === confirmPassword)) {
       register({ firstName, lastName, email, password });
     }
   }
