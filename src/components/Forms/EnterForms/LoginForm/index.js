@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import EmailInput from '../../../Inputs/EmailInput';
 import PasswordInput from '../../../Inputs/PasswordInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 export default class LoginForm extends Component {
 
@@ -46,14 +45,11 @@ export default class LoginForm extends Component {
         handleSubmit(event, this.state);
         this.setState({ email: "", password: "" })
       }}>
-        <TextField
+        <EmailInput
           id="login-email"
-          hintText="Email"
           required
-          fullWidth
-          onChange={this.handleContentChange}
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={email}
+          onChange={this.handleContentChange}
         />
         <PasswordInput
           id="login-password"
@@ -61,13 +57,7 @@ export default class LoginForm extends Component {
           value={password}
           onChange={this.handleContentChange}
         />
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Login"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#FF6517"
-        />
+        <SubmitButton label="Login" backgroundColor="#FF6517" />
       </form>
     )
   }

@@ -9,7 +9,7 @@ import ActionThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 
 import './style.css';
 
-export default currentItem => {  
+export default currentItem => {
   const {
     description,
     productionYear,
@@ -26,12 +26,11 @@ export default currentItem => {
         open
         autoGenerateNestedIndicator={false}
         leftIcon={<ActionInfo />}
-        nestedItems={[
-          <ListItem key={0} disabled>
-            {description}
-          </ListItem>
-        ]}
+        innerDivStyle={{ display: "flex", flexDirection: "column-reverse" }}
       >
+        <p style={{ whiteSpace: 'pre-line', wordWrap: 'break-word' }}>
+          {description}
+        </p>
       </ListItem>
       <ListItem
         primaryText={`Production Year: ${productionYear || "?"}`}

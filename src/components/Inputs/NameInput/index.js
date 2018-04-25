@@ -13,18 +13,16 @@ const borderStyle = {
 };
 
 // ========== Component ==========
-export default ({ id, hintText, value, onChange, errorText }) => (
+export default ({ id, hintText, required, value, onChange }) => (
   <TextField
     id={id}
-    hintText={hintText || "Password"}
-    type="password"
-    required
+    hintText={hintText || "Name"}
+    required={required}
     fullWidth
     hintStyle={inputStyle}
     inputStyle={inputStyle}
     underlineFocusStyle={borderStyle}
     value={value}
     onChange={onChange}
-    errorText={errorText}
   />
 );

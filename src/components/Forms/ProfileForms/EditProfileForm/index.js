@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import NameInput from '../../../Inputs/NameInput';
+import EmailInput from '../../../Inputs/EmailInput';
 import PasswordInput from '../../../Inputs/PasswordInput';
+import FileInput from '../../../Inputs/FileInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
 
 import hasNumber from '../../../../utils/hasNumber';
 import passErrorGenerator from '../../../../utils/passErrorGenerator';
 
 const minPassLength = 8;
-const maxFileSize = 2000000;
+const maxFileSize = 3000000;
 
 export default class EditProfileForm extends Component {
 
@@ -101,29 +103,20 @@ export default class EditProfileForm extends Component {
 
     return (
       <form onSubmit={(event) => handleSubmit(event, this.state)}>
-        <TextField
+        <NameInput
           id="edit-first-name"
-          required
-          fullWidth
           hintText="First Name"
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={firstName}
           onChange={this.handleContentChange}
         />
-        <TextField
+        <NameInput
           id="edit-last-name"
-          required
-          fullWidth
           hintText="Last Name"
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={lastName}
           onChange={this.handleContentChange}
         />
-        <TextField
+        <EmailInput
           id="edit-email"
-          hintText="Email"
-          fullWidth
-          underlineFocusStyle={{ borderColor: "#FF6517" }}
           value={email}
           onChange={this.handleContentChange}
         />
@@ -131,7 +124,6 @@ export default class EditProfileForm extends Component {
           <div style={{ width: "45%" }}>
             <PasswordInput
               id="edit-password"
-              hintText="Password"
               value={password}
               onChange={this.handleContentChange}
               errorText={password && passErrorGenerator(minPassLength, passwordIsLongEnough, passwordHasNumber)}
@@ -144,26 +136,16 @@ export default class EditProfileForm extends Component {
               errorText={!(password === confirmPassword) ? "Passwords don't match" : null}
             />
           </div>
-          <TextField
+          <FileInput
             id="edit-profile-photo"
-            type="file"
-            fullWidth
-            accept=".jpg, .png"
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
-            inputStyle={{ position: "absolute", top: "40%" }}
             style={{ width: "45%", height: "96px" }}
+            inputStyle={{ position: "absolute", top: "40%" }}
             errorStyle={{ top: "25px" }}
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
         </div>
-        <RaisedButton
-          fullWidth
-          type="submit"
-          label="Save"
-          labelStyle={{ color: "#ffffff", fontWeight: "bold" }}
-          backgroundColor="#6D8EAD"
-        />
+        <SubmitButton />
       </form>
     )
   }

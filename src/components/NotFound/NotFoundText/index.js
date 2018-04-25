@@ -1,6 +1,6 @@
 import React from 'react';
 
-// ============= Styles =============
+// ========== Styles ==========
 const wrapperStyle = {
   width: "50%",
   height: '300px',
@@ -20,7 +20,7 @@ const h2Style = {
   margin: '0.5em 0',
 };
 
-// =========== Component ============
+// ========== Component ==========
 export default () => (
   <div style={wrapperStyle}>
     <h1 style={h1Style}>404</h1>

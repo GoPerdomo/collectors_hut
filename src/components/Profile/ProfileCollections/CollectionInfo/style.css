@@ -32,4 +32,6 @@
   color: #FFFFFF;
   margin-top: 10px;
   font-weight: 300;
+  white-space: pre-line;
+  word-wrap: break-word;
 }
