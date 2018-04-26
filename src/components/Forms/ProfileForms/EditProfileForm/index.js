@@ -6,11 +6,9 @@ import PasswordInput from '../../../Inputs/PasswordInput';
 import FileInput from '../../../Inputs/FileInput';
 import SubmitButton from '../../../Buttons/SubmitButton';
 
+import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../../utils/constants';
 import hasNumber from '../../../../utils/hasNumber';
 import passErrorGenerator from '../../../../utils/passErrorGenerator';
-
-const minPassLength = 8;
-const maxFileSize = 3000000;
 
 export default class EditProfileForm extends Component {
 
@@ -99,24 +97,27 @@ export default class EditProfileForm extends Component {
     const { userInfo, isFileTooBig } = this.state;
     const { firstName, lastName, email, password, confirmPassword, passwordValidation } = userInfo;
     const { passwordIsLongEnough, passwordHasNumber } = passwordValidation;
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={(event) => handleSubmit(event, this.state)}>
         <NameInput
           id="edit-first-name"
           hintText="First Name"
+          maxLength={maxNameLength}
           value={firstName}
           onChange={this.handleContentChange}
         />
         <NameInput
           id="edit-last-name"
           hintText="Last Name"
+          maxLength={maxNameLength}
           value={lastName}
           onChange={this.handleContentChange}
         />
         <EmailInput
           id="edit-email"
+          maxLength={maxEmailLength}
           value={email}
           onChange={this.handleContentChange}
         />

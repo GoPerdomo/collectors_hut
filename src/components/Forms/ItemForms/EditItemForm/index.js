@@ -8,7 +8,7 @@ import SelectInput from '../../../Inputs/SelectInput';
 import FileInput from '../../../Inputs/FileInput';
 import SubmitButton from '../../../Buttons/SubmitButton';
 
-const maxFileSize = 3000000;
+import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../../utils/constants';
 
 export default class EditItemForm extends Component {
 
@@ -120,11 +120,13 @@ export default class EditItemForm extends Component {
         <NameInput
           id="edit-item-name"
           hintText="Name"
+          maxLength={maxItemInfoLength}
           value={name}
           onChange={this.handleContentChange}
         />
         <DescriptionInput
           id="edit-item-description"
+          maxLength={maxDescriptionLength}
           value={description}
           onChange={this.handleContentChange}
         />
@@ -143,12 +145,14 @@ export default class EditItemForm extends Component {
         <MiscInput
           id="edit-item-origin"
           hintText="Origin"
+          maxLength={maxItemInfoLength}
           value={origin}
           onChange={this.handleContentChange}
         />
         <MiscInput
           id="edit-item-manufacturer"
           hintText="Manufacturer"
+          maxLength={maxItemInfoLength}
           value={manufacturer}
           onChange={this.handleContentChange}
         />

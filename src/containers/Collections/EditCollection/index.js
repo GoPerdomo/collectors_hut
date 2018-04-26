@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog/Dialog';
 import EditCollectionButton from '../../../components/Buttons/CollectionButtons/EditCollectionButton';
 import EditCollectionForm from '../../../components/Forms/CollectionForms/EditCollectionForm';
 
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 import { editCollection } from '../../../store/actions';
 
 
@@ -29,11 +30,13 @@ class EditCollection extends Component {
 
   handleSubmit = (event, collectionInfo) => {
     const { userId, collection, editCollection } = this.props;
-    const { name } = collectionInfo;
+    const { name, info } = collectionInfo;
+    const isValidName = !!(name && name.length <= maxCollectionNameLength);
+    const isValidInfo = info.length <= maxDescriptionLength;
 
     event.preventDefault();
 
-    if (name) {
+    if (isValidName && isValidInfo) {
       editCollection(userId, collection._id, collectionInfo);
       this.handleRequestClose();
     }

@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import EditProfileButton from '../../../components/Buttons/ProfileButtons/EditProfileButton';
 import EditProfileForm from '../../../components/Forms/ProfileForms/EditProfileForm';
 
+import { maxNameLength, maxEmailLength } from '../../../utils/constants';
 import { editUser } from '../../../store/actions';
 
 class EditProfile extends Component {
@@ -28,13 +29,15 @@ class EditProfile extends Component {
 
   handleSubmit = (event, editedUser) => {
     const { user, editUser } = this.props;
-    const { firstName, lastName, password, confirmPassword, passwordValidation } = editedUser.userInfo;
+    const { firstName, lastName, email, password, confirmPassword, passwordValidation } = editedUser.userInfo;
     const { isValidPassword } = passwordValidation;
     const { isFileTooBig } = editedUser;
+    const isValidName = !!(firstName && lastName && firstName.length <= maxNameLength && lastName.length <= maxNameLength);
+    const isValidEmail = email.length <= maxEmailLength;
 
     event.preventDefault();
 
-    if (firstName && lastName && isValidPassword && (password === confirmPassword) && !isFileTooBig) {
+    if (isValidName && isValidEmail && isValidPassword && (password === confirmPassword) && !isFileTooBig) {
       editUser(user._id, editedUser);
       this.handleRequestClose();
     }

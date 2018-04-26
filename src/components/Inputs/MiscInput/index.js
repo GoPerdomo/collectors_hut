@@ -13,7 +13,7 @@ const borderStyle = {
 };
 
 // ========== Component ==========
-export default ({ id, hintText, value, onChange }) => (
+export default ({ id, hintText, maxLength, value, onChange }) => (
   <TextField
     id={id}
     hintText={hintText}
@@ -21,6 +21,7 @@ export default ({ id, hintText, value, onChange }) => (
     hintStyle={inputStyle}
     inputStyle={inputStyle}
     underlineFocusStyle={borderStyle}
+    maxLength={maxLength}
     value={value}
     onChange={onChange}
   />
