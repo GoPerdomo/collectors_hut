@@ -2,6 +2,8 @@ import React from 'react';
 
 import TextField from 'material-ui/TextField';
 
+import { maxYearValue } from '../../../utils/constants';
+
 // ========== Styles ==========
 const inputStyle = {
   padding: "0 .5em",
@@ -22,6 +24,8 @@ export default ({ id, hintText, value, onChange }) => (
     hintStyle={inputStyle}
     inputStyle={inputStyle}
     underlineFocusStyle={borderStyle}
+    min={1}
+    max={maxYearValue}
     value={value}
     onChange={onChange}
   />

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../../../components/Forms/EnterForms/RegisterForm';
 
+import { maxNameLength, maxEmailLength } from '../../../utils/constants';
 import { register } from '../../../store/actions';
 
 const RegisterTab = ({ register, isDuplicatedEmail }) => {
@@ -10,9 +11,12 @@ const RegisterTab = ({ register, isDuplicatedEmail }) => {
   const handleRegisterSubmit = (event, registerInfo) => {
     const { firstName, lastName, email, password, confirmPassword, passwordValidation } = registerInfo;
     const { isValidPassword } = passwordValidation;
+    const isValidName = !!(firstName && lastName && firstName.length <= maxNameLength && lastName.length <= maxNameLength);
+    const isValidEmail = !!(email && email.length <= maxEmailLength);
 
     event.preventDefault();
-    if (firstName && lastName && email && isValidPassword && (password === confirmPassword)) {
+    
+    if (isValidName && isValidEmail && isValidPassword && (password === confirmPassword)) {
       register({ firstName, lastName, email, password });
     }
   }

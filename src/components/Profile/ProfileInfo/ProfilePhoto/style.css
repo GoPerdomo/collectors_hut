@@ -1,7 +1,9 @@
 .profile-photo {
-  margin: auto 3% auto 0;
+  margin: 0;
+  margin-right: 3%;
   height: 140px;
   width: 140px;
+  min-width: 140px;
 }
 
 .profile-photo img {

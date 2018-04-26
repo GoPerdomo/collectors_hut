@@ -5,10 +5,9 @@ import EmailInput from '../../../Inputs/EmailInput';
 import PasswordInput from '../../../Inputs/PasswordInput';
 import SubmitButton from '../../../Buttons/SubmitButton';
 
+import { minPassLength, maxNameLength, maxEmailLength } from '../../../../utils/constants';
 import hasNumber from '../../../../utils/hasNumber';
 import passErrorGenerator from '../../../../utils/passErrorGenerator';
-
-const minPassLength = 8;
 
 export default class RegisterForm extends Component {
 
@@ -82,18 +81,21 @@ export default class RegisterForm extends Component {
         <NameInput
           id="register-firstname"
           hintText="First Name"
+          maxLength={maxNameLength}
           value={firstName}
           onChange={this.handleContentChange}
         />
         <NameInput
           id="register-lastname"
           hintText="Last Name"
+          maxLength={maxNameLength}
           value={lastName}
           onChange={this.handleContentChange}
         />
         <EmailInput
           id="register-email"
           required
+          maxLength={maxEmailLength}
           value={email}
           onChange={this.handleContentChange}
         />

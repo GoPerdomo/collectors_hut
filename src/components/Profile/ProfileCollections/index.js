@@ -7,21 +7,13 @@ import CollectionInfo from './CollectionInfo';
 
 import './style.css';
 
-export default props => {
-  const { collection } = props;
-  const { items } = collection;
-  const maxItems = 6;
-
-  return (
-    <Paper
-      className={
-        `profile-collection-preview ${items && items.length <= maxItems / 2 ? 'shorter-wrapper' : ''}`
-      }
-      style={{ backgroundColor: "#6D8EAD", boxSizing: "content-box" }}
-      zDepth={0}
-    >
-      <ItemsPreview {...props} maxItems={maxItems} />
-      <CollectionInfo {...props} />
-    </Paper>
-  )
-};
+export default props => (
+  <Paper
+    className="profile-collection-preview"
+    style={{ backgroundColor: "#6D8EAD", boxSizing: "content-box" }}
+    zDepth={0}
+  >
+    <ItemsPreview {...props} />
+    <CollectionInfo {...props} />
+  </Paper>
+);

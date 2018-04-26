@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import AddCollectionButton from '../../../components/Buttons/CollectionButtons/AddCollectionButton';
 import AddCollectionForm from '../../../components/Forms/CollectionForms/AddCollectionForm';
 
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 import { addCollection } from '../../../store/actions';
 
 class AddCollection extends Component {
@@ -28,10 +29,13 @@ class AddCollection extends Component {
 
   handleSubmit = (event, newCollection) => {
     const { userId, addCollection } = this.props;
+    const { name, info } = newCollection;
+    const isValidName = !!(name && name.length <= maxCollectionNameLength);
+    const isValidInfo = info.length <= maxDescriptionLength;
 
     event.preventDefault();
 
-    if (newCollection.name) {
+    if (isValidName && isValidInfo) {
       addCollection(userId, newCollection);
       this.handleRequestClose();
     }

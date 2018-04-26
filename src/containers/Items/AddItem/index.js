@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import AddItemButton from '../../../components/Buttons/ItemButtons/AddItemButton';
 import AddItemForm from '../../../components/Forms/ItemForms/AddItemForm';
 
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
 import { addItem } from '../../../store/actions';
 
 class AddItem extends Component {
@@ -28,12 +29,16 @@ class AddItem extends Component {
 
   handleSubmit = (event, newItem) => {
     const { userId, collectionId, addItem } = this.props;
-    const { name } = newItem.newItemInfo;
+    const { name, description, productionYear, acquisitionYear, origin, manufacturer } = newItem.newItemInfo;
     const { isFileTooBig } = newItem;
+    const isValidName = !!(name && name.length <= maxItemInfoLength);
+    const isValidDescription = description.length <= maxDescriptionLength;
+    const isValidYears = productionYear <= maxYearValue && acquisitionYear <= maxYearValue;
+    const isValidInfo = origin.length <= maxItemInfoLength && manufacturer.length <= maxItemInfoLength;
 
     event.preventDefault();
 
-    if (name && !isFileTooBig) {
+    if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
       addItem(userId, collectionId, newItem);
       this.handleRequestClose();
     }

@@ -6,6 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import EditItemButton from '../../../components/Buttons/ItemButtons/EditItemButton';
 import EditItemForm from '../../../components/Forms/ItemForms/EditItemForm';
 
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
 import { editItem } from '../../../store/actions';
 
 class EditItem extends Component {
@@ -26,14 +27,19 @@ class EditItem extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, editedItem ) => {
+  handleSubmit = (event, editedItem) => {
     const { userId, item, editItem } = this.props;
-    const { name } = editedItem.itemInfo;
+    const { name, description, productionYear, acquisitionYear, origin, manufacturer } = editedItem.itemInfo;
     const { isFileTooBig } = editedItem;
+    const isValidName = !!(name && name.length <= maxItemInfoLength);
+    const isValidDescription = description.length <= maxDescriptionLength;
+    const isValidYears = productionYear <= maxYearValue && acquisitionYear <= maxYearValue;
+    const isValidInfo = origin.length <= maxItemInfoLength && manufacturer.length <= maxItemInfoLength;    
 
     event.preventDefault();
 
-    if (name && !isFileTooBig) {
+    if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
+
       editItem(userId, item.collectionId, item._id, editedItem);
       this.handleRequestClose();
     }

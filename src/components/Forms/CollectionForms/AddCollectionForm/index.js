@@ -4,6 +4,8 @@ import NameInput from '../../../Inputs/NameInput';
 import DescriptionInput from '../../../Inputs/DescriptionInput';
 import SubmitButton from '../../../Buttons/SubmitButton';
 
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../../utils/constants';
+
 export default class AddCollectionForm extends Component {
 
   constructor(props) {
@@ -49,11 +51,13 @@ export default class AddCollectionForm extends Component {
       <form onSubmit={(event) => handleSubmit(event, newCollection)}>
         <NameInput
           id="new-collection-name"
+          maxLength={maxCollectionNameLength}
           value={name}
           onChange={this.handleContentChange}
         />
         <DescriptionInput
           id="new-collection-info"
+          maxLength={maxDescriptionLength}
           value={info}
           onChange={this.handleContentChange}
         />

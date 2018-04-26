@@ -3,10 +3,11 @@
   height: inherit;
   text-align: justify;
   background-color: #6D8EAD;
+  overflow: hidden;
 }
 
 .profile-collection-info-title-wrapper {
-  height: 64px;
+  min-height: 64px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -17,9 +18,10 @@
   cursor: pointer;
   width: fit-content;
   margin: 0;
-  padding-left: 25px;
-  font-size: 2em;
+  padding: 0.2em 1em;
+  font-size: 1.7em;
   color: #FFFFFF;
+  word-break: break-word;
 }
 
 .profile-collection-description {
