@@ -14,12 +14,6 @@
   opacity: 0.5;
 }
 
-.profile-items-preview-photo-wrapper {
-  overflow: hidden;
-  width: 33.333%;
-  height: 50%;
-}
-
 .profile-items-preview-photo {
   width: 100%;
   height: 100%;

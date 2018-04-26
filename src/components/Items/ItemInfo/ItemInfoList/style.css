@@ -5,4 +5,5 @@
   margin: 0 auto;
   padding: 0px;
   text-align: left;
+  word-break: break-word;
 }

@@ -1,5 +1,7 @@
 .item-name {
-  margin: 0;
+  margin: auto;
+  width: 85%;
+  word-break: break-word;
 }
 
 .item-info {
