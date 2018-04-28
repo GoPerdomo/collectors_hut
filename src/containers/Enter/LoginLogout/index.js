@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import LoginButton from '../../../components/Buttons/LoginLogoutButtons/LoginButton';
-import LogoutButton from '../../../components/Buttons/LoginLogoutButtons/LogoutButton';
+import StandardButton from '../../../components/Buttons/StandardButton';
 
 import { logout } from '../../../store/actions';
 
@@ -20,8 +19,8 @@ const LoginLogout = ({ loggedUser, logout, history }) => {
   }
 
   return loggedUser
-    ? <LogoutButton handleClick={handleLogoutClick} />
-    : <LoginButton handleClick={handleLoginClick} />
+    ? <StandardButton label="Logout" handleClick={handleLogoutClick} />
+    : <StandardButton label="Login" handleClick={handleLoginClick} />
 }
 
 const mapStateToProps = (state) => {
