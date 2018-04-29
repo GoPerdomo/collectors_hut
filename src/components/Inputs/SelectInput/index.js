@@ -10,9 +10,10 @@ const inputStyle = {
 };
 
 // ========== Component ==========
-export default ({ id, hintText, style, value, onChange, menuItems }) => (
+export default ({ id, fullWidth, hintText, style, value, onChange, menuItems }) => (
   <SelectField
     id={id}
+    fullWidth={fullWidth}
     hintText={hintText || "Condition"}
     value={value}
     style={style}

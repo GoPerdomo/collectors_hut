@@ -17,6 +17,7 @@ class Search extends Component {
     const query = history.location.search;
     const { searchType, searchTerms } = this.getSearchInfo();
 
+    window.scrollTo(0, 0);
     if (!query) return history.push('/');
     search(searchTerms.toLocaleLowerCase(), searchType);
   }

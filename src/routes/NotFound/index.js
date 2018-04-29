@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import NotFoundLogo from '../../components/Images/NotFoundLogo';
 import NotFoundText from '../../components/NotFound/NotFoundText';
@@ -16,9 +16,21 @@ const mainStyles = {
 };
 
 // ========== Component ==========
-export default () => (
-  <main className="not-found" style={mainStyles}>
-    <NotFoundText />
-    <NotFoundLogo />
-  </main>
-);
+class NotFound extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  render() {
+
+    return (
+      <main className="not-found" style={mainStyles}>
+        <NotFoundText />
+        <NotFoundLogo />
+      </main>
+    )
+  }
+};
+
+export default NotFound;

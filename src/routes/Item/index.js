@@ -18,6 +18,7 @@ class Item extends Component {
     const { currentItem, match, getProfile } = this.props;
     const { userId } = match.params;
 
+    window.scrollTo(0, 125);
     if (!currentItem) {
       getProfile(userId);
     }

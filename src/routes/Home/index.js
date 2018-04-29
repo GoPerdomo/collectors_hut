@@ -15,6 +15,7 @@ class Home extends Component {
   componentDidMount() {
     const { loggedUser, getRandomCollections, history } = this.props;
 
+    window.scrollTo(0, 0);
     if (loggedUser) history.push(`/users/${loggedUser}`);
     else getRandomCollections();
   }

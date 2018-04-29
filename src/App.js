@@ -10,6 +10,8 @@ import Profile from './routes/Profile';
 import Collection from './routes/Collection';
 import Item from './routes/Item';
 import Search from './routes/Search';
+import About from './routes/About';
+import Contact from './routes/Contact';
 import NotFound from './routes/NotFound';
 
 import store from './store/reducer';
@@ -25,11 +27,13 @@ export default () => (
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/enter" component={Enter} />
+            <Route path="/enter" component={Enter} />
             <Route exact path="/users/:userId" component={Profile} />
             <Route exact path="/users/:userId/collections/:collectionId" component={Collection} />
             <Route exact path="/users/:userId/collections/:collectionId/items/:itemId" component={Item} />
             <Route path="/search" component={Search} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

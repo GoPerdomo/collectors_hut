@@ -18,6 +18,7 @@ class Collection extends Component {
     const { currentCollection, match, getProfile } = this.props;
     const { userId } = match.params;
 
+    window.scrollTo(0, 125);
     if (!currentCollection) {
       getProfile(userId);
     }
