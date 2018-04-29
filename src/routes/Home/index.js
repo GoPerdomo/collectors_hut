@@ -29,7 +29,10 @@ class Home extends Component {
 
     return (
       <main className="home">
-        <HomeLogo />
+        <div className="home-logo-wrapper">
+          <h1>Welcome to the</h1>
+          <HomeLogo />
+        </div>
         {
           !chosenCollections
             ? <Loading />

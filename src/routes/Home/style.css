@@ -5,3 +5,7 @@
   text-align: center;
   min-height: 50vh;
 }
+
+.home-logo-wrapper {
+  margin: 3em 0;
+}

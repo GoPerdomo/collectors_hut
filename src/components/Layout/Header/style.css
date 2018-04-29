@@ -1,5 +1,6 @@
 header {
   background-color: #6D8EAD;
+  margin-bottom: 50px;
 }
 
 header>div {
@@ -10,7 +11,6 @@ header>div {
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  margin-bottom: 50px;
 }
 
 .header-logo {

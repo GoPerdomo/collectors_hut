@@ -9,7 +9,7 @@ class Enter extends Component {
 
   componentDidMount() {
     const { loggedUser, history } = this.props;
-    
+
     window.scrollTo(0, 0);
     if (loggedUser) history.push(`/users/${loggedUser}`);
   }
@@ -22,6 +22,7 @@ class Enter extends Component {
   render() {
     return (
       <main className="enter">
+        <h1>Login to your account or register</h1>
         <LoginRegister />
       </main>
     )

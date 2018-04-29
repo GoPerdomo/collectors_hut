@@ -8,8 +8,8 @@ import CollectionCardTitle from './CollectionCardTitle';
 import CollectionCardPreview from './CollectionCardPreview';
 
 export default ({ user, collection }) => (
-  <Card zDepth={0}
-    style={{ border: "1px solid #6D8EAD", textAlign: "left", marginBottom: "30px" }}
+  <Card zDepth={2}
+    style={{ textAlign: "left", marginBottom: "30px" }}
   >
     <CollectionCardHeader {...user} />
     <Divider />

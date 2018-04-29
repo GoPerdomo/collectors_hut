@@ -4,11 +4,11 @@
   margin: auto;
   width: 80%;
   max-width: 1440px;
-  text-align: center;
   min-height: 50vh;
 }
 
 .enter h1 {
-  margin: auto;
-  margin-bottom: 30px;
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-align: center;
 }

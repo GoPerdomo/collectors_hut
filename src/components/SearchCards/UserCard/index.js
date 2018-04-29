@@ -8,9 +8,9 @@ import './style.css';
 
 export default ({ user, loggedUser }) => (
   <Card
+    zDepth={2}
     className="search-user-card"
     style={{ backgroundColor: "#6D8EAD" }}
-    zDepth={0}
   >
     <UserCardHeader user={user} />
   </Card>
