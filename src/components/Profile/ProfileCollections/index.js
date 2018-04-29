@@ -9,9 +9,9 @@ import './style.css';
 
 export default props => (
   <Paper
+    zDepth={4}
     className="profile-collection-preview"
     style={{ backgroundColor: "#6D8EAD", boxSizing: "content-box" }}
-    zDepth={0}
   >
     <ItemsPreview {...props} />
     <CollectionInfo {...props} />

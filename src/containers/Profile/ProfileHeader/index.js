@@ -14,7 +14,7 @@ const ProfileHeader = (props) => {
 
   return (
     <div>
-      <Paper zDepth={0} className="profile-header" style={{ backgroundColor: "#6D8EAD" }}>
+      <Paper zDepth={2} className="profile-header" style={{ backgroundColor: "#6D8EAD" }}>
         <ProfileInfo user={user} userId={userId} />
         <ProfileConfig>
           {children}
