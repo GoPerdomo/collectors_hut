@@ -29,6 +29,11 @@ const paperStyle = {
   margin: '0 auto',
 };
 
+const formStyle = {
+  padding: '1em',
+  boxSizing: 'border-box',
+};
+
 const descriptionStyles = {
   style: {
     height: '150px'
@@ -55,12 +60,12 @@ class Contact extends Component {
       <main className="contact" style={wrapper}>
         <h1 style={titleStyle}>Contact</h1>
         <Paper zDepth={4} style={paperStyle}>
-          <form>
+          <form style={formStyle}>
             <NameInput
 
             />
             <EmailInput
-            
+
             />
             <SelectInput
               fullWidth
