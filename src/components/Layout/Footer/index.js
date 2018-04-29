@@ -3,7 +3,6 @@ import React from 'react';
 import FooterLogo from '../../Images/FooterLogo';
 import Newsletter from './Newsletter';
 import Navigation from './Navigation';
-import SelectInput from '../../Inputs/SelectInput';
 
 // ========== Styles ==========
 const footer = {

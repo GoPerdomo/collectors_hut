@@ -8,11 +8,11 @@ const baseStyle = {
   paddingBottom: '30px'
 };
 
-const textareaStyle = {
+const baseTextareaStyle = {
   maxHeight: "30vh"
 };
 
-const hintStyle = {
+const baseHintStyle = {
   padding: "0 .5em",
   boxSizing: 'border-box',
   bottom: '42px',
@@ -28,15 +28,15 @@ const borderStyle = {
 };
 
 // ========== Component ==========
-export default ({ id, maxLength, value, onChange }) => (
+export default ({ id, hintText, style, textareaStyle, hintStyle, maxLength, value, onChange }) => (
   <TextField
     id={id}
-    hintText="Description"
+    hintText={hintText || "Description"}
     fullWidth
     multiLine
-    style={baseStyle}
-    textareaStyle={textareaStyle}
-    hintStyle={hintStyle}
+    style={{ ...baseStyle, ...style }}
+    textareaStyle={{ ...baseTextareaStyle, ...textareaStyle }}
+    hintStyle={{ ...baseHintStyle, ...hintStyle }}
     inputStyle={inputStyle}
     underlineFocusStyle={borderStyle}
     maxLength={maxLength}
