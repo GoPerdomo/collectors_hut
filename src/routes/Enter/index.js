@@ -9,6 +9,8 @@ class Enter extends Component {
 
   componentDidMount() {
     const { loggedUser, history } = this.props;
+    
+    window.scrollTo(0, 0);
     if (loggedUser) history.push(`/users/${loggedUser}`);
   }
 
