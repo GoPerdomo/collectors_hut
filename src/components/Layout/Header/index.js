@@ -9,16 +9,9 @@ import './style.css';
 export default () => (
   <header>
     <div>
-      <NavLink
-        to="/"
-        style={{ textDecoration: "none", color: "#fff" }}
-      >
-        <img
-          className="header-logo"
-          src="/img/logo-horizontal-reverse.png" alt=""
-        />
+      <NavLink to="/" style={{ textDecoration: "none", color: "#fff" }}      >
+        <img className="header-logo" src="/img/logo-horizontal-reverse.png" alt="" />
       </NavLink>
-
       <SearchBar />
       <LoginLogout />
     </div>
