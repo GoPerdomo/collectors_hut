@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 
 import Paper from 'material-ui/Paper';
 
-import NameInput from '../../components/Inputs/NameInput';
-import EmailInput from '../../components/Inputs/EmailInput';
-import SelectInput from '../../components/Inputs/SelectInput';
-import DescriptionInput from '../../components/Inputs/DescriptionInput';
+import ContactForm from '../../components/Forms/ContactForm';
+
+import { sendContact } from '../../store/actions';
 
 // ========== Styles ==========
 const wrapper = {
@@ -29,60 +28,53 @@ const paperStyle = {
   margin: '0 auto',
 };
 
-const formStyle = {
-  padding: '1em',
-  boxSizing: 'border-box',
-};
-
-const descriptionStyles = {
-  style: {
-    height: '150px'
-  },
-  hintStyle: {
-    top: '0'
-  },
-  textareaStyle: {
-    height: '100%',
-    marginTop: '0',
-  },
-};
-
 
 // ========== Component ==========
 class Contact extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = { sent: false };
+  }
 
   componentDidMount() {
     window.scrollTo(0, 0);
   }
 
+  handleSubmit = (event, contactInfo) => {
+    const { name, email, subject, message } = contactInfo;
+    const { sendContact } = this.props;
+    event.preventDefault();
+
+    if (name && email && subject && message) {
+      sendContact(contactInfo);
+      this.setState({ sent: true });
+    }
+  }
+
   render() {
+    const { sent } = this.state;
+
     return (
       <main className="contact" style={wrapper}>
-        <h1 style={titleStyle}>Contact</h1>
-        <Paper zDepth={4} style={paperStyle}>
-          <form style={formStyle}>
-            <NameInput
-
-            />
-            <EmailInput
-
-            />
-            <SelectInput
-              fullWidth
-              value={"Support"}
-              menuItems={['Support', 'Sugestion', 'Report a bug']}
-            />
-            <DescriptionInput
-              hintText="Tell us what you are thinking"
-              style={descriptionStyles.style}
-              hintStyle={descriptionStyles.hintStyle}
-              textareaStyle={descriptionStyles.textareaStyle}
-            />
-          </form>
-        </Paper>
+        <h1 style={titleStyle}>Contact us</h1>
+        {
+          sent
+            ? <h2 style={titleStyle}>Thank you for your contact!</h2>
+            : (
+              <Paper zDepth={2} style={paperStyle}>
+                <ContactForm handleSubmit={this.handleSubmit} />
+              </Paper>
+            )
+        }
       </main>
     )
   }
-}
+};
 
-export default connect()(Contact);
+const mapDispatchToProps = dispatch => ({
+  sendContact: contactInfo => dispatch(sendContact(contactInfo))
+});
+
+export default connect(null, mapDispatchToProps)(Contact);
