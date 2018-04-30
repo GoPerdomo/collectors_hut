@@ -1,37 +1,4 @@
-import { baseUrl } from '../../config';
-
-// Fetchers
-const createHeaders = (method, body) => ({
-  method,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  },
-  body: JSON.stringify(body),
-});
-
-const theFetcher = actions => {
-  const { url, method, body } = actions;
-
-  return fetch(`${baseUrl}${url}`, createHeaders(method, body))
-    .then(res => {
-      if (!res.ok) throw res;
-      else return res.json();
-    })
-    .then(data => data)
-    .catch(err => console.error(err));
-};
-
-// Uploads item photo to AWS S3 if signedUrl is present
-const photoSender = (res, photo) => {
-  return res.signedUrl
-    ? fetch(res.signedUrl, { method: 'PUT', body: photo })
-      .then(() => res.data)
-      .catch(err => console.error(err))
-    : res.data
-};
-
+import { theFetcher, photoSender } from '../../utils/fetchers';
 
 // GET
 export const getProfile = userId => async (dispatch, getState) => {
@@ -126,7 +93,6 @@ export const search = (searchTerms, searchType) => async (dispatch, getState) =>
     };
   }
 }
-// GET
 
 
 // POST
@@ -209,7 +175,15 @@ export const addItem = (userId, collectionId, newItem) => async (dispatch, getSt
     });
   }
 };
-// POST
+
+export const sendContact = contactInfo => (dispatch, getState) => {
+  theFetcher({
+    url: 'contact',
+    method: 'POST',
+    body: contactInfo,
+  });
+};
+
 
 // PUT
 export const editUser = (userId, user) => async (dispatch, getState) => {
@@ -262,7 +236,7 @@ export const editItem = (userId, collectionId, itemId, editedItem) => async (dis
     });
   }
 }
-// PUT
+
 
 // DELETE
 export const deleteItem = (userId, collectionId, itemId) => (dispatch, getState) => {
@@ -286,7 +260,7 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
     payload: { userId, collectionId },
   });
 };
-// DELETE
+
 
 // No fetch
 export const fetchLocalUser = () => (dispatch, getState) => {
@@ -314,4 +288,3 @@ export const logout = () => (dispatch, getState) => {
   });
   localStorage.clear();
 };
-// No fetch
