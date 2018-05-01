@@ -184,6 +184,14 @@ export const sendContact = contactInfo => (dispatch, getState) => {
   });
 };
 
+export const subNewsletter = email => (dispatch, getState) => {
+  theFetcher({
+    url: 'newsletter',
+    method: 'POST',
+    body: email,
+  });
+};
+
 
 // PUT
 export const editUser = (userId, user) => async (dispatch, getState) => {

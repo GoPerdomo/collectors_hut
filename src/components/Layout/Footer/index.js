@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FooterLogo from '../../Images/FooterLogo';
-import Newsletter from './Newsletter';
+import Newsletter from '../../../containers/Newsletter';
 import Navigation from './Navigation';
 
 // ========== Styles ==========

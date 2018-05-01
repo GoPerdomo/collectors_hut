@@ -6,12 +6,15 @@ import SubmitButton from '../../Buttons/SubmitButton';
 // ========== Styles ==========
 const emailStyles = {
   baseStyle: {
-    height: "35px",
+    height: "40px",
     marginBottom: "10px",
-  },
-  
-  inputStyle: {
     backgroundColor: "#FFFFFF",
+    borderRadius: "10px",
+  },
+  hintStyle: {
+    top: '8px',
+  },
+  inputStyle: {
     borderRadius: "10px",
   }
 };
@@ -24,16 +27,25 @@ class NewsletterForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      email: "",
+    };
   }
 
   render() {
+    const { email } = this.state;
+    const { handleSubmit } = this.props;
+    const { baseStyle, hintStyle, inputStyle } = emailStyles;
+
     return (
-      <form onSubmit={() => { }} >
+      <form onSubmit={event => handleSubmit(event, email)} >
         <EmailInput
           id="footer-newsletter-input"
-          style={emailStyles.baseStyle}
-          inputStyle={emailStyles.inputStyle}
+          style={baseStyle}
+          hintStyle={hintStyle}
+          inputStyle={inputStyle}
+          value={email}
+          onChange={(event, content) => this.setState({ email: content })}
         />
         <SubmitButton label="Subscribe" backgroundColor={backgroundColor} />
       </form>

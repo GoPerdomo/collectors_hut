@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 
 // ========== Styles ==========
-const defaultInputStyle = {
+const baseStyle = {
   padding: "0 .5em",
   boxSizing: 'border-box',
 };
@@ -13,7 +13,7 @@ const underlineStyle = {
 };
 
 // ========== Component ==========
-export default ({ id, required, style, inputStyle, maxLength, value, onChange }) => (
+export default ({ id, required, style, hintStyle, inputStyle, maxLength, value, onChange }) => (
   <TextField
     id={id}
     hintText="Email"
@@ -21,8 +21,8 @@ export default ({ id, required, style, inputStyle, maxLength, value, onChange })
     required={required}
     fullWidth
     style={style}
-    hintStyle={defaultInputStyle}
-    inputStyle={{ ...defaultInputStyle, ...inputStyle }}
+    hintStyle={{ ...baseStyle, ...hintStyle }}
+    inputStyle={{ ...baseStyle, ...inputStyle }}
     underlineFocusStyle={underlineStyle}
     maxLength={maxLength}
     value={value}
