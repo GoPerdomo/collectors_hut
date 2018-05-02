@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import LoginRegister from '../../components/Enter/LoginRegister';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const EnterWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 80%;
+  max-width: 1440px;
+`
+
+const Title = styled.h1`
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-align: center;
+`
+
+
+// ============== Component ==============
 class Enter extends Component {
 
   componentDidMount() {
@@ -21,10 +36,10 @@ class Enter extends Component {
 
   render() {
     return (
-      <main className="enter">
-        <h1>Login to your account or register</h1>
+      <EnterWrapper>
+        <Title>Login to your account or register</Title>
         <LoginRegister />
-      </main>
+      </EnterWrapper>
     )
   }
 }

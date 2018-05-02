@@ -19,7 +19,7 @@ export default ({ id, hintText, value, onChange }) => (
   <TextField
     id={id}
     hintText={hintText}
-    type="number"
+    pattern="[0-9]*"
     fullWidth
     hintStyle={inputStyle}
     inputStyle={inputStyle}

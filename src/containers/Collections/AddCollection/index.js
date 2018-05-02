@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog';
 
-import AddCollectionButton from '../../../components/Buttons/CollectionButtons/AddCollectionButton';
+import AddCircleButton from '../../../components/Buttons/AddCircleButton';
 import AddCollectionForm from '../../../components/Forms/CollectionForms/AddCollectionForm';
 
 import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
@@ -45,7 +45,7 @@ class AddCollection extends Component {
 
     return (
       <div>
-        <AddCollectionButton handleButtonClick={this.handleButtonClick} />
+        <AddCircleButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}

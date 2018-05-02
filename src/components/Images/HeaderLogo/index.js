@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 // ========== Styled Components ==========
 const Logo = styled.img`
-  height: 130px;
+  width: 170px;
 `
 
 // ============== Component ==============
 export default () => (
   <div>
-    <Logo src="/img/logo-vertical-reverse.png" alt="Collectors Hut Logo" />
+    <Logo src="/img/logo-horizontal-reverse.png" alt="Collectors Hut Logo" />
   </div>
 );

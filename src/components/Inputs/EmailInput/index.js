@@ -1,8 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import TextField from 'material-ui/TextField';
 
-// ========== Styles ==========
+
+// ========== Styled Components ==========
+const StyledTextField = styled(TextField) `
+& input {
+  &:invalid {
+    box-shadow: none;
+  }
+}
+`
+
+// ========= Material-UI Styles =========
 const baseStyle = {
   padding: "0 .5em",
   boxSizing: 'border-box',
@@ -12,9 +23,10 @@ const underlineStyle = {
   borderColor: "#FF6517",
 };
 
-// ========== Component ==========
+
+// ============== Component ==============
 export default ({ id, required, style, hintStyle, inputStyle, maxLength, value, onChange }) => (
-  <TextField
+  <StyledTextField
     id={id}
     hintText="Email"
     type="email"

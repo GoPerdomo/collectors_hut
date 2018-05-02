@@ -1,18 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import './style.css';
+import CollectionName from './CollectionName';
+import CollectionDescription from './CollectionDescription';
 
-export default ({ userId, collection }) => (
-  <div className="profile-collection-info">
-    <Link
-      to={`/users/${userId}/collections/${collection._id}`}
-      className="profile-collection-info-title-wrapper"
-    >
-      <h2 className="profile-collection-info-title">{collection.name}</h2>
-    </Link>
-    <div className="profile-collection-description">
-      <p>{collection.info}</p>
-    </div>
-  </div>
+
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  width: 50%;
+  height: inherit;
+  text-align: justify;
+  background-color: #6D8EAD;
+  overflow: hidden;
+`
+
+// ============== Component ==============
+export default props => (
+  <Wrapper>
+    <CollectionName  {...props} />
+    <CollectionDescription {...props} />
+  </Wrapper>
 );

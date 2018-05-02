@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import HomeLogo from '../../components/Images/HomeLogo';
@@ -7,8 +8,20 @@ import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const HomeWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 65%;
+  max-width: 1440px;
+  text-align: center;
+`
+const LogoWrapper = styled.div`
+  margin: 0 0 3em;
+`
+
+
+// ============== Component ==============
 class Home extends Component {
 
   // If an user in logged in redirects profile, else fetches random collections
@@ -28,11 +41,11 @@ class Home extends Component {
     const { chosenCollections } = this.props;
 
     return (
-      <main className="home">
-        <div className="home-logo-wrapper">
+      <HomeWrapper>
+        <LogoWrapper>
           <h1>Welcome to the</h1>
           <HomeLogo />
-        </div>
+        </LogoWrapper>
         {
           !chosenCollections
             ? <Loading />
@@ -44,7 +57,7 @@ class Home extends Component {
               />
             ))
         }
-      </main>
+      </HomeWrapper>
     )
   }
 }

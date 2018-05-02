@@ -3,11 +3,26 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 
+// ========== Styles ==========
+const baseStyle = {
+  width: "36px",
+  height: "36px",
+  padding: "0",
+};
+
+const iconStyle = {
+  borderRadius: "50px",
+  width: "36px",
+  height: "36px",
+  padding: "0",
+};
+
+// ========== Component ==========
 export default ({ handleButtonClick }) => (
   <IconButton
     onClick={handleButtonClick}
-    iconStyle={{ borderRadius: "50px", width: "36px", height: "36px", padding: "0" }}
-    style={{ width: "36px", height: "36px", padding: "0" }}
+    iconStyle={iconStyle}
+    style={baseStyle}
   >
     <ActionDelete
       color="#FFFFFF"

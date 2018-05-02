@@ -3,13 +3,22 @@ import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog/Dialog';
 
-import EditCollectionButton from '../../../components/Buttons/CollectionButtons/EditCollectionButton';
+import StandardButton from '../../../components/Buttons/StandardButton';
 import EditCollectionForm from '../../../components/Forms/CollectionForms/EditCollectionForm';
 
 import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 import { editCollection } from '../../../store/actions';
 
+// ========== Styles ==========
+const buttonStyles = {
+  labelStyle: {
+    color: "#6D8EAD",
+  },
+  backgroundColor: "#ffffff",
+};
 
+
+// ========== Component ==========
 class EditCollection extends Component {
 
   constructor(props) {
@@ -46,7 +55,12 @@ class EditCollection extends Component {
 
     return (
       <div>
-        <EditCollectionButton handleButtonClick={this.handleButtonClick} />
+        <StandardButton
+          label="Edit Collection"
+          labelStyle={buttonStyles.labelStyle}
+          backgroundColor={buttonStyles.backgroundColor}
+          handleClick={this.handleButtonClick}
+        />
 
         <Dialog
           open={this.state.open}

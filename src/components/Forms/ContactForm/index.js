@@ -55,11 +55,13 @@ class ContactForm extends Component {
       <form style={formStyle} onSubmit={event => handleSubmit(event, this.state)} >
         <NameInput
           id="name"
+          required
           value={name}
           onChange={this.handleContentChange}
         />
         <EmailInput
           id="email"
+          required
           value={email}
           onChange={this.handleContentChange}
         />
@@ -73,6 +75,7 @@ class ContactForm extends Component {
         <DescriptionInput
           id="message"
           hintText="Tell us what you are thinking"
+          required
           rows={7}
           value={message}
           onChange={this.handleContentChange}

@@ -1,23 +1,13 @@
 import React from 'react';
 
+import ConfigButtons from '../index';
 import EditProfile from '../../../../containers/Profile/EditProfile'
 import AddCollection from '../../../../containers/Collections/AddCollection';
 
-import './style.css';
 
-export default ({ loggedUser, user, userId }) => {
-
-  if (loggedUser === userId) {
-    return (
-      <div className="profile-config-buttons">
-        <EditProfile user={user} />
-        <AddCollection userId={userId} />
-      </div>
-    )
-
-  } else {
-    return (
-      null
-    )
-  }
-};
+export default ({ loggedUser, user, userId }) => (
+  <ConfigButtons loggedUser={loggedUser} userId={userId} >
+    <EditProfile user={user} />
+    <AddCollection userId={userId} />
+  </ConfigButtons>
+);

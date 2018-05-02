@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -7,20 +8,34 @@ import Paper from 'material-ui/Paper';
 import ProfileInfo from '../../../components/Profile/ProfileInfo';
 import ProfileConfig from '../../../components/Profile/ProfileConfig';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const StyledPaper = styled(Paper) `
+  display: flex;
+  height: 160px;
+  padding: 0 7%;
+  margin-bottom: 50px;
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  base: {
+    backgroundColor: "#6D8EAD",
+  },
+};
+
+
+// ============== Component ==============
 const ProfileHeader = (props) => {
   const { user, userId, children } = props;
 
   return (
-    <div>
-      <Paper zDepth={2} className="profile-header" style={{ backgroundColor: "#6D8EAD" }}>
-        <ProfileInfo user={user} userId={userId} />
-        <ProfileConfig>
-          {children}
-        </ProfileConfig>
-      </Paper>
-    </div>
+    <StyledPaper zDepth={2} style={styles.base}>
+      <ProfileInfo user={user} userId={userId} />
+      <ProfileConfig>
+        {children}
+      </ProfileConfig>
+    </StyledPaper>
   )
 };
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 
@@ -8,8 +9,17 @@ import Loading from '../../components/Loading';
 
 import { search } from '../../store/actions';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const SearchWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 65%;
+  max-width: 1440px;
+  text-align: center;
+`
+
+
+// ============== Component ==============
 class Search extends Component {
 
   componentDidMount() {
@@ -67,7 +77,7 @@ class Search extends Component {
 
 
     return (
-      <main className="search">
+      <SearchWrapper>
         {
           searchType === "user" || searchType === "collection"
             ? results
@@ -75,7 +85,7 @@ class Search extends Component {
               : <Loading />
             : <h2>Nothing found</h2>
         }
-      </main>
+      </SearchWrapper>
     )
   }
 };
