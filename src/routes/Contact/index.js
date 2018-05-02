@@ -18,7 +18,7 @@ const ContactWrapper = styled.main`
   flex-direction: column;
   margin: 0 auto auto;
 
-  @media (max-width: ${bp.breakOne}) {
+  @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
 `
@@ -35,7 +35,7 @@ const StyledPaper = styled(Paper)`
   width: 60%;
   margin: 0 auto;
 
-  @media (max-width: ${bp.breakOne}) {
+  @media (max-width: ${bp.breakTwo}) {
     width: 70%;
   }
 `

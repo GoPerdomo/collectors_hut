@@ -12,7 +12,7 @@ const EnterWrapper = styled.main`
   max-width: ${bp.maxWidth};
   margin: 0 auto auto;
 
-  @media (max-width: ${bp.breakOne}) {
+  @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
 `

@@ -1,11 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
 import { Toolbar } from 'material-ui/Toolbar';
 
 import SearchForm from '../../../Forms/SearchForm';
+import bp from '../../../../utils/breakpoints';
 
+// ========== Styled Components ==========
+const StyledToolbar = styled(Toolbar) `
+  width: 550px;
+  border-radius: 10px;
 
+  @media (max-width: ${bp.breakThree}) {
+    width: 480px;
+  }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  base: {
+    display: "block",
+    height: "40px",
+    backgroundColor: "#FFFFFF",
+  },
+};
+
+// ============== Component ==============
 const SearchBar = ({ history }) => {
 
   const handleSubmit = (event, searchInfo) => {
@@ -22,16 +43,9 @@ const SearchBar = ({ history }) => {
   };
 
   return (
-    <Toolbar style={{
-      display: "block",
-      height: "40px",
-      width: "550px",
-      backgroundColor: "#FFFFFF",
-      borderRadius: "10px",
-    }}
-    >
+    <StyledToolbar style={styles.base}>
       <SearchForm handleSubmit={handleSubmit} />
-    </Toolbar>
+    </StyledToolbar>
   )
 };
 

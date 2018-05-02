@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ItemPhoto from './ItemPhoto';
+import ItemPhoto from '../../Images/ItemPhoto';
 import ItemInfoList from './ItemInfoList';
+
+import bp from '../../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -15,6 +17,10 @@ const ItemName = styled.h2`
 const Wrapper = styled.div`
   display: flex;
   margin: 2em 0;
+
+  @media (max-width: ${bp.breakThree}) {
+    flex-direction: column;
+  }
 `
 
 // ============== Component ==============
@@ -23,8 +29,8 @@ export default ({ currentCollection, currentItem, user }) => {
 
   return (
     <section>
-      <ItemName className="item-name">{name}</ItemName>
-      <Wrapper className="item-info">
+      <ItemName>{name}</ItemName>
+      <Wrapper>
         <ItemPhoto name={name} photo={photo} />
         <ItemInfoList {...currentItem} />
       </Wrapper>

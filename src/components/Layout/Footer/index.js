@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   margin: auto;
   align-items: center;
 
-  @media (max-width: ${bp.breakOne}) {
+  @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
 `

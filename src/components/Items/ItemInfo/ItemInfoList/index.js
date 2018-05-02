@@ -8,6 +8,8 @@ import CommunicationLocationOn from 'material-ui/svg-icons/communication/locatio
 import ActionBuild from 'material-ui/svg-icons/action/build';
 import ActionThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 
+import bp from '../../../../utils/breakpoints';
+
 
 // ========== Styled Components ==========
 const StyledList = styled(List) `
@@ -18,6 +20,11 @@ const StyledList = styled(List) `
   padding: 0;
   text-align: left;
   word-break: break-word;
+
+  @media (max-width: ${bp.breakThree}) {
+    width: 80%;
+    margin: 0 auto 3em;
+  }
 `
 
 const Description = styled.p`

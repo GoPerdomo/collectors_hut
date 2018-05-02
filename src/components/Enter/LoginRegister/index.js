@@ -15,7 +15,7 @@ const StyledPaper = styled(Paper) `
   width: 50%;
   margin: 0 auto;
 
-  @media (max-width: ${bp.breakOne}) {
+  @media (max-width: ${bp.breakTwo}) {
     width: 60%;
   }
 `

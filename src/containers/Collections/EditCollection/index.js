@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog/Dialog';
@@ -6,20 +7,32 @@ import Dialog from 'material-ui/Dialog/Dialog';
 import StandardButton from '../../../components/Buttons/StandardButton';
 import EditCollectionForm from '../../../components/Forms/CollectionForms/EditCollectionForm';
 
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 import { editCollection } from '../../../store/actions';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
+import bp from '../../../utils/breakpoints';
 
-// ========== Styles ==========
-const buttonStyles = {
+
+// ========== Styled Components ==========
+const StyledStandardButton = styled(StandardButton)`
+ & button {
+   @media (max-width: ${bp.breakOne}) {
+     line-height: 17px !important;
+   }
+ }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
   labelStyle: {
     display: "flex",
+    padding: "2px 8px",
     color: "#6D8EAD",
   },
   backgroundColor: "#ffffff",
 };
 
 
-// ========== Component ==========
+// ============== Component ==============
 class EditCollection extends Component {
 
   constructor(props) {
@@ -56,10 +69,10 @@ class EditCollection extends Component {
 
     return (
       <div>
-        <StandardButton
+        <StyledStandardButton
           label="Edit Collection"
-          labelStyle={buttonStyles.labelStyle}
-          backgroundColor={buttonStyles.backgroundColor}
+          labelStyle={styles.labelStyle}
+          backgroundColor={styles.backgroundColor}
           handleClick={this.handleButtonClick}
         />
 
