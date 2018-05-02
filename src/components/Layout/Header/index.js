@@ -6,6 +6,8 @@ import HeaderLogo from '../../Images/HeaderLogo';
 import SearchBar from './SearchBar';
 import LoginLogout from '../../../containers/Enter/LoginLogout';
 
+import bp from '../../../utils/breakpoints';
+
 
 // ========== Styled Components ==========
 const Header = styled.header`
@@ -16,14 +18,18 @@ const Header = styled.header`
 const Wrapper = styled.div`
   width: 80%;
   height: 100px;
-  max-width: 1400px;
+  max-width: ${bp.maxWidth};
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  
+  @media (max-width: ${bp.breakOne}) {
+    width: 90%;
+  }
 `
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(NavLink) `
   text-decoration: none;
   color: #fff;
 `

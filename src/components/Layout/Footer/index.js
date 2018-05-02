@@ -1,35 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import FooterLogo from '../../Images/FooterLogo';
 import Newsletter from '../../../containers/Newsletter';
 import Navigation from './Navigation';
 
-// ========== Styles ==========
-const footer = {
-  marginTop: '50px',
-  display: 'flex',
-  backgroundColor: '#6D8EAD',
-  color: '#FFFFFF',
-  height: '200px',
-};
+import bp from '../../../utils/breakpoints';
 
-const wrapper = {
-  width: '80%',
-  height: '130px',
-  maxWidth: '1400px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  margin: 'auto',
-  alignItems: 'center',
-};
 
-// ========== Component ==========
+// ========== Styled Components ==========
+const Footer = styled.footer`
+  margin-top: 50px;
+  display: flex;
+  background-color: #6D8EAD;
+  color: #FFFFFF;
+  height: 200px;
+`
+
+const Wrapper = styled.div`
+  width: 80%;
+  height: 130px;
+  max-width: ${bp.maxWidth};
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 90%;
+  }
+`
+
+// ============== Component ==============
 export default () => (
-  <footer style={footer}>
-    <div style={wrapper}>
+  <Footer>
+    <Wrapper>
       <FooterLogo />
       <Newsletter />
       <Navigation />
-    </div>
-  </footer>
+    </Wrapper>
+  </Footer>
 );

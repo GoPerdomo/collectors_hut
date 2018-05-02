@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import Paper from 'material-ui/Paper';
@@ -6,29 +7,41 @@ import Paper from 'material-ui/Paper';
 import ContactForm from '../../components/Forms/ContactForm';
 
 import { sendContact } from '../../store/actions';
-
-// ========== Styles ==========
-const wrapper = {
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '0 auto auto',
-  width: '80%',
-  maxWidth: '1440px',
-};
-
-const titleStyle = {
-  marginTop: '0',
-  marginbottom: '1em',
-  textAlign: 'center',
-};
-
-const paperStyle = {
-  width: '50%',
-  margin: '0 auto',
-};
+import bp from '../../utils/breakpoints';
 
 
-// ========== Component ==========
+// ========== Styled Components ==========
+const ContactWrapper = styled.main`
+  width: 80%;
+  max-width: ${bp.maxWidth};
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto auto;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 90%;
+  }
+`
+
+const Title = styled.h1`
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-align: center;
+`
+
+const ThanksMessage = Title.withComponent('h2');
+
+const StyledPaper = styled(Paper)`
+  width: 60%;
+  margin: 0 auto;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 70%;
+  }
+`
+
+
+// ============== Component ==============
 class Contact extends Component {
 
   constructor(props) {
@@ -56,18 +69,18 @@ class Contact extends Component {
     const { sent } = this.state;
 
     return (
-      <main className="contact" style={wrapper}>
-        <h1 style={titleStyle}>Contact us</h1>
+      <ContactWrapper>
+        <Title>Contact us</Title>
         {
           sent
-            ? <h2 style={titleStyle}>Thank you for your contact!</h2>
+            ? <ThanksMessage>Thank you for your contact!</ThanksMessage>
             : (
-              <Paper zDepth={2} style={paperStyle}>
+              <StyledPaper zDepth={2}>
                 <ContactForm handleSubmit={this.handleSubmit} />
-              </Paper>
+              </StyledPaper>
             )
         }
-      </main>
+      </ContactWrapper>
     )
   }
 };

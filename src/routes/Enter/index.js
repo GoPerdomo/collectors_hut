@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import LoginRegister from '../../components/Enter/LoginRegister';
+import bp from '../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const EnterWrapper = styled.main`
-  margin: 0 auto auto;
   width: 80%;
-  max-width: 1440px;
+  max-width: ${bp.maxWidth};
+  margin: 0 auto auto;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 90%;
+  }
 `
 
 const Title = styled.h1`

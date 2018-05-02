@@ -12,6 +12,7 @@ import { editItem } from '../../../store/actions';
 // ========== Styles ==========
 const buttonStyles = {
   labelStyle: {
+    display: "flex",
     color: "#6D8EAD",
   },
   backgroundColor: "#ffffff",

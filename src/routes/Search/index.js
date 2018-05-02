@@ -8,13 +8,14 @@ import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { search } from '../../store/actions';
+import bp from '../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const SearchWrapper = styled.main`
-  margin: 0 auto auto;
   width: 65%;
-  max-width: 1440px;
+  max-width: ${bp.maxWidth};
+  margin: 0 auto auto;
   text-align: center;
 `
 

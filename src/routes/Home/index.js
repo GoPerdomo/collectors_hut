@@ -7,15 +7,17 @@ import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
+import bp from '../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const HomeWrapper = styled.main`
-  margin: 0 auto auto;
   width: 65%;
-  max-width: 1440px;
+  max-width: ${bp.maxWidth};
+  margin: 0 auto auto;
   text-align: center;
 `
+
 const LogoWrapper = styled.div`
   margin: 0 0 3em;
 `

@@ -8,14 +8,19 @@ import ProfileButtons from '../../components/Buttons/ConfigButtons/ProfileButton
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
+import bp from '../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const ProfileWrapper = styled.main`
-  margin: 0 auto auto;
   width: 80%;
-  max-width: 1440px;
+  max-width: ${bp.maxWidth};
+  margin: 0 auto auto;
   text-align: center;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 90%;
+  }
 `
 
 
