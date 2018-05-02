@@ -1,22 +1,16 @@
 import React from 'react';
 
+import ConfigButtons from '../index';
 import EditItem from '../../../../containers/Items/EditItem'
 import DeleteItem from '../../../../containers/Items/DeleteItem';
 
 export default ({ loggedUser, currentItem, match }) => {
-  const {userId} = match.params
+  const { userId } = match.params
 
-  if (loggedUser === userId) {
-    return (
-      <div className="profile-config-buttons">
-        <DeleteItem />
-        <EditItem userId={userId} item={currentItem} />
-      </div>
-    )
-
-  } else {
-    return (
-      null
-    )
-  }
+  return (
+    <ConfigButtons loggedUser={loggedUser} userId={userId} >
+      <DeleteItem />
+      <EditItem userId={userId} item={currentItem} />
+    </ConfigButtons>
+  )
 };

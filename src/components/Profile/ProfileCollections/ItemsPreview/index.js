@@ -1,38 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { maxProfilePreviewItems, profilePreviewCols } from '../../../../utils/constants';
+import ItemPreview from '../../../Images/ItemPreview';
 
-import './style.css';
+import { maxProfilePreviewItems } from '../../../../utils/constants';
+import getRows from '../../../../utils/getRows';
 
-const getStyle = items => {
-  const maxItems = items.length > maxProfilePreviewItems ? maxProfilePreviewItems : items.length;
-  const rows = Math.ceil(maxItems / profilePreviewCols);
 
-  return {
-    overflow: 'hidden',
-    width: '33.333%',
-    height: `${100 / rows}%`,
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  width: 50%;
+  height: inherit;
+  background-color: #ffffff;
+`
+
+const StyledLink = styled(Link) `
+  display: flex;
+  flex-wrap: wrap;
+  height: inherit;
+  
+  &:hover {
+    opacity: 0.5;
   }
-};
+`
 
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  width: 33.333%;
+  height: ${({ itemsLength }) => `calc(100%/${getRows(itemsLength)})`};
+`
+
+
+// ============== Component ==============
 export default ({ userId, collection }) => {
   const { items } = collection;
 
   return (
-    <div className="profile-items-preview">
-      <Link
-        to={`/users/${userId}/collections/${collection._id}`}
-        className="profile-items-preview-wrapper"
-      >
+    <Wrapper>
+      <StyledLink to={`/users/${userId}/collections/${collection._id}`}>
         {
           items.map((item, index) => !(index < maxProfilePreviewItems) ? null : (
-            <div key={item._id} style={getStyle(items)}>
-              <img className="profile-items-preview-photo" src={item.photo} alt={item.name} />
-            </div>
+            <ImageWrapper key={item._id} itemsLength={items.length}>
+              <ItemPreview {...item} />
+            </ImageWrapper>
           ))
         }
-      </Link>
-    </div>
+      </StyledLink>
+    </Wrapper>
   )
 };

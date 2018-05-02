@@ -1,9 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const ProfileConfig = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row-reverse;
+  margin: auto;
+`
+
+// ============== Component ==============
 export default ({ children }) => (
-  <div className="profile-config">
+  <ProfileConfig>
     {children}
-  </div>
+  </ProfileConfig>
 );

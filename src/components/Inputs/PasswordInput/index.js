@@ -1,28 +1,40 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import TextField from 'material-ui/TextField';
 
-// ========== Styles ==========
-const inputStyle = {
-  padding: "0 .5em",
-  boxSizing: 'border-box',
+
+// ========== Styled Components ==========
+const StyledTextField = styled(TextField)`
+& input {
+  &:invalid {
+    box-shadow: none;
+  }
+}
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  inputStyle: {
+    padding: "0 .5em",
+    boxSizing: 'border-box',
+  },
+  borderStyle: {
+    borderColor: "#FF6517",
+  },
 };
 
-const borderStyle = {
-  borderColor: "#FF6517",
-};
-
-// ========== Component ==========
+// ============== Component ==============
 export default ({ id, hintText, value, onChange, errorText }) => (
-  <TextField
+  <StyledTextField
     id={id}
     hintText={hintText || "Password"}
     type="password"
     required
     fullWidth
-    hintStyle={inputStyle}
-    inputStyle={inputStyle}
-    underlineFocusStyle={borderStyle}
+    hintStyle={styles.inputStyle}
+    inputStyle={styles.inputStyle}
+    underlineFocusStyle={styles.borderStyle}
     value={value}
     onChange={onChange}
     errorText={errorText}

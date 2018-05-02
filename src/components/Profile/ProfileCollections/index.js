@@ -1,19 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Paper from 'material-ui/Paper';
 
 import ItemsPreview from './ItemsPreview';
 import CollectionInfo from './CollectionInfo';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const StyledPaper = styled(Paper) `
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 86%;
+  height: 322px;
+  margin-bottom: 50px;
+`
+
+// ============== Component ==============
 export default props => (
-  <Paper
-    zDepth={4}
-    className="profile-collection-preview"
-    style={{ backgroundColor: "#6D8EAD", boxSizing: "content-box" }}
-  >
+  <StyledPaper zDepth={4}  >
     <ItemsPreview {...props} />
     <CollectionInfo {...props} />
-  </Paper>
+  </StyledPaper>
 );

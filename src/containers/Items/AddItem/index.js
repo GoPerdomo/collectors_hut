@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog';
 
-import AddItemButton from '../../../components/Buttons/ItemButtons/AddItemButton';
+import AddCircleButton from '../../../components/Buttons/AddCircleButton';
 import AddItemForm from '../../../components/Forms/ItemForms/AddItemForm';
 
 import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
@@ -48,7 +48,7 @@ class AddItem extends Component {
 
     return (
       <div>
-        <AddItemButton handleButtonClick={this.handleButtonClick} />
+        <AddCircleButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           open={this.state.open}

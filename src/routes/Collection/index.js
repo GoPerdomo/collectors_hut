@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
@@ -10,8 +11,17 @@ import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const CollectionWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 80%;
+  max-width: 1440px;
+  text-align: center;
+`
+
+
+// ============== Component ==============
 class Collection extends Component {
 
   componentDidMount() {
@@ -36,7 +46,7 @@ class Collection extends Component {
     }
 
     return (
-      <main className="collection">
+      <CollectionWrapper>
         <ProfileHeader>
           <CollectionButtons {...this.props} />
         </ProfileHeader>
@@ -45,7 +55,7 @@ class Collection extends Component {
           <CollectionName userId={userId} collection={currentCollection} />
           <CollectionInfo {...this.props} />
         </Display>
-      </main>
+      </CollectionWrapper>
     )
   }
 }

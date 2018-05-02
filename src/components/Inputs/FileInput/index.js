@@ -8,6 +8,7 @@ const defaultSyle = {
 };
 
 const defaultInputStyle = {
+  height: "auto",
   position: "absolute",
   top: "10px",
 };
@@ -23,8 +24,8 @@ export default ({ id, style, inputStyle, errorStyle, errorText, onChange }) => (
     type="file"
     accept=".jpg, .png"
     fullWidth
-    style={style || defaultSyle}
-    inputStyle={inputStyle || defaultInputStyle}
+    style={{ ...defaultSyle, ...style }}
+    inputStyle={{ ...defaultInputStyle, ...inputStyle }}
     underlineFocusStyle={borderStyle}
     errorStyle={errorStyle}
     errorText={errorText}

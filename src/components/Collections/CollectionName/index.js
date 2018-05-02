@@ -1,15 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import './style.css';
+// ========== Styled Components ==========
+const CollectionNameLink = styled(Link) `
+  color: #000;
 
+& h1 {
+  margin: 0 auto 20px;
+  width: fit-content;
+}
+`
+
+// ============== Component ==============
 export default ({ userId, collection }) => {
 
   return (
-    <Link to={`/users/${userId}/collections/${collection._id}`} className="collection-name">
-      <h1>
-        {collection.name}
-      </h1>
-    </Link>
+    <CollectionNameLink to={`/users/${userId}/collections/${collection._id}`}>
+      <h1>{collection.name}</h1>
+    </CollectionNameLink>
   )
 };

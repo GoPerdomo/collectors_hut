@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
@@ -10,8 +11,17 @@ import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const ItemWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 80%;
+  max-width: 1440px;
+  text-align: center;
+`
+
+
+// ============== Component ==============
 class Item extends Component {
 
   componentDidMount() {
@@ -36,7 +46,7 @@ class Item extends Component {
     }
 
     return (
-      <main className="item">
+      <ItemWrapper>
         <ProfileHeader>
           <ItemButtons {...this.props} />
         </ProfileHeader>
@@ -45,7 +55,7 @@ class Item extends Component {
           <CollectionName userId={userId} collection={currentCollection} />
           <ItemInfo {...this.props} />
         </Display>
-      </main>
+      </ItemWrapper>
     )
   }
 }

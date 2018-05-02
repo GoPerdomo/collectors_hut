@@ -1,14 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import ProfilePhoto from './ProfilePhoto';
 import ProfileName from './ProfileName';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const ProfileInfo = styled.div`
+  width: 70%;
+  display: flex;
+  align-items: center;
+`
+
+// ============== Component ==============
 export default ({ user, userId }) => (
-  <div className="profile-info">
+  <ProfileInfo>
     <ProfilePhoto user={user} userId={userId} />
-    <ProfileName user={user} userId={userId}>
-    </ProfileName>
-  </div>
+    <ProfileName user={user} userId={userId} />
+  </ProfileInfo>
 );

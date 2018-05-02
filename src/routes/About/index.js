@@ -6,11 +6,10 @@ import HomeLogo from '../../components/Images/HomeLogo';
 const wrapper = {
   display: 'flex',
   flexDirection: 'column',
-  margin: 'auto',
+  margin: '0 auto auto',
   width: '80%',
   maxWidth: '1440px',
   textAlign: 'center',
-  minHeight: '50vh',
 };
 
 // ========== Component ==========

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Dialog from 'material-ui/Dialog';
 
-import DeleteCollectionButton from '../../../components/Buttons/CollectionButtons/DeleteCollectionButton';
+import DeleteIconButton from '../../../components/Buttons/DeleteIconButton';
 import CancelButton from '../../../components/Buttons/AlertButtons/CancelButton';
 import DeleteButton from '../../../components/Buttons/AlertButtons/DeleteButton';
 
@@ -40,7 +40,7 @@ class DeleteCollection extends Component {
     
     return (
       <div>
-        <DeleteCollectionButton handleButtonClick={this.handleButtonClick} />
+        <DeleteIconButton handleButtonClick={this.handleButtonClick} />
 
         <Dialog
           title="Are you sure you want to delete?"

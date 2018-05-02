@@ -3,12 +3,22 @@ import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog';
 
-import EditItemButton from '../../../components/Buttons/ItemButtons/EditItemButton';
+import StandardButton from '../../../components/Buttons/StandardButton';
 import EditItemForm from '../../../components/Forms/ItemForms/EditItemForm';
 
 import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
 import { editItem } from '../../../store/actions';
 
+// ========== Styles ==========
+const buttonStyles = {
+  labelStyle: {
+    color: "#6D8EAD",
+  },
+  backgroundColor: "#ffffff",
+};
+
+
+// ========== Component ==========
 class EditItem extends Component {
 
   constructor(props) {
@@ -34,7 +44,7 @@ class EditItem extends Component {
     const isValidName = !!(name && name.length <= maxItemInfoLength);
     const isValidDescription = description.length <= maxDescriptionLength;
     const isValidYears = productionYear <= maxYearValue && acquisitionYear <= maxYearValue;
-    const isValidInfo = origin.length <= maxItemInfoLength && manufacturer.length <= maxItemInfoLength;    
+    const isValidInfo = origin.length <= maxItemInfoLength && manufacturer.length <= maxItemInfoLength;
 
     event.preventDefault();
 
@@ -49,7 +59,12 @@ class EditItem extends Component {
 
     return (
       <div>
-        <EditItemButton handleButtonClick={this.handleButtonClick} />
+        <StandardButton
+          label="Edit Item"
+          labelStyle={buttonStyles.labelStyle}
+          backgroundColor={buttonStyles.backgroundColor}
+          handleClick={this.handleButtonClick}
+        />
 
         <Dialog
           open={this.state.open}

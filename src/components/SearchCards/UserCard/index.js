@@ -1,17 +1,33 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { Card } from 'material-ui/Card';
 
 import UserCardHeader from './UserCardHeader';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const StyledCard = styled(Card) `
+  text-align: left;
+  margin-bottom: 30px;
+
+  &>div {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+  }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  base: {
+    backgroundColor: "#6D8EAD",
+  },
+};
+
+// ============== Component ==============
 export default ({ user, loggedUser }) => (
-  <Card
-    zDepth={2}
-    className="search-user-card"
-    style={{ backgroundColor: "#6D8EAD" }}
-  >
+  <StyledCard zDepth={2} style={styles.base}  >
     <UserCardHeader user={user} />
-  </Card>
+  </StyledCard>
 );

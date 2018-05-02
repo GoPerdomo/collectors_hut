@@ -1,26 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Chip from 'material-ui/Chip';
 
-import './style.css';
+import { maxChips } from '../../../../utils/constants';
 
+
+// ========== Styled Components ==========
+const ProfileChips = styled.div`
+  display: flex;
+  max-width: 343px;
+  margin-bottom: 40px;
+
+  & span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+`
+// ========= Material-UI Styles =========
+const styles = {
+  chipStyle: {
+    backgroundColor: "#ffffff",
+    marginRight: 3,
+    marginBottom: 3,
+  },
+}
+
+// ============== Component ==============
 export default ({ user }) => {
 
-  const maxChips = 3;
-
   return (
-    <div className="profile-chips">
+    <ProfileChips>
       {
         user.collections.map((collection, index) => !(index < maxChips) ? null : (
-          <Chip key={collection._id}
-            style={{ backgroundColor: "#ffffff", marginRight: 3, marginBottom: 3 }}
-          >
-            {
-              collection.name
-            }
+          <Chip key={collection._id} style={styles.chipStyle}>
+            {collection.name}
           </Chip>
         ))
       }
-    </div>
+    </ProfileChips>
   )
 };

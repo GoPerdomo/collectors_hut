@@ -1,19 +1,42 @@
 import React from 'react';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+import HeaderLogo from '../../Images/HeaderLogo';
 import SearchBar from './SearchBar';
 import LoginLogout from '../../../containers/Enter/LoginLogout';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const Header = styled.header`
+  background-color: #6D8EAD;
+  margin-bottom: 50px;
+`
+
+const Wrapper = styled.div`
+  width: 80%;
+  height: 100px;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+`
+
+const StyledLink = styled(NavLink)`
+  text-decoration: none;
+  color: #fff;
+`
+
+// ============== Component ==============
 export default () => (
-  <header>
-    <div>
-      <NavLink to="/" style={{ textDecoration: "none", color: "#fff" }}      >
-        <img className="header-logo" src="/img/logo-horizontal-reverse.png" alt="" />
-      </NavLink>
+  <Header>
+    <Wrapper>
+      <StyledLink to="/">
+        <HeaderLogo />
+      </StyledLink>
       <SearchBar />
       <LoginLogout />
-    </div>
-  </header>
+    </Wrapper>
+  </Header>
 );

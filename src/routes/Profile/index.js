@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
@@ -8,8 +9,17 @@ import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 
-import './style.css';
 
+// ========== Styled Components ==========
+const ProfileWrapper = styled.main`
+  margin: 0 auto auto;
+  width: 80%;
+  max-width: 1440px;
+  text-align: center;
+`
+
+
+// ============== Component ==============
 class Profile extends Component {
 
   componentDidMount() {
@@ -26,14 +36,14 @@ class Profile extends Component {
 
     if (!user) {
       return (
-        <main className="profile">
+        <ProfileWrapper>
           <Loading />
-        </main>
+        </ProfileWrapper>
       )
     }
 
     return (
-      <main className="profile">
+      <ProfileWrapper className="profile">
         <ProfileHeader>
           <ProfileButtons {...this.props} />
         </ProfileHeader>
@@ -47,7 +57,7 @@ class Profile extends Component {
             />
           ))
         }
-      </main>
+      </ProfileWrapper>
     )
   }
 };

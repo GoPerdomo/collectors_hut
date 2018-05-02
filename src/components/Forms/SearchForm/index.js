@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import { ToolbarGroup } from 'material-ui/Toolbar';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import ActionSearch from 'material-ui/svg-icons/action/search';
 
-import './style.css';
+import SearchInput from '../../Inputs/SearchInput';
+import SearchSelectInput from '../../Inputs/SearchSelectInput';
+import SearchIconButton from '../../Buttons/SearchIconButton';
 
+
+// ========== Styled Components ==========
+const StyledForm = styled.form`
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+`
+
+// ========= Material-UI Styles =========
+const ToolbarGroupStyles = {
+  base: {
+    width: "140px",
+  },
+};
+
+
+// ============== Component ==============
 export default class SearchForm extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -25,51 +40,27 @@ export default class SearchForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form className="search-form"
-        onSubmit={event => {
-          handleSubmit(event, this.state)
-          this.setState({
-            searchTerms: "",
-            searchType: "user",
-          })
-        }}
-      >
+      <StyledForm onSubmit={event => {
+        handleSubmit(event, this.state)
+        this.setState({ searchTerms: "", searchType: "user", })
+      }}>
         <ToolbarGroup>
-          <TextField
-            style={{ height: "40px" }}
-            hintStyle={{ bottom: "8px" }}
-            underlineShow={false}
-            underlineFocusStyle={{ borderColor: "#FF6517" }}
-            hintText="Find users and collections"
-            onChange={(event, value) => this.setState({ searchTerms: value })}
+          <SearchInput
             value={searchTerms}
+            onChange={(event, value) => this.setState({ searchTerms: value })}
           />
         </ToolbarGroup>
-        <ToolbarGroup style={{ width: "140px" }}>
-          <SelectField
-            underlineShow={false}
-            onChange={(event, index, value) => this.setState({ searchType: value })}
+        <ToolbarGroup style={ToolbarGroupStyles.base}>
+          <SearchSelectInput
             value={searchType}
+            onChange={(event, index, value) => this.setState({ searchType: value })}
           >
-            <MenuItem value={"user"} primaryText={"Users"} />
-            <MenuItem value={"collection"} primaryText={"Collections"} />
-          </SelectField>
+          </SearchSelectInput>
         </ToolbarGroup>
         <ToolbarGroup>
-          <IconButton
-            type="submit"
-            onClick={this.handleButtonClick}
-            iconStyle={{ borderRadius: "50px", backgroundColor: "ffffff", width: "36px", height: "36px", padding: "0" }}
-            style={{ width: "36px", height: "36px", padding: "0" }}
-          >
-            <ActionSearch
-              color="#FF6517"
-              hoverColor="#d95a2f"
-              viewBox="1 1 22 22"
-            />
-          </IconButton>
+          <SearchIconButton />
         </ToolbarGroup>
-      </form>
+      </StyledForm>
     )
   }
 };

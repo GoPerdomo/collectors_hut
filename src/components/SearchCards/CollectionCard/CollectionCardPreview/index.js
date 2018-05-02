@@ -1,22 +1,36 @@
 import React from 'react';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import './style.css';
+import SearchItem from '../../../Images/SearchItem';
 
+
+// ========== Styled Components ==========
+const CollectionPreview = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+`
+
+// ============== Component ==============
 export default ({ user, collection }) => {
   const { items } = collection;
   const maxItems = 3;
 
   return (
     <NavLink to={`/users/${user._id}/collections/${collection._id}`} >
-      <div className="collection-preview">
+      <CollectionPreview>
         {
           items &&
           items.map((item, index) => !(index < maxItems) ? null : (
-            <img key={item._id} src={item.photo} alt={`Preview of ${item.name}`} />
+            <SearchItem {...item} />
           ))
         }
-      </div>
+      </CollectionPreview>
     </NavLink>
   )
 };

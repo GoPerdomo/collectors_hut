@@ -11,10 +11,9 @@ import { sendContact } from '../../store/actions';
 const wrapper = {
   display: 'flex',
   flexDirection: 'column',
-  margin: 'auto',
+  margin: '0 auto auto',
   width: '80%',
   maxWidth: '1440px',
-  minHeight: '50vh',
 };
 
 const titleStyle = {

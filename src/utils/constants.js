@@ -17,3 +17,5 @@ export const maxDescriptionLength = 1500;
 export const maxProfilePreviewItems = 15;
 
 export const profilePreviewCols = 3;
+
+export const maxChips = 3;
