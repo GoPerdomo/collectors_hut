@@ -13,7 +13,7 @@ export default ({ user }) => {
     <CardHeader
       titleStyle={{ fontSize: "1.5em", fontWeight: "bold" }}
       subtitleStyle={{ display: "flex", paddingTop: "1em" }}
-      style={{ paddingLeft: "40px" }}
+      style={{ padding: "1em 2em" }}
       title={<NavLink to={`/users/${_id}`} style={{ textDecoration: "none", color: "#fff" }}>
         {firstName} {lastName}
       </NavLink>

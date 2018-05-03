@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Dialog from 'material-ui/Dialog';
 
-import AddCircleButton from '../../../components/Buttons/AddCircleButton';
+import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
 import AddItemForm from '../../../components/Forms/ItemForms/AddItemForm';
 
 import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';

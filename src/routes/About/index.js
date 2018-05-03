@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import HomeLogo from '../../components/Images/HomeLogo';
 
-// ========== Styles ==========
-const wrapper = {
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '0 auto auto',
-  width: '80%',
-  maxWidth: '1440px',
-  textAlign: 'center',
-};
+import bp from '../../utils/breakpoints';
 
-// ========== Component ==========
+// ========== Styled Components ==========
+const AboutWrapper = styled.div`
+  width: 80%;
+  max-width: ${bp.maxWidth};
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto auto;
+  text-align: center;
+
+  @media (max-width: ${bp.breakTwo}) {
+    width: 90%;
+  }
+`
+
+// ============== Component ==============
 class About extends Component {
 
   componentDidMount() {
@@ -21,10 +28,10 @@ class About extends Component {
 
   render() {
     return (
-      <main className="about" style={wrapper}>
+      <AboutWrapper>
         <HomeLogo />
         <h1>Coming Soon</h1>
-      </main>
+      </AboutWrapper>
     )
   }
 };

@@ -11,8 +11,9 @@ const labelBaseStyle = {
 const defaultColor = "#FF6517";
 
 // ========== Component ==========
-export default ({ label, labelStyle, backgroundColor, handleClick }) => (
+export default ({ className, label, labelStyle, backgroundColor, handleClick }) => (
   <RaisedButton
+    className={className}
     label={label}
     labelStyle={{ ...labelBaseStyle, ...labelStyle }}
     backgroundColor={backgroundColor || defaultColor}

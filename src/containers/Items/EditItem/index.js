@@ -10,8 +10,10 @@ import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../
 import { editItem } from '../../../store/actions';
 
 // ========== Styles ==========
-const buttonStyles = {
+const styles = {
   labelStyle: {
+    display: "flex",
+    padding: "2px 8px",
     color: "#6D8EAD",
   },
   backgroundColor: "#ffffff",
@@ -61,8 +63,8 @@ class EditItem extends Component {
       <div>
         <StandardButton
           label="Edit Item"
-          labelStyle={buttonStyles.labelStyle}
-          backgroundColor={buttonStyles.backgroundColor}
+          labelStyle={styles.labelStyle}
+          backgroundColor={styles.backgroundColor}
           handleClick={this.handleButtonClick}
         />
 

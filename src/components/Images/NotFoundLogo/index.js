@@ -1,18 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
-// ========== Styles ==========
-const imgWrapper = {
-  width: "50%",
-};
+import bp from '../../../utils/breakpoints';
 
-const imgStyles = {
-  margin: "auto",
-  width: "300px",
-};
 
-// ========== Component ==========
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  width: 50%;
+`
+
+const NotFoundImage = styled.img`
+  margin: auto;
+  width: 300px;
+
+  @media (max-width: ${bp.breakFour}) {
+    width: 200px;
+  }
+`
+
+// ============== Component ==============
 export default () => (
-  <div style={imgWrapper}>
-    <img style={imgStyles} src="/img/not-found.png" alt="Collectors Hut logo with an awkward sweat drop" />
-  </div>
+  <Wrapper>
+    <NotFoundImage src="/img/not-found.png" alt="Collectors Hut logo with an awkward sweat drop" />
+  </Wrapper>
 );

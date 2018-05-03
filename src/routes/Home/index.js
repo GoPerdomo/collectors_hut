@@ -7,17 +7,33 @@ import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
+import bp from '../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const HomeWrapper = styled.main`
-  margin: 0 auto auto;
   width: 65%;
-  max-width: 1440px;
+  max-width: ${bp.maxWidth};
+  margin: 0 auto auto;
   text-align: center;
+
+  @media (max-width: ${bp.breakOne}) {
+    width: 70%;
+  }
+  @media (max-width: ${bp.breakTwo}) {
+    width: 75%;
+  }
+  @media (max-width: ${bp.breakThree}) {
+    width: 80%;
+  }
 `
+
 const LogoWrapper = styled.div`
   margin: 0 0 3em;
+
+  & h1 {
+    margin-top: 0;
+  }
 `
 
 

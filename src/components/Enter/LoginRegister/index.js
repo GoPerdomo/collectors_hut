@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Paper from 'material-ui/Paper';
 import { Tabs, Tab } from 'material-ui/Tabs';
@@ -6,15 +7,22 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import LoginTab from '../../../containers/Enter/LoginTab';
 import RegisterTab from '../../../containers/Enter/RegisterTab';
 
-// ========== Styles ==========
-const paperStyle = {
-  width: '50%',
-  margin: '0 auto',
-};
+import bp from '../../../utils/breakpoints';
 
-// ========== Component ==========
+
+// ========== Styled Components ==========
+const StyledPaper = styled(Paper) `
+  width: 50%;
+  margin: 0 auto;
+
+  @media (max-width: ${bp.breakTwo}) {
+    width: 60%;
+  }
+`
+
+// ============== Component ==============
 export default () => (
-  <Paper zDepth={4} style={paperStyle}>
+  <StyledPaper zDepth={4}>
     <Tabs
       tabItemContainerStyle={{ backgroundColor: "#6D8EAD" }}
       inkBarStyle={{ backgroundColor: "#FF6517" }}
@@ -26,5 +34,5 @@ export default () => (
         <RegisterTab />
       </Tab>
     </Tabs>
-  </Paper>
+  </StyledPaper>
 );

@@ -7,7 +7,6 @@ const ProfileConfig = styled.div`
   width: 30%;
   display: flex;
   flex-direction: row-reverse;
-  margin: auto;
 `
 
 // ============== Component ==============

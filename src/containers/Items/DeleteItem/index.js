@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Dialog from 'material-ui/Dialog';
 
-import DeleteIconButton from '../../../components/Buttons/DeleteIconButton';
+import DeleteIconButton from '../../../components/Buttons/IconButtons/DeleteIconButton';
 import CancelButton from '../../../components/Buttons/AlertButtons/CancelButton';
 import DeleteButton from '../../../components/Buttons/AlertButtons/DeleteButton';
 

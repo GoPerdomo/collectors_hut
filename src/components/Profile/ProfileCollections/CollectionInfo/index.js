@@ -7,9 +7,9 @@ import CollectionDescription from './CollectionDescription';
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  width: 50%;
+  width: 41%;
   height: inherit;
-  text-align: justify;
+  text-align: left;
   background-color: #6D8EAD;
   overflow: hidden;
 `

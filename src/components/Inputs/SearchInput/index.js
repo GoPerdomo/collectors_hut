@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 // ========= Material-UI Styles =========
 const styles = {
   base: {
+    width: "100%",
     height: "40px",
   },
   hintStyle: {

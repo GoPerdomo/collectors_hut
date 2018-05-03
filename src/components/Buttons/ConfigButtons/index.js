@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 // ========== Styled Components ==========
 const ButtonsWrapper = styled.div`
+  height: 100%;
   display: flex;
-  height: 36px;
+  align-items: center;
 
   &>div {
   margin-left: 15px;

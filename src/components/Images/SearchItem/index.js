@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // ========== Styled Components ==========
 const SearchItem = styled.img`
   height: 160px;
-  max-width: 235px;
+  max-width: calc(100%/3);
   object-fit: cover;
   object-position: center;
 `

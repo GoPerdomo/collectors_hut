@@ -10,7 +10,7 @@ import getRows from '../../../../utils/getRows';
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  width: 50%;
+  width: 60%;
   height: inherit;
   background-color: #ffffff;
 `
