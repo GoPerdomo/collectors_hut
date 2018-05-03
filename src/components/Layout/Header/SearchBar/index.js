@@ -18,6 +18,11 @@ const StyledToolbar = styled(Toolbar) `
   @media (max-width: ${bp.breakFour}) {
     width: 420px;
   }
+  @media (max-width: ${bp.breakSix}) {
+    position: absolute;
+    width: inherit;
+    bottom: 1em;
+  }
 `
 
 // ========= Material-UI Styles =========

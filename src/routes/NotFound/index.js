@@ -24,9 +24,9 @@ const NotFoundWrapper = styled.main`
   @media (max-width: ${bp.breakThree}) {
     width: 95%;
   }
-  @media (max-width: ${bp.breakFive}) {
-    /* flex-direction: column; */
-  }
+  /* @media (max-width: ${bp.breakSix}) {
+    flex-direction: column;
+  } */
 `
 
 // ============== Component ==============

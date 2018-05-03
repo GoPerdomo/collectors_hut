@@ -11,13 +11,22 @@ import bp from '../../../utils/breakpoints';
 
 // ========== Styled Components ==========
 const Header = styled.header`
+  position: relative;
   background-color: #6D8EAD;
   margin-bottom: 50px;
+  height: 100px;
+
+  @media (max-width: ${bp.breakSix}) {
+    height: 150px;
+  }
+  @media (max-width: ${bp.soon}) {
+    height: 130px;
+  }
 `
 
 const Wrapper = styled.div`
   width: 80%;
-  height: 100px;
+  height: 100%;
   max-width: ${bp.maxWidth};
   display: flex;
   justify-content: space-between;
@@ -29,6 +38,12 @@ const Wrapper = styled.div`
   }
   @media (max-width: ${bp.breakFive}) {
     width: 94%;
+  }
+  @media (max-width: ${bp.breakSix}) {
+    height: 60%;
+  }
+  @media (max-width: ${bp.soon}) {
+    height: 50%;
   }
 `
 

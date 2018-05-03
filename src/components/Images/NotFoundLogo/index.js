@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import bp from '../../../utils/breakpoints';
+
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
@@ -10,6 +12,10 @@ const Wrapper = styled.div`
 const NotFoundImage = styled.img`
   margin: auto;
   width: 300px;
+
+  @media (max-width: ${bp.breakFour}) {
+    width: 200px;
+  }
 `
 
 // ============== Component ==============

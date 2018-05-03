@@ -12,10 +12,10 @@ const Wrapper = styled.div`
   justify-content: center;
   border-right: 1px solid #6D8EAD;
 
-  @media (max-width: ${bp.breakFive}) {
-    /* justify-content: flex-start; */
-    border: none;
-  }
+
+  /* @media (max-width: ${bp.breakSix}) {
+    justify-content: flex-start;
+  } */
 
   & h1 {
     font-size: 6em;

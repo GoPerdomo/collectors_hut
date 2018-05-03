@@ -9,7 +9,7 @@ import SearchItem from '../../../Images/SearchItem';
 const CollectionPreview = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1em;
+  padding: 1em 2em;
   
   &:hover {
     opacity: 0.5;

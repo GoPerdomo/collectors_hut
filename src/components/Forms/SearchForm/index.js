@@ -5,26 +5,36 @@ import { ToolbarGroup } from 'material-ui/Toolbar';
 
 import SearchInput from '../../Inputs/SearchInput';
 import SearchSelectInput from '../../Inputs/SearchSelectInput';
-import SearchIconButton from '../../Buttons/SearchIconButton';
+import SearchIconButton from '../../Buttons/IconButtons/SearchIconButton';
 
 import bp from '../../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledForm = styled.form`
-  height: 40px;
+  height: inherit;
   display: flex;
   justify-content: space-between;
 `
 
 const TextFieldWrapper = styled(ToolbarGroup)`
   width: 50%;
+
+  @media (max-width: ${bp.breakSix}) {
+    width: 55%;
+  }
 `
 const SelectFieldWrapper = styled(ToolbarGroup)`
   width: 30%;
 
   @media (max-width: ${bp.breakFour}) {
     width: 35%;
+  }
+  @media (max-width: ${bp.breakSix}) {
+    width: 25%;
+  }
+  @media (max-width: ${bp.soon}) {
+    width: 30%;
   }
 `
 const ButtonWrapper = styled(ToolbarGroup)`

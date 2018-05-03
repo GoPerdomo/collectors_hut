@@ -41,6 +41,12 @@ const StyledPaper = styled(Paper)`
   @media (max-width: ${bp.breakTwo}) {
     width: 70%;
   }
+  @media (max-width: ${bp.breakFour}) {
+    width: 75%;
+  }
+  @media (max-width: ${bp.breakSix}) {
+    width: 80%;
+  }
 `
 
 
