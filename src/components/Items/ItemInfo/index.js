@@ -8,13 +8,27 @@ import bp from '../../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
+const SectionWrapper = styled.section`
+  @media (max-width: ${bp.breakThree}) {
+    width: 85%;
+    margin: auto;
+  }
+  @media (max-width: ${bp.breakFive}) {
+    width: 90%;
+  }
+`
+
 const ItemName = styled.h2`
   margin: auto;
   width: 85%;
   word-break: break-word;
+
+  @media (max-width: ${bp.breakThree}) {
+    width: 100%;
+  }
 `
 
-const Wrapper = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
   margin: 2em 0;
 
@@ -28,12 +42,12 @@ export default ({ currentCollection, currentItem, user }) => {
   const { photo, name } = currentItem;
 
   return (
-    <section>
+    <SectionWrapper>
       <ItemName>{name}</ItemName>
-      <Wrapper>
+      <ItemWrapper>
         <ItemPhoto name={name} photo={photo} />
         <ItemInfoList {...currentItem} />
-      </Wrapper>
-    </section>
+      </ItemWrapper>
+    </SectionWrapper>
   )
 };

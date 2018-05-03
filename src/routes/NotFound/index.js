@@ -9,7 +9,7 @@ import bp from '../../utils/breakpoints';
 
 // ========== Styled Components ==========
 const NotFoundWrapper = styled.main`
-  width: 80%;
+  width: 75%;
   max-width: ${bp.maxWidth};
   min-height: 50vh;
   display: flex;
@@ -17,6 +17,16 @@ const NotFoundWrapper = styled.main`
   align-items: center;
   margin: auto;
   text-align: center;
+
+  @media (max-width: ${bp.breakTwo}) {
+    width: 85%;
+  }
+  @media (max-width: ${bp.breakThree}) {
+    width: 95%;
+  }
+  @media (max-width: ${bp.breakFive}) {
+    /* flex-direction: column; */
+  }
 `
 
 // ============== Component ==============

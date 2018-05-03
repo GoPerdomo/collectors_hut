@@ -22,8 +22,7 @@ const StyledList = styled(List) `
   word-break: break-word;
 
   @media (max-width: ${bp.breakThree}) {
-    width: 80%;
-    margin: 0 auto 3em;
+    width: 100%;
   }
 `
 

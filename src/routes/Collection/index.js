@@ -23,6 +23,9 @@ const CollectionWrapper = styled.main`
   @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
+  @media (max-width: ${bp.breakFive}) {
+    width: 94%;
+  }
 `
 
 
@@ -44,9 +47,9 @@ class Collection extends Component {
 
     if (!user) {
       return (
-        <main className="profile">
+        <CollectionWrapper>
           <Loading />
-        </main>
+        </CollectionWrapper>
       )
     }
 

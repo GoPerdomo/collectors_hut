@@ -1,29 +1,37 @@
 import React from 'react';
+import styled from 'styled-components';
 
-// ========== Styles ==========
-const wrapperStyle = {
-  width: "50%",
-  height: '300px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  borderRight: '1px solid #6D8EAD',
-};
+import bp from '../../../utils/breakpoints';
 
-const h1Style = {
-  fontSize: "6em",
-  margin: "0",
-};
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  width: 50%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid #6D8EAD;
 
-const h2Style = {
-  fontSize: "2em",
-  margin: '0.5em 0',
-};
+  @media (max-width: ${bp.breakFive}) {
+    /* justify-content: flex-start; */
+    border: none;
+  }
 
-// ========== Component ==========
+  & h1 {
+    font-size: 6em;
+    margin: 0;
+  }
+
+  & h2 {
+    font-size: 2em;
+    margin: 0.5em 0;
+  }
+`
+
+// ============== Component ==============
 export default () => (
-  <div style={wrapperStyle}>
-    <h1 style={h1Style}>404</h1>
-    <h2 style={h2Style}>Ooops!</h2>
-  </div>
+  <Wrapper>
+    <h1>404</h1>
+    <h2>Ooops!</h2>
+  </Wrapper>
 );

@@ -9,8 +9,8 @@ const Wrapper = styled.div`
   margin: 0 auto;
 
   @media (max-width: ${bp.breakThree}) {
-    width: 80%;
-    margin: 0 auto 3em;
+    width: 100%;
+    margin: 0 auto 2em;
   }
   `
 

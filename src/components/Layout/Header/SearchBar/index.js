@@ -15,6 +15,9 @@ const StyledToolbar = styled(Toolbar) `
   @media (max-width: ${bp.breakThree}) {
     width: 480px;
   }
+  @media (max-width: ${bp.breakFour}) {
+    width: 420px;
+  }
 `
 
 // ========= Material-UI Styles =========

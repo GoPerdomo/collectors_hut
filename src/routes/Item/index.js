@@ -23,6 +23,9 @@ const ItemWrapper = styled.main`
   @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
+  @media (max-width: ${bp.breakFive}) {
+    width: 94%;
+  }
 `
 
 
@@ -44,9 +47,9 @@ class Item extends Component {
 
     if (!user) {
       return (
-        <main className="profile">
+        <ItemWrapper>
           <Loading />
-        </main>
+        </ItemWrapper>
       )
     }
 
