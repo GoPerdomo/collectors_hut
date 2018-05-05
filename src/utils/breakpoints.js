@@ -6,5 +6,7 @@ export default {
   breakFour: "880px",
   breakFive: "820px",
   breakSix: "760px",
+  maybe: "670px",
   soon: "570px",
+  minWidth: "360px",
 };

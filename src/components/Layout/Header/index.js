@@ -22,6 +22,9 @@ const Header = styled.header`
   @media (max-width: ${bp.soon}) {
     height: 130px;
   }
+  @media (max-width: ${bp.minWidth}) {
+    height: 150px;
+  }
 `
 
 const Wrapper = styled.div`
@@ -37,13 +40,16 @@ const Wrapper = styled.div`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
   }
   @media (max-width: ${bp.breakSix}) {
     height: 60%;
   }
   @media (max-width: ${bp.soon}) {
     height: 50%;
+  }
+  @media (max-width: ${bp.minWidth}) {
+    height: 60%;
   }
 `
 

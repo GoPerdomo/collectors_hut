@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import bp from '../../../../../utils/breakpoints';
+
 
 // ========== Styled Components ==========
 const DescriptionWrapper = styled.div`
-  height: 256px;
   padding: 0 25px;
   overflow-y: auto;
+
+  @media (max-width: ${bp.minWidth}) {
+    max-height: 256px;
+    min-height: 120px;
+  }
+}
 `
 
 const Description = styled.p`

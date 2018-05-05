@@ -16,16 +16,9 @@ const EnterWrapper = styled.main`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
   }
 `
-
-const Title = styled.h1`
-  margin-top: 0;
-  margin-bottom: 1em;
-  text-align: center;
-`
-
 
 // ============== Component ==============
 class Enter extends Component {
@@ -45,7 +38,6 @@ class Enter extends Component {
   render() {
     return (
       <EnterWrapper>
-        <Title>Login to your account or register</Title>
         <LoginRegister />
       </EnterWrapper>
     )

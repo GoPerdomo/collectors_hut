@@ -1,32 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import TextField from 'material-ui/TextField';
 
-// ========== Styles ==========
-const defaultSyle = {
-  width: "45%",
+import bp from '../../../utils/breakpoints';
+
+
+// ========== Styled Components ==========
+const StyledTextField = styled(TextField) `
+  @media (max-width: ${bp.minWidth}) {
+    width: 100% !important;
+  }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  defaultSyle: {
+    width: "45%",
+  },
+  defaultInputStyle: {
+    height: "auto",
+    position: "absolute",
+    top: "10px",
+  },
+  borderStyle: {
+    borderColor: "#FF6517",
+  },
 };
 
-const defaultInputStyle = {
-  height: "auto",
-  position: "absolute",
-  top: "10px",
-};
-
-const borderStyle = {
-  borderColor: "#FF6517",
-};
-
-// ========== Component ==========
+// ============== Component ==============
 export default ({ id, style, inputStyle, errorStyle, errorText, onChange }) => (
-  <TextField
+  <StyledTextField
     id={id}
     type="file"
     accept=".jpg, .png"
     fullWidth
-    style={{ ...defaultSyle, ...style }}
-    inputStyle={{ ...defaultInputStyle, ...inputStyle }}
-    underlineFocusStyle={borderStyle}
+    style={{ ...styles.defaultSyle, ...style }}
+    inputStyle={{ ...styles.defaultInputStyle, ...inputStyle }}
+    underlineFocusStyle={styles.borderStyle}
     errorStyle={errorStyle}
     errorText={errorText}
     onChange={onChange}

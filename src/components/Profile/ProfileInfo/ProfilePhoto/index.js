@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import Avatar from 'material-ui/Avatar';
 
+import bp from '../../../../utils/breakpoints';
+
 
 // ========== Styled Components ==========
 const ProfilePhoto = styled.div`
@@ -12,6 +14,10 @@ const ProfilePhoto = styled.div`
   height: 140px;
   width: 140px;
   min-width: 140px;
+
+  @media (max-width: ${bp.minWidth}) {
+    margin: 0 0 1em;
+  }
 
   & img {
     cursor: pointer;

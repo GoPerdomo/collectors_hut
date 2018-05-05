@@ -1,25 +1,37 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// ========== Styles ==========
-const wrapper = {
-  height: 'inherit',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  textAlign: 'right',
-};
+import bp from '../../../../utils/breakpoints';
 
-const link = {
-  color: "#FFFFFF",
-  fontSize: '1.2em',
-};
+
+// ========== Styled Components ==========
+const Wrapper = styled.nav`
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
+    height: auto;
+    margin-bottom: 4em;
+    flex-direction: row;
+    font-size: 1.3em;
+  }
+`
+
+const StyledLink = styled(Link)`
+  color: #FFFFFF;
+  font-size: 1.2em;
+`
 
 // ========== Component ==========
 export default () => (
-  <nav style={wrapper}>
-    <Link to="/" style={link}>Home</Link>
-    <Link to="/about" style={link}>About</Link>
-    <Link to="/contact" style={link}>Contact</Link>
-  </nav>
+  <Wrapper>
+    <StyledLink to="/">Home</StyledLink>
+    <StyledLink to="/about">About</StyledLink>
+    <StyledLink to="/contact">Contact</StyledLink>
+  </Wrapper>
 );

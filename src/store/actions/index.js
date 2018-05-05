@@ -142,11 +142,11 @@ export const login = loginInfo => async (dispatch, getState) => {
   }
 };
 
-export const addCollection = (userId, newCollection) => async (dispatch, getState) => {
+export const addCollection = (userId, collectionInfo) => async (dispatch, getState) => {
   const collection = await theFetcher({
     url: `users/${userId}/add-collection`,
     method: 'POST',
-    body: newCollection
+    body: collectionInfo
   });
 
   if (collection) {
@@ -157,15 +157,15 @@ export const addCollection = (userId, newCollection) => async (dispatch, getStat
   }
 };
 
-export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {
-  const { newItemInfo, newItemPhoto } = newItem;
+export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {  
+  const { itemInfo, itemPhoto } = newItem;
 
   const item = await theFetcher({
     url: `users/${userId}/collections/${collectionId}/add-item`,
     method: 'POST',
-    body: newItemInfo,
+    body: itemInfo,
   })
-    .then(res => photoSender(res, newItemPhoto))
+    .then(res => photoSender(res, itemPhoto))
     .catch(err => console.error(err));
 
   if (item) {

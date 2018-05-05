@@ -24,6 +24,11 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakFive}) {
     width: 95%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 92%;
+    height: auto;
+    flex-direction: column;
+  }
 `
 
 // ============== Component ==============

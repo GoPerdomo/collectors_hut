@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
-import NameInput from '../../../Inputs/NameInput';
-import DescriptionInput from '../../../Inputs/DescriptionInput';
-import SubmitButton from '../../../Buttons/SubmitButton';
+import NameInput from '../../Inputs/NameInput';
+import DescriptionInput from '../../Inputs/DescriptionInput';
+import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../../utils/constants';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 
-export default class EditCollectionForm extends Component {
+export default class CollectionForm extends Component {
 
   constructor(props) {
     super(props);
-    const { name, info } = props.collection;
+    const { collection } = props;
+    const name = collection ? collection.name : "";
+    const info = collection ? collection.info : "";
 
     this.state = {
       collectionInfo: {
@@ -25,10 +27,10 @@ export default class EditCollectionForm extends Component {
     const { id } = event.currentTarget;
 
     switch (id) {
-      case ("edit-collection-name"):
+      case ("collection-name"):
         name = content;
         break;
-      case ("edit-collection-info"):
+      case ("collection-info"):
         info = content;
         break;
       default:
@@ -51,13 +53,13 @@ export default class EditCollectionForm extends Component {
     return (
       <form onSubmit={(event) => handleSubmit(event, collectionInfo)}>
         <NameInput
-          id="edit-collection-name"
+          id="collection-name"
           maxLength={maxCollectionNameLength}
           value={name}
           onChange={this.handleContentChange}
         />
         <DescriptionInput
-          id="edit-collection-info"
+          id="collection-info"
           maxLength={maxDescriptionLength}
           value={info}
           onChange={this.handleContentChange}

@@ -22,7 +22,10 @@ const ProfileWrapper = styled.main`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
+  }
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
   }
 `
 

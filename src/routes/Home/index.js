@@ -26,6 +26,9 @@ const HomeWrapper = styled.main`
   @media (max-width: ${bp.breakThree}) {
     width: 80%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 92%;
+  }
 `
 
 const LogoWrapper = styled.div`

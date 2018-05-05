@@ -6,6 +6,7 @@ import ItemPreview from '../../../Images/ItemPreview';
 
 import { maxProfilePreviewItems } from '../../../../utils/constants';
 import getRows from '../../../../utils/getRows';
+import bp from '../../../../utils/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -13,6 +14,11 @@ const Wrapper = styled.div`
   width: 60%;
   height: inherit;
   background-color: #ffffff;
+
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
+    height: 350px;
+  }
 `
 
 const StyledLink = styled(Link) `

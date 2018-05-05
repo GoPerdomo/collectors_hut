@@ -11,8 +11,7 @@ const StyledCard = styled(Card) `
   text-align: left;
   margin-bottom: 30px;
 
-  &>div {
-    height: 120px;
+  & > div {
     display: flex;
     justify-content: space-between;
   }

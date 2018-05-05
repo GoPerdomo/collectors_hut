@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Dialog from 'material-ui/Dialog';
-
 import StandardButton from '../../../components/Buttons/StandardButton';
-import EditItemForm from '../../../components/Forms/ItemForms/EditItemForm';
+import ItemForm from '../../../components/Forms/ItemForm';
+import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
 import { editItem } from '../../../store/actions';
 
-// ========== Styles ==========
+// ========= Material-UI Styles =========
 const styles = {
   labelStyle: {
     display: "flex",
@@ -20,7 +19,7 @@ const styles = {
 };
 
 
-// ========== Component ==========
+// ============== Component ==============
 class EditItem extends Component {
 
   constructor(props) {
@@ -51,7 +50,6 @@ class EditItem extends Component {
     event.preventDefault();
 
     if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
-
       editItem(userId, item.collectionId, item._id, editedItem);
       this.handleRequestClose();
     }
@@ -68,16 +66,15 @@ class EditItem extends Component {
           handleClick={this.handleButtonClick}
         />
 
-        <Dialog
+        <StyledDialog
           open={this.state.open}
-          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
-          <EditItemForm
+          <ItemForm
             item={this.props.item}
             handleSubmit={this.handleSubmit}
           />
-        </Dialog>
+        </StyledDialog>
       </div>
     )
   }

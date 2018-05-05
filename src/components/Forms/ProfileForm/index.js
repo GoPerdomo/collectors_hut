@@ -1,15 +1,54 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import NameInput from '../../../Inputs/NameInput';
-import EmailInput from '../../../Inputs/EmailInput';
-import PasswordInput from '../../../Inputs/PasswordInput';
-import FileInput from '../../../Inputs/FileInput';
-import SubmitButton from '../../../Buttons/SubmitButton';
+import NameInput from '../../Inputs/NameInput';
+import EmailInput from '../../Inputs/EmailInput';
+import PasswordInput from '../../Inputs/PasswordInput';
+import FileInput from '../../Inputs/FileInput';
+import SubmitButton from '../../Buttons/SubmitButton';
 
-import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../../utils/constants';
-import hasNumber from '../../../../utils/hasNumber';
-import passErrorGenerator from '../../../../utils/passErrorGenerator';
+import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../utils/constants';
+import hasNumber from '../../../utils/hasNumber';
+import passErrorGenerator from '../../../utils/passErrorGenerator';
 
+import bp from '../../../utils/breakpoints';
+
+
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: ${bp.minWidth}) {
+    flex-direction: column;
+  }
+`
+
+const PasswordWrapper = styled.div`
+  width: 45%;
+
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
+  }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  fileInput: {
+    base: {
+      height: "96px",
+    },
+    inputStyle: {
+      position: "absolute",
+      top: "40%",
+    },
+    errorStyle: {
+      top: "25px",
+    },
+  },
+};
+
+// ============== Component ==============
 export default class EditProfileForm extends Component {
 
   constructor(props) {
@@ -121,8 +160,8 @@ export default class EditProfileForm extends Component {
           value={email}
           onChange={this.handleContentChange}
         />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "45%" }}>
+        <Wrapper>
+          <PasswordWrapper>
             <PasswordInput
               id="edit-password"
               value={password}
@@ -136,16 +175,16 @@ export default class EditProfileForm extends Component {
               onChange={this.handleContentChange}
               errorText={!(password === confirmPassword) ? "Passwords don't match" : null}
             />
-          </div>
+          </PasswordWrapper>
           <FileInput
             id="edit-profile-photo"
-            style={{ width: "45%", height: "96px" }}
-            inputStyle={{ position: "absolute", top: "40%" }}
-            errorStyle={{ top: "25px" }}
+            style={styles.fileInput.base}
+            inputStyle={styles.fileInput.inputStyle}
+            errorStyle={styles.fileInput.errorStyle}
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
-        </div>
+        </Wrapper>
         <SubmitButton />
       </form>
     )

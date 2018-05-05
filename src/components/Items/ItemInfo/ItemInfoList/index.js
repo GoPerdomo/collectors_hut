@@ -13,7 +13,7 @@ import bp from '../../../../utils/breakpoints';
 
 // ========== Styled Components ==========
 const StyledList = styled(List) `
-  width: 48%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -26,6 +26,12 @@ const StyledList = styled(List) `
   }
 `
 
+const StyledListItem = styled(ListItem) `
+  & svg {
+    margin: 12px 0 !important;
+  }
+`
+
 const Description = styled.p`
   white-space: pre-line;
   word-wrap: break-word;
@@ -34,8 +40,9 @@ const Description = styled.p`
 // ========= Material-UI Styles =========
 const styles = {
   innerDivStyle: {
-    display: "flex",
-    flexDirection: "column-reverse",
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    paddingLeft: '40px',
   }
 };
 
@@ -52,47 +59,52 @@ export default currentItem => {
 
   return (
     <StyledList>
-      <ListItem
+      <StyledListItem
         primaryText="Description"
         open
         autoGenerateNestedIndicator={false}
-        leftIcon={<ActionInfo />}
         innerDivStyle={styles.innerDivStyle}
+        leftIcon={<ActionInfo />}
       >
         <Description>
           {description}
         </Description>
-      </ListItem>
-      <ListItem
+      </StyledListItem>
+      <StyledListItem
         primaryText={`Production Year: ${productionYear || "?"}`}
         autoGenerateNestedIndicator={false}
+        innerDivStyle={styles.innerDivStyle}
         leftIcon={<ActionDateRange />}
       >
-      </ListItem>
-      <ListItem
+      </StyledListItem>
+      <StyledListItem
         primaryText={`Acquisition Year: ${acquisitionYear || "?"}`}
         autoGenerateNestedIndicator={false}
+        innerDivStyle={styles.innerDivStyle}
         leftIcon={<ActionDateRange />}
       >
-      </ListItem>
-      <ListItem
+      </StyledListItem>
+      <StyledListItem
         primaryText={`Origin: ${origin || "?"}`}
         autoGenerateNestedIndicator={false}
+        innerDivStyle={styles.innerDivStyle}
         leftIcon={<CommunicationLocationOn />}
       >
-      </ListItem>
-      <ListItem
+      </StyledListItem>
+      <StyledListItem
         primaryText={`Manufacturer: ${manufacturer || "?"}`}
         autoGenerateNestedIndicator={false}
+        innerDivStyle={styles.innerDivStyle}
         leftIcon={<ActionBuild />}
       >
-      </ListItem>
-      <ListItem
+      </StyledListItem>
+      <StyledListItem
         primaryText={`Condition: ${condition || "?"}`}
         autoGenerateNestedIndicator={false}
+        innerDivStyle={styles.innerDivStyle}
         leftIcon={<ActionThumbsUpDown />}
       >
-      </ListItem>
+      </StyledListItem>
     </StyledList>
   )
 };

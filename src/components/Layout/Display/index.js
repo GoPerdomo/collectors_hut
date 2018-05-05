@@ -17,10 +17,13 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakFive}) {
     width: 95%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 92%;
+  }
 `
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 1em;
 `
 
 // ============== Component ==============

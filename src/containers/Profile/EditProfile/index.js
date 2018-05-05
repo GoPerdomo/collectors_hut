@@ -1,14 +1,49 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import Dialog from 'material-ui/Dialog';
-
-import EditProfileButton from '../../../components/Buttons/ProfileButtons/EditProfileButton';
-import EditProfileForm from '../../../components/Forms/ProfileForms/EditProfileForm';
+import StandardButton from '../../../components/Buttons/StandardButton';
+import ProfileForm from '../../../components/Forms/ProfileForm';
+import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { maxNameLength, maxEmailLength } from '../../../utils/constants';
 import { editUser } from '../../../store/actions';
+import bp from '../../../utils/breakpoints';
 
+
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  @media (max-width: ${bp.breakFour}) {
+    order: 1;
+  }
+  @media (max-width: ${bp.minWidth}) {
+    order: 0;
+  }
+`
+
+const StyledStandardButton = styled(StandardButton) `
+  & button {
+    @media (max-width: ${bp.breakOne}) {
+      line-height: 17px !important;
+    }
+    @media (max-width: ${bp.minWidth}) {
+      line-height: 36px !important;
+    }
+ }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  labelStyle: {
+    display: "flex",
+    padding: "2px 8px",
+    color: "#6D8EAD",
+  },
+  backgroundColor: "#ffffff",
+};
+
+
+// ============== Component ==============
 class EditProfile extends Component {
 
   constructor(props) {
@@ -46,20 +81,23 @@ class EditProfile extends Component {
   render() {
 
     return (
-      <div>
-        <EditProfileButton handleButtonClick={this.handleButtonClick} />
-
-        <Dialog
+      <Wrapper>
+        <StyledStandardButton
+          label="Edit Profile"
+          labelStyle={styles.labelStyle}
+          backgroundColor={styles.backgroundColor}
+          handleClick={this.handleButtonClick}
+        />
+        <StyledDialog
           open={this.state.open}
-          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
-          <EditProfileForm
+          <ProfileForm
             user={this.props.user}
             handleSubmit={this.handleSubmit}
           />
-        </Dialog>
-      </div>
+        </StyledDialog>
+      </Wrapper>
     )
   }
 }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Dialog from 'material-ui/Dialog';
-
 import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
-import AddCollectionForm from '../../../components/Forms/CollectionForms/AddCollectionForm';
+import CollectionForm from '../../../components/Forms/CollectionForm';
+import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
 import { addCollection } from '../../../store/actions';
@@ -27,16 +26,16 @@ class AddCollection extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, newCollection) => {
+  handleSubmit = (event, collectionInfo) => {
     const { userId, addCollection } = this.props;
-    const { name, info } = newCollection;
+    const { name, info } = collectionInfo;
     const isValidName = !!(name && name.length <= maxCollectionNameLength);
     const isValidInfo = info.length <= maxDescriptionLength;
 
     event.preventDefault();
 
     if (isValidName && isValidInfo) {
-      addCollection(userId, newCollection);
+      addCollection(userId, collectionInfo);
       this.handleRequestClose();
     }
   }
@@ -47,20 +46,19 @@ class AddCollection extends Component {
       <div>
         <AddCircleButton handleButtonClick={this.handleButtonClick} />
 
-        <Dialog
+        <StyledDialog
           open={this.state.open}
-          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
-          <AddCollectionForm handleSubmit={this.handleSubmit} />
-        </Dialog>
+          <CollectionForm handleSubmit={this.handleSubmit} />
+        </StyledDialog>
       </div>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addCollection: (userId, newCollection) => dispatch(addCollection(userId, newCollection))
+  addCollection: (userId, collectionInfo) => dispatch(addCollection(userId, collectionInfo))
 });
 
 export default connect(null, mapDispatchToProps)(AddCollection);

@@ -30,6 +30,7 @@ const styles = {
   base: {
     display: "block",
     height: "40px",
+    padding: "0 1em",
     backgroundColor: "#FFFFFF",
   },
 };

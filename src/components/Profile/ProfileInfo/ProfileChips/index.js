@@ -9,8 +9,8 @@ import { maxChips } from '../../../../utils/constants';
 // ========== Styled Components ==========
 const ProfileChips = styled.div`
   display: flex;
+  flex-wrap: wrap;
   max-width: 343px;
-  margin-bottom: 40px;
 
   & span {
     text-overflow: ellipsis;

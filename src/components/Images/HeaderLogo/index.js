@@ -13,6 +13,9 @@ const Logo = styled.img`
   @media (max-width: ${bp.soon}) {
     width: 170px;
   }
+  @media (max-width: ${bp.soon}) {
+    width: 210px;
+  }
 `
 
 // ============== Component ==============

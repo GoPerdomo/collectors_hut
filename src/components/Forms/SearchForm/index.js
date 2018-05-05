@@ -17,14 +17,14 @@ const StyledForm = styled.form`
   justify-content: space-between;
 `
 
-const TextFieldWrapper = styled(ToolbarGroup)`
+const TextFieldWrapper = styled(ToolbarGroup) `
   width: 50%;
 
   @media (max-width: ${bp.breakSix}) {
     width: 55%;
   }
 `
-const SelectFieldWrapper = styled(ToolbarGroup)`
+const SelectFieldWrapper = styled(ToolbarGroup) `
   width: 30%;
 
   @media (max-width: ${bp.breakFour}) {
@@ -36,9 +36,16 @@ const SelectFieldWrapper = styled(ToolbarGroup)`
   @media (max-width: ${bp.soon}) {
     width: 30%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 40%;
+  }
 `
-const ButtonWrapper = styled(ToolbarGroup)`
+const ButtonWrapper = styled(ToolbarGroup) `
   width: 7%;
+
+  @media (max-width: ${bp.minWidth}) {
+    display: none !important;
+  }
 `
 
 // ============== Component ==============
@@ -72,8 +79,7 @@ export default class SearchForm extends Component {
           <SearchSelectInput
             value={searchType}
             onChange={(event, index, value) => this.setState({ searchType: value })}
-          >
-          </SearchSelectInput>
+          />
         </SelectFieldWrapper>
         <ButtonWrapper>
           <SearchIconButton />

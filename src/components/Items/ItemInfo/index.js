@@ -16,6 +16,9 @@ const SectionWrapper = styled.section`
   @media (max-width: ${bp.breakFive}) {
     width: 90%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
+  }
 `
 
 const ItemName = styled.h2`

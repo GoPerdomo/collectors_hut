@@ -2,15 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import bp from '../../../../utils/breakpoints';
 
 // ========== Styled Components ==========
 const ProfileName = styled.h1`
   cursor: pointer;
   width: fit-content;
+  margin: 0;
   text-align: left;
   color: #FFFFFF;
   font-size: 2.3em;
   word-break: break-word;
+
+  @media (max-width: ${bp.minWidth}) {
+    text-align: center;
+  }
 `
 
 // ============== Component ==============

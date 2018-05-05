@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import NewsletterForm from '../../components/Forms/NewsletterForm';
 
 import { subNewsletter } from '../../store/actions';
+import bp from '../../utils/breakpoints';
 
-// ========== Styles ==========
-const wrapper = {
-  height: 'inherit',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  fontSize: '1.2em',
-};
 
-// ========== Component ==========
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.2em;
+
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
+    margin-bottom: 3em;
+  }
+`
+
+// ============== Component ==============
 class Newsletter extends Component {
 
   constructor(props) {
@@ -38,7 +46,7 @@ class Newsletter extends Component {
     const { sent } = this.state;
 
     return (
-      <div style={wrapper}>
+      <Wrapper>
         {
           sent
             ? <span>Thank you for subscribing!</span>
@@ -47,7 +55,7 @@ class Newsletter extends Component {
               <NewsletterForm key="form" handleSubmit={this.handleSubmit} />
             ]
         }
-      </div>
+      </Wrapper>
     )
   }
 };

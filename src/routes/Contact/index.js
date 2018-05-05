@@ -22,7 +22,7 @@ const ContactWrapper = styled.main`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
   }
 `
 
@@ -46,6 +46,9 @@ const StyledPaper = styled(Paper)`
   }
   @media (max-width: ${bp.breakSix}) {
     width: 80%;
+  }
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
   }
 `
 

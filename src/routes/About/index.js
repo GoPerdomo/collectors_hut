@@ -17,6 +17,9 @@ const AboutWrapper = styled.div`
   @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
+  @media (max-width: ${bp.minWidth}) {
+    width: 92%;
+  }
 `
 
 // ============== Component ==============

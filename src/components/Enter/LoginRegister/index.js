@@ -15,8 +15,17 @@ const StyledPaper = styled(Paper) `
   width: 50%;
   margin: 0 auto;
 
-  @media (max-width: ${bp.breakTwo}) {
+  @media (max-width: ${bp.breakOne}) {
     width: 60%;
+  }
+  @media (max-width: ${bp.breakThree}) {
+    width: 70%;
+  }
+  @media (max-width: ${bp.breakSix}) {
+    width: 80%;
+  }
+  @media (max-width: ${bp.minWidth}) {
+    width: 100%;
   }
 `
 
