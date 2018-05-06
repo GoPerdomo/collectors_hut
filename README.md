@@ -65,5 +65,4 @@ A RESTful API using:
 
 ## Coming Soon ##
 
-- **Responsive Design**
 - **Deployment**
