@@ -1,4 +1,4 @@
-import { theFetcher, photoSender } from '../../utils/fetchers';
+import { theFetcher, photoSender } from '../../helpers/fetchers';
 
 // GET
 export const getProfile = userId => async (dispatch, getState) => {
@@ -110,8 +110,8 @@ export const register = newUserInfo => async (dispatch, getState) => {
       type: "SET_CURRENT_USER",
       payload: { userId },
     });
-    localStorage.setItem('token', token);
-    localStorage.setItem('loggedUser', userId);
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('loggedUser', userId);
   } else {
     dispatch({
       type: "REGISTER_FAILED",
@@ -133,8 +133,8 @@ export const login = loginInfo => async (dispatch, getState) => {
       type: "SET_CURRENT_USER",
       payload: { userId },
     });
-    localStorage.setItem('token', token);
-    localStorage.setItem('loggedUser', userId);
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('loggedUser', userId);
   } else {
     dispatch({
       type: "LOGIN_FAILED",
@@ -272,8 +272,8 @@ export const deleteCollection = (userId, collectionId) => (dispatch, getState) =
 
 // No fetch
 export const fetchLocalUser = () => (dispatch, getState) => {
-  const token = localStorage.getItem('token');
-  const loggedUser = localStorage.getItem('loggedUser');
+  const token = sessionStorage.getItem('token');
+  const loggedUser = sessionStorage.getItem('loggedUser');
 
   if (token) {
     dispatch({
@@ -294,5 +294,5 @@ export const logout = () => (dispatch, getState) => {
   dispatch({
     type: "REMOVE_CURRENT_USER",
   });
-  localStorage.clear();
+  sessionStorage.clear();
 };

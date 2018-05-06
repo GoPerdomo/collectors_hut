@@ -7,7 +7,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import LoginTab from '../../../containers/Enter/LoginTab';
 import RegisterTab from '../../../containers/Enter/RegisterTab';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -24,7 +24,7 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakSix}) {
     width: 80%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 100%;
   }
 `

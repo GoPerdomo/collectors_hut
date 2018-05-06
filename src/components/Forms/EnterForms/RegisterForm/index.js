@@ -5,9 +5,9 @@ import EmailInput from '../../../Inputs/EmailInput';
 import PasswordInput from '../../../Inputs/PasswordInput';
 import SubmitButton from '../../../Buttons/SubmitButton';
 
-import { minPassLength, maxNameLength, maxEmailLength } from '../../../../utils/constants';
-import hasNumber from '../../../../utils/hasNumber';
-import passErrorGenerator from '../../../../utils/passErrorGenerator';
+import { minPassLength, maxNameLength, maxEmailLength } from '../../../../helpers/constants';
+import hasNumber from '../../../../helpers/hasNumber';
+import passErrorGenerator from '../../../../helpers/passErrorGenerator';
 
 export default class RegisterForm extends Component {
 

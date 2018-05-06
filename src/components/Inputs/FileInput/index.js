@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import TextField from 'material-ui/TextField';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledTextField = styled(TextField) `
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100% !important;
   }
 `

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import NotFoundLogo from '../../components/Images/NotFoundLogo';
 import NotFoundText from '../../components/NotFound/NotFoundText';
 
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -24,9 +24,10 @@ const NotFoundWrapper = styled.main`
   @media (max-width: ${bp.breakThree}) {
     width: 95%;
   }
-  /* @media (max-width: ${bp.breakSix}) {
+  @media (max-width: ${bp.breakNine}) {
     flex-direction: column;
-  } */
+  }
+
 `
 
 // ============== Component ==============

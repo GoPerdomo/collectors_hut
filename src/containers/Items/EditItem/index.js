@@ -5,7 +5,7 @@ import StandardButton from '../../../components/Buttons/StandardButton';
 import ItemForm from '../../../components/Forms/ItemForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
 import { editItem } from '../../../store/actions';
 
 // ========= Material-UI Styles =========

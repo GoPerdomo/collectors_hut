@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { Toolbar } from 'material-ui/Toolbar';
 
 import SearchForm from '../../../Forms/SearchForm';
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const StyledToolbar = styled(Toolbar) `

@@ -10,7 +10,7 @@ import CollectionInfo from '../../components/Collections/CollectionInfo';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -26,7 +26,7 @@ const CollectionWrapper = styled.main`
   @media (max-width: ${bp.breakFive}) {
     width: 92%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 100%;
   }
 `

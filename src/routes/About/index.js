@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import HomeLogo from '../../components/Images/HomeLogo';
 
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const AboutWrapper = styled.div`
@@ -17,7 +17,7 @@ const AboutWrapper = styled.div`
   @media (max-width: ${bp.breakTwo}) {
     width: 90%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 92%;
   }
 `

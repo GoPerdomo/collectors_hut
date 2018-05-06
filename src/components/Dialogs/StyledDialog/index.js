@@ -3,19 +3,25 @@ import styled from 'styled-components';
 
 import Dialog from 'material-ui/Dialog';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const StyledDialog = styled(Dialog) `
   & > div > div {
-    @media (max-width: ${bp.minWidth}) {
+    @media (max-width: ${bp.breakSix}) {
+      width: 85% !important;
+    }
+    @media (max-width: ${bp.breakSeven}) {
+      width: 90% !important;
+    }
+    @media (max-width: ${bp.breakNine}) {
       width: 97% !important;
     }
     
     & > div > div {
       border: none !important;
       
-      @media (max-width: ${bp.minWidth}) {
+      @media (max-width: ${bp.breakEight}) {
         padding: 1.5em 1em !important;
       }
     }

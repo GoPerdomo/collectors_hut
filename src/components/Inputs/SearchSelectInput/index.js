@@ -10,7 +10,7 @@ const styles = {
     padding: 0,
   },
   innerDivStyle: {
-    padding: "0 20px",
+    padding: "0 15px",
   },
 };
 

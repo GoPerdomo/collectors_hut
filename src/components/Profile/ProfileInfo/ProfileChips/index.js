@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Chip from 'material-ui/Chip';
 
-import { maxChips } from '../../../../utils/constants';
+import { maxChips } from '../../../../helpers/constants';
 
 
 // ========== Styled Components ==========

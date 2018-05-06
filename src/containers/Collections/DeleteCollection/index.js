@@ -9,7 +9,7 @@ import CancelButton from '../../../components/Buttons/AlertButtons/CancelButton'
 import DeleteButton from '../../../components/Buttons/AlertButtons/DeleteButton';
 
 import { deleteCollection } from '../../../store/actions';
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     position: relative;
     right: 35px;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     position: static;
   }
 `

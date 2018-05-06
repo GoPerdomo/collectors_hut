@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
   height: 130px;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100%;
     height: 210px;
   }
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const Logo = styled.img`
   height: inherit;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     margin: auto;
   }
 `

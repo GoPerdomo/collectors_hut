@@ -9,8 +9,8 @@ import SelectInput from '../../Inputs/SelectInput';
 import FileInput from '../../Inputs/FileInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../utils/constants';
-import bp from '../../../utils/breakpoints';
+import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../helpers/constants';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
   }
 `

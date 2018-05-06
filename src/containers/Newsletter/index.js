@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import NewsletterForm from '../../components/Forms/NewsletterForm';
 
 import { subNewsletter } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -16,8 +16,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   font-size: 1.2em;
 
-  @media (max-width: ${bp.minWidth}) {
-    width: 100%;
+  @media (max-width: ${bp.breakEight}) {
+    width: 90%;
     margin-bottom: 3em;
   }
 `

@@ -8,7 +8,7 @@ import CommunicationLocationOn from 'material-ui/svg-icons/communication/locatio
 import ActionBuild from 'material-ui/svg-icons/action/build';
 import ActionThumbsUpDown from 'material-ui/svg-icons/action/thumbs-up-down';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========

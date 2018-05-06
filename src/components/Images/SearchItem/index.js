@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
-
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
   overflow: hidden;
-  width: 25%;
+  width: 50%;
   height: 200px;
-  
-  @media (max-width: ${bp.minWidth}) {
-    width: 50%;
-  }
-`
 
+`
 
 const SearchItem = styled.img`
   width: 100%;

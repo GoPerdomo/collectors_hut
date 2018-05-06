@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -13,7 +13,7 @@ const Wrapper = styled.nav`
   justify-content: space-between;
   text-align: right;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100%;
     height: auto;
     margin-bottom: 4em;

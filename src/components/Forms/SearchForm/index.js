@@ -7,7 +7,7 @@ import SearchInput from '../../Inputs/SearchInput';
 import SearchSelectInput from '../../Inputs/SearchSelectInput';
 import SearchIconButton from '../../Buttons/IconButtons/SearchIconButton';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -23,6 +23,9 @@ const TextFieldWrapper = styled(ToolbarGroup) `
   @media (max-width: ${bp.breakSix}) {
     width: 55%;
   }
+  @media (max-width: ${bp.breakNine}) {
+    width: 47%;
+  }
 `
 const SelectFieldWrapper = styled(ToolbarGroup) `
   width: 30%;
@@ -33,19 +36,15 @@ const SelectFieldWrapper = styled(ToolbarGroup) `
   @media (max-width: ${bp.breakSix}) {
     width: 25%;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 30%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 40%;
   }
 `
 const ButtonWrapper = styled(ToolbarGroup) `
   width: 7%;
-
-  @media (max-width: ${bp.minWidth}) {
-    display: none !important;
-  }
 `
 
 // ============== Component ==============

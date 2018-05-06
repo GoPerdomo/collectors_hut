@@ -5,7 +5,7 @@ import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleBu
 import CollectionForm from '../../../components/Forms/CollectionForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
 import { addCollection } from '../../../store/actions';
 
 class AddCollection extends Component {

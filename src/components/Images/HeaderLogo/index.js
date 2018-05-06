@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const Logo = styled.img`
@@ -10,10 +10,10 @@ const Logo = styled.img`
   @media (max-width: ${bp.breakSix}) {
     width: 200px;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 170px;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 210px;
   }
 `

@@ -5,7 +5,7 @@ import FooterLogo from '../../Images/FooterLogo';
 import Newsletter from '../../../containers/Newsletter';
 import Navigation from './Navigation';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   @media (max-width: ${bp.breakFive}) {
     width: 92%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     flex-direction: column-reverse;
   }
 `

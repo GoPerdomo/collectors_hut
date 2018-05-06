@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import ProfileInfo from '../../../components/Profile/ProfileInfo';
 import ProfileConfig from '../../../components/Profile/ProfileConfig';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -21,7 +21,7 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakThree}) {
     padding: 1em 4.5%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
   }
 `

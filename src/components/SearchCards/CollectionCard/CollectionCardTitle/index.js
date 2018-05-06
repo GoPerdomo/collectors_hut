@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import { CardTitle } from 'material-ui/Card';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledCardTitle = styled(CardTitle) `
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakSix}) {
     padding: 1em !important;
   }
 `

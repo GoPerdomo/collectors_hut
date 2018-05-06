@@ -6,9 +6,9 @@ import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleBu
 import ItemForm from '../../../components/Forms/ItemForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
 import { addItem } from '../../../store/actions';
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -16,9 +16,9 @@ const Wrapper = styled.div`
   @media (max-width: ${bp.breakFour}) {
     position: absolute;
     bottom: 20px;
-    right: 25px;
+    right: 15px;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     position: static;
   }
 `

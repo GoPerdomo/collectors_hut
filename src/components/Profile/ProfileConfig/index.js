@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -14,7 +14,7 @@ const ProfileConfig = styled.div`
   @media (max-width: ${bp.breakFour}) {
     width: 20%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100%;
   }
 `

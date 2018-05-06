@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -16,7 +16,7 @@ const ButtonsWrapper = styled.div`
     flex-direction: column-reverse;
     justify-content: space-evenly;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100%;
     height: auto;
     flex-direction: row;
@@ -26,7 +26,7 @@ const ButtonsWrapper = styled.div`
   &>div {
     margin-left: 15px;
   
-    @media (max-width: ${bp.minWidth}) {
+    @media (max-width: ${bp.breakEight}) {
       margin: 0;
     }
   }

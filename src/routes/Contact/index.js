@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import ContactForm from '../../components/Forms/ContactForm';
 
 import { sendContact } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -47,7 +47,10 @@ const StyledPaper = styled(Paper)`
   @media (max-width: ${bp.breakSix}) {
     width: 80%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakSeven}) {
+    width: 90%;
+  }
+  @media (max-width: ${bp.breakNine}) {
     width: 100%;
   }
 `

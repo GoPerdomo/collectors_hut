@@ -4,7 +4,7 @@ import NameInput from '../../Inputs/NameInput';
 import DescriptionInput from '../../Inputs/DescriptionInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
 
 export default class CollectionForm extends Component {
 

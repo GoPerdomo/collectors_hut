@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import { CardHeader } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledCardHeader = styled(CardHeader) `
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakSix}) {
     padding: 1em !important;
   }
 `

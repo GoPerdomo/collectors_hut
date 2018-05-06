@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const ProfileName = styled.h1`
@@ -14,7 +14,7 @@ const ProfileName = styled.h1`
   font-size: 2.3em;
   word-break: break-word;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     text-align: center;
   }
 `

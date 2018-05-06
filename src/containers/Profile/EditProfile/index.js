@@ -6,9 +6,9 @@ import StandardButton from '../../../components/Buttons/StandardButton';
 import ProfileForm from '../../../components/Forms/ProfileForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxNameLength, maxEmailLength } from '../../../utils/constants';
+import { maxNameLength, maxEmailLength } from '../../../helpers/constants';
 import { editUser } from '../../../store/actions';
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -16,17 +16,17 @@ const Wrapper = styled.div`
   @media (max-width: ${bp.breakFour}) {
     order: 1;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     order: 0;
   }
 `
 
 const StyledStandardButton = styled(StandardButton) `
   & button {
-    @media (max-width: ${bp.breakOne}) {
+    @media (max-width: ${bp.breakSix}) {
       line-height: 17px !important;
     }
-    @media (max-width: ${bp.minWidth}) {
+    @media (max-width: ${bp.breakEight}) {
       line-height: 36px !important;
     }
  }

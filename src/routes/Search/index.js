@@ -8,7 +8,7 @@ import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { search } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -27,7 +27,7 @@ const SearchWrapper = styled.main`
   @media (max-width: ${bp.breakThree}) {
     width: 80%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakSix}) {
     width: 92%;
   }
 `

@@ -7,11 +7,11 @@ import PasswordInput from '../../Inputs/PasswordInput';
 import FileInput from '../../Inputs/FileInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../utils/constants';
-import hasNumber from '../../../utils/hasNumber';
-import passErrorGenerator from '../../../utils/passErrorGenerator';
+import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../helpers/constants';
+import hasNumber from '../../../helpers/hasNumber';
+import passErrorGenerator from '../../../helpers/passErrorGenerator';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
   }
 `
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 const PasswordWrapper = styled.div`
   width: 45%;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakEight}) {
     width: 100%;
   }
 `

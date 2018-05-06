@@ -7,14 +7,14 @@ import Avatar from 'material-ui/Avatar';
 
 import ProfileChips from '../../../Profile/ProfileInfo/ProfileChips';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledCardHeader = styled(CardHeader) `
   word-break: break-word;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     padding: 1em !important;
   }
 

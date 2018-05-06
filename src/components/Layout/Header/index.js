@@ -6,7 +6,7 @@ import HeaderLogo from '../../Images/HeaderLogo';
 import SearchBar from './SearchBar';
 import LoginLogout from '../../../containers/Enter/LoginLogout';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -19,10 +19,10 @@ const Header = styled.header`
   @media (max-width: ${bp.breakSix}) {
     height: 150px;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     height: 130px;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     height: 150px;
   }
 `
@@ -45,10 +45,10 @@ const Wrapper = styled.div`
   @media (max-width: ${bp.breakSix}) {
     height: 60%;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     height: 50%;
   }
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     height: 60%;
   }
 `

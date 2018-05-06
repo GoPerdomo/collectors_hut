@@ -7,8 +7,8 @@ import CollectionForm from '../../../components/Forms/CollectionForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { editCollection } from '../../../store/actions';
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
-import bp from '../../../utils/breakpoints';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -17,7 +17,7 @@ const StyledStandardButton = styled(StandardButton) `
     @media (max-width: ${bp.breakOne}) {
       line-height: 17px !important;
     }
-    @media (max-width: ${bp.minWidth}) {
+    @media (max-width: ${bp.breakEight}) {
       line-height: 36px !important;
     }
  }

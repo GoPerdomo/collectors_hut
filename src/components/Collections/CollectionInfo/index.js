@@ -4,7 +4,7 @@ import { GridList, GridTile } from 'material-ui/GridList';
 
 import CollectionItemPreview from './CollectionItemPreview';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -15,7 +15,7 @@ const StyledGridList = styled(GridList) `
     @media (max-width: ${bp.breakOne}) {
       width: 33.333% !important;
     }
-    @media (max-width: ${bp.minWidth}) {
+    @media (max-width: ${bp.breakEight}) {
       width: 50% !important;
     }
   }

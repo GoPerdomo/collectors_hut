@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import SearchItem from '../../../Images/SearchItem';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -14,10 +14,12 @@ const CollectionPreview = styled.div`
   padding: 0 2em 1em;
   word-break: break-word;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakSix}) {
+    padding: 0 1em 1em;
+  }
+  @media (max-width: ${bp.breakSeven}) {
     justify-content: flex-start;
     flex-wrap: wrap;
-    padding: 0 1em 1em;
   }
   
   &:hover {

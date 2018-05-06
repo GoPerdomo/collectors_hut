@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Avatar from 'material-ui/Avatar';
 
-import bp from '../../../../utils/breakpoints';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -15,7 +15,7 @@ const ProfilePhoto = styled.div`
   width: 140px;
   min-width: 140px;
 
-  @media (max-width: ${bp.minWidth}) {
+  @media (max-width: ${bp.breakNine}) {
     margin: 0 0 1em;
   }
 
