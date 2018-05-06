@@ -13,7 +13,7 @@ import bp from '../../helpers/breakpoints';
 // ========== Styled Components ==========
 const HomeWrapper = styled.main`
   width: 65%;
-  max-width: ${bp.maxWidth};
+  max-width: ${bp.breakTwo};
   margin: 0 auto auto;
   text-align: center;
 
