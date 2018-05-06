@@ -1,38 +1,58 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-import NameInput from '../../../Inputs/NameInput';
-import DescriptionInput from '../../../Inputs/DescriptionInput';
-import YearInput from '../../../Inputs/YearInput';
-import MiscInput from '../../../Inputs/MiscInput';
-import SelectInput from '../../../Inputs/SelectInput';
-import FileInput from '../../../Inputs/FileInput';
-import SubmitButton from '../../../Buttons/SubmitButton';
+import NameInput from '../../Inputs/NameInput';
+import DescriptionInput from '../../Inputs/DescriptionInput';
+import YearInput from '../../Inputs/YearInput';
+import MiscInput from '../../Inputs/MiscInput';
+import SelectInput from '../../Inputs/SelectInput';
+import FileInput from '../../Inputs/FileInput';
+import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../../utils/constants';
+import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../helpers/constants';
+import bp from '../../../helpers/breakpoints';
 
-export default class EditItemForm extends Component {
+
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: ${bp.breakEight}) {
+    flex-direction: column;
+  }
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  base: {
+    width: "45%",
+  },
+};
+
+// ============== Component ==============
+export default class ItemForm extends Component {
 
   constructor(props) {
     super(props);
-    const {
-      name,
-      description,
-      productionYear,
-      acquisitionYear,
-      origin,
-      manufacturer,
-      condition,
-    } = props.item;
+    const { item } = props;
+    const name = item ? item.name : "";
+    const description = item ? item.description : "";
+    const productionYear = item ? item.productionYear : "";
+    const acquisitionYear = item ? item.acquisitionYear : "";
+    const origin = item ? item.origin : "";
+    const manufacturer = item ? item.manufacturer : "";
+    const condition = item ? item.condition : "";
 
     this.state = {
       itemInfo: {
-        name: name || "",
-        description: description || "",
-        productionYear: productionYear || "",
-        acquisitionYear: acquisitionYear || "",
-        origin: origin || "",
-        manufacturer: manufacturer || "",
-        condition: condition || "",
+        name,
+        description,
+        productionYear,
+        acquisitionYear,
+        origin,
+        manufacturer,
+        condition,
       },
       itemPhoto: {},
       isFileTooBig: false,
@@ -55,25 +75,25 @@ export default class EditItemForm extends Component {
 
 
     switch (id) {
-      case ("edit-item-name"):
+      case ("item-name"):
         name = content;
         break;
-      case ("edit-item-description"):
+      case ("item-description"):
         description = content;
         break;
-      case ("edit-item-productionYear"):
+      case ("item-productionYear"):
         if (!isNaN(content)) productionYear = content;
         break;
-      case ("edit-item-acquisitionYear"):
+      case ("item-acquisitionYear"):
         if (!isNaN(content)) acquisitionYear = content;
         break;
-      case ("edit-item-origin"):
+      case ("item-origin"):
         origin = content;
         break;
-      case ("edit-item-manufacturer"):
+      case ("item-manufacturer"):
         manufacturer = content;
         break;
-      case ("edit-item-photo"):
+      case ("item-photo"):
         if (file && file.size < maxFileSize) {
           itemPhoto = file;
           isFileTooBig = false;
@@ -118,58 +138,58 @@ export default class EditItemForm extends Component {
     return (
       <form onSubmit={(event) => handleSubmit(event, this.state)}>
         <NameInput
-          id="edit-item-name"
+          id="item-name"
           hintText="Name"
           maxLength={maxItemInfoLength}
           value={name}
           onChange={this.handleContentChange}
         />
         <DescriptionInput
-          id="edit-item-description"
+          id="item-description"
           maxLength={maxDescriptionLength}
           value={description}
           onChange={this.handleContentChange}
         />
         <YearInput
-          id="edit-item-productionYear"
+          id="item-productionYear"
           hintText="Production Year"
           value={productionYear}
           onChange={this.handleContentChange}
         />
         <YearInput
-          id="edit-item-acquisitionYear"
+          id="item-acquisitionYear"
           hintText="Acquisition Year"
           value={acquisitionYear}
           onChange={this.handleContentChange}
         />
         <MiscInput
-          id="edit-item-origin"
+          id="item-origin"
           hintText="Origin"
           maxLength={maxItemInfoLength}
           value={origin}
           onChange={this.handleContentChange}
         />
         <MiscInput
-          id="edit-item-manufacturer"
+          id="item-manufacturer"
           hintText="Manufacturer"
           maxLength={maxItemInfoLength}
           value={manufacturer}
           onChange={this.handleContentChange}
         />
-        <div style={{ display: "flex", justifyContent: 'space-between' }}>
+        <Wrapper>
           <SelectInput
-            id="edit-item-condition"
+            id="item-condition"
+            style={styles.base}
             value={condition}
-            style={{ width: "45%" }}
             menuItems={["Mint", "Good", "Fair", "Poor"]}
             onChange={(event, index, value) => this.setState({ itemInfo: { ...itemInfo, condition: value } })}
           />
           <FileInput
-            id="edit-item-photo"
+            id="item-photo"
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
-        </div>
+        </Wrapper>
         <SubmitButton />
       </form>
     )

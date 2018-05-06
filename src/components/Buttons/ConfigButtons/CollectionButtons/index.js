@@ -5,6 +5,7 @@ import EditCollection from '../../../../containers/Collections/EditCollection'
 import DeleteCollection from '../../../../containers/Collections/DeleteCollection';
 import AddItem from '../../../../containers/Items/AddItem';
 
+
 export default ({ loggedUser, userId, collectionId, currentCollection }) => (
   <ConfigButtons loggedUser={loggedUser} userId={userId} >
     <DeleteCollection />

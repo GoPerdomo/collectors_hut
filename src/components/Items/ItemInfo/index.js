@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ItemPhoto from '../../Images/ItemPhoto';
 import ItemInfoList from './ItemInfoList';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -15,6 +15,9 @@ const SectionWrapper = styled.section`
   }
   @media (max-width: ${bp.breakFive}) {
     width: 90%;
+  }
+  @media (max-width: ${bp.breakNine}) {
+    width: 100%;
   }
 `
 

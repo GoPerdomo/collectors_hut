@@ -1,11 +1,29 @@
 import React from 'react';
-
+import styled from 'styled-components';
 import { GridList, GridTile } from 'material-ui/GridList';
 
 import CollectionItemPreview from './CollectionItemPreview';
 
+import bp from '../../../helpers/breakpoints';
+
+
+// ========== Styled Components ==========
+const StyledGridList = styled(GridList) `
+  & > div {
+    width: 25% !important;
+
+    @media (max-width: ${bp.breakOne}) {
+      width: 33.333% !important;
+    }
+    @media (max-width: ${bp.breakEight}) {
+      width: 50% !important;
+    }
+  }
+`
+
+// ============== Component ==============
 export default ({ userId, currentCollection }) => (
-  <GridList cols={3} cellHeight="auto" >
+  <StyledGridList cellHeight="auto" >
     {
       currentCollection.items.map(item => (
         <GridTile key={item._id} title={item.name} >
@@ -17,5 +35,5 @@ export default ({ userId, currentCollection }) => (
         </GridTile>
       ))
     }
-  </GridList>
+  </StyledGridList>
 );

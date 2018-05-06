@@ -8,7 +8,7 @@ import ProfileButtons from '../../components/Buttons/ConfigButtons/ProfileButton
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -22,7 +22,10 @@ const ProfileWrapper = styled.main`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
+  }
+  @media (max-width: ${bp.breakNine}) {
+    width: 100%;
   }
 `
 

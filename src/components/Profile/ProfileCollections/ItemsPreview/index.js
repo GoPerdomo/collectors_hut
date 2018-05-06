@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 import ItemPreview from '../../../Images/ItemPreview';
 
-import { maxProfilePreviewItems } from '../../../../utils/constants';
-import getRows from '../../../../utils/getRows';
+import { maxProfilePreviewItems } from '../../../../helpers/constants';
+import getRows from '../../../../helpers/getRows';
+import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -13,6 +14,11 @@ const Wrapper = styled.div`
   width: 60%;
   height: inherit;
   background-color: #ffffff;
+
+  @media (max-width: ${bp.breakEight}) {
+    width: 100%;
+    height: 350px;
+  }
 `
 
 const StyledLink = styled(Link) `

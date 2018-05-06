@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import CollectionName from './CollectionName';
 import CollectionDescription from './CollectionDescription';
 
+import bp from '../../../../helpers/breakpoints';
+
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
@@ -12,6 +14,10 @@ const Wrapper = styled.div`
   text-align: left;
   background-color: #6D8EAD;
   overflow: hidden;
+
+  @media (max-width: ${bp.breakEight}) {
+    width: 100%;
+  }
 `
 
 // ============== Component ==============

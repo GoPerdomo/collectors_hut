@@ -6,7 +6,7 @@ import Paper from 'material-ui/Paper';
 import ItemsPreview from './ItemsPreview';
 import CollectionInfo from './CollectionInfo';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -23,6 +23,11 @@ const StyledPaper = styled(Paper) `
   }
   @media (max-width: ${bp.breakFive}) {
     width: 95%;
+  }
+  @media (max-width: ${bp.breakEight}) {
+    width: 92%;
+    height: auto;
+    flex-direction: column;
   }
 `
 

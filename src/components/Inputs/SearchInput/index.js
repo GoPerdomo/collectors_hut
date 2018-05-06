@@ -18,7 +18,7 @@ const styles = {
 // ============== Component ==============
 export default ({ value, onChange }) => (
   <TextField
-    hintText="Find users and collections"
+    hintText="Search"
     style={styles.base}
     hintStyle={styles.hintStyle}
     underlineShow={false}

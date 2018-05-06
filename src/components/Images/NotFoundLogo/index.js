@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========

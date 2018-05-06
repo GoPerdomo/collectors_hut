@@ -7,7 +7,7 @@ import SearchInput from '../../Inputs/SearchInput';
 import SearchSelectInput from '../../Inputs/SearchSelectInput';
 import SearchIconButton from '../../Buttons/IconButtons/SearchIconButton';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -17,14 +17,17 @@ const StyledForm = styled.form`
   justify-content: space-between;
 `
 
-const TextFieldWrapper = styled(ToolbarGroup)`
+const TextFieldWrapper = styled(ToolbarGroup) `
   width: 50%;
 
   @media (max-width: ${bp.breakSix}) {
     width: 55%;
   }
+  @media (max-width: ${bp.breakNine}) {
+    width: 47%;
+  }
 `
-const SelectFieldWrapper = styled(ToolbarGroup)`
+const SelectFieldWrapper = styled(ToolbarGroup) `
   width: 30%;
 
   @media (max-width: ${bp.breakFour}) {
@@ -33,11 +36,14 @@ const SelectFieldWrapper = styled(ToolbarGroup)`
   @media (max-width: ${bp.breakSix}) {
     width: 25%;
   }
-  @media (max-width: ${bp.soon}) {
+  @media (max-width: ${bp.breakNine}) {
     width: 30%;
   }
+  @media (max-width: ${bp.breakNine}) {
+    width: 40%;
+  }
 `
-const ButtonWrapper = styled(ToolbarGroup)`
+const ButtonWrapper = styled(ToolbarGroup) `
   width: 7%;
 `
 
@@ -72,8 +78,7 @@ export default class SearchForm extends Component {
           <SearchSelectInput
             value={searchType}
             onChange={(event, index, value) => this.setState({ searchType: value })}
-          >
-          </SearchSelectInput>
+          />
         </SelectFieldWrapper>
         <ButtonWrapper>
           <SearchIconButton />

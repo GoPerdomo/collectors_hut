@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Paper from 'material-ui/Paper';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const StyledPaper = styled(Paper) `
@@ -17,10 +17,13 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakFive}) {
     width: 95%;
   }
+  @media (max-width: ${bp.breakNine}) {
+    width: 92%;
+  }
 `
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 1em;
 `
 
 // ============== Component ==============

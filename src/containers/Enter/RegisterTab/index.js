@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../../../components/Forms/EnterForms/RegisterForm';
 
-import { maxNameLength, maxEmailLength } from '../../../utils/constants';
+import { maxNameLength, maxEmailLength } from '../../../helpers/constants';
 import { register } from '../../../store/actions';
 
 const RegisterTab = ({ register, isDuplicatedEmail }) => {

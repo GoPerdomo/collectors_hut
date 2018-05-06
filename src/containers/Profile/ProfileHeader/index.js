@@ -8,18 +8,28 @@ import Paper from 'material-ui/Paper';
 import ProfileInfo from '../../../components/Profile/ProfileInfo';
 import ProfileConfig from '../../../components/Profile/ProfileConfig';
 
+import bp from '../../../helpers/breakpoints';
+
 
 // ========== Styled Components ==========
 const StyledPaper = styled(Paper) `
   display: flex;
-  height: 160px;
-  padding: 0 7%;
+  justify-content: space-between;
+  padding: 1em 7%;
   margin-bottom: 50px;
+  
+  @media (max-width: ${bp.breakThree}) {
+    padding: 1em 4.5%;
+  }
+  @media (max-width: ${bp.breakEight}) {
+    flex-direction: column;
+  }
 `
 
 // ========= Material-UI Styles =========
 const styles = {
   base: {
+    boxSizing: "content-box",
     backgroundColor: "#6D8EAD",
   },
 };

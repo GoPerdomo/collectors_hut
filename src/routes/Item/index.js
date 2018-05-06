@@ -10,7 +10,7 @@ import ItemButtons from '../../components/Buttons/ConfigButtons/ItemButtons';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -24,7 +24,10 @@ const ItemWrapper = styled.main`
     width: 90%;
   }
   @media (max-width: ${bp.breakFive}) {
-    width: 94%;
+    width: 92%;
+  }
+  @media (max-width: ${bp.breakNine}) {
+    width: 100%;
   }
 `
 
@@ -36,7 +39,7 @@ class Item extends Component {
     const { currentItem, match, getProfile } = this.props;
     const { userId } = match.params;
 
-    window.scrollTo(0, 125);
+    window.scrollTo(0, 0);
     if (!currentItem) {
       getProfile(userId);
     }

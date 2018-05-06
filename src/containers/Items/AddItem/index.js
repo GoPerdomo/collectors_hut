@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import Dialog from 'material-ui/Dialog';
-
 import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
-import AddItemForm from '../../../components/Forms/ItemForms/AddItemForm';
+import ItemForm from '../../../components/Forms/ItemForm';
+import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../utils/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
 import { addItem } from '../../../store/actions';
+import bp from '../../../helpers/breakpoints';
 
+
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  @media (max-width: ${bp.breakFour}) {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+  }
+  @media (max-width: ${bp.breakEight}) {
+    position: static;
+  }
+`
+
+// ============== Component ==============
 class AddItem extends Component {
 
   constructor(props) {
@@ -27,9 +42,9 @@ class AddItem extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, newItem) => {
+  handleSubmit = (event, newItem) => {    
     const { userId, collectionId, addItem } = this.props;
-    const { name, description, productionYear, acquisitionYear, origin, manufacturer } = newItem.newItemInfo;
+    const { name, description, productionYear, acquisitionYear, origin, manufacturer } = newItem.itemInfo;
     const { isFileTooBig } = newItem;
     const isValidName = !!(name && name.length <= maxItemInfoLength);
     const isValidDescription = description.length <= maxDescriptionLength;
@@ -47,24 +62,22 @@ class AddItem extends Component {
   render() {
 
     return (
-      <div>
+      <Wrapper>
         <AddCircleButton handleButtonClick={this.handleButtonClick} />
 
-        <Dialog
+        <StyledDialog
           open={this.state.open}
-          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
-          <AddItemForm handleSubmit={this.handleSubmit} />
-        </Dialog>
-      </div>
+          <ItemForm handleSubmit={this.handleSubmit} />
+        </StyledDialog>
+      </Wrapper>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (userId, collectionId, newItem) =>
-    dispatch(addItem(userId, collectionId, newItem))
+  addItem: (userId, collectionId, newItem) => dispatch(addItem(userId, collectionId, newItem))
 });
 
 export default connect(null, mapDispatchToProps)(AddItem);

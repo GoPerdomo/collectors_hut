@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 import Chip from 'material-ui/Chip';
 
-import { maxChips } from '../../../../utils/constants';
+import { maxChips } from '../../../../helpers/constants';
 
 
 // ========== Styled Components ==========
 const ProfileChips = styled.div`
   display: flex;
+  flex-wrap: wrap;
   max-width: 343px;
-  margin-bottom: 40px;
 
   & span {
     text-overflow: ellipsis;

@@ -7,7 +7,7 @@ import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
 import { getRandomCollections, clearHomeCollections } from '../../store/actions';
-import bp from '../../utils/breakpoints';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -25,6 +25,9 @@ const HomeWrapper = styled.main`
   }
   @media (max-width: ${bp.breakThree}) {
     width: 80%;
+  }
+  @media (max-width: ${bp.breakSix}) {
+    width: 92%;
   }
 `
 

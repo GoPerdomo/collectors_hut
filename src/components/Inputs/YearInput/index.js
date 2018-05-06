@@ -2,7 +2,7 @@ import React from 'react';
 
 import TextField from 'material-ui/TextField';
 
-import { maxYearValue } from '../../../utils/constants';
+import { maxYearValue } from '../../../helpers/constants';
 
 // ========== Styles ==========
 const inputStyle = {

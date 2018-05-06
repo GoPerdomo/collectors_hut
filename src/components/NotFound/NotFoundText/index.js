@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bp from '../../../utils/breakpoints';
+import bp from '../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
@@ -13,9 +13,13 @@ const Wrapper = styled.div`
   border-right: 1px solid #6D8EAD;
 
 
-  /* @media (max-width: ${bp.breakSix}) {
+  @media (max-width: ${bp.breakSeven}) {
+    border: none;
+  }
+  @media (max-width: ${bp.breakNine}) {
+    height: 230px;
     justify-content: flex-start;
-  } */
+  }
 
   & h1 {
     font-size: 6em;

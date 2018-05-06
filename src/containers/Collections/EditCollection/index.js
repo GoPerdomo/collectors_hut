@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import Dialog from 'material-ui/Dialog/Dialog';
-
 import StandardButton from '../../../components/Buttons/StandardButton';
-import EditCollectionForm from '../../../components/Forms/CollectionForms/EditCollectionForm';
+import CollectionForm from '../../../components/Forms/CollectionForm';
+import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { editCollection } from '../../../store/actions';
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../utils/constants';
-import bp from '../../../utils/breakpoints';
+import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
-const StyledStandardButton = styled(StandardButton)`
- & button {
-   @media (max-width: ${bp.breakOne}) {
-     line-height: 17px !important;
-   }
+const StyledStandardButton = styled(StandardButton) `
+  & button {
+    @media (max-width: ${bp.breakOne}) {
+      line-height: 17px !important;
+    }
+    @media (max-width: ${bp.breakEight}) {
+      line-height: 36px !important;
+    }
  }
 `
 
@@ -76,16 +78,15 @@ class EditCollection extends Component {
           handleClick={this.handleButtonClick}
         />
 
-        <Dialog
+        <StyledDialog
           open={this.state.open}
-          autoScrollBodyContent
           onRequestClose={this.handleRequestClose}
         >
-          <EditCollectionForm
+          <CollectionForm
             collection={this.props.collection}
             handleSubmit={this.handleSubmit}
           />
-        </Dialog>
+        </StyledDialog>
       </div>
     )
   }
