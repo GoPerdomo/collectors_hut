@@ -1,4 +1,4 @@
-import { baseUrl } from '../config';
+const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 const createHeaders = (method, body) => ({
   method,
@@ -13,7 +13,7 @@ const createHeaders = (method, body) => ({
 export const theFetcher = actions => {
   const { url, method, body } = actions;
 
-  return fetch(`${baseUrl}${url}`, createHeaders(method, body))
+  return fetch(`${apiUrl}${url}`, createHeaders(method, body))
     .then(res => {
       if (!res.ok) throw res;
       else return res.json();
