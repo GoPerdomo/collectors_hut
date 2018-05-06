@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import queryString from 'query-string';
+import qs from 'qs';
 
 import UserCard from '../../components/SearchCards/UserCard';
 import CollectionCard from '../../components/SearchCards/CollectionCard';
@@ -57,7 +57,7 @@ class Search extends Component {
   getSearchInfo = () => {
     const { history } = this.props;
     const query = history.location.search;
-    const queryObj = queryString.parse(query);
+    const queryObj = qs.parse(query.slice(1));    
     const searchType = Object.keys(queryObj)[0];
     const searchTerms = Object.values(queryObj)[0];
 
