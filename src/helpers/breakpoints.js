@@ -1,5 +1,5 @@
 export default {
-  maxWidth: "1440px",
+  maxWidth: "1260px",
   breakOne: "1258px",
   breakTwo: "1077px",
   breakThree: "960px",
