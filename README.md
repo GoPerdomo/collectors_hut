@@ -26,6 +26,7 @@ A Single Page Application using:
 - <a href="https://reactjs.org/" target="_blank">React</a> - JavaScript library for building user interfaces
 - <a href="https://redux.js.org/" target="_blank">Redux</a> - JavaScript library for managing application state
 - <a href="http://www.material-ui.com/#/" target="_blank">Material-UI</a> - React components that implement Google's Material Design
+- <a href="https://www.styled-components.com/" target="_blank">styled-components</a> - Visual primitives for the component age
 
 ### The Backend ###
 
