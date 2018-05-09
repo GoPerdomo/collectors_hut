@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import CollectionButtons from '../../components/Buttons/ConfigButtons/CollectionButtons';
 import Display from '../../components/Layout/Display';
+import ConfigButtons from '../../components/Buttons/ConfigButtons';
+import DeleteCollection from '../../containers/Collections/DeleteCollection';
+import EditCollectionButton from '../../components/Buttons/EditCollectionButton';
+import EditCollection from '../../containers/Collections/EditCollection';
+import AddIconButton from '../../components/Buttons/IconButtons/AddIconButton';
+import AddItem from '../../containers/Items/AddItem';
 import CollectionName from '../../components/Collections/CollectionName';
 import CollectionInfo from '../../components/Collections/CollectionInfo';
 import Loading from '../../components/Loading';
@@ -31,9 +36,17 @@ const CollectionWrapper = styled.main`
   }
 `
 
-
 // ============== Component ==============
 class Collection extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditCollectionOpen: false,
+      isAddItemOpen: false,
+    };
+  }
 
   componentDidMount() {
     const { currentCollection, match, getProfile } = this.props;
@@ -45,8 +58,25 @@ class Collection extends Component {
     }
   }
 
+  clickEditCollection = (event) => {
+    const { isEditCollectionOpen } = this.state;
+    this.setState({
+      isEditCollectionOpen: !isEditCollectionOpen,
+      isAddItemOpen: false,
+    });
+  }
+
+  clickAddItem = (event) => {
+    const { isAddItemOpen } = this.state;
+    this.setState({
+      isEditCollectionOpen: false,
+      isAddItemOpen: !isAddItemOpen,
+    });
+  }
+
   render() {
-    const { user, userId, currentCollection } = this.props;
+    const { loggedUser, user, userId, currentCollection, collectionId } = this.props;
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
 
     if (!user) {
       return (
@@ -59,11 +89,17 @@ class Collection extends Component {
     return (
       <CollectionWrapper>
         <ProfileHeader>
-          <CollectionButtons {...this.props} />
+          <ConfigButtons loggedUser={loggedUser} userId={userId} >
+            <DeleteCollection />
+            <EditCollectionButton handleClick={this.clickEditCollection} />
+            <AddIconButton handleClick={this.clickAddItem} />
+          </ConfigButtons>
         </ProfileHeader>
 
         <Display>
           <CollectionName userId={userId} collection={currentCollection} />
+          <EditCollection collection={currentCollection} isOpen={isEditCollectionOpen} />
+          <AddItem userId={userId} collectionId={collectionId} isOpen={isAddItemOpen} />
           <CollectionInfo {...this.props} />
         </Display>
       </CollectionWrapper>

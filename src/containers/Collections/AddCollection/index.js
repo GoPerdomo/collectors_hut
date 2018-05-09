@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
+import AddIconButton from '../../../components/Buttons/IconButtons/AddIconButton';
 import CollectionForm from '../../../components/Forms/CollectionForm';
 import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
@@ -44,7 +44,7 @@ class AddCollection extends Component {
 
     return (
       <div>
-        <AddCircleButton handleButtonClick={this.handleButtonClick} />
+        <AddIconButton handleButtonClick={this.handleButtonClick} />
 
         <StyledDialog
           open={this.state.open}

@@ -2,56 +2,22 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import StandardButton from '../../../components/Buttons/StandardButton';
 import CollectionForm from '../../../components/Forms/CollectionForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { editCollection } from '../../../store/actions';
 import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
-import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
-const StyledStandardButton = styled(StandardButton) `
-  & button {
-    @media (max-width: ${bp.breakOne}) {
-      line-height: 17px !important;
-    }
-    @media (max-width: ${bp.breakEight}) {
-      line-height: 36px !important;
-    }
- }
+const Wrapper = styled.div`
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "370px" : "0"};
+  transition: height .5s;
+  overflow: hidden;
 `
-
-// ========= Material-UI Styles =========
-const styles = {
-  labelStyle: {
-    display: "flex",
-    padding: "2px 8px",
-    color: "#6D8EAD",
-  },
-  backgroundColor: "#ffffff",
-};
-
 
 // ============== Component ==============
 class EditCollection extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      open: false,
-    };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
-  }
 
   handleSubmit = (event, collectionInfo) => {
     const { userId, collection, editCollection } = this.props;
@@ -68,26 +34,16 @@ class EditCollection extends Component {
   }
 
   render() {
+    const { isOpen } = this.props;
 
     return (
-      <div>
-        <StyledStandardButton
-          label="Edit Collection"
-          labelStyle={styles.labelStyle}
-          backgroundColor={styles.backgroundColor}
-          handleClick={this.handleButtonClick}
+      <Wrapper isOpen={isOpen}>
+        <h2>Edit collection</h2>
+        <CollectionForm
+          collection={this.props.collection}
+          handleSubmit={this.handleSubmit}
         />
-
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <CollectionForm
-            collection={this.props.collection}
-            handleSubmit={this.handleSubmit}
-          />
-        </StyledDialog>
-      </div>
+      </Wrapper>
     )
   }
 }

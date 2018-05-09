@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
 import ItemForm from '../../../components/Forms/ItemForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
 import { addItem } from '../../../store/actions';
-import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  @media (max-width: ${bp.breakFour}) {
-    position: absolute;
-    bottom: 20px;
-    right: 15px;
-  }
-  @media (max-width: ${bp.breakEight}) {
-    position: static;
-  }
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "600px" : "0"};
+  transition: height .5s;
+  overflow: hidden;
 `
 
 // ============== Component ==============
@@ -42,7 +35,7 @@ class AddItem extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (event, newItem) => {    
+  handleSubmit = (event, newItem) => {
     const { userId, collectionId, addItem } = this.props;
     const { name, description, productionYear, acquisitionYear, origin, manufacturer } = newItem.itemInfo;
     const { isFileTooBig } = newItem;
@@ -60,17 +53,12 @@ class AddItem extends Component {
   }
 
   render() {
+    const { isOpen } = this.props;
 
     return (
-      <Wrapper>
-        <AddCircleButton handleButtonClick={this.handleButtonClick} />
-
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <ItemForm handleSubmit={this.handleSubmit} />
-        </StyledDialog>
+      <Wrapper isOpen={isOpen}>
+        <h2>Add new item</h2>
+        <ItemForm handleSubmit={this.handleSubmit} />
       </Wrapper>
     )
   }

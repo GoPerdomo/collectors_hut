@@ -23,7 +23,7 @@ const ButtonsWrapper = styled.div`
     margin-bottom: 1em;
   }
 
-  &>div {
+  & > div {
     margin-left: 15px;
   
     @media (max-width: ${bp.breakEight}) {
