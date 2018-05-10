@@ -7,7 +7,14 @@ import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
-const StyledStandardButton = styled(StandardButton) `
+const StyledStandardButton = styled(StandardButton)`
+  @media (max-width: ${bp.breakFour}) {
+    order: 1;
+  }
+  @media (max-width: ${bp.breakEight}) {
+    order: -1;
+  }
+
   & button {
     @media (max-width: ${bp.breakSix}) {
       line-height: 17px !important;
