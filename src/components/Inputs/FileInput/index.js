@@ -22,6 +22,7 @@ const styles = {
     height: "auto",
     position: "absolute",
     top: "10px",
+    left: "0",
   },
   borderStyle: {
     borderColor: "#FF6517",

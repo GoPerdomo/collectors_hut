@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 
 import ItemForm from '../../../components/Forms/ItemForm';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength, itemFormSpeed } from '../../../helpers/constants';
 import { addItem } from '../../../store/actions';
 
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
   width: 100%;
-  height: ${({ isOpen }) => isOpen ? "600px" : "0"};
-  transition: height .5s;
+  height: ${({ isOpen }) => isOpen ? "620px" : "0"};
+  transition: height ${itemFormSpeed}ms;
   overflow: hidden;
 `
 
@@ -23,16 +23,8 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-      open: false,
-    };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
+      success: false,
+    }
   }
 
   handleSubmit = (event, newItem) => {
@@ -48,17 +40,23 @@ class AddItem extends Component {
 
     if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
       addItem(userId, collectionId, newItem);
-      this.handleRequestClose();
+      this.setState({ success: true });
     }
   }
 
   render() {
-    const { isOpen } = this.props;
+    const { success } = this.state;
+    const { isOpen, closeForm } = this.props;
 
     return (
       <Wrapper isOpen={isOpen}>
         <h2>Add new item</h2>
-        <ItemForm handleSubmit={this.handleSubmit} />
+        <ItemForm
+          closeForm={closeForm}
+          success={success}
+          handleSubmit={this.handleSubmit}
+          resetSuccess={() => this.setState({ success: false })}
+        />
       </Wrapper>
     )
   }

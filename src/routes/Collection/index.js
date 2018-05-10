@@ -15,6 +15,7 @@ import CollectionInfo from '../../components/Collections/CollectionInfo';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
+import { collectionFormSpeed, itemFormSpeed } from '../../helpers/constants';
 import bp from '../../helpers/breakpoints';
 
 
@@ -59,24 +60,39 @@ class Collection extends Component {
   }
 
   clickEditCollection = (event) => {
-    const { isEditCollectionOpen } = this.state;
-    this.setState({
-      isEditCollectionOpen: !isEditCollectionOpen,
-      isAddItemOpen: false,
-    });
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
+
+    if (!isAddItemOpen) {
+      this.setState({ isEditCollectionOpen: !isEditCollectionOpen });
+    } else {
+      this.setState({ isAddItemOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isEditCollectionOpen: !isEditCollectionOpen })
+      }, itemFormSpeed);
+    }
   }
 
   clickAddItem = (event) => {
-    const { isAddItemOpen } = this.state;
-    this.setState({
-      isEditCollectionOpen: false,
-      isAddItemOpen: !isAddItemOpen,
-    });
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
+
+    if (!isEditCollectionOpen) {
+      this.setState({ isAddItemOpen: !isAddItemOpen });
+    } else {
+      this.setState({ isEditCollectionOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isAddItemOpen: !isAddItemOpen })
+      }, collectionFormSpeed);
+    }
   }
 
   render() {
+    const { clickEditCollection, clickAddItem, props } = this;
     const { loggedUser, user, userId, currentCollection, collectionId } = this.props;
-    const { isEditCollectionOpen, isAddItemOpen } = this.state;
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;    
 
     if (!user) {
       return (
@@ -91,16 +107,16 @@ class Collection extends Component {
         <ProfileHeader>
           <ConfigButtons loggedUser={loggedUser} userId={userId} >
             <DeleteCollection />
-            <EditCollectionButton handleClick={this.clickEditCollection} />
-            <AddIconButton handleClick={this.clickAddItem} />
+            <EditCollectionButton handleClick={clickEditCollection} />
+            <AddIconButton handleClick={clickAddItem} />
           </ConfigButtons>
         </ProfileHeader>
 
         <Display>
           <CollectionName userId={userId} collection={currentCollection} />
-          <EditCollection collection={currentCollection} isOpen={isEditCollectionOpen} />
-          <AddItem userId={userId} collectionId={collectionId} isOpen={isAddItemOpen} />
-          <CollectionInfo {...this.props} />
+          <EditCollection userId={userId} collection={currentCollection} isOpen={isEditCollectionOpen} closeForm={clickEditCollection} />
+          <AddItem userId={userId} collectionId={collectionId} isOpen={isAddItemOpen} closeForm={clickAddItem} />
+          <CollectionInfo {...props} />
         </Display>
       </CollectionWrapper>
     )

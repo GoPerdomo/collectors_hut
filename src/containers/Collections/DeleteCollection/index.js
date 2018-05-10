@@ -60,8 +60,8 @@ class DeleteCollection extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           actions={[
-            <CancelButton handleRequestClose={this.handleRequestClose} />,
             <DeleteButton handleDeleteButton={this.handleDeleteButton} />,
+            <CancelButton handleRequestClose={this.handleRequestClose} />,
           ]}
         />
       </Wrapper>

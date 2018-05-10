@@ -19,3 +19,7 @@ export const maxProfilePreviewItems = 15;
 export const profilePreviewCols = 3;
 
 export const maxChips = 3;
+
+export const itemFormSpeed = 700;
+
+export const collectionFormSpeed = 500;

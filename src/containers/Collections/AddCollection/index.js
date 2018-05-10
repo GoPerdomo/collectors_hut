@@ -44,7 +44,7 @@ class AddCollection extends Component {
 
     return (
       <div>
-        <AddIconButton handleButtonClick={this.handleButtonClick} />
+        <AddIconButton handleClick={this.handleButtonClick} />
 
         <StyledDialog
           open={this.state.open}
