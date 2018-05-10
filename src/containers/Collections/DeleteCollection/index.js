@@ -54,15 +54,14 @@ class DeleteCollection extends Component {
     
     return (
       <Wrapper>
-        <DeleteIconButton handleButtonClick={this.handleButtonClick} />
-
+        <DeleteIconButton handleClick={this.handleButtonClick} />
         <StyledDialog
           title="Are you sure you want to delete?"
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           actions={[
-            <CancelButton handleRequestClose={this.handleRequestClose} />,
             <DeleteButton handleDeleteButton={this.handleDeleteButton} />,
+            <CancelButton handleRequestClose={this.handleRequestClose} />,
           ]}
         />
       </Wrapper>

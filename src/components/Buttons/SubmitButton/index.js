@@ -2,21 +2,28 @@ import React from 'react';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-// ========== Styles ==========
-const labelStyle = {
-  color: "#ffffff",
-  fontWeight: "bold",
+
+// ========= Material-UI Styles =========
+const styles = {
+  base: {
+    width: "45%",
+  },
+  defaultLabelStyle: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  defaultColor: "#6D8EAD",
 };
 
-const defaultColor = "#6D8EAD";
-
-// ========== Component ==========
-export default ({ label, backgroundColor }) => (
+// ============== Component ==============
+export default ({ halfWidth, type, label, labelStyle, backgroundColor, onClick }) => (
   <RaisedButton
-    fullWidth
-    type="submit"
+    fullWidth={!halfWidth}
+    type={type || "submit"}
+    style={halfWidth && styles.base}
     label={label || "Save"}
-    labelStyle={labelStyle}
-    backgroundColor={backgroundColor || defaultColor}
+    labelStyle={{ ...styles.defaultLabelStyle, ...labelStyle }}
+    backgroundColor={backgroundColor || styles.defaultColor}
+    onClick={onClick}
   />
 );

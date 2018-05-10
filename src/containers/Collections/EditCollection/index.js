@@ -2,37 +2,19 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import StandardButton from '../../../components/Buttons/StandardButton';
 import CollectionForm from '../../../components/Forms/CollectionForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
 import { editCollection } from '../../../store/actions';
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
-import bp from '../../../helpers/breakpoints';
+import { maxCollectionNameLength, maxDescriptionLength, collectionFormSpeed } from '../../../helpers/constants';
 
 
 // ========== Styled Components ==========
-const StyledStandardButton = styled(StandardButton) `
-  & button {
-    @media (max-width: ${bp.breakOne}) {
-      line-height: 17px !important;
-    }
-    @media (max-width: ${bp.breakEight}) {
-      line-height: 36px !important;
-    }
- }
+const Wrapper = styled.div`
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "370px" : "0"};
+  transition: height ${collectionFormSpeed}ms;
+  overflow: hidden;
 `
-
-// ========= Material-UI Styles =========
-const styles = {
-  labelStyle: {
-    display: "flex",
-    padding: "2px 8px",
-    color: "#6D8EAD",
-  },
-  backgroundColor: "#ffffff",
-};
-
 
 // ============== Component ==============
 class EditCollection extends Component {
@@ -41,16 +23,8 @@ class EditCollection extends Component {
     super(props);
 
     this.state = {
-      open: false,
-    };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
+      success: false,
+    }
   }
 
   handleSubmit = (event, collectionInfo) => {
@@ -63,31 +37,25 @@ class EditCollection extends Component {
 
     if (isValidName && isValidInfo) {
       editCollection(userId, collection._id, collectionInfo);
-      this.handleRequestClose();
+      this.setState({ success: true });
     }
   }
 
   render() {
+    const { success } = this.state;
+    const { isOpen, closeForm } = this.props;
 
     return (
-      <div>
-        <StyledStandardButton
-          label="Edit Collection"
-          labelStyle={styles.labelStyle}
-          backgroundColor={styles.backgroundColor}
-          handleClick={this.handleButtonClick}
+      <Wrapper isOpen={isOpen}>
+        <h2>Edit collection</h2>
+        <CollectionForm
+          collection={this.props.collection}
+          closeForm={closeForm}
+          success={success}
+          handleSubmit={this.handleSubmit}
+          resetSuccess={() => this.setState({ success: false })}
         />
-
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <CollectionForm
-            collection={this.props.collection}
-            handleSubmit={this.handleSubmit}
-          />
-        </StyledDialog>
-      </div>
+      </Wrapper>
     )
   }
 }

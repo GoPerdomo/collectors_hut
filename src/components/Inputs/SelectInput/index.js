@@ -9,6 +9,8 @@ import bp from '../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const StyledSelectField = styled(SelectField) `
+  text-align: left;
+  
   @media (max-width: ${bp.breakEight}) {
     width: 100% !important;
   }

@@ -9,18 +9,24 @@ import SelectInput from '../../Inputs/SelectInput';
 import FileInput from '../../Inputs/FileInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxFileSize, maxItemInfoLength, maxDescriptionLength } from '../../../helpers/constants';
+import { maxFileSize, maxItemInfoLength, maxDescriptionLength, itemFormSpeed } from '../../../helpers/constants';
 import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
-const Wrapper = styled.div`
+const ConditionFileWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1em;
 
   @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
   }
+`
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `
 
 // ========= Material-UI Styles =========
@@ -28,6 +34,7 @@ const styles = {
   base: {
     width: "45%",
   },
+  backgroundColor: "#FF6517",
 };
 
 // ============== Component ==============
@@ -35,44 +42,37 @@ export default class ItemForm extends Component {
 
   constructor(props) {
     super(props);
-    const { item } = props;
-    const name = item ? item.name : "";
-    const description = item ? item.description : "";
-    const productionYear = item ? item.productionYear : "";
-    const acquisitionYear = item ? item.acquisitionYear : "";
-    const origin = item ? item.origin : "";
-    const manufacturer = item ? item.manufacturer : "";
-    const condition = item ? item.condition : "";
 
     this.state = {
-      itemInfo: {
-        name,
-        description,
-        productionYear,
-        acquisitionYear,
-        origin,
-        manufacturer,
-        condition,
-      },
+      itemInfo: this.getFormData(),
       itemPhoto: {},
       isFileTooBig: false,
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { success } = this.props;
+    if (success) this.clearForm()
+  }
+
+  getFormData = () => {
+    const { item } = this.props;
+    return {
+      name: item ? item.name : "",
+      description: item ? item.description : "",
+      productionYear: item ? item.productionYear : "",
+      acquisitionYear: item ? item.acquisitionYear : "",
+      origin: item ? item.origin : "",
+      manufacturer: item ? item.manufacturer : "",
+      condition: item ? item.condition : "",
+    }
+  }
+
   handleContentChange = (event, content) => {
-    let {
-      name,
-      description,
-      productionYear,
-      acquisitionYear,
-      origin,
-      manufacturer,
-      condition,
-    } = this.state.itemInfo;
-    let { itemPhoto, isFileTooBig } = this.state;
+    let { itemInfo, itemPhoto, isFileTooBig } = this.state;
+    let { name, description, productionYear, acquisitionYear, origin, manufacturer, condition } = itemInfo;
     const { id } = event.currentTarget;
     const file = event.target.files && event.target.files[0];
-
 
     switch (id) {
       case ("item-name"):
@@ -122,24 +122,29 @@ export default class ItemForm extends Component {
     });
   }
 
+  clearForm = () => {
+    const { closeForm, resetSuccess } = this.props;
+
+    closeForm();
+    resetSuccess();
+    setTimeout(() => this.setState({
+      itemInfo: this.getFormData(),
+      itemPhoto: {},
+      isFileTooBig: false,
+    }), itemFormSpeed);
+  }
+
   render() {
     const { handleSubmit } = this.props
     const { itemInfo, isFileTooBig } = this.state;
-    const {
-      name,
-      description,
-      productionYear,
-      acquisitionYear,
-      origin,
-      manufacturer,
-      condition,
-    } = itemInfo;
+    const { name, description, productionYear, acquisitionYear, origin, manufacturer, condition } = itemInfo;
 
     return (
       <form onSubmit={(event) => handleSubmit(event, this.state)}>
         <NameInput
           id="item-name"
           hintText="Name"
+          required
           maxLength={maxItemInfoLength}
           value={name}
           onChange={this.handleContentChange}
@@ -176,7 +181,7 @@ export default class ItemForm extends Component {
           value={manufacturer}
           onChange={this.handleContentChange}
         />
-        <Wrapper>
+        <ConditionFileWrapper>
           <SelectInput
             id="item-condition"
             style={styles.base}
@@ -189,8 +194,11 @@ export default class ItemForm extends Component {
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
-        </Wrapper>
-        <SubmitButton />
+        </ConditionFileWrapper>
+        <ButtonsWrapper>
+          <SubmitButton type="button" label="Cancel" halfWidth onClick={this.clearForm} />
+          <SubmitButton backgroundColor={styles.backgroundColor} halfWidth />
+        </ButtonsWrapper>
       </form>
     )
   }

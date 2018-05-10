@@ -3,13 +3,19 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
-import CollectionButtons from '../../components/Buttons/ConfigButtons/CollectionButtons';
 import Display from '../../components/Layout/Display';
+import ConfigButtons from '../../components/Buttons/ConfigButtons';
+import DeleteCollection from '../../containers/Collections/DeleteCollection';
+import EditCollectionButton from '../../components/Buttons/EditCollectionButton';
+import EditCollection from '../../containers/Collections/EditCollection';
+import AddIconButton from '../../components/Buttons/IconButtons/AddIconButton';
+import AddItem from '../../containers/Items/AddItem';
 import CollectionName from '../../components/Collections/CollectionName';
 import CollectionInfo from '../../components/Collections/CollectionInfo';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
+import { collectionFormSpeed, itemFormSpeed } from '../../helpers/constants';
 import bp from '../../helpers/breakpoints';
 
 
@@ -31,9 +37,17 @@ const CollectionWrapper = styled.main`
   }
 `
 
-
 // ============== Component ==============
 class Collection extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditCollectionOpen: false,
+      isAddItemOpen: false,
+    };
+  }
 
   componentDidMount() {
     const { currentCollection, match, getProfile } = this.props;
@@ -45,8 +59,40 @@ class Collection extends Component {
     }
   }
 
+  clickEditCollection = () => {
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
+
+    if (!isAddItemOpen) {
+      this.setState({ isEditCollectionOpen: !isEditCollectionOpen });
+    } else {
+      this.setState({ isAddItemOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isEditCollectionOpen: !isEditCollectionOpen })
+      }, itemFormSpeed);
+    }
+  }
+
+  clickAddItem = () => {
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
+
+    if (!isEditCollectionOpen) {
+      this.setState({ isAddItemOpen: !isAddItemOpen });
+    } else {
+      this.setState({ isEditCollectionOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isAddItemOpen: !isAddItemOpen })
+      }, collectionFormSpeed);
+    }
+  }
+
   render() {
-    const { user, userId, currentCollection } = this.props;
+    const { props, clickEditCollection, clickAddItem } = this;
+    const { loggedUser, user, userId, currentCollection, collectionId } = this.props;
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;    
 
     if (!user) {
       return (
@@ -59,12 +105,18 @@ class Collection extends Component {
     return (
       <CollectionWrapper>
         <ProfileHeader>
-          <CollectionButtons {...this.props} />
+          <ConfigButtons loggedUser={loggedUser} userId={userId} >
+            <DeleteCollection />
+            <EditCollectionButton handleClick={clickEditCollection} />
+            <AddIconButton handleClick={clickAddItem} />
+          </ConfigButtons>
         </ProfileHeader>
 
         <Display>
           <CollectionName userId={userId} collection={currentCollection} />
-          <CollectionInfo {...this.props} />
+          <EditCollection userId={userId} collection={currentCollection} isOpen={isEditCollectionOpen} closeForm={clickEditCollection} />
+          <AddItem userId={userId} collectionId={collectionId} isOpen={isAddItemOpen} closeForm={clickAddItem} />
+          <CollectionInfo {...props} />
         </Display>
       </CollectionWrapper>
     )

@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import AddCircleButton from '../../../components/Buttons/IconButtons/AddCircleButton';
 import ItemForm from '../../../components/Forms/ItemForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength, itemFormSpeed } from '../../../helpers/constants';
 import { addItem } from '../../../store/actions';
-import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  @media (max-width: ${bp.breakFour}) {
-    position: absolute;
-    bottom: 20px;
-    right: 15px;
-  }
-  @media (max-width: ${bp.breakEight}) {
-    position: static;
-  }
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "620px" : "0"};
+  transition: height ${itemFormSpeed}ms;
+  overflow: hidden;
 `
 
 // ============== Component ==============
@@ -30,19 +23,11 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-      open: false,
-    };
+      success: false,
+    }
   }
 
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
-  }
-
-  handleSubmit = (event, newItem) => {    
+  handleSubmit = (event, newItem) => {
     const { userId, collectionId, addItem } = this.props;
     const { name, description, productionYear, acquisitionYear, origin, manufacturer } = newItem.itemInfo;
     const { isFileTooBig } = newItem;
@@ -55,22 +40,23 @@ class AddItem extends Component {
 
     if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
       addItem(userId, collectionId, newItem);
-      this.handleRequestClose();
+      this.setState({ success: true });
     }
   }
 
   render() {
+    const { success } = this.state;
+    const { isOpen, closeForm } = this.props;
 
     return (
-      <Wrapper>
-        <AddCircleButton handleButtonClick={this.handleButtonClick} />
-
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <ItemForm handleSubmit={this.handleSubmit} />
-        </StyledDialog>
+      <Wrapper isOpen={isOpen}>
+        <h2>Add new item</h2>
+        <ItemForm
+          closeForm={closeForm}
+          success={success}
+          handleSubmit={this.handleSubmit}
+          resetSuccess={() => this.setState({ success: false })}
+        />
       </Wrapper>
     )
   }

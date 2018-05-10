@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import NameInput from '../../Inputs/NameInput';
 import DescriptionInput from '../../Inputs/DescriptionInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { maxCollectionNameLength, maxDescriptionLength } from '../../../helpers/constants';
+import { maxCollectionNameLength, maxDescriptionLength, collectionFormSpeed } from '../../../helpers/constants';
 
+
+// ========== Styled Components ==========
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1em;
+`
+
+// ========= Material-UI Styles =========
+const styles = {
+  backgroundColor: "#FF6517",
+};
+
+// ============== Component ==============
 export default class CollectionForm extends Component {
 
   constructor(props) {
     super(props);
-    const { collection } = props;
-    const name = collection ? collection.name : "";
-    const info = collection ? collection.info : "";
 
     this.state = {
-      collectionInfo: {
-        name,
-        info,
-      }
+      collectionInfo: this.getFormData(),
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { success } = this.props;
+    if (success) this.clearForm();
+  }
+
+  getFormData = () => {
+    const { collection } = this.props;
+    return {
+      name: collection ? collection.name : "",
+      info: collection ? collection.info : "",
+    }
   }
 
   handleContentChange = (event, content) => {
@@ -45,10 +67,20 @@ export default class CollectionForm extends Component {
     });
   }
 
+  clearForm = () => {
+    const { closeForm, resetSuccess } = this.props;
+
+    closeForm();
+    resetSuccess();
+    setTimeout(() => this.setState({
+      collectionInfo: this.getFormData(),
+    }), collectionFormSpeed);
+  }
+
   render() {
+    const { handleSubmit } = this.props
     const { collectionInfo } = this.state;
     const { name, info } = collectionInfo;
-    const { handleSubmit } = this.props
 
     return (
       <form onSubmit={(event) => handleSubmit(event, collectionInfo)}>
@@ -64,7 +96,10 @@ export default class CollectionForm extends Component {
           value={info}
           onChange={this.handleContentChange}
         />
-        <SubmitButton />
+        <ButtonsWrapper>
+          <SubmitButton type="button" label="Cancel" halfWidth onClick={this.clearForm} />
+          <SubmitButton backgroundColor={styles.backgroundColor} halfWidth />
+        </ButtonsWrapper>
       </form>
     )
   }
