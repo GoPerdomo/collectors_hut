@@ -8,7 +8,7 @@ const styles = {
   base: {
     width: "45%",
   },
-  labelStyle: {
+  defaultLabelStyle: {
     color: "#ffffff",
     fontWeight: "bold",
   },
@@ -16,13 +16,13 @@ const styles = {
 };
 
 // ============== Component ==============
-export default ({ halfWidth, type, label, backgroundColor, onClick }) => (
+export default ({ halfWidth, type, label, labelStyle, backgroundColor, onClick }) => (
   <RaisedButton
     fullWidth={!halfWidth}
     type={type || "submit"}
     style={halfWidth && styles.base}
     label={label || "Save"}
-    labelStyle={styles.labelStyle}
+    labelStyle={{ ...styles.defaultLabelStyle, ...labelStyle }}
     backgroundColor={backgroundColor || styles.defaultColor}
     onClick={onClick}
   />

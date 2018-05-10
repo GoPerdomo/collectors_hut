@@ -2,46 +2,23 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import StandardButton from '../../../components/Buttons/StandardButton';
 import ProfileForm from '../../../components/Forms/ProfileForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxNameLength, maxEmailLength } from '../../../helpers/constants';
+import { maxNameLength, maxEmailLength, profileFormSpeed } from '../../../helpers/constants';
 import { editUser } from '../../../store/actions';
-import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  @media (max-width: ${bp.breakFour}) {
-    order: 1;
-  }
-  @media (max-width: ${bp.breakEight}) {
-    order: 0;
-  }
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "400px" : "0"};
+  transition: height ${profileFormSpeed}ms;
+  overflow: hidden;
 `
 
-const StyledStandardButton = styled(StandardButton) `
-  & button {
-    @media (max-width: ${bp.breakSix}) {
-      line-height: 17px !important;
-    }
-    @media (max-width: ${bp.breakEight}) {
-      line-height: 36px !important;
-    }
- }
+const Title = styled.h2`
+  color: #ffffff;
 `
-
-// ========= Material-UI Styles =========
-const styles = {
-  labelStyle: {
-    display: "flex",
-    padding: "2px 8px",
-    color: "#6D8EAD",
-  },
-  backgroundColor: "#ffffff",
-};
-
 
 // ============== Component ==============
 class EditProfile extends Component {
@@ -50,16 +27,8 @@ class EditProfile extends Component {
     super(props);
 
     this.state = {
-      open: false,
-    };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
+      success: false,
+    }
   }
 
   handleSubmit = (event, editedUser) => {
@@ -74,29 +43,24 @@ class EditProfile extends Component {
 
     if (isValidName && isValidEmail && isValidPassword && (password === confirmPassword) && !isFileTooBig) {
       editUser(user._id, editedUser);
-      this.handleRequestClose();
+      this.setState({ success: true });
     }
   }
 
   render() {
+    const { success } = this.state;
+    const { user, isOpen, closeForm } = this.props;
 
     return (
-      <Wrapper>
-        <StyledStandardButton
-          label="Edit Profile"
-          labelStyle={styles.labelStyle}
-          backgroundColor={styles.backgroundColor}
-          handleClick={this.handleButtonClick}
+      <Wrapper isOpen={isOpen}>
+        <Title>Edit profile</Title>
+        <ProfileForm
+          closeForm={closeForm}
+          success={success}
+          user={user}
+          handleSubmit={this.handleSubmit}
+          resetSuccess={() => this.setState({ success: false })}
         />
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <ProfileForm
-            user={this.props.user}
-            handleSubmit={this.handleSubmit}
-          />
-        </StyledDialog>
       </Wrapper>
     )
   }

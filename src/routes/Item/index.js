@@ -7,16 +7,13 @@ import CollectionName from '../../components/Collections/CollectionName';
 import Display from '../../components/Layout/Display';
 import ItemInfo from '../../components/Items/ItemInfo';
 import Loading from '../../components/Loading';
-
-import { getProfile } from '../../store/actions';
-import bp from '../../helpers/breakpoints';
-
-
 import ConfigButtons from '../../components/Buttons/ConfigButtons';
 import DeleteItem from '../../containers/Items/DeleteItem';
 import EditItem from '../../containers/Items/EditItem'
 import EditItemButton from '../../components/Buttons/EditItemButton';
 
+import { getProfile } from '../../store/actions';
+import bp from '../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========

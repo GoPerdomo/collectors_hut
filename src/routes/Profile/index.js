@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 
 import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import ProfileCollections from '../../components/Profile/ProfileCollections';
-import ProfileButtons from '../../components/Buttons/ConfigButtons/ProfileButtons';
 import Loading from '../../components/Loading';
+import ConfigButtons from '../../components/Buttons/ConfigButtons';
+import EditProfileButton from '../../components/Buttons/EditProfileButton';
+import AddIconButton from '../../components/Buttons/IconButtons/AddIconButton';
+import AddCollection from '../../containers/Collections/AddCollection';
 
 import { getProfile } from '../../store/actions';
+import { collectionFormSpeed, profileFormSpeed } from '../../helpers/constants';
 import bp from '../../helpers/breakpoints';
 
 
@@ -33,6 +37,15 @@ const ProfileWrapper = styled.main`
 // ============== Component ==============
 class Profile extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditProfileOpen: false,
+      isAddCollectionOpen: false,
+    };
+  }
+
   componentDidMount() {
     const { userId, user, getProfile } = this.props;
 
@@ -42,8 +55,40 @@ class Profile extends Component {
     }
   }
 
+  clickEditProfile = () => {
+    const { isEditProfileOpen, isAddCollectionOpen } = this.state;
+
+    if (!isAddCollectionOpen) {
+      this.setState({ isEditProfileOpen: !isEditProfileOpen });
+    } else {
+      this.setState({ isAddCollectionOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isEditProfileOpen: !isEditProfileOpen })
+      }, profileFormSpeed);
+    }
+  }
+
+  clickAddCollection = () => {
+    const { isEditProfileOpen, isAddCollectionOpen } = this.state;
+
+    if (!isEditProfileOpen) {
+      this.setState({ isAddCollectionOpen: !isAddCollectionOpen });
+    } else {
+      this.setState({ isEditProfileOpen: false });
+
+      // Awaits for the previous window to close before opening
+      setTimeout(() => {
+        this.setState({ isAddCollectionOpen: !isAddCollectionOpen })
+      }, collectionFormSpeed);
+    }
+  }
+
   render() {
-    const { user } = this.props;
+    const { props, state, clickEditProfile, clickAddCollection } = this;
+    const { loggedUser, user, userId } = props;
+    const { isEditProfileOpen, isAddCollectionOpen } = state;
 
     if (!user) {
       return (
@@ -54,11 +99,15 @@ class Profile extends Component {
     }
 
     return (
-      <ProfileWrapper className="profile">
-        <ProfileHeader>
-          <ProfileButtons {...this.props} />
+      <ProfileWrapper>
+        <ProfileHeader isOpen={isEditProfileOpen} closeForm={clickEditProfile}>
+          <ConfigButtons loggedUser={loggedUser} userId={userId} >
+            <EditProfileButton handleClick={clickEditProfile} />
+            <AddIconButton handleClick={clickAddCollection} />
+          </ConfigButtons>
         </ProfileHeader>
 
+        <AddCollection userId={userId} isOpen={isAddCollectionOpen} closeForm={clickAddCollection} />
         {
           user.collections.map((collection) => (
             <ProfileCollections

@@ -7,7 +7,7 @@ import PasswordInput from '../../Inputs/PasswordInput';
 import FileInput from '../../Inputs/FileInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-import { minPassLength, maxFileSize, maxNameLength, maxEmailLength } from '../../../helpers/constants';
+import { minPassLength, maxFileSize, maxNameLength, maxEmailLength, profileFormSpeed } from '../../../helpers/constants';
 import hasNumber from '../../../helpers/hasNumber';
 import passErrorGenerator from '../../../helpers/passErrorGenerator';
 
@@ -15,9 +15,11 @@ import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
-const Wrapper = styled.div`
+const PasswordFileWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1em;
+  background-color: #ffffff;
 
   @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
@@ -30,6 +32,11 @@ const PasswordWrapper = styled.div`
   @media (max-width: ${bp.breakEight}) {
     width: 100%;
   }
+`
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `
 
 // ========= Material-UI Styles =========
@@ -46,6 +53,13 @@ const styles = {
       top: "25px",
     },
   },
+  buttons: {
+    labelStyle: {
+      color: "#6D8EAD",
+    },
+    cancelBackgroundColor: "#FFFFFF",
+    saveBackgroundColor: "#FF6517",
+  },
 };
 
 // ============== Component ==============
@@ -53,23 +67,32 @@ export default class EditProfileForm extends Component {
 
   constructor(props) {
     super(props);
-    const { firstName, lastName } = props.user;
-
+    
     this.state = {
-      userInfo: {
-        firstName,
-        lastName,
-        email: "",
-        password: "",
-        confirmPassword: "",
-        passwordValidation: {
-          isValidPassword: false,
-          passwordIsLongEnough: false,
-          passwordHasNumber: false,
-        }
-      },
+      userInfo: this.getFormData(),
       userPhoto: {},
       isFileTooBig: false,
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { success } = this.props;
+    if (success) this.clearForm()
+  }
+
+  getFormData = () => {
+    const { firstName, lastName } = this.props.user;
+    return {
+      firstName,
+      lastName,
+      email: "",
+      password: "",
+      confirmPassword: "",
+      passwordValidation: {
+        isValidPassword: false,
+        passwordIsLongEnough: false,
+        passwordHasNumber: false,
+      }
     };
   }
 
@@ -132,6 +155,18 @@ export default class EditProfileForm extends Component {
     });
   }
 
+  clearForm = () => {
+    const { closeForm, resetSuccess } = this.props;
+
+    closeForm();
+    resetSuccess();
+    setTimeout(() => this.setState({
+      userInfo: this.getFormData(),
+      userPhoto: {},
+      isFileTooBig: false,
+    }), profileFormSpeed);
+  }
+
   render() {
     const { userInfo, isFileTooBig } = this.state;
     const { firstName, lastName, email, password, confirmPassword, passwordValidation } = userInfo;
@@ -160,7 +195,7 @@ export default class EditProfileForm extends Component {
           value={email}
           onChange={this.handleContentChange}
         />
-        <Wrapper>
+        <PasswordFileWrapper>
           <PasswordWrapper>
             <PasswordInput
               id="edit-password"
@@ -184,8 +219,18 @@ export default class EditProfileForm extends Component {
             errorText={isFileTooBig ? `Image exceeds the size limit of ${maxFileSize / 1000000} Mb` : null}
             onChange={this.handleContentChange}
           />
-        </Wrapper>
-        <SubmitButton />
+        </PasswordFileWrapper>
+        <ButtonsWrapper>
+          <SubmitButton
+            type="button"
+            label="Cancel"
+            labelStyle={styles.buttons.labelStyle}
+            backgroundColor={styles.buttons.cancelBackgroundColor}
+            halfWidth
+            onClick={this.clearForm}
+          />
+          <SubmitButton backgroundColor={styles.buttons.saveBackgroundColor} halfWidth />
+        </ButtonsWrapper>
       </form>
     )
   }

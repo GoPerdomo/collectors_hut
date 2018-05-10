@@ -20,6 +20,8 @@ export const profilePreviewCols = 3;
 
 export const maxChips = 3;
 
-export const itemFormSpeed = 700;
+export const profileFormSpeed = 500;
 
 export const collectionFormSpeed = 500;
+
+export const itemFormSpeed = 700;

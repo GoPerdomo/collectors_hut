@@ -12,6 +12,7 @@ import { maxCollectionNameLength, maxDescriptionLength, collectionFormSpeed } fr
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1em;
 `
 
 // ========= Material-UI Styles =========

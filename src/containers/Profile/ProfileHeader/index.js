@@ -7,14 +7,13 @@ import Paper from 'material-ui/Paper';
 
 import ProfileInfo from '../../../components/Profile/ProfileInfo';
 import ProfileConfig from '../../../components/Profile/ProfileConfig';
+import EditProfile from '../EditProfile';
 
 import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledPaper = styled(Paper) `
-  display: flex;
-  justify-content: space-between;
   padding: 1em 7%;
   margin-bottom: 50px;
   
@@ -24,6 +23,15 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakEight}) {
     flex-direction: column;
   }
+`
+
+const ProfileInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const EditProfileWrapper = styled.div`
+
 `
 
 // ========= Material-UI Styles =========
@@ -36,15 +44,19 @@ const styles = {
 
 
 // ============== Component ==============
-const ProfileHeader = (props) => {
-  const { user, userId, children } = props;
+const ProfileHeader = ({ user, userId, children, isOpen, closeForm }) => {
 
   return (
     <StyledPaper zDepth={2} style={styles.base}>
-      <ProfileInfo user={user} userId={userId} />
-      <ProfileConfig>
-        {children}
-      </ProfileConfig>
+      <ProfileInfoWrapper>
+        <ProfileInfo user={user} userId={userId} />
+        <ProfileConfig>
+          {children}
+        </ProfileConfig>
+      </ProfileInfoWrapper>
+      <EditProfileWrapper>
+        <EditProfile user={user} isOpen={isOpen} closeForm={closeForm} />
+      </EditProfileWrapper>
     </StyledPaper>
   )
 };

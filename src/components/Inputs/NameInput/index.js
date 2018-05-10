@@ -5,12 +5,13 @@ import TextField from 'material-ui/TextField';
 
 
 // ========== Styled Components ==========
-const StyledTextField = styled(TextField) `
-& input {
-  &:invalid {
-    box-shadow: none;
+const StyledTextField = styled(TextField)`
+  background-color: #ffffff !important;
+  & input {
+    &:invalid {
+      box-shadow: none;
+    }
   }
-}
 `
 
 // ========= Material-UI Styles =========
