@@ -16,6 +16,7 @@ import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 import { collectionFormSpeed, itemFormSpeed } from '../../helpers/constants';
+import getWindowScroll from '../../helpers/getWindowScroll';
 import bp from '../../helpers/breakpoints';
 
 
@@ -37,6 +38,17 @@ const CollectionWrapper = styled.main`
   }
 `
 
+const AddButtonWrapper = styled.div`
+  @media (max-width: ${bp.breakFour}) {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+  }
+  @media (max-width: ${bp.breakEight}) {
+    position: static;
+  }
+`
+
 // ============== Component ==============
 class Collection extends Component {
 
@@ -50,10 +62,11 @@ class Collection extends Component {
   }
 
   componentDidMount() {
-    const { currentCollection, match, getProfile } = this.props;
+    const { loggedUser, currentCollection, match, getProfile } = this.props;
     const { userId } = match.params;
 
-    window.scrollTo(0, 0);
+    getWindowScroll(loggedUser, userId);
+
     if (!currentCollection) {
       getProfile(userId);
     }
@@ -92,7 +105,7 @@ class Collection extends Component {
   render() {
     const { props, clickEditCollection, clickAddItem } = this;
     const { loggedUser, user, userId, currentCollection, collectionId } = this.props;
-    const { isEditCollectionOpen, isAddItemOpen } = this.state;    
+    const { isEditCollectionOpen, isAddItemOpen } = this.state;
 
     if (!user) {
       return (
@@ -108,7 +121,9 @@ class Collection extends Component {
           <ConfigButtons loggedUser={loggedUser} userId={userId} >
             <DeleteCollection />
             <EditCollectionButton handleClick={clickEditCollection} />
-            <AddIconButton handleClick={clickAddItem} />
+            <AddButtonWrapper>
+              <AddIconButton handleClick={clickAddItem} />
+            </AddButtonWrapper>
           </ConfigButtons>
         </ProfileHeader>
 
