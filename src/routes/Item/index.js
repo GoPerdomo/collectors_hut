@@ -13,6 +13,7 @@ import EditItem from '../../containers/Items/EditItem'
 import EditItemButton from '../../components/Buttons/EditItemButton';
 
 import { getProfile } from '../../store/actions';
+import getWindowScroll from '../../helpers/getWindowScroll';
 import bp from '../../helpers/breakpoints';
 
 
@@ -46,10 +47,11 @@ class Item extends Component {
   }
 
   componentDidMount() {
-    const { currentItem, match, getProfile } = this.props;
+    const { loggedUser, currentItem, match, getProfile } = this.props;
     const { userId } = match.params;
 
-    window.scrollTo(0, 0);
+    getWindowScroll(loggedUser, userId);
+    
     if (!currentItem) {
       getProfile(userId);
     }

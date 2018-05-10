@@ -23,11 +23,11 @@ const ButtonsWrapper = styled.div`
     margin-bottom: 1em;
   }
 
-  & > div {
-    margin-left: 15px;
+  & > * {
+    margin-left: 15px !important;
   
     @media (max-width: ${bp.breakEight}) {
-      margin: 0;
+      margin: 0 !important;
     }
   }
 `
