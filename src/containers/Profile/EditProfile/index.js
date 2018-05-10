@@ -6,6 +6,7 @@ import ProfileForm from '../../../components/Forms/ProfileForm';
 
 import { maxNameLength, maxEmailLength, profileFormSpeed } from '../../../helpers/constants';
 import { editUser } from '../../../store/actions';
+import bp from '../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
@@ -14,6 +15,10 @@ const Wrapper = styled.div`
   height: ${({ isOpen }) => isOpen ? "400px" : "0"};
   transition: height ${profileFormSpeed}ms;
   overflow: hidden;
+
+  @media (max-width: ${bp.breakEight}) {
+    height: ${({ isOpen }) => isOpen ? "460px" : "0"};
+  }
 `
 
 const Title = styled.h2`

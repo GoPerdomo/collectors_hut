@@ -9,14 +9,14 @@ import bp from '../../../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const Wrapper = styled.div`
-  @media (max-width: ${bp.breakFour}) {
+  /* @media (max-width: ${bp.breakFour}) {
     position: absolute;
     bottom: 20px;
     right: 15px;
   }
   @media (max-width: ${bp.breakEight}) {
     position: static;
-  }
+  } */
 `
 
 // ========= Material-UI Styles =========

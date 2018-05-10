@@ -20,14 +20,15 @@ const StyledPaper = styled(Paper) `
   @media (max-width: ${bp.breakThree}) {
     padding: 1em 4.5%;
   }
-  @media (max-width: ${bp.breakEight}) {
-    flex-direction: column;
-  }
 `
 
 const ProfileInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  
+  @media (max-width: ${bp.breakEight}) {
+    flex-direction: column;
+  }
 `
 
 const EditProfileWrapper = styled.div`
