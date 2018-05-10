@@ -59,7 +59,7 @@ class Collection extends Component {
     }
   }
 
-  clickEditCollection = (event) => {
+  clickEditCollection = () => {
     const { isEditCollectionOpen, isAddItemOpen } = this.state;
 
     if (!isAddItemOpen) {
@@ -74,7 +74,7 @@ class Collection extends Component {
     }
   }
 
-  clickAddItem = (event) => {
+  clickAddItem = () => {
     const { isEditCollectionOpen, isAddItemOpen } = this.state;
 
     if (!isEditCollectionOpen) {
@@ -90,7 +90,7 @@ class Collection extends Component {
   }
 
   render() {
-    const { clickEditCollection, clickAddItem, props } = this;
+    const { props, clickEditCollection, clickAddItem } = this;
     const { loggedUser, user, userId, currentCollection, collectionId } = this.props;
     const { isEditCollectionOpen, isAddItemOpen } = this.state;    
 

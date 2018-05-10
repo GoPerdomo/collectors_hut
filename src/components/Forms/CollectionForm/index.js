@@ -33,8 +33,6 @@ export default class CollectionForm extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { success } = this.props;
     if (success) this.clearForm();
-
-    if (prevProps.collection.name !== this.props.collection.name) this.setState({ collectionInfo: this.getFormData() });
   }
 
   getFormData = () => {

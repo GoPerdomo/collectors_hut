@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import StandardButton from '../../../components/Buttons/StandardButton';
 import ItemForm from '../../../components/Forms/ItemForm';
-import StyledDialog from '../../../components/Dialogs/StyledDialog';
 
-import { maxItemInfoLength, maxYearValue, maxDescriptionLength } from '../../../helpers/constants';
+import { maxItemInfoLength, maxYearValue, maxDescriptionLength, itemFormSpeed } from '../../../helpers/constants';
 import { editItem } from '../../../store/actions';
 
-// ========= Material-UI Styles =========
-const styles = {
-  labelStyle: {
-    display: "flex",
-    padding: "2px 8px",
-    color: "#6D8EAD",
-  },
-  backgroundColor: "#ffffff",
-};
 
+// ========== Styled Components ==========
+const Wrapper = styled.div`
+  width: 100%;
+  height: ${({ isOpen }) => isOpen ? "620px" : "0"};
+  transition: height ${itemFormSpeed}ms;
+  overflow: hidden;
+`
 
 // ============== Component ==============
 class EditItem extends Component {
@@ -26,16 +23,8 @@ class EditItem extends Component {
     super(props);
 
     this.state = {
-      open: false,
-    };
-  }
-
-  handleButtonClick = (event) => {
-    this.setState({ open: true })
-  }
-
-  handleRequestClose = () => {
-    this.setState({ open: false })
+      success: false,
+    }
   }
 
   handleSubmit = (event, editedItem) => {
@@ -51,31 +40,25 @@ class EditItem extends Component {
 
     if (isValidName && isValidDescription && isValidYears && isValidInfo && !isFileTooBig) {
       editItem(userId, item.collectionId, item._id, editedItem);
-      this.handleRequestClose();
+      this.setState({ success: true });
     }
   }
 
   render() {
+    const { success } = this.state;
+    const { item, isOpen, closeForm } = this.props;
 
     return (
-      <div>
-        <StandardButton
-          label="Edit Item"
-          labelStyle={styles.labelStyle}
-          backgroundColor={styles.backgroundColor}
-          handleClick={this.handleButtonClick}
+      <Wrapper isOpen={isOpen}>
+        <h2>Edit item</h2>
+        <ItemForm
+          closeForm={closeForm}
+          success={success}
+          item={item}
+          handleSubmit={this.handleSubmit}
+          resetSuccess={() => this.setState({ success: false })}
         />
-
-        <StyledDialog
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <ItemForm
-            item={this.props.item}
-            handleSubmit={this.handleSubmit}
-          />
-        </StyledDialog>
-      </div>
+      </Wrapper >
     )
   }
 }

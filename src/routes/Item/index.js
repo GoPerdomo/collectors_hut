@@ -6,11 +6,17 @@ import ProfileHeader from '../../containers/Profile/ProfileHeader';
 import CollectionName from '../../components/Collections/CollectionName';
 import Display from '../../components/Layout/Display';
 import ItemInfo from '../../components/Items/ItemInfo';
-import ItemButtons from '../../components/Buttons/ConfigButtons/ItemButtons';
 import Loading from '../../components/Loading';
 
 import { getProfile } from '../../store/actions';
 import bp from '../../helpers/breakpoints';
+
+
+import ConfigButtons from '../../components/Buttons/ConfigButtons';
+import DeleteItem from '../../containers/Items/DeleteItem';
+import EditItem from '../../containers/Items/EditItem'
+import EditItemButton from '../../components/Buttons/EditItemButton';
+
 
 
 // ========== Styled Components ==========
@@ -31,9 +37,16 @@ const ItemWrapper = styled.main`
   }
 `
 
-
 // ============== Component ==============
 class Item extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEditItemOpen: false,
+    };
+  }
 
   componentDidMount() {
     const { currentItem, match, getProfile } = this.props;
@@ -45,8 +58,15 @@ class Item extends Component {
     }
   }
 
+  clickEditItem = () => {
+    const { isEditItemOpen } = this.state;
+    this.setState({ isEditItemOpen: !isEditItemOpen });
+  };
+
   render() {
-    const { user, userId, currentCollection } = this.props;    
+    const { props, state, clickEditItem } = this;
+    const { loggedUser, user, userId, currentCollection, currentItem } = props;
+    const { isEditItemOpen } = state;
 
     if (!user) {
       return (
@@ -59,12 +79,16 @@ class Item extends Component {
     return (
       <ItemWrapper>
         <ProfileHeader>
-          <ItemButtons {...this.props} />
+          <ConfigButtons loggedUser={loggedUser} userId={userId} >
+            <DeleteItem />
+            <EditItemButton handleClick={clickEditItem} />
+          </ConfigButtons>
         </ProfileHeader>
 
         <Display>
           <CollectionName userId={userId} collection={currentCollection} />
-          <ItemInfo {...this.props} />
+          <EditItem userId={userId} item={currentItem} isOpen={isEditItemOpen} closeForm={clickEditItem} />
+          <ItemInfo {...props} />
         </Display>
       </ItemWrapper>
     )
