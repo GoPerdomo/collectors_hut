@@ -16,7 +16,7 @@ const Wrapper = styled.nav`
   @media (max-width: ${bp.breakEight}) {
     width: 100%;
     height: auto;
-    margin-bottom: 4em;
+    margin-bottom: 3em;
     flex-direction: row;
     font-size: 1.3em;
   }

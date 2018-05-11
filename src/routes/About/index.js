@@ -6,7 +6,7 @@ import HomeLogo from '../../components/Images/HomeLogo';
 import bp from '../../helpers/breakpoints';
 
 // ========== Styled Components ==========
-const AboutWrapper = styled.div`
+const AboutWrapper = styled.main`
   width: 80%;
   max-width: ${bp.maxWidth};
   display: flex;

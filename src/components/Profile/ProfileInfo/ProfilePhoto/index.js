@@ -15,7 +15,7 @@ const ProfilePhoto = styled.div`
   width: 140px;
   min-width: 140px;
 
-  @media (max-width: ${bp.breakNine}) {
+  @media (max-width: ${bp.breakEight}) {
     margin: 0 0 1em;
   }
 

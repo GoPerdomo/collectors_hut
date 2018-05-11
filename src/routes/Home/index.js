@@ -14,6 +14,7 @@ import bp from '../../helpers/breakpoints';
 const HomeWrapper = styled.main`
   width: 65%;
   max-width: ${bp.breakTwo};
+  min-height: 50vh;
   margin: 0 auto auto;
   text-align: center;
 
