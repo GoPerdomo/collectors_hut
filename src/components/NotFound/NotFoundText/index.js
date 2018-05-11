@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 export default () => (
   <Wrapper>
     <h1>404</h1>
-    <h2>Ooops!</h2>
+    <h2>Not Found</h2>
+    <h3>(Oops!)</h3>
   </Wrapper>
 );

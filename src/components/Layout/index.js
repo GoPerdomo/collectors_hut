@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 
+import bp from '../../helpers/breakpoints';
 
 // ========== Styled Components ==========
 const Layout = styled.div`
@@ -11,6 +12,14 @@ const Layout = styled.div`
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
+
+  & > main {
+    min-height: 50vh;
+    
+    @media (max-width: ${bp.breakEight}) {
+      min-height: 70vh;
+    }
+  }
 `
 
 
