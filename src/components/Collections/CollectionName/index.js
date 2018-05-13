@@ -9,6 +9,7 @@ const CollectionNameLink = styled(Link) `
 & h1 {
   margin: 0 auto 20px;
   width: fit-content;
+  word-break: break-word;
 }
 `
 

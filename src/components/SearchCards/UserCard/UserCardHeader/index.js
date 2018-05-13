@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { CardHeader } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 
-import ProfileChips from '../../../Profile/ProfileInfo/ProfileChips';
-
 import bp from '../../../../helpers/breakpoints';
 
 
 // ========== Styled Components ==========
 const StyledCardHeader = styled(CardHeader) `
+  display: flex;
+  align-items: center;
   word-break: break-word;
 
   @media (max-width: ${bp.breakNine}) {
@@ -23,7 +23,7 @@ const StyledCardHeader = styled(CardHeader) `
   }
 `
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link) `
   text-decoration: none;
   color: #fff;
 
@@ -43,10 +43,6 @@ const styles = {
     fontSize: "1.5em",
     fontWeight: "bold",
   },
-  subtitleStyle: {
-    display: "flex",
-    paddingTop: "1em",
-  },
   textStyle: {
     padding: 0,
   },
@@ -59,7 +55,6 @@ export default ({ user }) => {
   return (
     <StyledCardHeader
       titleStyle={styles.titleStyle}
-      subtitleStyle={styles.subtitleStyle}
       textStyle={styles.textStyle}
       style={styles.base}
       title={
@@ -67,7 +62,6 @@ export default ({ user }) => {
           {firstName} {lastName}
         </StyledLink>
       }
-      subtitle={<ProfileChips user={user} />}
       avatar={
         <StyledLink to={`/users/${_id}`}>
           <Avatar backgroundColor="white" size={70} src={photo} />
