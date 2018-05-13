@@ -18,6 +18,11 @@ const StyledCardHeader = styled(CardHeader) `
 
 const StyledLink = styled(Link) `
   color: #fff;
+
+  & img {
+    object-fit: cover;
+    object-position: center;
+  }
 `
 
 
