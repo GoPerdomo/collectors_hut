@@ -23,9 +23,14 @@ const StyledCardHeader = styled(CardHeader) `
   }
 `
 
-const StyledLink = styled(Link) `
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: #fff;
+
+  & img {
+    object-fit: cover;
+    object-position: center;
+  }
 `
 
 // ========= Material-UI Styles =========
