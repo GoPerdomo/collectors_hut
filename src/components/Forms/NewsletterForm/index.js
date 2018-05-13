@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import EmailInput from '../../Inputs/EmailInput';
 import SubmitButton from '../../Buttons/SubmitButton';
 
-// ========== Styles ==========
+
+// ========= Material-UI Styles =========
 const emailStyles = {
   baseStyle: {
     height: "40px",
@@ -21,7 +22,7 @@ const emailStyles = {
 
 const backgroundColor = "#FF6517";
 
-// ========== Component ==========
+// ============== Component ==============
 class NewsletterForm extends Component {
 
   constructor(props) {
