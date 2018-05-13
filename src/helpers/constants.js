@@ -25,3 +25,5 @@ export const profileFormSpeed = 500;
 export const collectionFormSpeed = 500;
 
 export const itemFormSpeed = 700;
+
+export const maxRandomCollections = 6;
