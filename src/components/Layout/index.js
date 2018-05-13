@@ -14,7 +14,7 @@ const Layout = styled.div`
   justify-content: space-between;
 
   & > main {
-    min-height: 50vh;
+    min-height: 40vh;
     
     @media (max-width: ${bp.breakEight}) {
       min-height: 70vh;

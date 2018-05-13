@@ -14,7 +14,7 @@ import bp from '../../helpers/breakpoints';
 const HomeWrapper = styled.main`
   width: 65%;
   max-width: ${bp.breakTwo};
-  min-height: 50vh;
+  min-height: 40vh;
   margin: 0 auto auto;
   text-align: center;
 
@@ -56,7 +56,7 @@ class Home extends Component {
     const { loggedUser, getCollections, history } = this.props;
 
     window.scrollTo(0, 0);
-    
+
     if (loggedUser) {
       history.push(`/users/${loggedUser}`);
     } else {
@@ -74,14 +74,14 @@ class Home extends Component {
 
   onScroll = () => {
     const { isLoading } = this.state;
-    const { getRandomCollections } = this.props;
+    const { chosenCollections, getRandomCollections } = this.props;    
 
     const windowYPosition = window.innerHeight + window.scrollY;
     const bodyHeight = document.body.clientHeight;
     const footerHeight = document.querySelector("footer").clientHeight;
 
     if (windowYPosition >= (bodyHeight - footerHeight)) {
-      if (!isLoading) getRandomCollections().then(isFetching => this.setState({ isLoading: isFetching }));
+      if (!isLoading && chosenCollections) getRandomCollections().then(isFetching => this.setState({ isLoading: isFetching }));
     }
   };
 
@@ -102,18 +102,18 @@ class Home extends Component {
           <HomeLogo />
         </LogoWrapper>
         {
-          !chosenCollections
-            ? <Loading />
-            : chosenCollections.map(currentCollection => (
-              <CollectionCard
-                key={currentCollection.collection._id}
-                collection={currentCollection.collection}
-                user={currentCollection.user}
-              />
-            ))
+          chosenCollections && chosenCollections.map(currentCollection => (
+            <CollectionCard
+              key={currentCollection.collection._id}
+              collection={currentCollection.collection}
+              user={currentCollection.user}
+            />
+          ))
         }
         {
-          isLoading && <Loading />
+          isLoading || !chosenCollections
+            ? <Loading />
+            : null
         }
       </HomeWrapper>
     )
