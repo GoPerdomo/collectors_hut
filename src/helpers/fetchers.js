@@ -1,4 +1,5 @@
-const apiUrl = process.env.REACT_APP_PROD_API_URL;
+const { NODE_ENV, REACT_APP_PROD_API_URL, REACT_APP_DEV_API_URL } = process.env;
+const apiUrl = (NODE_ENV === "production") ? REACT_APP_PROD_API_URL : REACT_APP_DEV_API_URL;
 
 const createHeaders = (method, body) => ({
   method,
