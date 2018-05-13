@@ -11,7 +11,7 @@ import bp from '../../helpers/breakpoints';
 const NotFoundWrapper = styled.main`
   width: 75%;
   max-width: ${bp.maxWidth};
-  min-height: 50vh;
+  min-height: 40vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
