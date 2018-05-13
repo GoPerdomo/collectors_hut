@@ -6,7 +6,7 @@ import HomeLogo from '../../components/Images/HomeLogo';
 import CollectionCard from '../../components/SearchCards/CollectionCard';
 import Loading from '../../components/Loading';
 
-import { getRandomCollections, clearHomeCollections } from '../../store/actions';
+import { getCollections, getRandomCollections, clearHomeCollections } from '../../store/actions';
 import bp from '../../helpers/breakpoints';
 
 
@@ -40,24 +40,59 @@ const LogoWrapper = styled.div`
   }
 `
 
-
 // ============== Component ==============
 class Home extends Component {
 
-  // If an user in logged in redirects profile, else fetches random collections
-  componentDidMount() {
-    const { loggedUser, getRandomCollections, history } = this.props;
+  constructor(props) {
+    super(props);
 
-    window.scrollTo(0, 0);
-    if (loggedUser) history.push(`/users/${loggedUser}`);
-    else getRandomCollections();
+    this.state = {
+      isLoading: false,
+    };
   }
 
+  // If an user in logged in redirects profile, else fetches random collections
+  componentDidMount() {
+    const { loggedUser, getCollections, history } = this.props;
+
+    window.scrollTo(0, 0);
+    
+    if (loggedUser) {
+      history.push(`/users/${loggedUser}`);
+    } else {
+      getCollections();
+      window.addEventListener("scroll", this.onScroll);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevCollections = prevProps.chosenCollections;
+    const propCollections = this.props.chosenCollections;
+
+    if (prevCollections !== propCollections) this.setState({ isLoading: false });
+  }
+
+  onScroll = () => {
+    const { isLoading } = this.state;
+    const { getRandomCollections } = this.props;
+
+    const windowYPosition = window.innerHeight + window.scrollY;
+    const bodyHeight = document.body.clientHeight;
+    const footerHeight = document.querySelector("footer").clientHeight;
+
+    if (windowYPosition >= (bodyHeight - footerHeight)) {
+      if (!isLoading) getRandomCollections().then(isFetching => this.setState({ isLoading: isFetching }));
+    }
+  };
+
   componentWillUnmount() {
-    this.props.clearHomeCollections();
+    const { clearHomeCollections } = this.props;
+    clearHomeCollections();
+    window.removeEventListener("scroll", this.onScroll);
   }
 
   render() {
+    const { isLoading } = this.state;
     const { chosenCollections } = this.props;
 
     return (
@@ -77,12 +112,15 @@ class Home extends Component {
               />
             ))
         }
+        {
+          isLoading && <Loading />
+        }
       </HomeWrapper>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { loggedUser, chosenCollections } = state;
 
   return {
@@ -91,7 +129,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
+  getCollections: () => dispatch(getCollections()),
   getRandomCollections: () => dispatch(getRandomCollections()),
   clearHomeCollections: () => dispatch(clearHomeCollections()),
 });

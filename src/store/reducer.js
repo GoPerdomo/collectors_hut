@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 const reducer = (state = {}, { type, payload }) => {
   switch (type) {
+
     // User
     case "SET_CURRENT_USER": {
       return { ...state, loggedUser: payload.userId };
@@ -20,7 +21,6 @@ const reducer = (state = {}, { type, payload }) => {
     case "EDIT_USER": {
       return { ...state, [payload.user._id]: { ...payload.user } };
     }
-    // User
 
     // Collection
     case "GET_HOME_COLLECTIONS": {
@@ -54,7 +54,6 @@ const reducer = (state = {}, { type, payload }) => {
 
       return { ...state, ...newUser };
     }
-    // Collection
 
     // Item
     case "ADD_NEW_ITEM": {
@@ -104,7 +103,6 @@ const reducer = (state = {}, { type, payload }) => {
 
       return { ...state, ...newUser };
     }
-    // Item
 
     // Others
     case "LOGIN_FAILED": {
@@ -120,9 +118,15 @@ const reducer = (state = {}, { type, payload }) => {
     }
 
     case "CHOSEN_COLLECTIONS": {
-      return { ...state, chosenCollections: payload.chosenCollections };
+      const stateCollections = state.chosenCollections;
+      const payloadCollections = payload.chosenCollections;
+
+      const chosenCollections = stateCollections && payloadCollections
+        ? [...stateCollections, ...payloadCollections]
+        : payloadCollections;        
+
+      return { ...state, chosenCollections };
     }
-    // Others
 
     default: {
       return state;

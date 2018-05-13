@@ -1,4 +1,5 @@
 import { theFetcher, photoSender } from '../../helpers/fetchers';
+import randomizeCollections, { discoveredCollections } from '../../helpers/randomizeCollections';
 
 // GET
 export const getProfile = userId => async (dispatch, getState) => {
@@ -15,65 +16,66 @@ export const getProfile = userId => async (dispatch, getState) => {
   }
 };
 
-export const getRandomCollections = () => async (dispatch, getState) => {
-  const allCollections = await theFetcher({
-    url: 'collections',
-    method: 'GET'
-  });
-  const chosen = new Set();
-  const userIdArray = [];
-  const maxCollections = 6;
+export const fetchSelectedUsers = chosenCollections => async (dispatch, getState) => {
+  for (const collection of chosenCollections) {
+    const user = await theFetcher({
+      url: `users/${collection.userId}`,
+      method: 'GET'
+    });
 
-  const randomizeCollections = () => {
-    while (chosen.size < maxCollections) {
-      const num = Math.floor(Math.random() * allCollections.length);
-      const { userId } = allCollections[num];
-
-      userIdArray.push(userId);
-      chosen.add(num);
-    }
-  }
-
-  const fetchSelectedUsers = async userIdArray => {
-    for (const userId of userIdArray) {
-      const user = await theFetcher({
-        url: `users/${userId}`,
-        method: 'GET'
-      });
-
-      if (user) {
-        dispatch({
-          type: "ADD_USER",
-          payload: { user }
-        });
-      }
-    }
-
-    return getState();
-  }
-
-  randomizeCollections();
-
-  fetchSelectedUsers(userIdArray).then(state => {
-    const chosenCollections = [];
-
-    if (chosenCollections) {
-      [...chosen].map(num => {
-        const { userId } = allCollections[num];
-        const user = state[userId];
-        const collectionId = allCollections[num].collection._id;
-        const collection = user.collections.find(collection => collection._id === collectionId);
-
-        return chosenCollections.push({ collection, user });
-      })
-
+    if (user) {
       dispatch({
-        type: "CHOSEN_COLLECTIONS",
-        payload: { chosenCollections },
+        type: "ADD_USER",
+        payload: { user }
       });
     }
-  });
+  }
+
+  return getState();
 }
+
+export const getCollections = () => async (dispatch, getState) => {
+  const { allCollections } = discoveredCollections;
+
+  if (allCollections.length === 0) {
+    const fetchedCollections = await theFetcher({
+      url: 'collections',
+      method: 'GET'
+    });
+
+    allCollections.push(...fetchedCollections);
+  }
+
+  dispatch(getRandomCollections());
+};
+
+export const getRandomCollections = () => async (dispatch, getState) => {
+  const chosenCollections = randomizeCollections();
+
+  if (!chosenCollections) return false;
+
+  dispatch(
+    fetchSelectedUsers(chosenCollections)
+  ).then(state => {
+
+    const newChosen = chosenCollections.map(chosen => {
+
+      const user = state[chosen.userId];
+      const collectionId = chosen.collection._id;
+      const stateCollection = user.collections.find(el => el._id === collectionId);
+
+      return { collection: stateCollection, user };
+
+    }).filter(obj => obj.collection.items.length > 0);
+
+    dispatch({
+      type: "CHOSEN_COLLECTIONS",
+      payload: { chosenCollections: newChosen },
+    });
+  });
+
+  return true;
+};
 
 export const search = (searchTerms, searchType) => async (dispatch, getState) => {
   const results = await theFetcher({
@@ -157,7 +159,7 @@ export const addCollection = (userId, collectionInfo) => async (dispatch, getSta
   }
 };
 
-export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {  
+export const addItem = (userId, collectionId, newItem) => async (dispatch, getState) => {
   const { itemInfo, itemPhoto } = newItem;
 
   const item = await theFetcher({
@@ -284,6 +286,8 @@ export const fetchLocalUser = () => (dispatch, getState) => {
 };
 
 export const clearHomeCollections = () => (dispatch, getState) => {
+  discoveredCollections.discoveredIds = [];
+
   dispatch({
     type: "CHOSEN_COLLECTIONS",
     payload: {},
