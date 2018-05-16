@@ -1,15 +1,18 @@
 <div align="center">
-  <img src="public/img/logo-horizontal.png" width="600">
+  <a href="https://collectorshut.herokuapp.com/" target="_blank">
+    <img src="public/img/logo-horizontal.png" width="600">
+  </a>
   <p>A social network for collectors to share and display interests on novelty, vintage and all other types of collections</p>
 </div>
+
+
+
 
 ## Table of Contents ##
 - [About](#about)
 - [Tech Stack](#tech-stack)
   - [The Frontend](#the-frontend)
   - [The Backend](#the-backend)
-- [Pics](#pics)
-- [Coming Soon](#coming-soon)
 
 
 ## About ##
@@ -38,32 +41,3 @@ A RESTful API using:
 - <a href="https://expressjs.com/" target="_blank">Express</a> - Web Framework for Node.js
 - <a href="http://mongoosejs.com/" target="_blank">Mongoose</a> - MongoDB Object Modeling for Node.js
 - <a href="https://www.mongodb.com/" target="_blank">MongoDB</a> - NoSQL Database
-
-
-## Pics ##
-
-<div align="center">
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/home.png" target="_blank">
-    <img src="assets/home.png" width="440">
-  </a>
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/login.png" target="_blank">
-    <img src="assets/login.png" width="440">
-  </a>
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/profile.png" target="_blank">
-    <img src="assets/profile.png" width="440">
-  </a>
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/collection.png" target="_blank">
-    <img src="assets/collection.png" width="440">
-  </a>
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/item.png" target="_blank">
-    <img src="assets/item.png" width="440">
-  </a>
-  <a href="https://raw.githubusercontent.com/GoPerdomo/collectors_hut/master/assets/search.png" target="_blank">
-    <img src="assets/search.png" width="440">
-  </a>
-</div>
-
-
-## Coming Soon ##
-
-- **Deployment**
