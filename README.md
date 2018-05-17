@@ -17,7 +17,7 @@
 
 ## About ##
 
-Made as my Capstone Project for the Full-Stack Development program at <a href="https://propulsionacademy.com/" target="_blank">Propulsion Academy</a>.
+Built as my Capstone Project for the Full-Stack Engineering program at <a href="https://propulsionacademy.com/" target="_blank">Propulsion Academy</a>.
 
 
 ## Tech Stack ##
